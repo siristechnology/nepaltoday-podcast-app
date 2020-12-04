@@ -36,19 +36,13 @@ const SloganText = styled(Text)`
 `;
 
 const Header = (): Object => (
-  <Wrapper>
-    <AppTitle>MINDCAST</AppTitle>
-    <SloganWrapper>
-      <DefaultText
-        color={appStyles.colors.white}
-        text="A new way to boost your"
-      />
-      <DefaultText
-        color={appStyles.colors.primaryColor}
-        text=" knowledge."
-      />
-    </SloganWrapper>
-  </Wrapper>
-);
+	<Wrapper>
+		<AppTitle>NepalToday Podcast</AppTitle>
+		<SloganWrapper>
+			<DefaultText color={appStyles.colors.white} text="A new way to boost your" />
+			<DefaultText color={appStyles.colors.primaryColor} text=" knowledge." />
+		</SloganWrapper>
+	</Wrapper>
+)
 
 export default Header;
