@@ -6,7 +6,7 @@ import { Platform } from 'react-native';
 import Sound from 'react-native-video';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Creators as PlayerCreators } from '~/store/ducks/player';
+import { Creators as PlayerCreators } from '~/store/ducks/player'
 
 type PlayerProps = {
   shouldSeekProgressSlider: boolean,

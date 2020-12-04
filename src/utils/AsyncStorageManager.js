@@ -1,6 +1,7 @@
 // @flow
 
-import { AsyncStorage } from 'react-native';
+// import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage'
 import CONSTANTS from '~/utils/CONSTANTS';
 
 export const getItemFromStorage = async (

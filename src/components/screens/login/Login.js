@@ -44,10 +44,12 @@ class Login extends Component<Props, {}> {
       Animated.timing(this._headerAnimation, {
         duration: 500,
         toValue: 1,
+        useNativeDriver: true,
       }),
       Animated.timing(this._formAnimation, {
         duration: 600,
         toValue: 1,
+        useNativeDriver: true,
       }),
     ]).start();
   }
