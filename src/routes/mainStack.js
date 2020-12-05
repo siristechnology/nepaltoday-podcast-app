@@ -23,22 +23,22 @@ const ApplicationTabs = createMaterialTopTabNavigator(
   {
     [ROUTE_NAMES.HOME]: {
       screen: HomeRoutes,
-      header: null,
+      headerShown: false,
     },
 
     [ROUTE_NAMES.SEARCH]: {
       screen: SearchRoutes,
-      header: null,
+      headerShown: false,
     },
 
     [ROUTE_NAMES.LIBRARY]: {
       screen: LibraryRoutes,
-      header: null,
+      headerShown: false,
     },
 
     [ROUTE_NAMES.SETTINGS]: {
       screen: SettingsRoutes,
-      header: null,
+      headerShown: false,
     },
   },
   {

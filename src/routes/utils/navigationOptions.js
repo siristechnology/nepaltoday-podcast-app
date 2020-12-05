@@ -34,21 +34,15 @@ export const getPlayerNavigationOption = (navigation: Object): Object => {
   const title = params[CONSTANTS.PARAMS.PLAYER_TITLE];
 
   return {
-    ...DEFAULT_HEADER_STYLE,
-    headerStyle: {
-      backgroundColor: 'transparent',
-      borderBottomWidth: 0,
-    },
-    header: isRightMenuOpen ? null : undefined,
-    title: title ? `#${title}` : '',
-    headerRight: (
-      <HeaderButton
-        onPress={onPressHeaderRightButton}
-        iconName="format-list-bulleted"
-        position={POSITIONS.RIGHT}
-      />
-    ),
-  };
+		...DEFAULT_HEADER_STYLE,
+		headerStyle: {
+			backgroundColor: 'transparent',
+			borderBottomWidth: 0,
+		},
+		header: isRightMenuOpen ? null : undefined,
+		title: title ? `#${title}` : '',
+		headerRight: () => <HeaderButton onPress={onPressHeaderRightButton} iconName="format-list-bulleted" position={POSITIONS.RIGHT} />,
+  }
 };
 
 export const getDefaultHeaderWithTitle = (
@@ -92,15 +86,9 @@ export const getDefaultHeaderWithButton = (
   );
 
   return {
-    ...headerWithTitleStyle,
-    headerRight: (
-      <HeaderActionButton
-        color={theme.colors.textColor}
-        onPress={onPressHeaderButton}
-        icon={icon}
-      />
-    ),
-  };
+		...headerWithTitleStyle,
+		headerRight: () => <HeaderActionButton color={theme.colors.textColor} onPress={onPressHeaderButton} icon={icon} />,
+  }
 };
 
 export const setHeaderPlayButtonPress = (

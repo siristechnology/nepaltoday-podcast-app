@@ -17,37 +17,32 @@ const LOCAL_STACK_ROUTES = {
 };
 
 const RootStack = createStackNavigator(
-  {
-    [CONSTANTS.ROUTES.SETTINGS]: {
-      screen: props => (
-        <Settings
-          {...props}
-          LOCAL_STACK_ROUTES={LOCAL_STACK_ROUTES}
-        />
-      ),
-      navigationOptions: () => ({
-        headerBackTitle: null,
-        header: null,
-      }),
-    },
+	{
+		[CONSTANTS.ROUTES.SETTINGS]: {
+			screen: (props) => <Settings {...props} LOCAL_STACK_ROUTES={LOCAL_STACK_ROUTES} />,
+			navigationOptions: () => ({
+				headerBackTitle: null,
+				headerShown: false,
+			}),
+		},
 
-    [CONSTANTS.ROUTES.PLAYER]: {
-      screen: Player,
-      navigationOptions: ({ navigation }) => getPlayerNavigationOption(navigation),
-    },
+		[CONSTANTS.ROUTES.PLAYER]: {
+			screen: Player,
+			navigationOptions: ({ navigation }) => getPlayerNavigationOption(navigation),
+		},
 
-    [LOCAL_STACK_ROUTES.ABOUT]: {
-      screen: About,
-      navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('About', navigation, screenProps),
-    },
-  },
-  {
-    initialRouteName: CONSTANTS.ROUTES.SETTINGS,
-    mode: Platform.OS === 'ios' ? 'card' : 'modal',
-    headerLayoutPreset: 'center',
-    headerMode: 'screen',
-  },
-);
+		[LOCAL_STACK_ROUTES.ABOUT]: {
+			screen: About,
+			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('About', navigation, screenProps),
+		},
+	},
+	{
+		initialRouteName: CONSTANTS.ROUTES.SETTINGS,
+		mode: Platform.OS === 'ios' ? 'card' : 'modal',
+		headerLayoutPreset: 'center',
+		headerMode: 'screen',
+	},
+)
 
 RootStack.navigationOptions = ({ navigation }) => {
   const tabBarVisible = navigation.state.index <= 0;

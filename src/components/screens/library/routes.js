@@ -34,91 +34,69 @@ const LOCAL_STACK_ROUTES = {
 };
 
 const RootStack = createStackNavigator(
-  {
-    [CONSTANTS.ROUTES.LIBRARY]: {
-      screen: props => (
-        <Library
-          {...props}
-          LOCAL_STACK_ROUTES={LOCAL_STACK_ROUTES}
-        />
-      ),
-      navigationOptions: () => ({
-        headerBackTitle: null,
-        header: null,
-      }),
-    },
+	{
+		[CONSTANTS.ROUTES.LIBRARY]: {
+			screen: (props) => <Library {...props} LOCAL_STACK_ROUTES={LOCAL_STACK_ROUTES} />,
+			navigationOptions: () => ({
+				headerBackTitle: null,
+				headerShown: false,
+			}),
+		},
 
-    [CONSTANTS.ROUTES.PLAYER]: {
-      screen: Player,
-      navigationOptions: ({ navigation }) => getPlayerNavigationOption(navigation),
-    },
+		[CONSTANTS.ROUTES.PLAYER]: {
+			screen: Player,
+			navigationOptions: ({ navigation }) => getPlayerNavigationOption(navigation),
+		},
 
-    [LOCAL_STACK_ROUTES.PLAYLIST_DETAIL]: {
-      screen: PlaylistDetail,
-      navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('', navigation, screenProps),
-    },
+		[LOCAL_STACK_ROUTES.PLAYLIST_DETAIL]: {
+			screen: PlaylistDetail,
+			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('', navigation, screenProps),
+		},
 
-    [LOCAL_STACK_ROUTES.PLAYLISTS]: {
-      screen: Playlists,
-      navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithButton(
-        navigation,
-        screenProps,
-        'Playlists',
-        'plus',
-      ),
-    },
+		[LOCAL_STACK_ROUTES.PLAYLISTS]: {
+			screen: Playlists,
+			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithButton(navigation, screenProps, 'Playlists', 'plus'),
+		},
 
-    [CONSTANTS.ROUTES.PODCAST_DETAIL]: {
-      screen: PodcastDetailContainer,
-      navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('Podcast Detail', navigation, screenProps),
-    },
+		[CONSTANTS.ROUTES.PODCAST_DETAIL]: {
+			screen: PodcastDetailContainer,
+			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('Podcast Detail', navigation, screenProps),
+		},
 
-    [CONSTANTS.ROUTES.AUTHOR_DETAIL]: {
-      screen: AuthorDetailContainer,
-      navigationOptions: ({ screenProps }) => getHiddenHeaderLayout(screenProps),
-    },
+		[CONSTANTS.ROUTES.AUTHOR_DETAIL]: {
+			screen: AuthorDetailContainer,
+			navigationOptions: ({ screenProps }) => getHiddenHeaderLayout(screenProps),
+		},
 
-    [LOCAL_STACK_ROUTES.YOUR_PODCASTS]: {
-      screen: YourPodcasts,
-      navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithButton(
-        navigation,
-        screenProps,
-        'Your Podcasts',
-        'play-circle-outline',
-      ),
-    },
+		[LOCAL_STACK_ROUTES.YOUR_PODCASTS]: {
+			screen: YourPodcasts,
+			navigationOptions: ({ navigation, screenProps }) =>
+				getDefaultHeaderWithButton(navigation, screenProps, 'Your Podcasts', 'play-circle-outline'),
+		},
 
-    [LOCAL_STACK_ROUTES.PODCASTS_DOWNLOADED]: {
-      screen: PodcastsDownloaded,
-      navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithButton(
-        navigation,
-        screenProps,
-        'Downloads',
-        'play-circle-outline',
-      ),
-    },
+		[LOCAL_STACK_ROUTES.PODCASTS_DOWNLOADED]: {
+			screen: PodcastsDownloaded,
+			navigationOptions: ({ navigation, screenProps }) =>
+				getDefaultHeaderWithButton(navigation, screenProps, 'Downloads', 'play-circle-outline'),
+		},
 
-    [LOCAL_STACK_ROUTES.RECENTLY_PLAYED]: {
-      screen: RecentlyPlayed,
-      navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithButton(
-        navigation,
-        screenProps,
-        'Recently Played',
-        'play-circle-outline',
-      ),
-    },
+		[LOCAL_STACK_ROUTES.RECENTLY_PLAYED]: {
+			screen: RecentlyPlayed,
+			navigationOptions: ({ navigation, screenProps }) =>
+				getDefaultHeaderWithButton(navigation, screenProps, 'Recently Played', 'play-circle-outline'),
+		},
 
-    [CONSTANTS.ROUTES.INTERESTS]: {
-      screen: Interests,
-      navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('Your Interests', navigation, screenProps),
-    },
-  },
-  {
-    initialRouteName: CONSTANTS.ROUTES.LIBRARY,
-    mode: Platform.OS === 'ios' ? 'card' : 'modal',
-    headerLayoutPreset: 'center',
-    headerMode: 'screen',
-  },
-);
+		[CONSTANTS.ROUTES.INTERESTS]: {
+			screen: Interests,
+			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('Your Interests', navigation, screenProps),
+		},
+	},
+	{
+		initialRouteName: CONSTANTS.ROUTES.LIBRARY,
+		mode: Platform.OS === 'ios' ? 'card' : 'modal',
+		headerLayoutPreset: 'center',
+		headerMode: 'screen',
+	},
+)
 
 export default RootStack;
