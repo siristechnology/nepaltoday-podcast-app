@@ -32,35 +32,10 @@ type Props = {
   onChangeListIndex: Function,
 };
 
-const LoginComponent = ({
-  onNavigateToMainStack,
-  onChangeListIndex,
-}: Props): Object => (
-  <Wrapper>
-    <View>
-      <Input
-        placeholder="E-mail"
-        iconName="email-outline"
-        type="emailAddress"
-      />
-      <Input
-        placeholder="Password"
-        iconName="lock-outline"
-        type="password"
-      />
-      <ChangeAction
-        onPressActionButton={() => onChangeListIndex(1)}
-        onNavigateToMainStack={onNavigateToMainStack}
-        changeActionText="Register now"
-        questionText="Not account?"
-        buttonText="LOGIN"
-      />
-    </View>
-    <BottomContent
-      onNavigateToMainStack={onNavigateToMainStack}
-      actionSelected="Login"
-    />
-  </Wrapper>
-);
+const LoginComponent = ({ onNavigateToMainStack, onChangeListIndex }: Props): Object => (
+	<Wrapper>
+		<BottomContent onNavigateToMainStack={onNavigateToMainStack} actionSelected="Login" />
+	</Wrapper>
+)
 
 export default LoginComponent;

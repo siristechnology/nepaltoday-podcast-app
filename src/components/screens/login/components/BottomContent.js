@@ -90,35 +90,27 @@ type Props = {
   actionSelected: string,
 };
 
-const BottomContent = ({
-  actionSelected,
-  onNavigateToMainStack,
-}: Props): Object => (
-  <Wrapper>
-    <LineWrapper>
-      <Line />
-      <OrText>OR</OrText>
-      <Line />
-    </LineWrapper>
-    <ButtonsWrapper>
-      {renderButton({
-        backgroundColor: appStyles.colors.facebook,
-        onPress: onNavigateToMainStack,
-        withMarginBottom: true,
-        iconName: 'facebook',
-        actionSelected,
-        size: 25,
-      })}
-      {renderButton({
-        backgroundColor: appStyles.colors.googlePlus,
-        onPress: onNavigateToMainStack,
-        withMarginBottom: true,
-        iconName: 'google',
-        actionSelected,
-        size: 20,
-      })}
-    </ButtonsWrapper>
-  </Wrapper>
-);
+const BottomContent = ({ actionSelected, onNavigateToMainStack }: Props): Object => (
+	<Wrapper>
+		<ButtonsWrapper>
+			{renderButton({
+				backgroundColor: appStyles.colors.facebook,
+				onPress: onNavigateToMainStack,
+				withMarginBottom: true,
+				iconName: 'facebook',
+				actionSelected,
+				size: 25,
+			})}
+			{renderButton({
+				backgroundColor: appStyles.colors.googlePlus,
+				onPress: onNavigateToMainStack,
+				withMarginBottom: true,
+				iconName: 'google',
+				actionSelected,
+				size: 20,
+			})}
+		</ButtonsWrapper>
+	</Wrapper>
+)
 
 export default BottomContent;

@@ -6,7 +6,6 @@ import {
 } from 'react-native';
 import styled from 'styled-components';
 
-import RegisterComponent from './components/RegisterComponent';
 import BackgroundImage from './components/BackgroundImage';
 import LoginComponent from './components/LoginComponent';
 import CONSTANTS from '~/utils/CONSTANTS';
@@ -29,10 +28,7 @@ type Props = {
   navigation: Object,
 };
 
-const LAYOUTS = [
-  { Layout: LoginComponent, id: 'login' },
-  { Layout: RegisterComponent, id: 'register' },
-];
+const LAYOUTS = [{ Layout: LoginComponent, id: 'login' }]
 
 class Login extends Component<Props, {}> {
   _flatListRef: Object = {};

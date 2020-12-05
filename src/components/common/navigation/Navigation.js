@@ -27,7 +27,7 @@ const navigationBarItems = [
 	},
 	{
 		label: 'Settings',
-		icon: 'account-settings',
+		icon: 'account',
 		route: CONSTANTS.ROUTES.SETTINGS,
 	},
 ]
