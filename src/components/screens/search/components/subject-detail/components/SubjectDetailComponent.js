@@ -61,105 +61,95 @@ type Props = {
 };
 
 class SubjectDetail extends Component<Props, {}> {
-  _outterListRef: Object = {};
-  _tabsInitialPosition: Object = new Animated.ValueXY({
-    x: 0,
-    y: HEADER_HEIGHT * 2,
-  });
+	_outterListRef: Object = {}
+	_tabsInitialPosition: Object = new Animated.ValueXY({
+		x: 0,
+		y: HEADER_HEIGHT * 2,
+	})
 
-  componentWillReceiveProps(nextProps: Props) {
-    const { loading, error, subject } = nextProps;
-    const shouldShowTabContent = !loading && !error && !!subject;
+	UNSAFE_componentWillReceiveProps(nextProps: Props) {
+		const { loading, error, subject } = nextProps
+		const shouldShowTabContent = !loading && !error && !!subject
 
-    if (shouldShowTabContent) {
-      Animated.timing(this._tabsInitialPosition.y, {
-        toValue: HEADER_HEIGHT,
-        duration: 250,
-        useNativeDriver: true,
-      }).start();
-    }
-  }
+		if (shouldShowTabContent) {
+			Animated.timing(this._tabsInitialPosition.y, {
+				toValue: HEADER_HEIGHT,
+				duration: 250,
+				useNativeDriver: true,
+			}).start()
+		}
+	}
 
-  onChangeTabIndex = (indexSelected: number): void => {
-    this._outterListRef.scrollToIndex({
-      animated: true,
-      index: indexSelected,
-    });
-  };
+	onChangeTabIndex = (indexSelected: number): void => {
+		this._outterListRef.scrollToIndex({
+			animated: true,
+			index: indexSelected,
+		})
+	}
 
-  renderHeader = (thumbnailImageURL: string, imageURL: string): Object => (
-    <Header>
-      <ProgressiveImage
-        thumbnailImageURL={thumbnailImageURL}
-        imageURL={imageURL}
-      />
-      <DarkLayer />
-    </Header>
-  );
+	renderHeader = (thumbnailImageURL: string, imageURL: string): Object => (
+		<Header>
+			<ProgressiveImage thumbnailImageURL={thumbnailImageURL} imageURL={imageURL} />
+			<DarkLayer />
+		</Header>
+	)
 
-  renderContent = (): Object => {
-    const { navigation, subject, theme } = this.props;
-    const { params } = navigation.state;
+	renderContent = (): Object => {
+		const { navigation, subject, theme } = this.props
+		const { params } = navigation.state
 
-    const { imageURL, thumbnailImageURL } = params[
-      CONSTANTS.PARAMS.SUBJECT_DETAIL
-    ];
-    const { data } = subject;
+		const { imageURL, thumbnailImageURL } = params[CONSTANTS.PARAMS.SUBJECT_DETAIL]
+		const { data } = subject
 
-    return (
-      <Fragment>
-        {this.renderHeader(thumbnailImageURL, imageURL)}
-        <SmokeShadow />
-        <Animated.View
-          style={[
-            {
-              marginBottom: HEADER_HEIGHT,
-              transform: [
-                {
-                  translateY: this._tabsInitialPosition.y,
-                },
-              ],
-            },
-          ]}
-        >
-          <ContentWrapper>
-            <CustomTab
-              onChangeTabIndex={this.onChangeTabIndex}
-              contentWidth={appStyles.metrics.width}
-              data={TAB_ITEMS}
-              theme="dark"
-            />
-            <TabContent
-              setListRef={(ref) => {
-                this._outterListRef = ref;
-              }}
-              trendingPodcasts={data.trending}
-              featuredPodcasts={data.featured}
-              authors={data.authors}
-            />
-          </ContentWrapper>
-        </Animated.View>
-      </Fragment>
-    );
-  };
+		return (
+			<Fragment>
+				{this.renderHeader(thumbnailImageURL, imageURL)}
+				<SmokeShadow />
+				<Animated.View
+					style={[
+						{
+							marginBottom: HEADER_HEIGHT,
+							transform: [
+								{
+									translateY: this._tabsInitialPosition.y,
+								},
+							],
+						},
+					]}
+				>
+					<ContentWrapper>
+						<CustomTab onChangeTabIndex={this.onChangeTabIndex} contentWidth={appStyles.metrics.width} data={TAB_ITEMS} theme="dark" />
+						<TabContent
+							setListRef={(ref) => {
+								this._outterListRef = ref
+							}}
+							trendingPodcasts={data.trending}
+							featuredPodcasts={data.featured}
+							authors={data.authors}
+						/>
+					</ContentWrapper>
+				</Animated.View>
+			</Fragment>
+		)
+	}
 
-  render() {
-    const { loading, error, subject } = this.props;
+	render() {
+		const { loading, error, subject } = this.props
 
-    return (
-      <Container>
-        {!error && !loading && !!subject.data && this.renderContent()}
-        {loading && !error && <Loading />}
-        {error && !loading && (
-          <ErrorMessage
-            message="Seems like you're having some troubles when trying to connect with the server."
-            icon="server-network-off"
-            title="Oops..."
-          />
-        )}
-      </Container>
-    );
-  }
+		return (
+			<Container>
+				{!error && !loading && !!subject.data && this.renderContent()}
+				{loading && !error && <Loading />}
+				{error && !loading && (
+					<ErrorMessage
+						message="Seems like you're having some troubles when trying to connect with the server."
+						icon="server-network-off"
+						title="Oops..."
+					/>
+				)}
+			</Container>
+		)
+	}
 }
 
 export default withTheme(SubjectDetail);

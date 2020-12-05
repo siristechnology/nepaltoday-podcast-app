@@ -54,7 +54,7 @@ class PlaylistDetailContainer extends Component<Props, State> {
     getPlaylist(playlistTitle);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { playlist } = nextProps;
 
     if (playlist.title) {

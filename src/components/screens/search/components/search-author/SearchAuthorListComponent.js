@@ -40,7 +40,7 @@ class SearchAuthorListComponent extends PureComponent<Props, {}> {
     y: appStyles.metrics.getHeightFromDP('40%'),
   });
 
-  componentWillReceiveProps(nextProps: Props) {
+  UNSAFE_componentWillReceiveProps(nextProps: Props) {
     const { loading, authors } = nextProps;
 
     const shouldShowList = !loading && authors.length > 0;

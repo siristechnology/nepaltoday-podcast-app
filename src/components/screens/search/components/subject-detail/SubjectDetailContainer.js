@@ -35,7 +35,7 @@ class SubjectDetailContainer extends Component<Props, {}> {
     getSubjectDetail(id);
   }
 
-  componentWillReceiveProps(nextProps: Props) {
+  UNSAFE_componentWillReceiveProps(nextProps: Props) {
     const { subject, navigation } = nextProps;
 
     if (subject.error && !this.props.subject.error) {

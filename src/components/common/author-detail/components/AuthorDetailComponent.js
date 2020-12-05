@@ -72,7 +72,7 @@ class AuthorDetailComponent extends PureComponent<Props, {}> {
     y: appStyles.metrics.getHeightFromDP('40%'),
   });
 
-  componentWillReceiveProps(nextProps: Props) {
+  UNSAFE_componentWillReceiveProps(nextProps: Props) {
     const { loading, error, author } = nextProps;
     const shouldShowContent = !loading && !error && !!author;
 

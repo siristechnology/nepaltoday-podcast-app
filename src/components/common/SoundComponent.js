@@ -31,7 +31,7 @@ type Props = {
 class SoundComponent extends Component<Props, {}> {
   _soundRef: Object = null;
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { seekProgressTimerSuccess, player } = nextProps;
     const { shouldSeekProgressSlider, seekValue } = player;
 

@@ -45,7 +45,7 @@ class RecentlyPlayed extends PureComponent<Props, State> {
     this.setPodcastsRecentlyPlayed(this.props);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setPodcastsRecentlyPlayed(nextProps);
   }
 

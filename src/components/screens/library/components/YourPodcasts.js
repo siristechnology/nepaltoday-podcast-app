@@ -45,7 +45,7 @@ class YourPodcasts extends PureComponent<Props, State> {
     this.setUserPodcasts(this.props);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setUserPodcasts(nextProps);
   }
 
