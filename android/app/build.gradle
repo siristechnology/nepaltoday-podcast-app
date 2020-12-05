@@ -130,7 +130,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.siristechnology.nepaltodaypodcast"
+        applicationId "com.siristechnology.nepaltodaypodcast.beta"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
