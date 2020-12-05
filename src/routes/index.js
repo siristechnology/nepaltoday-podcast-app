@@ -1,10 +1,7 @@
 import React from 'react';
 
-import {
-  createSwitchNavigator,
-  createAppContainer,
-  createStackNavigator,
-} from 'react-navigation';
+import { createSwitchNavigator, createAppContainer } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation-stack'
 import { withTheme } from 'styled-components';
 
 import OboardingIntro from '~/components/screens/oboarding-intro/OnboardingIntro';

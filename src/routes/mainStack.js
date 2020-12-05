@@ -1,8 +1,7 @@
 import React from 'react';
-import {
-  createMaterialTopTabNavigator,
-  createAppContainer,
-} from 'react-navigation';
+import { createAppContainer } from 'react-navigation'
+import { createMaterialTopTabNavigator } from 'react-navigation-tabs'
+
 import { withTheme } from 'styled-components';
 
 import Navigation from '~/components/common/navigation/Navigation';

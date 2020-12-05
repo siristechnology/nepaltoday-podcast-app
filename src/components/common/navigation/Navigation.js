@@ -10,27 +10,27 @@ import PlayerTracker from './components/PlayerTracker';
 import CONSTANTS from '~/utils/CONSTANTS';
 
 const navigationBarItems = [
-  {
-    label: 'Discover',
-    icon: 'compass',
-    route: CONSTANTS.ROUTES.HOME,
-  },
-  {
-    label: 'Search',
-    icon: 'magnify',
-    route: CONSTANTS.ROUTES.SEARCH,
-  },
-  {
-    label: 'Library',
-    icon: 'library-music',
-    route: CONSTANTS.ROUTES.LIBRARY,
-  },
-  {
-    label: 'Settings',
-    icon: 'settings',
-    route: CONSTANTS.ROUTES.SETTINGS,
-  },
-];
+	{
+		label: 'Discover',
+		icon: 'compass',
+		route: CONSTANTS.ROUTES.HOME,
+	},
+	{
+		label: 'Search',
+		icon: 'magnify',
+		route: CONSTANTS.ROUTES.SEARCH,
+	},
+	{
+		label: 'Library',
+		icon: 'playlist-music',
+		route: CONSTANTS.ROUTES.LIBRARY,
+	},
+	{
+		label: 'Settings',
+		icon: 'account-settings',
+		route: CONSTANTS.ROUTES.SETTINGS,
+	},
+]
 
 type Props = {
   navigationState: Object,
