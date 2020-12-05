@@ -1,4 +1,4 @@
-package com.siristechnology.nepaltodaypodcast;
+package com.siristechnology.nepaltodaypodcast.beta;
 
 import com.facebook.react.ReactActivity;
 

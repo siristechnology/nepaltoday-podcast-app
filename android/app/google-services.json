@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "63417643973",
+    "project_id": "nepaltoday-podcast-beta",
+    "storage_bucket": "nepaltoday-podcast-beta.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:63417643973:android:d0c25fca8473025b1511ac",
+        "android_client_info": {
+          "package_name": "com.siristechnology.nepaltodaypodcast.beta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "63417643973-ocprf7l3kqrjamocm3b7hjsdabkgsrkf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.siristechnology.nepaltodaypodcast.beta",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "63417643973-7go3hcjbn09fd716e3sgmi20700umcrj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCf7bBExppQGJ-VRRD60FdnVqqyF0Lhtls"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "63417643973-7go3hcjbn09fd716e3sgmi20700umcrj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
