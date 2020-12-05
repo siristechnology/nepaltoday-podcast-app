@@ -23,8 +23,7 @@
     ]
   },
   "husky": {
-    "hooks": {
-    }
+    "hooks": {}
   },
   "lint-staged": {
     "*.js": [
@@ -34,6 +33,7 @@
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",
+    "@react-native-community/viewpager": "^4.2.1",
     "@react-native-firebase/app": "10.0.0",
     "@react-native-firebase/auth": "10.0.0",
     "@react-native-firebase/crashlytics": "10.0.0",

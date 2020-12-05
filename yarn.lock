@@ -1160,6 +1160,11 @@
     sudo-prompt "^9.0.0"
     wcwidth "^1.0.1"
 
+"@react-native-community/viewpager@^4.2.1":
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/@react-native-community/viewpager/-/viewpager-4.2.1.tgz#9886d17a04a3a2f260ec246eb52750439e2064b9"
+  integrity sha512-VX2tkN0nv7PRem7iS++4tblLKf7RLWemqucDnD6ZIKKBE0s3n7T5vOSAFJyJBH6WucwoUz6HE+0vm8AC3tZDbw==
+
 "@react-native-firebase/app@10.0.0":
   version "10.0.0"
   resolved "https://devtools.devergage.com:4873/@react-native-firebase%2fapp/-/app-10.0.0.tgz#dc18af26accb31028eab00dd36f486fee046e63e"
