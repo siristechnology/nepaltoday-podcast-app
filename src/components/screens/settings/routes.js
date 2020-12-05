@@ -39,8 +39,10 @@ const RootStack = createStackNavigator(
 	{
 		initialRouteName: CONSTANTS.ROUTES.SETTINGS,
 		mode: Platform.OS === 'ios' ? 'card' : 'modal',
-		headerLayoutPreset: 'center',
-		headerMode: 'screen',
+    headerMode: 'screen',
+    defaultNavigationOptions: {
+      headerTitleAlign: 'center',
+    },
 	},
 )
 

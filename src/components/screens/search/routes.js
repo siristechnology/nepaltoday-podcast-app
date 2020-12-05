@@ -71,8 +71,10 @@ const RootStack = createStackNavigator(
 	{
 		initialRouteName: CONSTANTS.ROUTES.SEARCH,
 		mode: Platform.OS === 'ios' ? 'card' : 'modal',
-		headerLayoutPreset: 'center',
 		headerMode: 'screen',
+		defaultNavigationOptions: {
+      headerTitleAlign: 'center',
+    },
 	},
 )
 

@@ -13,21 +13,18 @@ import CONSTANTS from '../utils/CONSTANTS';
 import MainStack from './mainStack';
 
 const InterestsScreen = createStackNavigator(
-  {
-    [CONSTANTS.ROUTES.INTERESTS]: {
-      screen: Interests,
-      navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithButton(
-        navigation,
-        screenProps,
-        'Your Interests',
-        'check-all',
-      ),
-    },
-  },
-  {
-    headerLayoutPreset: 'center',
-  },
-);
+	{
+		[CONSTANTS.ROUTES.INTERESTS]: {
+			screen: Interests,
+			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithButton(navigation, screenProps, 'Your Interests', 'check-all'),
+		},
+	},
+	{
+		defaultNavigationOptions: {
+			headerTitleAlign: 'center',
+		},
+	},
+)
 
 const InitialStack = createSwitchNavigator(
   {

@@ -84,8 +84,10 @@ const RootStack = createStackNavigator(
   {
     initialRouteName: LOCAL_STACK_ROUTES.HOME,
     mode: Platform.OS === 'ios' ? 'card' : 'modal',
-    headerLayoutPreset: 'center',
     headerMode: 'screen',
+    defaultNavigationOptions: {
+      headerTitleAlign: 'center',
+    },
   },
 );
 
