@@ -105,7 +105,7 @@ const BottomContent = ({
         backgroundColor: appStyles.colors.facebook,
         onPress: onNavigateToMainStack,
         withMarginBottom: true,
-        iconName: 'facebook-box',
+        iconName: 'facebook',
         actionSelected,
         size: 25,
       })}
@@ -113,9 +113,9 @@ const BottomContent = ({
         backgroundColor: appStyles.colors.googlePlus,
         onPress: onNavigateToMainStack,
         withMarginBottom: true,
-        iconName: 'google-plus-box',
+        iconName: 'google',
         actionSelected,
-        size: 30,
+        size: 20,
       })}
     </ButtonsWrapper>
   </Wrapper>
