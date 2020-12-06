@@ -1,34 +1,34 @@
-import React from 'react';
+import React from 'react'
 import { createStackNavigator } from 'react-navigation-stack'
-import { Platform } from 'react-native';
+import { Platform } from 'react-native'
 
-import AuthorDetailContainer from '~/components/common/author-detail/AuthorDetailContainer';
-import TrendingAuthorsSeeAll from './components/trending-authors/TrendingAuthorsSeeAll';
-import HottestPodcastsSeeAll from './components/hottest-podcasts/HottestPodcastsSeeAll';
-import NewReleasesSeeAll from './components/new-releases/NewReleasesSeeAll';
+import AuthorDetailContainer from '~/components/common/author-detail/AuthorDetailContainer'
+import TrendingAuthorsSeeAll from './components/trending-authors/TrendingAuthorsSeeAll'
+import HottestPodcastsSeeAll from './components/hottest-podcasts/HottestPodcastsSeeAll'
+import NewReleasesSeeAll from './components/new-releases/NewReleasesSeeAll'
 
-import PodcastDetailContainer from '~/components/common/podcast-detail/PodcastDetailContainer';
-import Player from '~/components/common/player/PlayerContainer';
-import Home from './Home';
+import PodcastDetailContainer from '~/components/common/podcast-detail/PodcastDetailContainer'
+import Player from '~/components/common/player/PlayerContainer'
+import Home from './Discover'
 
 import {
-  getDefaultHeaderWithButton,
-  getDefaultHeaderWithTitle,
-  getPlayerNavigationOption,
-  getHiddenHeaderLayout,
-} from '~/routes/utils/navigationOptions';
-import CONSTANTS from '~/utils/CONSTANTS';
-import appStyles from '~/styles';
+	getDefaultHeaderWithButton,
+	getDefaultHeaderWithTitle,
+	getPlayerNavigationOption,
+	getHiddenHeaderLayout,
+} from '~/routes/utils/navigationOptions'
+import CONSTANTS from '~/utils/CONSTANTS'
+import appStyles from '~/styles'
 
 const LOCAL_STACK_ROUTES = {
-  TRENDING_AUTHORS_SEE_ALL: 'TRENDING_AUTHORS_SEE_ALL',
-  HOTTEST_PODCASTS_SEE_ALL: 'HOTTEST_PODCASTS_SEE_ALL',
-  NEW_RELEASES_SEE_ALL: 'NEW_RELEASES_SEE_ALL',
-};
+	TRENDING_AUTHORS_SEE_ALL: 'TRENDING_AUTHORS_SEE_ALL',
+	HOTTEST_PODCASTS_SEE_ALL: 'HOTTEST_PODCASTS_SEE_ALL',
+	NEW_RELEASES_SEE_ALL: 'NEW_RELEASES_SEE_ALL',
+}
 
 const RootStack = createStackNavigator(
 	{
-		[CONSTANTS.ROUTES.HOME]: {
+		[CONSTANTS.ROUTES.DISCOVER]: {
 			screen: (props) => <Home {...props} LOCAL_STACK_ROUTES={LOCAL_STACK_ROUTES} />,
 			navigationOptions: () => ({
 				headerBackTitle: null,
@@ -69,7 +69,7 @@ const RootStack = createStackNavigator(
 		},
 	},
 	{
-		initialRouteName: CONSTANTS.ROUTES.HOME,
+		initialRouteName: CONSTANTS.ROUTES.DISCOVER,
 		mode: Platform.OS === 'ios' ? 'card' : 'modal',
 		headerMode: 'screen',
 		defaultNavigationOptions: {
@@ -78,4 +78,4 @@ const RootStack = createStackNavigator(
 	},
 )
 
-export default RootStack;
+export default RootStack
