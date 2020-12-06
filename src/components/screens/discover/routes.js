@@ -6,6 +6,7 @@ import AuthorDetailContainer from '~/components/common/author-detail/AuthorDetai
 import TrendingAuthorsSeeAll from './components/trending-authors/TrendingAuthorsSeeAll'
 import HottestPodcastsSeeAll from './components/hottest-podcasts/HottestPodcastsSeeAll'
 import NewReleasesSeeAll from './components/new-releases/NewReleasesSeeAll'
+import SearchAuthorListContainer from './components/search-author/SearchAuthorListContainer'
 
 import PodcastDetailContainer from '~/components/common/podcast-detail/PodcastDetailContainer'
 import Player from '~/components/common/player/PlayerContainer'
@@ -24,6 +25,7 @@ const LOCAL_STACK_ROUTES = {
 	TRENDING_AUTHORS_SEE_ALL: 'TRENDING_AUTHORS_SEE_ALL',
 	HOTTEST_PODCASTS_SEE_ALL: 'HOTTEST_PODCASTS_SEE_ALL',
 	NEW_RELEASES_SEE_ALL: 'NEW_RELEASES_SEE_ALL',
+	SEARCH_AUTHORS_RESULT: 'SEARCH_AUTHORS_RESULT',
 }
 
 const RootStack = createStackNavigator(
@@ -56,6 +58,11 @@ const RootStack = createStackNavigator(
 			screen: NewReleasesSeeAll,
 			navigationOptions: ({ navigation, screenProps }) =>
 				getDefaultHeaderWithButton(navigation, screenProps, 'New Releases', 'play-circle-outline'),
+		},
+
+		[LOCAL_STACK_ROUTES.SEARCH_AUTHORS_RESULT]: {
+			screen: SearchAuthorListContainer,
+			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('Search Authors', navigation, screenProps),
 		},
 
 		[CONSTANTS.ROUTES.AUTHOR_DETAIL]: {
