@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",
+    "@react-native-community/google-signin": "^5.0.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-community/viewpager": "^4.2.1",
     "@react-native-firebase/app": "10.0.0",
@@ -43,6 +44,7 @@
     "react-native": "0.63.4",
     "react-native-dotenv": "^0.2.0",
     "react-native-fast-image": "^8.3.4",
+    "react-native-fbsdk": "^3.0.0",
     "react-native-fs": "2.16.6",
     "react-native-gesture-handler": "^1.9.0",
     "react-native-linear-gradient": "^2.5.6",

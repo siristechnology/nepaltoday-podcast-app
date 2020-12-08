@@ -7,6 +7,9 @@ import styled from 'styled-components';
 import Icon from '~/components/common/Icon';
 import DefaultText from './DefaultText';
 import appStyles from '~/styles';
+import { facebookLogin, googleLogin } from './loginHelper';
+import UserService from '~/services/user.services';
+import { setUserInfo } from '~/services/asyncStorage.services';
 
 const Wrapper = styled(View)`
   width: 100%;
@@ -90,12 +93,40 @@ type Props = {
   actionSelected: string,
 };
 
-const BottomContent = ({ actionSelected, onNavigateToMainStack }: Props): Object => (
+const BottomContent = ({ actionSelected, onNavigateToMainStack }: Props): Object => {
+
+  const onFacebookLoginClick = () => {
+    facebookLogin().then(res=>{
+      UserService.facebookSignin(res.accessToken).then(response=> {
+        setUserInfo(response)
+        onNavigateToMainStack()   
+      }).catch(err=> {
+        alert("fb login failed")
+      })
+    }).catch(err=>{
+      alert("fb login failed")
+    })
+  }
+
+  const onGoogleLoginClick = async() => {
+    googleLogin().then(res=> {
+      UserService.googleSignin(res.accessToken).then(response=> {
+        setUserInfo(response)
+        onNavigateToMainStack()   
+      }).catch(err=> {
+        alert("google login failed")
+      })
+    }).catch(err=>{
+      alert("google login failed")
+    })
+  }
+
+  return(
 	<Wrapper>
 		<ButtonsWrapper>
 			{renderButton({
 				backgroundColor: appStyles.colors.facebook,
-				onPress: onNavigateToMainStack,
+				onPress: onFacebookLoginClick,
 				withMarginBottom: true,
 				iconName: 'facebook',
 				actionSelected,
@@ -103,14 +134,14 @@ const BottomContent = ({ actionSelected, onNavigateToMainStack }: Props): Object
 			})}
 			{renderButton({
 				backgroundColor: appStyles.colors.googlePlus,
-				onPress: onNavigateToMainStack,
+				onPress: onGoogleLoginClick,
 				withMarginBottom: true,
 				iconName: 'google',
 				actionSelected,
 				size: 20,
 			})}
 		</ButtonsWrapper>
-	</Wrapper>
-)
+  </Wrapper>)
+}
 
 export default BottomContent;
