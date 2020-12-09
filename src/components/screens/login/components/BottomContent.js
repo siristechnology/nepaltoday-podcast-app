@@ -98,7 +98,7 @@ const BottomContent = ({ actionSelected, onNavigateToMainStack }: Props): Object
   const onFacebookLoginClick = () => {
     facebookLogin().then(res=>{
       UserService.facebookSignin(res.accessToken).then(response=> {
-        setUserInfo(response)
+        setUserInfo(response.data)
         onNavigateToMainStack()   
       }).catch(err=> {
         alert("fb login failed")
@@ -111,7 +111,7 @@ const BottomContent = ({ actionSelected, onNavigateToMainStack }: Props): Object
   const onGoogleLoginClick = async() => {
     googleLogin().then(res=> {
       UserService.googleSignin(res.accessToken).then(response=> {
-        setUserInfo(response)
+        setUserInfo(response.data)
         onNavigateToMainStack()   
       }).catch(err=> {
         alert("google login failed")

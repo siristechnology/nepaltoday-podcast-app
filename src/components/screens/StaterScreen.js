@@ -12,6 +12,7 @@ import { Creators as LocalPodcastsManagerCreators } from '~/store/ducks/localPod
 import { Creators as PlaylistsCreators } from '~/store/ducks/playlist';
 
 import CONSTANTS from '~/utils/CONSTANTS';
+import { getUserInfo } from '~/services/asyncStorage.services';
 
 type Props = {
   loadPodcastsRecentlyPlayed: Function,
@@ -39,7 +40,13 @@ class StaterScreen extends Component<Props, {}> {
 
     SplashScreen.hide();
 
-    navigation.navigate(CONSTANTS.ROUTES.ONBOARDING_INTRO);
+    getUserInfo().then(res=>{
+      if(res.id){
+        navigation.navigate(CONSTANTS.ROUTES.MAIN_STACK)
+      }else{
+        navigation.navigate(CONSTANTS.ROUTES.ONBOARDING_INTRO);
+      }
+    })
   }
 
   loadImages = (): void => {
