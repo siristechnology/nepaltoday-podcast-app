@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-PACKAGE_NAME="com.siristechnology.nepaltodayapp"
-APP_NAME="NepalToday"
+PACKAGE_NAME="com.siristechnology.nepaltodaypodcast"
+APP_NAME="NepalToday Podcast"
 TIME_STAMP=$(date +%s)
 IC_LAUNCHER_BACKGROUND="#E7F3FF"
 BUILD_GRADLE=./android/app/build.gradle
