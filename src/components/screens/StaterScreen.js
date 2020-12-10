@@ -41,7 +41,7 @@ class StaterScreen extends Component<Props, {}> {
     SplashScreen.hide();
 
     getUserInfo().then(res=>{
-      if(res.id){
+      if(res && res.id){
         navigation.navigate(CONSTANTS.ROUTES.MAIN_STACK)
       }else{
         navigation.navigate(CONSTANTS.ROUTES.ONBOARDING_INTRO);
