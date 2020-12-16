@@ -62,8 +62,8 @@ class SoundComponent extends Component<Props, {}> {
     } = player;
 
     const isPodcastDefined = !!currentPodcast
-      && !!currentPodcast.uri
-      && typeof currentPodcast.uri === 'string';
+      && !!currentPodcast.audioLink
+      && typeof currentPodcast.audioLink === 'string';
 
     return isPodcastDefined && !stopPlayer ? (
       <Sound
@@ -74,7 +74,7 @@ class SoundComponent extends Component<Props, {}> {
         }}
         onEnd={this.onEnd}
         source={{
-          uri: currentPodcast.uri,
+          uri: currentPodcast.audioLink,
         }}
         ref={(ref) => {
           this._soundRef = ref;

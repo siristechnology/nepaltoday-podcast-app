@@ -72,7 +72,7 @@ const PodcastDetailComponent = ({
       imageURL={podcast.imageURL}
       subject={podcast.category}
       title={podcast.title}
-      stars={podcast.stars}
+      stars={4}
     />
     <ActionButtons
       onPressAddToPlaylist={onToggleAddPlaylistModal}

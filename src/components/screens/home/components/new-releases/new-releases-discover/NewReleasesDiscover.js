@@ -56,7 +56,7 @@ const NewReleasesDiscover = ({ navigation, data }: Props): Object => (
           podcastImage={item.imageURL}
           isLastIndex={index === data.length - 1}
           navigation={navigation}
-          subject={item.category}
+          subject={'test'}
           title={item.title}
         />
       )}
