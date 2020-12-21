@@ -22,9 +22,9 @@ const Wrapper = styled(View)`
 `;
 
 type Data = {
-  trendingAuthors: Array<Object>,
-  hottestPodcasts: Array<Object>,
-  newReleases: Array<Object>,
+  // trendingAuthors: Array<Object>,
+  podcasts: Array<Object>,
+  // newReleases: Array<Object>,
 };
 
 type Props = {
@@ -67,13 +67,13 @@ const HomeComponent = ({
         <ScreenTitle
           title="Discover"
         />
-        {data.newReleases && data.newReleases.length > 0 && (
+        {data.podcasts && data.podcasts.length > 0 && (
           <NewReleasesDiscover
-            data={data.newReleases}
+            data={data.podcasts}
             navigation={navigation}
           />
         )}
-        {data.trendingAuthors && data.trendingAuthors.length > 0 && (
+        {/* {data.trendingAuthors && data.trendingAuthors.length > 0 && (
           <TrendingAuthorsDiscover
             data={data.trendingAuthors}
             navigation={navigation}
@@ -84,7 +84,7 @@ const HomeComponent = ({
             data={data.hottestPodcasts}
             navigation={navigation}
           />
-        )}
+        )} */}
       </ScrollView>
     )}
   </Wrapper>
