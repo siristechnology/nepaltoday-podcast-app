@@ -26,7 +26,7 @@ export function* getHome() {
       .filter(interest => interest.isSelected)
       .map(interest => interest.title.toLowerCase());
 
-    const { data } = yield call(api.get, '/home', {
+    const { data } = yield call(api.get, '/podcasts', {
       paramsSerializer: params => parseParams(params),
       params: { categories: interestsSelected },
     });
