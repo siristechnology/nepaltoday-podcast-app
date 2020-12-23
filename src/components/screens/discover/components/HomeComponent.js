@@ -75,9 +75,9 @@ const HomeComponent = ({ navigation, loading, error, data, getHome, onTypeAuthor
 
 				{data.newReleases && data.newReleases.length > 0 && <NewReleasesDiscover data={data.newReleases} navigation={navigation} />}
 
-				{data.trendingAuthors && data.trendingAuthors.length > 0 && (
+				{/* {data.trendingAuthors && data.trendingAuthors.length > 0 && (
 					<TrendingAuthorsDiscover data={data.trendingAuthors} navigation={navigation} />
-				)}
+				)} */}
 
 				{data.hottestPodcasts && data.hottestPodcasts.length > 0 && <HottestPodcasts data={data.hottestPodcasts} navigation={navigation} />}
 			</ScrollView>
