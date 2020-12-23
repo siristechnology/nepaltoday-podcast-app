@@ -13,6 +13,7 @@ import ScreenTitle from '~/components/common/ScreenTitle';
 import Loading from '~/components/common/Loading';
 import CONSTANTS from '~/utils/CONSTANTS';
 import appStyles from '~/styles';
+import PodcastList from './podcast-list/podcastList';
 
 const Wrapper = styled(View)`
   width: 100%;
@@ -65,11 +66,11 @@ const HomeComponent = ({
         }
       >
         <ScreenTitle
-          title="Discover"
+          title="Home"
         />
-        {data.podcasts && data.podcasts.length > 0 && (
-          <NewReleasesDiscover
-            data={data.podcasts}
+        {data.hottestPodcasts && data.hottestPodcasts.length > 0 && (
+          <PodcastList
+            data={data.hottestPodcasts}
             navigation={navigation}
           />
         )}

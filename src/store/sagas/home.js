@@ -22,11 +22,13 @@ export function* getHome() {
       ? JSON.parse(rawInterests)
       : rawInterests;
 
-    const interestsSelected = interests
+    let interestsSelected = interests
       .filter(interest => interest.isSelected)
       .map(interest => interest.title.toLowerCase());
 
-    const { data } = yield call(api.get, '/podcasts', {
+    interestsSelected = 'all'
+
+    const { data } = yield call(api.get, '/home', {
       paramsSerializer: params => parseParams(params),
       params: { categories: interestsSelected },
     });

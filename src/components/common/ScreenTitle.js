@@ -7,7 +7,7 @@ import styled from 'styled-components';
 const Title = styled(Text)`
   width: 100%;
   margin-top: ${({ theme }) => {
-    const percentage = Platform.OS === 'android' ? '8%' : '15%';
+    const percentage = Platform.OS === 'android' ? '3%' : '15%';
     return theme.metrics.getWidthFromDP(percentage);
   }}px;
   margin-left: ${({ theme }) => theme.metrics.largeSize}px;
