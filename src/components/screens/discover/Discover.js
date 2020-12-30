@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Creators as HomeCreators } from '~/store/ducks/home'
+import { Creators as HomeCreators } from '~/store/ducks/discover'
 
 import HomeComponent from './components/HomeComponent'
 import CONSTANTS from '~/utils/CONSTANTS'
@@ -19,14 +19,14 @@ type Props = {
 	LOCAL_STACK_ROUTES: Object,
 	home: HomeStoreData,
 	navigation: Object,
-	getHome: Function,
+	getDiscover: Function,
 }
 
 class HomeContainer extends Component<Props, {}> {
 	componentDidMount() {
-		const { LOCAL_STACK_ROUTES, getHome, navigation } = this.props
+		const { LOCAL_STACK_ROUTES, getDiscover, navigation } = this.props
 
-		getHome()
+		getDiscover()
 
 		navigation.setParams({
 			LOCAL_STACK_ROUTES,
@@ -34,7 +34,7 @@ class HomeContainer extends Component<Props, {}> {
 	}
 
 	render() {
-		const { navigation, getHome, home } = this.props
+		const { navigation, getDiscover, home } = this.props
 		const { loading, error, data } = home
 
 		const onTypeAuthorName = (authorName: string): void => {
@@ -66,7 +66,7 @@ class HomeContainer extends Component<Props, {}> {
 				onSearchForAuthor={onSearchForAuthor}
 				onToggleDarkLayer={onToggleDarkLayer}
 				navigation={navigation}
-				getHome={getHome}
+				getHome={getDiscover}
 				loading={loading}
 				error={error}
 				data={data}
@@ -78,7 +78,7 @@ class HomeContainer extends Component<Props, {}> {
 const mapDispatchToProps = (dispatch) => bindActionCreators(HomeCreators, dispatch)
 
 const mapStateToProps = (state) => ({
-	home: state.home,
+	home: state.discover,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer)

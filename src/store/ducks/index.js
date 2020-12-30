@@ -6,6 +6,7 @@ import subject from './subject';
 import author from './author';
 import player from './player';
 import home from './home';
+import discover from './discover'
 
 export default combineReducers({
   localPodcastsManager,
@@ -14,4 +15,5 @@ export default combineReducers({
   author,
   player,
   home,
+  discover
 });
