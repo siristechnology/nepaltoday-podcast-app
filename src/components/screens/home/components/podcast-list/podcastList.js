@@ -22,10 +22,11 @@ type Props = {
     navigation: Object,
 };
 
-const PodcastList = ({navigation, data}: Props): Object => (
+const PodcastList = ({navigation, data}: Props): Object => {
+    return(
     <Wrapper>
         <AllPodcastList
-            keyExtractor={podcast => `${podcast.id}`}
+            keyExtractor={podcast => `${podcast._id}`}
             data={data}
             renderItem={({ item, index }) => (
                 <PodcastListItem
@@ -40,6 +41,6 @@ const PodcastList = ({navigation, data}: Props): Object => (
             )}
         />
     </Wrapper>
-)
+)}
 
 export default PodcastList

@@ -5,6 +5,8 @@ import {
 import styled from 'styled-components';
 import FastImage from 'react-native-fast-image';
 import Icon from '~/components/common/Icon';
+import CONSTANTS from '~/utils/CONSTANTS';
+import { getRelativeTime } from '~/utils/time';
 
 const Container = styled(TouchableOpacity).attrs({
     activeOpacity: 0.6
@@ -15,7 +17,7 @@ const Container = styled(TouchableOpacity).attrs({
     padding-top: 10px;
     padding-bottom: 10px;
     border-color: #E0E0E0;
-    border-bottom-width: 1px;
+    border-bottom-width: 0.5px;
 `;
 
 const TitleRow = styled(View)`
@@ -48,7 +50,9 @@ const PodcastImage = styled(FastImage).attrs(({ uri }) => ({
     margin-right: 10px;
 `;
 
-const DurationView = styled(View)`
+const DurationView = styled(TouchableOpacity).attrs({
+    activeOpacity: 0.6
+})`
     width: 90px;
     align-items: center;
     justify-content: center;
@@ -67,10 +71,16 @@ const DurationText = styled(Text)`
     color: ${({ theme }) => theme.colors.textColor};
 `;
 
+const BottomRow = styled(View)`
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;    
+`
+
 const AuthorInfo = styled(View)`
     flex-direction: row;
     align-items: center;
-    margin-top: 5px;
+    margin-right: 30px;
 `
 
 const AuthorImage = styled(FastImage).attrs(({ uri }) => ({
@@ -89,6 +99,13 @@ const AuthorText = styled(Text)`
     color: ${({ theme }) => theme.colors.textColor};
 `
 
+const SourceTimeText = styled(Text)`
+    margin-left: 5px;
+    font-size: 13px;
+    opacity: 0.7;
+    color: ${({ theme }) => theme.colors.textColor};
+`;
+
 type Props = {
     podcastDetail: Object,
     isLastIndex: boolean,
@@ -98,7 +115,8 @@ type Props = {
 const PodcastListItem = ({
     podcastDetail,
     isLastIndex,
-    onPress
+    onPress,
+    navigation
 }: Props): Object => {
     return(
     <Container
@@ -116,7 +134,13 @@ const PodcastListItem = ({
                 <Description>
                     {podcastDetail.description.slice(0,100)+'..'}
                 </Description>
-                <DurationView>
+                <DurationView
+                    onPress={()=>navigation.navigate(CONSTANTS.ROUTES.PLAYER, {
+                        [CONSTANTS.PARAMS.PLAYER]: {
+                          [CONSTANTS.KEYS.PLAYLIST]: [podcastDetail],
+                        }
+                    })}
+                >
                     <Icon
                         name="play-circle-outline"
                         size={20}
@@ -127,14 +151,23 @@ const PodcastListItem = ({
                 </DurationView>
             </View>
         </TitleRow>
-        <AuthorInfo>
-            <AuthorImage
-                uri={podcastDetail.author.profileImageURL}
+        <BottomRow>
+            <AuthorInfo>
+                <AuthorImage
+                    uri={podcastDetail.author.profileImageURL}
+                />
+                <AuthorText>
+                    {podcastDetail.author.name}
+                </AuthorText>
+            </AuthorInfo>
+            <Icon
+                name="clock-outline"
+                size={17}
             />
-            <AuthorText>
-                {podcastDetail.author.name}
-            </AuthorText>
-        </AuthorInfo>
+            <SourceTimeText>
+                {getRelativeTime(podcastDetail.createdDate)}
+            </SourceTimeText>
+        </BottomRow>
     </Container>
 )}
 

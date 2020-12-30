@@ -68,9 +68,9 @@ const HomeComponent = ({
         <ScreenTitle
           title="Home"
         />
-        {data.hottestPodcasts && data.hottestPodcasts.length > 0 && (
+        {data.podcasts && data.podcasts.length > 0 && (
           <PodcastList
-            data={data.hottestPodcasts}
+            data={data.podcasts}
             navigation={navigation}
           />
         )}
