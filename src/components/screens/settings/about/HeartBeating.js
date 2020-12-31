@@ -28,25 +28,25 @@ class HeartBeating extends Component {
         Animated.timing(this._heartSize, {
           toValue: 30,
           duration: 100,
-          useNativeDriver: true,
+          useNativeDriver: false,
         }),
 
         Animated.timing(this._heartSize, {
           toValue: 25,
           duration: 100,
-          useNativeDriver: true,
+          useNativeDriver: false
         }),
 
         Animated.timing(this._heartSize, {
           toValue: 30,
           duration: 100,
-          useNativeDriver: true,
+          useNativeDriver: false,
         }),
 
         Animated.timing(this._heartSize, {
           toValue: 25,
           duration: 200,
-          useNativeDriver: true,
+          useNativeDriver: false,
         }),
 
         Animated.delay(700),

@@ -222,6 +222,7 @@ class Player extends Component<Props, State> {
             animationFunction={(prop, value) => Animated.timing(prop, {
               toValue: value,
               duration: 250,
+              useNativeDriver: true
             })
             }
             menu={
