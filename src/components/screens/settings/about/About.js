@@ -33,6 +33,7 @@ const BeautifulRoleWrapper = styled(View)`
   flex-direction: row;
   justify-content: center;
   margin-top: ${({ theme }) => theme.metrics.extraSmallSize}px;
+  /* align-items: center; */
 `;
 
 const ContentWrapper = styled(View)`
@@ -66,7 +67,7 @@ const BeautifulRole = styled(Text)`
 const BeautifulImage = styled(FastImage).attrs(() => ({
   source: {
     uri:
-      'https://s3-sa-east-1.amazonaws.com/bon-appetit-resources/user-profile/user-profile.jpg',
+      'https://siristechnology.com/static/262427b2f72af83c3810602d5f7a3d96/logo.png',
   },
 }))`
   width: ${({ theme }) => theme.metrics.getWidthFromDP('32%')}px;
@@ -144,9 +145,9 @@ const About = (): Object => (
     >
       <BeautifulImage />
       <ContentWrapper>
-        <BeautifulName>Stenio Wagner</BeautifulName>
+        <BeautifulName>Siris Technology</BeautifulName>
         <BeautifulRoleWrapper>
-          <BeautifulRole>Full-Stack Engineer</BeautifulRole>
+          <BeautifulRole>Software Company</BeautifulRole>
           <HeartBeating />
         </BeautifulRoleWrapper>
         <SocialButtonsWrapper>
@@ -167,8 +168,7 @@ const About = (): Object => (
         </SocialButtonsWrapper>
         <RedLine />
         <AboutText>
-          Hey! I'm Full-Stack JavaScript Engineer that loves apply his knowledge
-          to solve problems, create amazing products and impact lives!
+          Siris Technology is a software development company that primarily focuses on developing user friendly mobile and web apps.
         </AboutText>
       </ContentWrapper>
     </CardWrapper>
