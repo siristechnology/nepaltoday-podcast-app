@@ -13,6 +13,9 @@ GOOGLE_SERVICES_FILE=./android/app/google-services.json
 
 sed -i '' -e 's/applicationId "[^"]*"/applicationId "'$PACKAGE_NAME'"/' $BUILD_GRADLE
 sed -i '' -e 's/versionCode .*$/versionCode '$TIME_STAMP'/' $BUILD_GRADLE
+
+sed -i '' -e 's/package="[^"]*"/package="'$PACKAGE_NAME'"/' $ANDROID_MANIFEST_FILE
+
 sed -i '' -e 's/"app_name">[^<]*</"app_name">'$APP_NAME'</' $ANDROID_STRINGS_FILE
 
 sed -i '' -e 's/"ic_launcher_background">[^<]*</"ic_launcher_background">'$IC_LAUNCHER_BACKGROUND'</' $IC_LAUNCHER_BACKGROUND_FILE
