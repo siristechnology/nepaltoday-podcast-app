@@ -86,7 +86,7 @@ const PodcastDetailComponent = ({
       onPressDetail={() => {
         navigation.navigate(CONSTANTS.ROUTES.AUTHOR_DETAIL, {
           [CONSTANTS.PARAMS.AUTHOR_DETAIL]: {
-            id: podcast.author.id,
+            program: podcast.program,
           },
         });
       }}

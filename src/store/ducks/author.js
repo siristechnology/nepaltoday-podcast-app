@@ -2,14 +2,14 @@ export const Types = {
   SEARCH_AUTHOR_BY_NAME_REQUEST: 'author/SEARCH_AUTHOR_BY_NAME_REQUEST',
   SEARCH_AUTHOR_BY_NAME_SUCCESS: 'author/SEARCH_AUTHOR_BY_NAME_SUCCESS',
   SEARCH_AUTHOR_BY_NAME_ERROR: 'author/SEARCH_AUTHOR_BY_NAME_ERROR',
-  GET_AUTHOR_BY_ID_REQUEST: 'author/GET_AUTHOR_BY_ID_REQUEST',
-  GET_AUTHOR_BY_ID_SUCCESS: 'author/GET_AUTHOR_BY_ID_SUCCESS',
-  GET_AUTHOR_BY_ID_ERROR: 'author/GET_AUTHOR_ERROR',
+  GET_AUTHOR_BY_PROGRAM_REQUEST: 'author/GET_AUTHOR_BY_PROGRAM_REQUEST',
+  GET_AUTHOR_BY_PROGRAM_SUCCESS: 'author/GET_AUTHOR_BY_PROGRAM_SUCCESS',
+  GET_AUTHOR_BY_PROGRAM_ERROR: 'author/GET_AUTHOR_BY_PROGRAM_ERROR',
 };
 
 const INITIAL_STATE = {
   loadingSearchAuthorByName: true,
-  loadingSearchAuthorById: false,
+  loadingSearchAuthorByProgram: false,
   author: null,
   error: false,
   authors: [],
@@ -30,18 +30,18 @@ export const Creators = {
     type: Types.SEARCH_AUTHOR_BY_NAME_ERROR,
   }),
 
-  getAuthorById: id => ({
-    type: Types.GET_AUTHOR_BY_ID_REQUEST,
-    payload: { id },
+  getAuthorByProgram: program => ({
+    type: Types.GET_AUTHOR_BY_PROGRAM_REQUEST,
+    payload: { program },
   }),
 
-  getAuthorByIdSuccess: data => ({
-    type: Types.GET_AUTHOR_BY_ID_SUCCESS,
+  getAuthorByProgramSuccess: data => ({
+    type: Types.GET_AUTHOR_BY_PROGRAM_SUCCESS,
     payload: { data },
   }),
 
-  getAuthorByIdFailure: () => ({
-    type: Types.GET_AUTHOR_BY_ID_ERROR,
+  getAuthorByProgramFailure: () => ({
+    type: Types.GET_AUTHOR_BY_PROGRAM_ERROR,
   }),
 };
 
@@ -69,25 +69,25 @@ const author = (state = INITIAL_STATE, { type, payload }) => {
         error: true,
       };
 
-    case Types.GET_AUTHOR_BY_ID_REQUEST:
+    case Types.GET_AUTHOR_BY_PROGRAM_REQUEST:
       return {
         ...state,
         author: null,
-        loadingSearchAuthorById: true,
+        loadingSearchAuthorByProgram: true,
         error: false,
       };
 
-    case Types.GET_AUTHOR_BY_ID_SUCCESS:
+    case Types.GET_AUTHOR_BY_PROGRAM_SUCCESS:
       return {
         ...state,
-        loadingSearchAuthorById: false,
+        loadingSearchAuthorByProgram: false,
         author: payload.data,
       };
 
-    case Types.GET_AUTHOR_BY_ID_ERROR:
+    case Types.GET_AUTHOR_BY_PROGRAM_ERROR:
       return {
         ...state,
-        loadingSearchAuthorById: false,
+        loadingSearchAuthorByProgram: false,
         error: true,
       };
 

@@ -19,11 +19,11 @@ type Props = {
 
 class AuthorDetailContainer extends Component<Props, {}> {
   componentDidMount() {
-    const { getAuthorById, navigation } = this.props;
+    const { getAuthorByProgram, navigation } = this.props;
     const { params } = navigation.state;
-    const { id } = params[CONSTANTS.PARAMS.AUTHOR_DETAIL];
+    const { program } = params[CONSTANTS.PARAMS.AUTHOR_DETAIL];
 
-    getAuthorById(id);
+    getAuthorByProgram(program);
   }
 
   render() {
@@ -43,7 +43,7 @@ class AuthorDetailContainer extends Component<Props, {}> {
 }
 
 const mapStateToProps = ({ author }) => ({
-  loading: author.loadingSearchAuthorById,
+  loading: author.loadingSearchAuthorByProgram,
   author: author.author,
   error: author.error,
 });
