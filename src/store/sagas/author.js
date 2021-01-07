@@ -21,14 +21,14 @@ export function* searchAuthorByName({ payload }) {
   }
 }
 
-export function* getAuthorById({ payload }) {
+export function* getAuthorByProgram({ payload }) {
   try {
-    const { id } = payload;
+    const { program } = payload;
 
-    const { data } = yield call(api.get, `/authors/${id}`);
+    const { data } = yield call(api.get, `/authors/${program}`);
 
-    yield put(AuthorCreators.getAuthorByIdSuccess(data.author));
+    yield put(AuthorCreators.getAuthorByProgramSuccess(data.author));
   } catch (err) {
-    yield put(AuthorCreators.getAuthorByIdFailure());
+    yield put(AuthorCreators.getAuthorByProgramFailure());
   }
 }

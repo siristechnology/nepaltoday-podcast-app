@@ -150,7 +150,7 @@ class AuthorDetailComponent extends PureComponent<Props, {}> {
               contentOffset: { y: this._scrollViewOffset },
             },
           },
-        ])}
+        ],{useNativeDriver: false})}
         showsVerticalScrollIndicator={false}
       >
         <SectionWrapper>
@@ -158,25 +158,25 @@ class AuthorDetailComponent extends PureComponent<Props, {}> {
             name={author.name}
           />
         </SectionWrapper>
-        <SectionWrapper>
+        {/* <SectionWrapper>
           <AboutSection
-            about={author.about}
+            about={author.name}
           />
-        </SectionWrapper>
-        <SectionWrapper>
+        </SectionWrapper> */}
+        {/* <SectionWrapper>
           <SubjectsSection
             subjects={author.categories}
           />
-        </SectionWrapper>
-        {author.podcasts.newReleases && author.podcasts.newReleases.length && (
+        </SectionWrapper> */}
+        {author.podcasts && author.podcasts.length && (
           <NewReleasesSection
             onPressItem={podcast => this.onPressPodcastListItem(podcast, navigation)
             }
-            newReleases={author.podcasts.newReleases}
+            newReleases={author.podcasts}
             navigation={navigation}
           />
         )}
-        {author.podcasts.featured && author.podcasts.featured.length > 0}
+        {/* {author.podcasts.featured && author.podcasts.featured.length > 0}
         <FeaturedSection
           onPressItem={podcast => this.onPressPodcastListItem(podcast, navigation)
           }
@@ -187,7 +187,7 @@ class AuthorDetailComponent extends PureComponent<Props, {}> {
           <RelatedAuthors
             relatedAuthors={author.relatedAuthors}
           />
-        )}
+        )} */}
       </Animated.ScrollView>
     </Fragment>
   );

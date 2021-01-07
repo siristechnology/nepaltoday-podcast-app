@@ -94,14 +94,14 @@ const AuthorListItem = ({
       withIndex={withIndex}
     >
       <AuthorName>{author.name}</AuthorName>
-      {/* <DetailButton
+      <DetailButton
         onPress={onPressItem}
       >
         <Icon
           size={22}
           name="magnify"
         />
-      </DetailButton> */}
+      </DetailButton>
     </RightContent>
   </ContentWrapper>
 );
