@@ -114,7 +114,7 @@ const BottomContent = ({ actionSelected, onNavigateToMainStack }: Props): Object
         setUserInfo(response.data)
         onNavigateToMainStack()   
       }).catch(err=> {
-        alert("google login failed")
+        alert("google login failed", JSON.stringify(err))
       })
     }).catch(err=>{
       alert("google login failed")
