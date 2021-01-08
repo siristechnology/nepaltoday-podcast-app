@@ -25,7 +25,7 @@ const googleLogin = async() => {
         const tokens = await GoogleSignin.getTokens() 
         return tokens
     } catch (error) {
-          alert("Google login failed")
+          alert("Google login failed", error.code)
           throw error
         // if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         //   // user cancelled the login flow
