@@ -11,7 +11,12 @@ const getUserInfo = async () => {
     return JSON.parse(userInfo)
 }
 
+const clearUserInfo = () => {
+    AsyncStorage.removeItem(USER_INFO)
+}
+
 export {
     setUserInfo,
-    getUserInfo
+    getUserInfo,
+    clearUserInfo
 }

@@ -4,10 +4,6 @@ import React from 'react';
 import { ScrollView, RefreshControl, View } from 'react-native';
 import styled, { withTheme } from 'styled-components';
 
-import TrendingAuthorsDiscover from './trending-authors/trending-authors-discover/TrendingAuthorsDiscover';
-import NewReleasesDiscover from './new-releases/new-releases-discover/NewReleasesDiscover';
-import HottestPodcasts from './hottest-podcasts/HottestPodcastsDiscover';
-
 import ErrorMessage from '~/components/common/ErrorMessage';
 import ScreenTitle from '~/components/common/ScreenTitle';
 import Loading from '~/components/common/Loading';
@@ -74,18 +70,6 @@ const HomeComponent = ({
             navigation={navigation}
           />
         )}
-        {/* {data.trendingAuthors && data.trendingAuthors.length > 0 && (
-          <TrendingAuthorsDiscover
-            data={data.trendingAuthors}
-            navigation={navigation}
-          />
-        )}
-        {data.hottestPodcasts && data.hottestPodcasts.length > 0 && (
-          <HottestPodcasts
-            data={data.hottestPodcasts}
-            navigation={navigation}
-          />
-        )} */}
       </ScrollView>
     )}
   </Wrapper>

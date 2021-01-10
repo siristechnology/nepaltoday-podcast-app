@@ -124,14 +124,14 @@ const BottomContent = ({ actionSelected, onNavigateToMainStack }: Props): Object
   return(
 	<Wrapper>
 		<ButtonsWrapper>
-			{renderButton({
+			{/* {renderButton({
 				backgroundColor: appStyles.colors.facebook,
 				onPress: onFacebookLoginClick,
 				withMarginBottom: true,
 				iconName: 'facebook',
 				actionSelected,
 				size: 25,
-			})}
+			})} */}
 			{renderButton({
 				backgroundColor: appStyles.colors.googlePlus,
 				onPress: onGoogleLoginClick,
