@@ -20,6 +20,7 @@ import Switch from '~/components/common/Switch';
 import Icon from '~/components/common/Icon';
 import CONSTANTS from '~/utils/CONSTANTS';
 import appStyles from '~/styles';
+import { clearUserInfo } from '~/services/asyncStorage.services';
 
 const Wrapper = styled(ScrollView).attrs({
   alwaysBounceVertical: false,
@@ -144,6 +145,11 @@ class Settings extends Component<Props, State> {
     await persistItemInStorage(storageKey, !currentOptionValue);
   };
 
+  onSignoutPress = () => {
+    clearUserInfo()
+    this.props.navigation.dangerouslyGetParent().navigate('LOGIN')
+  }
+
   render() {
     const { navigation } = this.props;
 
@@ -216,6 +222,29 @@ class Settings extends Component<Props, State> {
                           ? 'arrow-right'
                           : 'chevron-right'
                       }
+                      size={Platform.OS === 'android' ? 32 : 34}
+                    />
+                  </Row>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={this.onSignoutPress}
+                  hitSlop={{
+                    bottom: appStyles.metrics.smallSize,
+                    right: appStyles.metrics.smallSize,
+                    left: appStyles.metrics.smallSize,
+                    top: appStyles.metrics.smallSize,
+                  }}
+                >
+                  <Row>
+                    <TextWrapper>
+                      <OptiontTitle>Sign out</OptiontTitle>
+                      <OptionDescription>
+                        Log out from your current account
+                      </OptionDescription>
+                    </TextWrapper>
+                    <Icon
+                      color={appStyles.colors.subTextWhite}
+                      name='logout'
                       size={Platform.OS === 'android' ? 32 : 34}
                     />
                   </Row>
