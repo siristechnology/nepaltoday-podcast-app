@@ -63,7 +63,7 @@ const RootStack = createStackNavigator(
 
 		[LOCAL_STACK_ROUTES.SEARCH_AUTHORS_RESULT]: {
 			screen: SearchAuthorListContainer,
-			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('Search Authors', navigation, screenProps),
+			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('Search Programs', navigation, screenProps),
 		},
 
 		[CONSTANTS.ROUTES.AUTHOR_DETAIL]: {
