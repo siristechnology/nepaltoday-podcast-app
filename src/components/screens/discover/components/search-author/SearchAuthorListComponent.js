@@ -28,8 +28,8 @@ const SearchResultText = styled(Text).attrs({
 `;
 
 type Props = {
-  authors: Array<Object>,
-  authorName: string,
+  programs: Array<Object>,
+  programName: string,
   navigation: Object,
   loading: boolean,
 };
@@ -41,9 +41,9 @@ class SearchAuthorListComponent extends PureComponent<Props, {}> {
   });
 
   UNSAFE_componentWillReceiveProps(nextProps: Props) {
-    const { loading, authors } = nextProps;
+    const { loading, programs } = nextProps;
 
-    const shouldShowList = !loading && authors.length > 0;
+    const shouldShowList = !loading && programs.length > 0;
 
     if (shouldShowList) {
       Animated.spring(this._authorSearchListPosition.y, {
@@ -55,14 +55,14 @@ class SearchAuthorListComponent extends PureComponent<Props, {}> {
     }
   }
 
-  renderSearchAuthorsList = (): Object => {
-    const { authorName, navigation, authors } = this.props;
+  renderSearchProgramsList = (): Object => {
+    const { programName, navigation, programs } = this.props;
 
     return (
       <Animated.FlatList
         ListHeaderComponent={
-          authors.length > 0 && (
-            <SearchResultText>{`Results for: '${authorName}'`}</SearchResultText>
+          programs.length > 0 && (
+            <SearchResultText>{`Results for: '${programName}'`}</SearchResultText>
           )
         }
         style={[
@@ -78,33 +78,34 @@ class SearchAuthorListComponent extends PureComponent<Props, {}> {
           <SearchAuthorListItem
             onPress={() => navigation.navigate(CONSTANTS.ROUTES.AUTHOR_DETAIL, {
               [CONSTANTS.PARAMS.AUTHOR_DETAIL]: {
-                id: item.id,
+                program: item.program,
               },
             })
             }
-            numberPodcasts={item.podcasts.length}
+            numberPodcasts={item.podcastNumber}
             profileImage={item.profileImageURL}
-            subjects={item.categories}
+            program={item.program}
+            // subjects={item.categories}
             name={item.name}
-            id={item.id}
+            id={item.program}
           />
         )}
         showsVerticalScrollIndicator={false}
-        keyExtractor={item => `${item.id}`}
-        data={authors}
+        keyExtractor={item => `${item.program}`}
+        data={programs}
       />
     );
   };
 
   render() {
-    const { authorName, loading, authors } = this.props;
+    const { programName, loading, programs } = this.props;
 
     return (
       <Container>
-        {loading ? <Loading /> : this.renderSearchAuthorsList()}
-        {!loading && authors.length === 0 && (
+        {loading ? <Loading /> : this.renderSearchProgramsList()}
+        {!loading && programs.length === 0 && (
           <ErrorMessage
-            title={`No results for "${authorName}"`}
+            title={`No results for "${programName}"`}
             icon="magnify-close"
             message=""
           />

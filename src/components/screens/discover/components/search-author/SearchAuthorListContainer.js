@@ -11,45 +11,45 @@ import CONSTANTS from '~/utils/CONSTANTS';
 import appStyles from '~/styles';
 
 type AuthorProps = {
-  loadingSearchAuthorByName: boolean,
+  loadingSearchProgramByName: boolean,
   authors: Array<Object>,
 };
 
 type Props = {
-  searchAuthorByName: Function,
+  searchProgramByName: Function,
   author: AuthorProps,
   navigation: Object,
 };
 
 class SearchAuthorListContainer extends Component<Props, {}> {
   componentDidMount() {
-    const { searchAuthorByName } = this.props;
+    const { searchProgramByName } = this.props;
 
-    const authorName = this.getAuthorNameParam();
+    const programName = this.getAuthorNameParam();
 
-    searchAuthorByName(authorName);
+    searchProgramByName(programName);
   }
 
   getAuthorNameParam = (): string => {
     const { navigation } = this.props;
     const { params } = navigation.state;
 
-    const authorName = params[CONSTANTS.PARAMS.SEARCH_AUTHOR_BY_NAME];
+    const programName = params[CONSTANTS.PARAMS.SEARCH_AUTHOR_BY_NAME];
 
-    return authorName;
+    return programName;
   };
 
   render() {
     const { navigation, author } = this.props;
-    const { loadingSearchAuthorByName, authors } = author;
-    const authorName = this.getAuthorNameParam();
+    const { loadingSearchProgramByName, programs } = author;
+    const programName = this.getAuthorNameParam();
 
     return (
       <SearchAuthorListComponent
-        loading={loadingSearchAuthorByName}
-        authorName={authorName}
+        loading={loadingSearchProgramByName}
+        programName={programName}
         navigation={navigation}
-        authors={authors}
+        programs={programs}
       />
     );
   }

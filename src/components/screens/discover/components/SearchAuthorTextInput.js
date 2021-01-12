@@ -23,7 +23,7 @@ const Input = styled(TextInput).attrs(({ theme }) => ({
   underlineColorAndroid: 'transparent',
   autoCapitalize: 'none',
   autoCorrect: false,
-  placeholder: 'Search for a specific Author',
+  placeholder: 'Search for a specific Program',
   returnKeyLabel: 'search',
   returnKeyType: 'search',
 }))`

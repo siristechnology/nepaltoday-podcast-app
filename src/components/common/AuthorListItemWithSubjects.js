@@ -95,7 +95,8 @@ type Props = {
 const SearchAuthorListItem = ({
   numberPodcasts,
   profileImage,
-  subjects,
+  // subjects,
+  program,
   onPress,
   name,
 }: Props): Object => (
@@ -112,11 +113,12 @@ const SearchAuthorListItem = ({
         elevation: 5,
       }}
     >
+      <AuthorName>{program}</AuthorName>
       <AuthorName>{name}</AuthorName>
       <NumberPodcasts>
         {`${numberPodcasts} ${numberPodcasts === 1 ? 'Podcast' : 'Podcasts'}`}
       </NumberPodcasts>
-      <SubjectsWrapper>
+      {/* <SubjectsWrapper>
         {subjects.map(subject => (
           <SubjectItemWrapper
             key={subject}
@@ -124,7 +126,7 @@ const SearchAuthorListItem = ({
             <SubjectItemText>{`#${subject}`}</SubjectItemText>
           </SubjectItemWrapper>
         ))}
-      </SubjectsWrapper>
+      </SubjectsWrapper> */}
       <DetailButton
         onPress={onPress}
       >
