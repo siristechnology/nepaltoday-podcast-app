@@ -10,6 +10,7 @@ import appStyles from '~/styles';
 import { facebookLogin, googleLogin } from './loginHelper';
 import UserService from '~/services/user.services';
 import { setUserInfo } from '~/services/asyncStorage.services';
+import crashlytics from '@react-native-firebase/crashlytics';
 
 const Wrapper = styled(View)`
   width: 100%;
@@ -114,9 +115,11 @@ const BottomContent = ({ actionSelected, onNavigateToMainStack }: Props): Object
         setUserInfo(response.data)
         onNavigateToMainStack()   
       }).catch(err=> {
+        crashlytics().recordError(err)
         alert("google login failed", JSON.stringify(err))
       })
     }).catch(err=>{
+      crashlytics().recordError(err)
       alert("google login failed")
     })
   }
