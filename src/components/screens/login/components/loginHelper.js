@@ -1,6 +1,9 @@
 import { GoogleSignin } from '@react-native-community/google-signin';
 import { AccessToken, LoginManager } from 'react-native-fbsdk';
-GoogleSignin.configure();
+import { WEB_CLIENT_ID } from 'react-native-dotenv';
+GoogleSignin.configure({
+    webClientId: WEB_CLIENT_ID
+});
 
 const facebookLogin = () => new Promise((resolve, reject)=>{
     LoginManager.logInWithPermissions(['public_profile', 'email']).then(result=>{
