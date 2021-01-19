@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "330757109405-btk8ebk709kh29dhr851rbk71kngtlng.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.siristechnology.nepaltodaypodcast",
+            "certificate_hash": "0f6514eb3b2694a256542f0d0792799ba37e3048"
+          }
+        },
+        {
           "client_id": "330757109405-rnbhk5okh3ajftqnjq1tl1f9k7kd9tue.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
