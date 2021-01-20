@@ -33,7 +33,7 @@ const RootStack = createStackNavigator(
 		[CONSTANTS.ROUTES.DISCOVER]: {
 			screen: (props) => <Home {...props} LOCAL_STACK_ROUTES={LOCAL_STACK_ROUTES} />,
 			navigationOptions: () => ({
-				headerShown: null,
+				headerShown: false,
 				headerBackTitle: null,
 				headerTransparent: true,
 			}),

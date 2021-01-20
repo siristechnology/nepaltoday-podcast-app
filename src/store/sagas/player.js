@@ -6,6 +6,7 @@ import { SERVER_URL } from 'react-native-dotenv';
 import { Creators as LocalPodcastsManagerCreators } from '../ducks/localPodcastsManager';
 import { Creators as PlayerCreators } from '../ducks/player';
 import api from '~/services/api';
+import TrackPlayer from 'react-native-track-player';
 
 const _findIndexInsideOriginalPlaylist = (
   originalPlaylist,
@@ -154,11 +155,31 @@ export function* shufflePlaylist() {
   }
 }
 
+const trackPlayerInit = async () => {
+  await TrackPlayer.setupPlayer()
+  TrackPlayer.updateOptions({
+    stopWithApp: true,
+    capabilities: [
+      TrackPlayer.CAPABILITY_PLAY,
+      TrackPlayer.CAPABILITY_PAUSE,
+      TrackPlayer.CAPABILITY_STOP,
+      TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
+      TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
+    ],
+  })
+  return true
+}
+
+export function* play() {
+  console.log("I m called here")
+}
+
 export function* setupPlayer() {
   try {
+    trackPlayerInit()
     yield call(setPodcast);
   } catch (err) {
-    console.log('setupPlayer', 'err');
+    console.log('setupPlayer', err);
   }
 }
 
@@ -185,6 +206,18 @@ export function* setPodcast() {
     const currentPodcast = playlist[playlistIndex];
 
     const podcastWithURI = yield _definePodcastURI(currentPodcast);
+    if(currentPodcast){
+      TrackPlayer.reset();
+      TrackPlayer.add({
+        id: currentPodcast.id,
+        url: currentPodcast.audioLink,
+        title: currentPodcast.title,
+        album: currentPodcast.program,
+        artist: currentPodcast.author.name,
+        artwork: currentPodcast.imageURL
+      })
+      TrackPlayer.play()
+    }
 
     yield delay(300); // Just for visual effects!
 
@@ -197,7 +230,7 @@ export function* setPodcast() {
       ),
     ]);
   } catch (err) {
-    console.log('err');
+    console.log('err', err);
   }
 }
 
@@ -284,7 +317,8 @@ export function* playNext() {
     const isPlaylistEmpty = playlist.length === 0;
 
     if (isLastPodcastNotRepeatPlaylist || isPlaylistEmpty) {
-      return yield _handleRestartPlayer(backupPlaylist[0]);
+      TrackPlayer.pause()
+      // return yield _handleRestartPlayer(backupPlaylist[0]);
     }
 
     if (isLastPodcastShouldRepeatPlaylist) {
