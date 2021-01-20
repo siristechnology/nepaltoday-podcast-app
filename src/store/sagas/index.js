@@ -24,6 +24,7 @@ import {
   setupPlayer,
   setupShufflePlayer,
   repeatCurrentPodcast,
+  play
 } from './player';
 import { searchProgramByName, getAuthorByProgram } from './author';
 import { getSubjectDetail } from './subject';
@@ -73,6 +74,7 @@ export default function* rootSaga() {
       PlayerTypes.REPEAT_CURRENT_PODCAST_REQUEST,
       repeatCurrentPodcast,
     ),
+    takeLatest(PlayerTypes.PLAY, play),
     takeLatest(PlayerTypes.SETUP_PLAYER, setupPlayer),
     takeLatest(PlayerTypes.SETUP_SHUFFLE_PLAYER_REQUEST, setupShufflePlayer),
     takeLatest(PlayerTypes.PLAY_NEXT_REQUEST, playNext),

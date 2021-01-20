@@ -16,7 +16,7 @@ const App = (): Object => (
   >
     <ThemeContextProvider>
       <ApplicationNavigator />
-      <SoundComponent />
+      {/* <SoundComponent /> */}
     </ThemeContextProvider>
   </Provider>
 );

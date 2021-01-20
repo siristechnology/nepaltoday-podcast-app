@@ -16,6 +16,8 @@ import PlayerComponent from './components/PlayerComponent';
 import CONSTANTS from '~/utils/CONSTANTS';
 import appStyles from '~/styles';
 
+import TrackPlayer from "react-native-track-player";
+
 const DarkLayer = styled(Animated.View)`
   width: ${({ theme }) => theme.metrics.getWidthFromDP('15%')};
   height: 100%;
@@ -79,6 +81,12 @@ class Player extends Component<Props, State> {
     }
 
     this.handlePlayerConfiguration(playerParams);
+
+    TrackPlayer.addEventListener('remote-play', () => this.props.play())
+    TrackPlayer.addEventListener('remote-pause', () => this.props.pause())
+    TrackPlayer.addEventListener('remote-stop', () => this.props.pause())
+    TrackPlayer.addEventListener('remote-next', () => this.props.playNext())
+    TrackPlayer.addEventListener('remote-previous', () => this.props.playPrevious())
   }
 
   componentWillUpdate(nextProps: Props) {
@@ -191,6 +199,24 @@ class Player extends Component<Props, State> {
     return true;
   };
 
+  playClick = (play) => {
+    TrackPlayer.play()
+    play()
+  }
+
+  pauseClick = (pause) => {
+    TrackPlayer.pause()
+    pause()
+  }
+
+  playPreviousClick = (playPrevious) => {
+    playPrevious()
+  }
+
+  playNextClick = (playNext) => {
+    playNext()
+  }
+
   render() {
     const {
       isCurrentPodcastDownloaded,
@@ -256,12 +282,12 @@ class Player extends Component<Props, State> {
               shufflePlaylist={shufflePlaylist}
               currentPodcast={currentPodcast}
               playlistIndex={playlistIndex}
-              playPrevious={playPrevious}
-              playNext={playNext}
+              playPrevious={()=>this.playPreviousClick(playPrevious)}
+              playNext={()=>this.playNextClick(playNext)}
               playlist={playlist}
               paused={paused}
-              pause={pause}
-              play={play}
+              pause={()=>this.pauseClick(pause)}
+              play={()=>this.playClick(play)}
             />
           </SideMenu>
         )}
