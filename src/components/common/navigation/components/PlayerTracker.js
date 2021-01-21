@@ -13,6 +13,8 @@ import ProgressTimeLine from './ProgressTimeLine';
 import Icon from '~/components/common/Icon';
 import CONSTANTS from '~/utils/CONSTANTS';
 
+import TrackPlayer from "react-native-track-player";
+
 const Wrapper = styled(View)`
   width: 100%;
   height: ${({ theme }) => theme.metrics.getWidthFromDP('20%')}px;
@@ -102,6 +104,20 @@ const PlayerTracker = ({
     return null;
   }
 
+  const playClick = (play) => {
+    TrackPlayer.play()
+    play()
+  }
+
+  const pauseClick = (pause) => {
+    TrackPlayer.pause()
+    pause()
+  }
+
+  const playNextClick = (playNext) => {
+    playNext()
+  }
+
   return (
     <Fragment>
       <ProgressTimeLine />
@@ -124,7 +140,7 @@ const PlayerTracker = ({
         </ContentWrapper>
         <PlayerButtonsWrapper>
           <TouchableOpacity
-            onPress={() => (paused ? play() : pause())}
+            onPress={() => (paused ? playClick(play) : pauseClick(pause))}
             style={{
               marginHorizontal: 4,
             }}
@@ -135,7 +151,7 @@ const PlayerTracker = ({
             />
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={playNext}
+            onPress={() => playNextClick(playNext)}
           >
             <PlayerIcon
               name="skip-next"
