@@ -8,6 +8,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Creators as PlayerCreators } from '~/store/ducks/player';
 
+import TrackPlayer, { ProgressComponent } from 'react-native-track-player'
+
 import appStyles from '~/styles';
 
 const Wrapper = styled(View)`
@@ -45,7 +47,7 @@ type State = {
   slideValue: number,
 };
 
-class ProgressSlider extends Component<Props, State> {
+class ProgressSlider extends ProgressComponent<Props, State> {
   state = {
     isSliding: false,
     slideValue: 0,
@@ -81,18 +83,21 @@ class ProgressSlider extends Component<Props, State> {
   };
 
   onValueChange = (slideValue: number): void => {
+    TrackPlayer.seekTo(slideValue)
     this.setState({
       isSliding: true,
-      slideValue,
+      // slideValue,
     });
   };
 
   render() {
-    const { slideValue } = this.state;
     const { player } = this.props;
 
-    const { currentPodcast, currentTime } = player;
+    const { currentPodcast } = player;
     const { durationInSeconds, duration } = currentPodcast;
+
+    const slideValue = this.getProgress() * durationInSeconds
+    const currentTime = new Date(slideValue * 1000).toISOString().substr(14, 5)
 
     return (
       <Wrapper>
