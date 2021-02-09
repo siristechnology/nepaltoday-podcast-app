@@ -20,12 +20,14 @@ import {
 } from '~/routes/utils/navigationOptions'
 import CONSTANTS from '~/utils/CONSTANTS'
 import appStyles from '~/styles'
+import ProgramCategoriesSeeAll from './components/categories/ProgramCategoriesSeeAll'
 
 const LOCAL_STACK_ROUTES = {
 	TRENDING_AUTHORS_SEE_ALL: 'TRENDING_AUTHORS_SEE_ALL',
 	HOTTEST_PODCASTS_SEE_ALL: 'HOTTEST_PODCASTS_SEE_ALL',
 	NEW_RELEASES_SEE_ALL: 'NEW_RELEASES_SEE_ALL',
 	SEARCH_AUTHORS_RESULT: 'SEARCH_AUTHORS_RESULT',
+	PROGRAM_CATEGORIES_SEE_ALL: 'PROGRAM_CATEGORIES_SEE_ALL'
 }
 
 const RootStack = createStackNavigator(
@@ -42,6 +44,11 @@ const RootStack = createStackNavigator(
 		[CONSTANTS.ROUTES.PODCAST_DETAIL]: {
 			screen: PodcastDetailContainer,
 			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('Podcast Detail', navigation, screenProps),
+		},
+
+		[LOCAL_STACK_ROUTES.PROGRAM_CATEGORIES_SEE_ALL]: {
+			screen: ProgramCategoriesSeeAll,
+			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithButton(navigation, screenProps, 'Program Podcasts', 'play-circle-outline'),
 		},
 
 		[LOCAL_STACK_ROUTES.TRENDING_AUTHORS_SEE_ALL]: {

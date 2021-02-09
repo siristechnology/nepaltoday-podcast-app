@@ -28,7 +28,7 @@ import {
   
       interestsSelected = 'all'
   
-      const { data } = yield call(api.get, '/home', {
+      const { data } = yield call(api.get, '/categories', {
         paramsSerializer: params => parseParams(params),
         params: { categories: interestsSelected },
       });
