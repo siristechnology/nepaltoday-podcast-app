@@ -1,19 +1,15 @@
 // @flow
 
 import React from 'react'
-import { ScrollView, RefreshControl, View } from 'react-native'
+import { ScrollView, RefreshControl, View, Text } from 'react-native'
 import styled, { withTheme } from 'styled-components'
-
-import TrendingAuthorsDiscover from './trending-authors/trending-authors-discover/TrendingAuthorsDiscover'
-import NewReleasesDiscover from './new-releases/new-releases-discover/NewReleasesDiscover'
-import HottestPodcasts from './hottest-podcasts/HottestPodcastsDiscover'
 
 import ErrorMessage from '~/components/common/ErrorMessage'
 import ScreenTitle from '~/components/common/ScreenTitle'
 import SearchAuthorTextInput from './SearchAuthorTextInput'
 import Loading from '~/components/common/Loading'
-import CONSTANTS from '~/utils/CONSTANTS'
 import appStyles from '~/styles'
+import ProgramCategoriesDiscover from './categories/ProgramCategories'
 
 const Wrapper = styled(View)`
 	width: 100%;
@@ -22,26 +18,27 @@ const Wrapper = styled(View)`
 	background-color: ${({ theme }) => theme.colors.secondaryColor};
 `
 
-const SearchAuthorTextInputWrapper = styled(View)`
-	width: 100%;
-	padding-horizontal: ${({ theme }) => theme.metrics.largeSize}px;
+const CategoryWrapper = styled(View)`
+	margin-top: 10px;
+	margin-bottom: 10px;
 `
 
-type Data = {
-	trendingAuthors: Array<Object>,
-	hottestPodcasts: Array<Object>,
-	newReleases: Array<Object>,
-}
+const CategoryText = styled(Text)`
+	width: 100%;
+	margin-bottom: ${({ theme }) => theme.metrics.mediumSize}px;
+	font-size: ${({ theme }) => theme.metrics.extraLargeSize * 1.2}px;
+	font-family: CircularStd-Bold;
+	color: ${({ theme }) => theme.colors.textColor};
+	margin-left: 15px;
+`
 
-type Props = {
-	navigation: Object,
-	getHome: Function,
-	loading: boolean,
-	error: boolean,
-	data: Data,
-}
+const SearchAuthorTextInputWrapper = styled(View)`
+	width: 100%;
+	padding-right: ${({ theme }) => theme.metrics.largeSize}px;
+	padding-left: ${({ theme }) => theme.metrics.largeSize}px;
+`
 
-const HomeComponent = ({ navigation, loading, error, data, getHome, onTypeAuthorName, onSearchForAuthor, onToggleDarkLayer }: Props): Object => (
+const HomeComponent = ({ navigation, loading, error, data, getHome, onTypeAuthorName, onSearchForAuthor, onToggleDarkLayer }) => (
 	<Wrapper>
 		{loading && !error && <Loading />}
 		{!loading && error && (
@@ -72,14 +69,18 @@ const HomeComponent = ({ navigation, loading, error, data, getHome, onTypeAuthor
 						onTypeAuthorName={onTypeAuthorName}
 					/>
 				</SearchAuthorTextInputWrapper>
-
-				{data.newReleases && data.newReleases.length > 0 && <NewReleasesDiscover data={data.newReleases} navigation={navigation} />}
-
-				{/* {data.trendingAuthors && data.trendingAuthors.length > 0 && (
-					<TrendingAuthorsDiscover data={data.trendingAuthors} navigation={navigation} />
-				)} */}
-
-				{data.hottestPodcasts && data.hottestPodcasts.length > 0 && <HottestPodcasts data={data.hottestPodcasts} navigation={navigation} />}
+				{data && data.programs && data.programs.length && data.programs.map(((category,i)=>(
+					<CategoryWrapper key={i}>
+						<CategoryText>
+							{category.category}
+						</CategoryText>
+						<ProgramCategoriesDiscover
+							data={category.programs}
+							navigation={navigation}
+						/>
+					</CategoryWrapper>
+				)))
+				}
 			</ScrollView>
 		)}
 	</Wrapper>
