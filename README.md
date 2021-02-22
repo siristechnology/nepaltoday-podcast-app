@@ -1,47 +1,24 @@
+# NepalToday Podcast
 
+<br/>
+<div>
+<img src="android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" alt="screenshot-1" height="80" style="margin-right:10px"/>
+<a href='https://play.google.com/store/apps/details?id=com.siristechnology.nepaltodaypodcast&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1' target='_blank' rel="noopener noreferrer"><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' height="80"/></a>
+</div>
 
+## Latest screenshot
 
-# MindCast
-
-![Preview-Screens](https://github.com/steniowagner/mindCast/blob/master/PUXA-R10!.png)
-
-If you want to take a look on all screens of the App, they are [here](https://drive.google.com/drive/folders/1rXFlogxaT5E0pthrrLhF1D_wOVbSHwhD).
-
-## About this Project
-
-The idea of the App is:
-
-_"Share knowledge in the form of podcasts, providing a simple way to learn"._
-
-**PS:** Podcasts was just the context chosen by me for this project, but all the code inside this app can be reused for any app that has audio-streaming as domain, so you can reuse everything here in your next music-player, podcast-library or anything inside this context!
-
-**On the Media 🤩:** A [review](https://youtu.be/nu8mwGZUBFU) about this app (pt-BR 🇧🇷).
-
-## Why?
-
-This project is part of my personal portfolio, so, I'll be happy if you could provide me any feedback about the project, code, structure or anything that you can report that could make me a better developer!
-
-Email-me: stenio.wagner1@gmail.com
-
-Connect with me at [LinkedIn](https://www.linkedin.com/in/steniowagner/).
-
-Also, you can use this Project as you wish, be for study, be for make improvements or earn money with it!
-
-It's free!
+<div>
+<img src="./assets/images/mockup-1.png" alt="screenshot-1" width="200" style="margin-right:20px"/>
+<img src="./assets/images/mockup-2.png" alt="screenshot-2" width="200"/>
+<img src="./assets/images/mockup-3.png" alt="screenshot-2" width="200"/>
+</div>
 
 ## Some Observations about this App
 
 1 - There's no functionality of Login/Register, the buttons and the forms in the Login Screen are only for UI matters.
 
 2 - The only option that works at _Settings_ screen it's toggle the Dark/Light theme, all the others are just for UI matters too.
-
-## Installers
-
-If you want to test the App in the Production mode, the installers are listed below:
-
-[Android .apk installer](https://drive.google.com/file/d/1LKgdu1WDPo8eU2NVjoB92TPi4my8QP4D/view?usp=sharing)
-
-iOS .ipa installer: Soon!
 
 ## Functionalities
 
@@ -108,16 +85,16 @@ iOS .ipa installer: Soon!
 
 To run this project in the development mode, you'll need to have a basic environment to run a React-Native App, that can be found [here](https://facebook.github.io/react-native/docs/getting-started).
 
-Also, you'll need to the server running locally on your machine with the mock data. You can find the server and all the instructions to start the server [here](https://github.com/steniowagner/mindcast-server).
+Also, you'll need to the server running locally on your machine. You can find the server and all the instructions to start the server [here](https://github.com/siristechnology/nepaltoday-podcast-api).
 
 ### Installing
 
 **Cloning the Repository**
 
 ```
-$ git clone https://github.com/steniowagner/mindCast
+$ git clone git@github.com:siristechnology/nepaltoday-podcast-app.git
 
-$ cd mindCast
+$ cd nepaltoday-podcast-app
 ```
 
 **Installing dependencies**
@@ -134,17 +111,17 @@ $ npm install
 
 ### Connecting the App with the Server
 
-1 - Follow the instructions on the [mindcast-server](https://github.com/steniowagner/mindcast-server) to have the server up and running on your machine.
+1 - Follow the instructions on the [nepaltoday-podcast-server](https://github.com/siristechnology/nepaltoday-podcast-api) to have the server up and running on your machine.
 
-2 - With the server up and running, go to the [/.env.development](https://github.com/steniowagner/mindCast/blob/master/.env.development) file and edit the SERVER_URL value for the IP of your machine (you can have some issues with _localhost_ if you're running on an android physical device, but you can use localhost safely on iOS).
+2 - With the server up and running, go to the [/.env.development](https://github.com/siristechnology/nepaltoday-podcast-api/blob/master/.env.development) file and edit the SERVER_URL value for the IP of your machine (you can have some issues with _localhost_ if you're running on an android physical device, but you can use localhost safely on iOS).
 
 It should looks like this:
 
-SERVER_URL=http://**_IP_OF_YOUR_MACHINE_**:3001/mind-cast/api/v1
+SERVER_URL=http://**_IP_OF_YOUR_MACHINE_**:3001/nepaltoday-podcast/api/v1
 
 *or*
 
-SERVER_URL=http://localhost:3001/mind-cast/api/v1
+SERVER_URL=http://localhost:3001/nepaltoday-podcast/api/v1
 
 ### Running
 
@@ -153,13 +130,13 @@ With all dependencies installed and the environment properly configured, you can
 Android
 
 ```
-$ react-native run-android
+$ yarn android
 ```
 
 iOS
 
 ```
-$ react-native run-ios
+$ yarn ios
 ```
 
 ## Built With
@@ -191,16 +168,6 @@ $ react-native run-ios
 - [Image-Resize](https://imageresize.org) - Resize the Images
 - [Amazon S3](https://aws.amazon.com/pt/s3/) - Storage Service
 
-## Contributing
-
-You can send how many PR's do you want, I'll be glad to analyse and accept them! And if you have any question about the project...
-
-Email-me: stenio.wagner1@gmail.com
-
-Connect with me at [LinkedIn](https://www.linkedin.com/in/steniowagner/)
-
-Thank you!
-
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/steniowagner/mindCast/blob/master/LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/siristechnology/nepaltoday-podcast-api/blob/master/LICENSE) file for details
