@@ -71,32 +71,11 @@ const STORAGE_KEYS = {
 
 const items = [
   {
-    title: 'AutoPlay',
-    description:
-      'Continue listening to similar podcasts when the current playlist ends.',
-    stateReference: 'isAutoPlayOn',
-    storageKey: STORAGE_KEYS.AUTO_PLAY,
-  },
-  {
-    title: 'Offline mode',
-    description:
-      'When you goes offline, only will be possible to listen podcasts previously downloaded.',
-    stateReference: 'isOfflineModeOn',
-    storageKey: STORAGE_KEYS.OFFLINE_MODE,
-  },
-  {
     title: 'Dark Theme',
     description:
       'Activate the Dark theme (the Light Theme will be activated otherwise).',
     stateReference: DARK_THEME_STATE_REF,
-  },
-  {
-    title: 'Download with Mobile Network',
-    description:
-      "Allows the App to performs downloads by using the device's network.",
-    stateReference: 'shouldDownloadMobileData',
-    storageKey: STORAGE_KEYS.DOWNLOAD_MOBILE_DATA,
-  },
+  }
 ];
 
 type Props = {

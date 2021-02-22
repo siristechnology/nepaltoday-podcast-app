@@ -136,43 +136,34 @@ const shadowStyle = {
 };
 
 const About = (): Object => (
-  <Wrapper>
-    <BeautifulImageBack
-      style={shadowStyle}
-    />
-    <CardWrapper
-      style={shadowStyle}
-    >
-      <BeautifulImage />
-      <ContentWrapper>
-        <BeautifulName>Siris Technology</BeautifulName>
-        <BeautifulRoleWrapper>
-          <BeautifulRole>Software Company</BeautifulRole>
-          <HeartBeating />
-        </BeautifulRoleWrapper>
-        <SocialButtonsWrapper>
-          {SOCIAL_BUTTONS.map(button => (
-            <SocialButton
-              onPress={() => onPressSocialButton(button.url)}
-              withPadingTop={button.withPadingTop}
-              key={button.iconName}
-              color={button.color}
-            >
-              <Icon
-                color={appStyles.colors.white}
-                name={button.iconName}
-                size={22}
-              />
-            </SocialButton>
-          ))}
-        </SocialButtonsWrapper>
-        <RedLine />
-        <AboutText>
-          Siris Technology is a software development company that primarily focuses on developing user friendly mobile and web apps.
-        </AboutText>
-      </ContentWrapper>
-    </CardWrapper>
-  </Wrapper>
-);
+	<Wrapper>
+		<BeautifulImageBack style={shadowStyle} />
+		<CardWrapper style={shadowStyle}>
+			<BeautifulImage />
+			<ContentWrapper>
+				<BeautifulName>Siris Technology</BeautifulName>
+				<BeautifulRoleWrapper>
+					<BeautifulRole>Software Company</BeautifulRole>
+				</BeautifulRoleWrapper>
+				<SocialButtonsWrapper>
+					{SOCIAL_BUTTONS.map((button) => (
+						<SocialButton
+							onPress={() => onPressSocialButton(button.url)}
+							withPadingTop={button.withPadingTop}
+							key={button.iconName}
+							color={button.color}
+						>
+							<Icon color={appStyles.colors.white} name={button.iconName} size={22} />
+						</SocialButton>
+					))}
+				</SocialButtonsWrapper>
+				<RedLine />
+				<AboutText>
+					Siris Technology is a software development company that primarily focuses on developing user friendly mobile and web apps.
+				</AboutText>
+			</ContentWrapper>
+		</CardWrapper>
+	</Wrapper>
+)
 
 export default About;
