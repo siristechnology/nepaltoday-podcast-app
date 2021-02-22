@@ -1,7 +1,8 @@
 // @flow
 
 import React, { Component } from 'react';
-import { View, Text, Slider } from 'react-native';
+import { View, Text } from 'react-native'
+import Slider from '@react-native-community/slider'
 import styled from 'styled-components';
 
 import { bindActionCreators } from 'redux';
