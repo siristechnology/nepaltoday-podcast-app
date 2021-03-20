@@ -9,16 +9,16 @@ import CONSTANTS from '~/utils/CONSTANTS';
 import { getRelativeTime } from '~/utils/time';
 
 const Container = styled(TouchableOpacity).attrs({
-    activeOpacity: 0.6
+	activeOpacity: 0.6,
 })`
-    margin-top: 5px;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-color: #E0E0E0;
-    border-bottom-width: 0.5px;
-`;
+	margin-top: 5px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-color: #e0e0e0;
+	border-bottom-width: 0.2px;
+`
 
 const TitleRow = styled(View)`
     flex-direction: row;

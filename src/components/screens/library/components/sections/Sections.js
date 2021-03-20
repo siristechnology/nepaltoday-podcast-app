@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react';
 import { View } from 'react-native';
 import styled from 'styled-components';
@@ -15,26 +13,10 @@ const ContentWrapper = styled(View)`
 `;
 
 const getSectionsConfig = (
-  LOCAL_STACK_ROUTES: Object,
-  navigation: Object,
-): Array<Object> => {
+  LOCAL_STACK_ROUTES,
+  navigation,
+) => {
   const sections = [
-		{
-			onPress: () =>
-				navigation.navigate(LOCAL_STACK_ROUTES.PLAYLISTS, {
-					LOCAL_STACK_ROUTES,
-				}),
-			iconName: 'playlist-play',
-			title: 'Playlists',
-		},
-		{
-			onPress: () =>
-				navigation.navigate(LOCAL_STACK_ROUTES.YOUR_PODCASTS, {
-					[CONSTANTS.PARAMS.HEADER_PLAY_FUNCTION_PARAM]: (playlist, navigation) => setHeaderPlayButtonPress(playlist, navigation),
-				}),
-			iconName: 'podcast',
-			title: 'Your Podcasts',
-		},
 		{
 			onPress: () =>
 				navigation.navigate(LOCAL_STACK_ROUTES.PODCASTS_DOWNLOADED, {
@@ -56,12 +38,7 @@ const getSectionsConfig = (
   return sections;
 };
 
-type Props = {
-  LOCAL_STACK_ROUTES: Object,
-  navigation: Object,
-};
-
-const Sections = ({ LOCAL_STACK_ROUTES, navigation }: Props): Object => {
+const Sections = ({ LOCAL_STACK_ROUTES, navigation }) => {
   const sections = getSectionsConfig(LOCAL_STACK_ROUTES, navigation);
 
   return (

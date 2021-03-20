@@ -76,45 +76,29 @@ const renderProperIcon = (
   );
 };
 
-const ActionButtons = ({
-  onPressDownloadButton,
-  onPressAddToPlaylist,
-  isDownloadingPodcast,
-  isPodcastDownloaded,
-  onPressPlay,
-}: Props): Object => (
-  <Wrapper>
-    <ButtonsWrapper>
-      <DefaultButton
-        onPress={onPressPlay}
-        size="large"
-        text="PLAY"
-      />
-      <ButtonsSeparator />
-      <DefaultButton
-        onPress={onPressAddToPlaylist}
-        text="ADD TO PLAYLIST"
-        translucent
-        size="large"
-      />
-    </ButtonsWrapper>
-    <DownloadButton
-      disabled={isDownloadingPodcast}
-      onPress={onPressDownloadButton}
-      style={{
-        shadowColor: '#000',
-        shadowOffset: {
-          width: 0,
-          height: 2,
-        },
-        shadowOpacity: 0.23,
-        shadowRadius: 2.62,
-        elevation: 4,
-      }}
-    >
-      {renderProperIcon(isDownloadingPodcast, isPodcastDownloaded)}
-    </DownloadButton>
-  </Wrapper>
-);
+const ActionButtons = ({ onPressDownloadButton, isDownloadingPodcast, isPodcastDownloaded, onPressPlay }: Props): Object => (
+	<Wrapper>
+		<ButtonsWrapper>
+			<DefaultButton onPress={onPressPlay} size="large" text="PLAY" />
+      <ButtonsSeparator/>
+      <DownloadButton
+			disabled={isDownloadingPodcast}
+			onPress={onPressDownloadButton}
+			style={{
+				shadowColor: '#000',
+				shadowOffset: {
+					width: 0,
+					height: 2,
+				},
+				shadowOpacity: 0.23,
+				shadowRadius: 2.62,
+				elevation: 4,
+			}}
+		>
+			{renderProperIcon(isDownloadingPodcast, isPodcastDownloaded)}
+		</DownloadButton>
+		</ButtonsWrapper>		
+	</Wrapper>
+)
 
 export default ActionButtons;
