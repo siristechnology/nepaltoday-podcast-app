@@ -42,61 +42,11 @@ const Button = styled(TouchableOpacity)`
   align-items: center;
 `;
 
-const renderControlButtons = ({
-  onPressPrevious,
-  currentIndex,
-  onPressNext,
-  onPressSkip,
-  pagesLength,
-}): Object => {
-  const { leftButtonTitle, leftButtonAction } = currentIndex === 0
-    ? { leftButtonTitle: 'SKIP', leftButtonAction: onPressSkip }
-    : { leftButtonTitle: 'PREV', leftButtonAction: onPressPrevious };
-
-  return (
-    <ButtonsWrapper>
-      <Button
-        onPress={leftButtonAction}
-      >
-        <DefaultText
-          text={leftButtonTitle}
-          color={appStyles.colors.darkText}
-        />
-      </Button>
-      <DotsWrapper>
-        {Array(pagesLength)
-          .fill({})
-          .map((_, index) => (
-            <PaginationDot
-              isSelected={index === currentIndex}
-              key={`DOT${index - 1}`}
-            >
-              {'\u2022'}
-            </PaginationDot>
-          ))}
-      </DotsWrapper>
-      <Button
-        onPress={onPressNext}
-      >
-        <DefaultText
-          text="NEXT"
-          color={appStyles.colors.darkText}
-        />
-      </Button>
-    </ButtonsWrapper>
-  );
-};
-
 const renderGetStartedButton = (onPressSkip: Function): Object => (
-  <GetStartedButton
-    onPress={onPressSkip}
-  >
-    <DefaultText
-      color={appStyles.colors.white}
-      text="GET STARTED"
-    />
-  </GetStartedButton>
-);
+	<GetStartedButton onPress={onPressSkip}>
+		<DefaultText color={appStyles.colors.white} text="Login using Google" />
+	</GetStartedButton>
+)
 
 type Props = {
   onPressPrevious: Function,
@@ -109,13 +59,7 @@ type Props = {
 const BottomContent = (props: Props): Object => {
   const { onPressSkip, currentIndex, pagesLength } = props;
 
-  return (
-    <Fragment>
-      {currentIndex === pagesLength - 1
-        ? renderGetStartedButton(onPressSkip)
-        : renderControlButtons({ ...props })}
-    </Fragment>
-  );
+  return <Fragment>{renderGetStartedButton(onPressSkip)}</Fragment>
 };
 
 export default BottomContent;

@@ -51,20 +51,6 @@ class OnboardingIntro extends Component<Props, State> {
     );
   };
 
-  onPressPreviousButton = (): void => {
-    const { currentPageIndex } = this.state;
-
-    this.setState(
-      {
-        currentPageIndex: currentPageIndex - 1,
-      },
-      () => this._pagesListRef.scrollToIndex({
-        animated: true,
-        index: currentPageIndex - 1,
-      }),
-    );
-  };
-
   onNavigateLogin = (): void => {
     const { navigation } = this.props;
 
@@ -116,7 +102,6 @@ class OnboardingIntro extends Component<Props, State> {
           horizontal
         />
         <BottomContent
-          onPressPrevious={this.onPressPreviousButton}
           onPressNext={this.onPressNextButton}
           onPressSkip={this.onNavigateLogin}
           currentIndex={currentPageIndex}
