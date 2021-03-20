@@ -19,49 +19,39 @@ const getSectionsConfig = (
   navigation: Object,
 ): Array<Object> => {
   const sections = [
-    {
-      onPress: () => navigation.navigate(LOCAL_STACK_ROUTES.PLAYLISTS, {
-        LOCAL_STACK_ROUTES,
-      }),
-      iconName: 'playlist-play',
-      title: 'Playlists',
-    },
-    {
-      onPress: () => navigation.navigate(LOCAL_STACK_ROUTES.YOUR_PODCASTS, {
-        [CONSTANTS.PARAMS.HEADER_PLAY_FUNCTION_PARAM]: (
-          playlist,
-          navigation,
-        ) => setHeaderPlayButtonPress(playlist, navigation),
-      }),
-      iconName: 'podcast',
-      title: 'Your Podcasts',
-    },
-    {
-      onPress: () => navigation.navigate(LOCAL_STACK_ROUTES.PODCASTS_DOWNLOADED, {
-        [CONSTANTS.PARAMS.HEADER_PLAY_FUNCTION_PARAM]: (
-          playlist,
-          navigation,
-        ) => setHeaderPlayButtonPress(playlist, navigation),
-      }),
-      iconName: 'cloud-download-outline',
-      title: 'Downloads',
-    },
-    {
-      onPress: () => navigation.navigate(LOCAL_STACK_ROUTES.RECENTLY_PLAYED, {
-        [CONSTANTS.PARAMS.HEADER_PLAY_FUNCTION_PARAM]: (
-          playlist,
-          navigation,
-        ) => setHeaderPlayButtonPress(playlist, navigation),
-      }),
-      iconName: 'clock-outline',
-      title: 'Recently Played',
-    },
-    {
-      onPress: () => navigation.navigate(CONSTANTS.ROUTES.INTERESTS),
-      iconName: 'playlist-check',
-      title: 'Interests',
-    },
-  ];
+		{
+			onPress: () =>
+				navigation.navigate(LOCAL_STACK_ROUTES.PLAYLISTS, {
+					LOCAL_STACK_ROUTES,
+				}),
+			iconName: 'playlist-play',
+			title: 'Playlists',
+		},
+		{
+			onPress: () =>
+				navigation.navigate(LOCAL_STACK_ROUTES.YOUR_PODCASTS, {
+					[CONSTANTS.PARAMS.HEADER_PLAY_FUNCTION_PARAM]: (playlist, navigation) => setHeaderPlayButtonPress(playlist, navigation),
+				}),
+			iconName: 'podcast',
+			title: 'Your Podcasts',
+		},
+		{
+			onPress: () =>
+				navigation.navigate(LOCAL_STACK_ROUTES.PODCASTS_DOWNLOADED, {
+					[CONSTANTS.PARAMS.HEADER_PLAY_FUNCTION_PARAM]: (playlist, navigation) => setHeaderPlayButtonPress(playlist, navigation),
+				}),
+			iconName: 'cloud-download-outline',
+			title: 'Downloads',
+		},
+		{
+			onPress: () =>
+				navigation.navigate(LOCAL_STACK_ROUTES.RECENTLY_PLAYED, {
+					[CONSTANTS.PARAMS.HEADER_PLAY_FUNCTION_PARAM]: (playlist, navigation) => setHeaderPlayButtonPress(playlist, navigation),
+				}),
+			iconName: 'clock-outline',
+			title: 'Recently Played',
+		},
+  ]
 
   return sections;
 };

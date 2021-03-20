@@ -8,8 +8,7 @@ import PodcastsDownloaded from './components/PodcastsDownloaded';
 import PlaylistDetail from './components/playlist-detail/PlaylistDetailContainer';
 import RecentlyPlayed from './components/RecentlyPlayed';
 import Playlists from './components/playlists/Playlists';
-import YourPodcasts from './components/YourPodcasts';
-import Interests from '~/components/common/interests/Interests';
+import YourPodcasts from './components/YourPodcasts'
 import Player from '~/components/common/player/PlayerContainer';
 import Library from './Library';
 
@@ -85,19 +84,14 @@ const RootStack = createStackNavigator(
 			navigationOptions: ({ navigation, screenProps }) =>
 				getDefaultHeaderWithButton(navigation, screenProps, 'Recently Played', 'play-circle-outline'),
 		},
-
-		[CONSTANTS.ROUTES.INTERESTS]: {
-			screen: Interests,
-			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('Your Interests', navigation, screenProps),
-		},
 	},
 	{
 		initialRouteName: CONSTANTS.ROUTES.LIBRARY,
 		mode: Platform.OS === 'ios' ? 'card' : 'modal',
-    headerMode: 'screen',
-    defaultNavigationOptions: {
-      headerTitleAlign: 'center',
-    },
+		headerMode: 'screen',
+		defaultNavigationOptions: {
+			headerTitleAlign: 'center',
+		},
 	},
 )
 
