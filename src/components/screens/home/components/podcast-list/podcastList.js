@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, View, Text } from 'react-native';
+import { FlatList, View } from 'react-native';
 import styled from 'styled-components';
 
 import CONSTANTS from '~/utils/CONSTANTS';
@@ -17,12 +17,8 @@ const AllPodcastList = styled(FlatList)`
   flex: 1;
 `;
 
-type Props = {
-    data: Array<Object>,
-    navigation: Object,
-};
 
-const PodcastList = ({navigation, data}: Props): Object => {
+const PodcastList = ({navigation, data, headerComponent, refreshControl}) => {
     return(
     <Wrapper>
         <AllPodcastList
@@ -39,6 +35,8 @@ const PodcastList = ({navigation, data}: Props): Object => {
                     podcastDetail={item}
                 />
             )}
+            ListHeaderComponent={headerComponent}
+            refreshControl={refreshControl}
         />
     </Wrapper>
 )}
