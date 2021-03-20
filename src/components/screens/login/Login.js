@@ -1,131 +1,106 @@
 // @flow
 
 import React, { Component } from 'react';
-import {
-  StatusBar, Animated, FlatList, View,
-} from 'react-native';
+import { StatusBar, FlatList, View } from 'react-native';
 import styled from 'styled-components';
 
-import BackgroundImage from './components/BackgroundImage';
-import LoginComponent from './components/LoginComponent';
+import BottomContent from './components/BottomContent';
+import MiddleContent from './components/MiddleContent';
+
 import CONSTANTS from '~/utils/CONSTANTS';
-import Header from './components/Header';
+import appStyles from '~/styles';
 
 const Wrapper = styled(View)`
   flex: 1;
-  width: 100%;
-  height: 100%;
-  position: absolute;
+  justify-content: space-between;
+  padding-top: ${({ theme }) => theme.metrics.getHeightFromDP('15%')}px;
+  background-color: ${({ theme }) => theme.colors.white};
 `;
 
-const ContentWrapper = styled(View)`
+const IntroScreenWrapper = styled(View)`
   width: ${({ theme }) => theme.metrics.width}px;
-  height: 100%;
-  padding-horizontal: ${({ theme }) => theme.metrics.extraLargeSize}px;
+  height: ${({ theme }) => theme.metrics.height}px;
 `;
 
 type Props = {
   navigation: Object,
 };
 
-const LAYOUTS = [{ Layout: LoginComponent, id: 'login' }]
+type State = {
+  currentPageIndex: number,
+};
 
-class Login extends Component<Props, {}> {
-  _flatListRef: Object = {};
-  _headerAnimation = new Animated.Value(0);
-  _formAnimation = new Animated.Value(0);
+class OnboardingIntro extends Component<Props, State> {
+	_pagesListRef: Object = {}
 
-  componentDidMount() {
-    Animated.stagger(100, [
-      Animated.timing(this._headerAnimation, {
-        duration: 500,
-        toValue: 1,
-        useNativeDriver: true,
-      }),
-      Animated.timing(this._formAnimation, {
-        duration: 600,
-        toValue: 1,
-        useNativeDriver: true,
-      }),
-    ]).start();
-  }
+	state = {
+		currentPageIndex: 0,
+	}
 
-  onChangeListIndex = (index: number): void => {
-    this._flatListRef.scrollToIndex({ animated: true, index });
-  };
+	onPressNextButton = (): void => {
+		const { currentPageIndex } = this.state
 
-  onNavigateToMainStack = (): void => {
-    const { navigation } = this.props;
+		this.setState(
+			{
+				currentPageIndex: currentPageIndex + 1,
+			},
+			() =>
+				this._pagesListRef.scrollToIndex({
+					animated: true,
+					index: currentPageIndex + 1,
+				}),
+		)
+	}
 
-    navigation.navigate(CONSTANTS.ROUTES.INTERESTS);
-  };
+	onNavigateLogin = (): void => {
+		const { navigation } = this.props
 
-  createFadeAnimationStyle = (animation: Object): Object => {
-    const translateY = animation.interpolate({
-      inputRange: [0, 1],
-      outputRange: [-5, 0],
-    });
+		navigation.navigate(CONSTANTS.ROUTES.LOGIN)
+	}
 
-    return {
-      opacity: animation,
-      transform: [
-        {
-          translateY,
-        },
-      ],
-    };
-  };
+	onNavigateToMainStack = (): void => {
+		const { navigation } = this.props
 
-  render() {
-    const formAnimation = this.createFadeAnimationStyle(this._formAnimation);
-    const headerAnimation = this.createFadeAnimationStyle(
-      this._headerAnimation,
-    );
+		navigation.navigate(CONSTANTS.ROUTES.INTERESTS)
+	}
 
-    return (
-      <Wrapper>
-        <StatusBar
-          backgroundColor="transparent"
-          barStyle="light-content"
-          translucent
-          animated
-        />
-        <BackgroundImage />
-        <Animated.View
-          style={headerAnimation}
-        >
-          <Header />
-        </Animated.View>
-        <Animated.View
-          style={formAnimation}
-        >
-          <FlatList
-            renderItem={({ item }) => {
-              const { Layout } = item;
+	onFlatlistMomentumScrollEnd = (event: Object): void => {
+		const { contentOffset } = event.nativeEvent
 
-              return (
-                <ContentWrapper>
-                  <Layout
-                    onNavigateToMainStack={this.onNavigateToMainStack}
-                    onChangeListIndex={this.onChangeListIndex}
-                  />
-                </ContentWrapper>
-              );
-            }}
-            showsHorizontalScrollIndicator={false}
-            keyExtractor={item => item.id}
-            ref={(ref: any): void => {
-              this._flatListRef = ref;
-            }}
-            scrollEnabled={false}
-            data={LAYOUTS}
-            pagingEnabled
-            horizontal
-          />
-        </Animated.View>
-      </Wrapper>
-    );
-  }
+		const isHorizontalSwipeMovement = contentOffset.x > 0
+		const currentPageIndex = isHorizontalSwipeMovement ? Math.ceil(contentOffset.x / appStyles.metrics.width) : 0
+
+		this.setState({
+			currentPageIndex,
+		})
+	}
+
+	render() {
+		const PAGES = ['listen']
+
+		return (
+			<Wrapper>
+				<StatusBar backgroundColor="transparent" barStyle="dark-content" translucent animated />
+				<FlatList
+					onMomentumScrollEnd={(event) => this.onFlatlistMomentumScrollEnd(event)}
+					renderItem={({ item, index }) => (
+						<IntroScreenWrapper>
+							<MiddleContent currentIndex={index} />
+						</IntroScreenWrapper>
+					)}
+					showsHorizontalScrollIndicator={false}
+					keyExtractor={(item) => item}
+					ref={(ref: any): void => {
+						this._pagesListRef = ref
+					}}
+					bounces={false}
+					data={PAGES}
+					horizontal
+				/>
+				<BottomContent onNavigateToMainStack={this.onNavigateToMainStack}          />
+			</Wrapper>
+		)
+	}
 }
 
-export default Login;
+export default OnboardingIntro;

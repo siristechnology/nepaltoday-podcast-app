@@ -44,7 +44,7 @@ class StaterScreen extends Component<Props, {}> {
       if(res && res.id){
         navigation.navigate(CONSTANTS.ROUTES.MAIN_STACK)
       }else{
-        navigation.navigate(CONSTANTS.ROUTES.ONBOARDING_INTRO);
+        navigation.navigate(CONSTANTS.ROUTES.LOGIN)
       }
     })
   }
