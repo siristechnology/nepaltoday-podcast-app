@@ -61,7 +61,7 @@ class OnboardingIntro extends Component<Props, State> {
 	onNavigateToMainStack = (): void => {
 		const { navigation } = this.props
 
-		navigation.navigate(CONSTANTS.ROUTES.INTERESTS)
+		navigation.navigate(CONSTANTS.ROUTES.MAIN_STACK)
 	}
 
 	onFlatlistMomentumScrollEnd = (event: Object): void => {
