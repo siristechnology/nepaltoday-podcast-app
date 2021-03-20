@@ -85,7 +85,7 @@ class OnboardingIntro extends Component<Props, State> {
   };
 
   render() {
-    const PAGES = ['discover', 'learn', 'listen'];
+    const PAGES = ['listen']
     const { currentPageIndex } = this.state;
 
     return (

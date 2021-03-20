@@ -40,24 +40,12 @@ const Description = styled(Text)`
 `;
 
 const ITEMS = [
-  {
-    title: 'DISCOVER',
-    description: 'Find a new way to sharp your knowledge about the world.',
-    icon: 'compass',
-  },
-  {
-    title: 'LEARN',
-    description:
-      'Learn about a new subject everyday and start to see the world with a new perspective.',
-    icon: 'brain',
-  },
-  {
-    title: 'LISTEN ANY TIME',
-    description:
-      'Download your favorite podcasts and playlists to listen offline.',
-    icon: 'headphones',
-  },
-];
+	{
+		title: 'NepalToday Podcast',
+		description: 'Download your favorite podcasts and playlists to listen offline.',
+		icon: 'headphones',
+	},
+]
 
 type Props = {
   currentIndex: number,
