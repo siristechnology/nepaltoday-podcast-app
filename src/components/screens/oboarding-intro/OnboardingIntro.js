@@ -31,85 +31,76 @@ type State = {
 };
 
 class OnboardingIntro extends Component<Props, State> {
-  _pagesListRef: Object = {};
+	_pagesListRef: Object = {}
 
-  state = {
-    currentPageIndex: 0,
-  };
+	state = {
+		currentPageIndex: 0,
+	}
 
-  onPressNextButton = (): void => {
-    const { currentPageIndex } = this.state;
+	onPressNextButton = (): void => {
+		const { currentPageIndex } = this.state
 
-    this.setState(
-      {
-        currentPageIndex: currentPageIndex + 1,
-      },
-      () => this._pagesListRef.scrollToIndex({
-        animated: true,
-        index: currentPageIndex + 1,
-      }),
-    );
-  };
+		this.setState(
+			{
+				currentPageIndex: currentPageIndex + 1,
+			},
+			() =>
+				this._pagesListRef.scrollToIndex({
+					animated: true,
+					index: currentPageIndex + 1,
+				}),
+		)
+	}
 
-  onNavigateLogin = (): void => {
-    const { navigation } = this.props;
+	onNavigateLogin = (): void => {
+		const { navigation } = this.props
 
-    navigation.navigate(CONSTANTS.ROUTES.LOGIN);
-  };
+		navigation.navigate(CONSTANTS.ROUTES.LOGIN)
+	}
 
-  onFlatlistMomentumScrollEnd = (event: Object): void => {
-    const { contentOffset } = event.nativeEvent;
+	onNavigateToMainStack = (): void => {
+		const { navigation } = this.props
 
-    const isHorizontalSwipeMovement = contentOffset.x > 0;
-    const currentPageIndex = isHorizontalSwipeMovement
-      ? Math.ceil(contentOffset.x / appStyles.metrics.width)
-      : 0;
+		navigation.navigate(CONSTANTS.ROUTES.INTERESTS)
+	}
 
-    this.setState({
-      currentPageIndex,
-    });
-  };
+	onFlatlistMomentumScrollEnd = (event: Object): void => {
+		const { contentOffset } = event.nativeEvent
 
-  render() {
-    const PAGES = ['listen']
-    const { currentPageIndex } = this.state;
+		const isHorizontalSwipeMovement = contentOffset.x > 0
+		const currentPageIndex = isHorizontalSwipeMovement ? Math.ceil(contentOffset.x / appStyles.metrics.width) : 0
 
-    return (
-      <Wrapper>
-        <StatusBar
-          backgroundColor="transparent"
-          barStyle="dark-content"
-          translucent
-          animated
-        />
-        <FlatList
-          onMomentumScrollEnd={event => this.onFlatlistMomentumScrollEnd(event)}
-          renderItem={({ item, index }) => (
-            <IntroScreenWrapper>
-              <MiddleContent
-                currentIndex={index}
-              />
-            </IntroScreenWrapper>
-          )}
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={item => item}
-          ref={(ref: any): void => {
-            this._pagesListRef = ref;
-          }}
-          bounces={false}
-          pagingEnabled
-          data={PAGES}
-          horizontal
-        />
-        <BottomContent
-          onPressNext={this.onPressNextButton}
-          onPressSkip={this.onNavigateLogin}
-          currentIndex={currentPageIndex}
-          pagesLength={PAGES.length}
-        />
-      </Wrapper>
-    );
-  }
+		this.setState({
+			currentPageIndex,
+		})
+	}
+
+	render() {
+		const PAGES = ['listen']
+
+		return (
+			<Wrapper>
+				<StatusBar backgroundColor="transparent" barStyle="dark-content" translucent animated />
+				<FlatList
+					onMomentumScrollEnd={(event) => this.onFlatlistMomentumScrollEnd(event)}
+					renderItem={({ item, index }) => (
+						<IntroScreenWrapper>
+							<MiddleContent currentIndex={index} />
+						</IntroScreenWrapper>
+					)}
+					showsHorizontalScrollIndicator={false}
+					keyExtractor={(item) => item}
+					ref={(ref: any): void => {
+						this._pagesListRef = ref
+					}}
+					bounces={false}
+					data={PAGES}
+					horizontal
+				/>
+				<BottomContent onNavigateToMainStack={this.onNavigateToMainStack}          />
+			</Wrapper>
+		)
+	}
 }
 
 export default OnboardingIntro;
