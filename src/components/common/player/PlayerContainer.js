@@ -147,39 +147,24 @@ class Player extends Component<Props, State> {
   };
 
   handlePlayerConfiguration = (playerParams: Object): void => {
-    const {
-      playlist: pastPlaylist,
-      currentPodcast,
-      playlistIndex,
-      paused,
-    } = this.props;
+		const { playlist: pastPlaylist, currentPodcast, playlistIndex, paused } = this.props
 
-    const shouldShufflePlaylist = playerParams[CONSTANTS.KEYS.SHOULD_SHUFFLE_PLAYLIST];
-    const playlist = playerParams[CONSTANTS.KEYS.PLAYLIST];
+		const shouldShufflePlaylist = playerParams[CONSTANTS.KEYS.SHOULD_SHUFFLE_PLAYLIST]
+		const playlist = playerParams[CONSTANTS.KEYS.PLAYLIST]
 
-    const isCurrentPodcastDefined = !!currentPodcast;
-    const isPodcastChanged = isCurrentPodcastDefined && currentPodcast.id !== playlist[0].id;
-    const isPlayingSamePlaylist = this.checkIsPlayingSamePlaylist(
-      playlist,
-      pastPlaylist,
-    );
+		const isCurrentPodcastDefined = !!currentPodcast
+		const isPodcastChanged = isCurrentPodcastDefined && currentPodcast.id !== playlist[0].id
+		const isPlayingSamePlaylist = this.checkIsPlayingSamePlaylist(playlist, pastPlaylist)
 
-    if (
-      !isCurrentPodcastDefined
-      || isPodcastChanged
-      || !isPlayingSamePlaylist
-      || shouldShufflePlaylist
-    ) {
-      const { setupShufflePlayer, setupPlayer } = this.props;
+		if (!isCurrentPodcastDefined || isPodcastChanged || !isPlayingSamePlaylist || shouldShufflePlaylist) {
+			const { setupShufflePlayer, setupPlayer } = this.props
 
-      const properAction = shouldShufflePlaylist
-        ? setupShufflePlayer
-        : setupPlayer;
+			const properAction = shouldShufflePlaylist ? setupShufflePlayer : setupPlayer
 
-      properAction(playlist);
-    }
+			properAction(playlist)
+		}
 
-    this.setHeaderTitle(playlist[0].category);
+		this.setHeaderTitle(playlist[0].category)
   };
 
   checkIsPlayingSamePlaylist = (

@@ -18,21 +18,21 @@ const Wrapper = styled(View)`
 `;
 
 const Input = styled(TextInput).attrs(({ theme }) => ({
-  placeholderTextColor: theme.colors.subText,
-  selectionColor: theme.colors.subText,
-  underlineColorAndroid: 'transparent',
-  autoCapitalize: 'none',
-  autoCorrect: false,
-  placeholder: 'Search for a specific Program',
-  returnKeyLabel: 'search',
-  returnKeyType: 'search',
+	placeholderTextColor: theme.colors.subText,
+	selectionColor: theme.colors.subText,
+	underlineColorAndroid: 'transparent',
+	autoCapitalize: 'none',
+	autoCorrect: false,
+	placeholder: 'Search Podcasts',
+	returnKeyLabel: 'search',
+	returnKeyType: 'search',
 }))`
-  width: 90%;
-  height: 100%;
-  margin-left: ${({ theme }) => theme.metrics.smallSize}px;
-  font-family: CircularStd-Book;
-  color: ${({ theme }) => theme.colors.darkText};
-`;
+	width: 90%;
+	height: 100%;
+	margin-left: ${({ theme }) => theme.metrics.smallSize}px;
+	font-family: CircularStd-Book;
+	color: ${({ theme }) => theme.colors.darkText};
+`
 
 const IconWrapper = styled(View)`
   padding-top: ${({ theme }) => theme.metrics.mediumSize};
