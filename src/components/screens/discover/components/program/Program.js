@@ -1,5 +1,3 @@
-// @flow
-
 import React, { Component } from 'react'
 import { FlatList, View } from 'react-native'
 import styled from 'styled-components'
@@ -28,7 +26,7 @@ const ProgramCategoriesSeeAllList = styled(FlatList)`
 class ProgramCategoriesSeeAll extends Component {
 	state = {
 		podcasts: [],
-		publisher: {},
+		program: {},
 	}
 
 	componentDidMount() {
@@ -40,8 +38,12 @@ class ProgramCategoriesSeeAll extends Component {
 				setHeaderPlayButtonPress(res.podcast, navigation)
 				this.setState({
 					podcasts: res.podcast,
-					publisher: res.podcast[0].author,
-					category: res.podcast[0].category,
+					program: {
+						title: res.podcast[0].program,
+						imageURL: res.podcast[0].thumbnailImageURL,
+						publisher: res.podcast[0].author.name,
+						category: res.podcast[0].category,						
+					},
 				})
 			})
 			.catch((err) => {
@@ -54,13 +56,15 @@ class ProgramCategoriesSeeAll extends Component {
 	render() {
 		const { navigation } = this.props
 
+		console.log('printing this.state.program', this.state.program)
+
 		return (
 			<Wrapper>
 				<ProgramCategoriesSeeAllList
 					keyExtractor={(podcast) => `${podcast.id}`}
 					showsVerticalScrollIndicator={false}
 					data={this.state.podcasts}
-					ListHeaderComponent={<ProgramInfo publisher={this.state.publisher} category={this.state.category} onSubscribe={this.onSubscribe} />}
+					ListHeaderComponent={<ProgramInfo program={this.state.program} onSubscribe={this.onSubscribe} />}
 					renderItem={({ item, index }) => (
 						<ProgramCategoriesSeeAllListItem
 							onPressItem={() =>

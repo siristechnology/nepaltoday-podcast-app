@@ -11,7 +11,8 @@ const Wrapper = styled(View)`
 const InfoWrapper = styled(View)`
 	width: 100%;
 	flex-direction: row;
-	align-items: center;
+	align-items: flex-start;
+	margin-bottom: 10px;
 `
 const TextContentWrapper = styled(View)`
 	width: ${({ theme }) => theme.metrics.getWidthFromDP('65%')}px;
@@ -36,40 +37,33 @@ const PodcastTitleText = styled(Text).attrs({
 	font-family: CircularStd-Bold;
 `
 
+const SubjectWrapper = styled(View)`
+	align-items: flex-start;
+`
+
 const PodcastSubjectText = styled(Text)`
 	color: ${({ theme }) => theme.colors.white};
 	font-size: ${({ theme }) => theme.metrics.largeSize * 1.1}px;
 	font-family: CircularStd-Bold;
-`
-
-const SubjectWrapper = styled(View)`
-	align-items: flex-start;
-	margin-top: ${({ theme }) => theme.metrics.smallSize}px;
-`
-
-const SubjectTextWrapper = styled(View)`
-	padding-vertical: ${({ theme }) => theme.metrics.smallSize}px;
-	padding-horizontal: ${({ theme }) => theme.metrics.mediumSize}px;
-	border-radius: 3px;
+	margin: ${({ theme }) => theme.metrics.extraSmallSize}px;
 	background-color: ${({ theme }) => theme.colors.black};
 `
 
 type Props = {
 	imageURL: string,
-	subject: string,
 	title: string,
+	category: string,
 }
 
-const ProgramInfo = ({ publisher, onSubscribe, category }: Props): Object => (
+const ProgramInfo = ({ program, onSubscribe }: Props): Object => (
 	<Wrapper>
 		<InfoWrapper>
-			<PodcastImage uri={publisher.thumbnailProfileImageURL} />
+			<PodcastImage uri={program.imageURL} />
 			<TextContentWrapper>
-				<PodcastTitleText>{publisher.name}</PodcastTitleText>
+				<PodcastTitleText>{program.title}</PodcastTitleText>
 				<SubjectWrapper>
-					<SubjectTextWrapper>
-						<PodcastSubjectText>{`#${category}`}</PodcastSubjectText>
-					</SubjectTextWrapper>
+					<PodcastSubjectText>{`#${program.category}`}</PodcastSubjectText>
+					<PodcastSubjectText>{`#${program.publisher}`}</PodcastSubjectText>
 				</SubjectWrapper>
 			</TextContentWrapper>
 		</InfoWrapper>
