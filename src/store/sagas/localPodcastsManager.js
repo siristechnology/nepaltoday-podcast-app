@@ -174,8 +174,7 @@ export function* setPodcastsDownloadedList() {
 }
 
 function* _handleDownloadPodcastResult(statusCode, path, podcast) {
-  console.log('printing statusCode', statusCode)
-  if (statusCode === 206) {
+  if (statusCode === 200) {
     const podcastWithLocalURI = {
       ...podcast,
       path,
@@ -206,7 +205,7 @@ export function* downloadPodcast(podcast) {
     const PATH_TO_FILE = `${RNFS.DocumentDirectoryPath}/${id}.mp3`;
 
     const { jobId, promise } = yield call(RNFS.downloadFile, {
-      fromUrl: `${SERVER_URL}/podcasts/${id}/listen`,
+      fromUrl: `${SERVER_URL}/podcasts/${id}`,
       toFile: PATH_TO_FILE,
       discretionary: true,
     });

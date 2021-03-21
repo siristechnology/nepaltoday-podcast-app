@@ -38,9 +38,7 @@ function* _definePodcastURI(podcast) {
     && !!podcastStored.path
     && typeof podcastStored.path === 'string';
 
-  const uri = isPodcastStored
-    ? podcastStored.path
-    : `${SERVER_URL}/podcasts/${podcast.id}/listen`;
+  const uri = isPodcastStored ? podcastStored.path : `${SERVER_URL}/podcasts/${podcast.id}`
 
   const podcastWithURI = {
     ...podcast,
