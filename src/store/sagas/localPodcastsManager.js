@@ -13,6 +13,7 @@ import CONSTANTS from '~/utils/CONSTANTS';
 
 import { Creators as LocalPodcastsManagerCreators } from '../ducks/localPodcastsManager';
 import { Creators as PlayerCreators } from '../ducks/player';
+import api from '~/services/api'
 
 export function* loadPodcastsRecentlyPlayed() {
   try {
@@ -199,37 +200,38 @@ function* _handleDownloadPodcastResult(statusCode, path, podcast) {
 }
 
 export function* downloadPodcast(podcast) {
-  try {
-    const { id } = podcast;
+	try {
+		const { id } = podcast
 
-    const PATH_TO_FILE = `${RNFS.DocumentDirectoryPath}/${id}.mp3`;
+		const {
+			data: {
+				podcast: { audioLink },
+			},
+		} = yield call(api.get, `/podcasts/${id}`)
 
-    const { jobId, promise } = yield call(RNFS.downloadFile, {
-      fromUrl: `${SERVER_URL}/podcasts/${id}`,
-      toFile: PATH_TO_FILE,
-      discretionary: true,
-    });
+		const PATH_TO_FILE = `${RNFS.DocumentDirectoryPath}/${id}.mp3`
 
-    yield put(
-      LocalPodcastsManagerCreators.addToDownloadingList({
-        jobId,
-        id,
-      }),
-    );
+		const { jobId, promise } = yield call(RNFS.downloadFile, {
+			fromUrl: audioLink,
+			toFile: PATH_TO_FILE,
+			discretionary: true,
+		})
 
-    const { statusCode } = yield promise;
+		yield put(
+			LocalPodcastsManagerCreators.addToDownloadingList({
+				jobId,
+				id,
+			}),
+		)
 
-    const podcastWithLocalURI = yield call(
-      _handleDownloadPodcastResult,
-      statusCode,
-      PATH_TO_FILE,
-      podcast,
-    );
+		const { statusCode } = yield promise
 
-    return podcastWithLocalURI;
-  } catch (err) {
-    throw err;
-  }
+		const podcastWithLocalURI = yield call(_handleDownloadPodcastResult, statusCode, PATH_TO_FILE, podcast)
+
+		return podcastWithLocalURI
+	} catch (err) {
+		throw err
+	}
 }
 
 export function* downloadPodcastToLocalStorage({ payload }) {
