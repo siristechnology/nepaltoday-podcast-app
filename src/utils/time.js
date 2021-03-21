@@ -1,22 +1,6 @@
 import moment from 'moment'
 import { convertNos } from './dateConverter'
 
-moment.updateLocale('en', {
-	relativeTime: {
-		past: '%s अघि',
-		m: '1 मिनेट',
-		mm: '%d मिनेट',
-		h: '1 घण्टा',
-		hh: '%d घण्टा',
-		d: '1 दिन',
-		dd: '%d दिन',
-		M:  '1 महिना',
-        MM: '%d महिना',
-        y:  '1 बर्ष',
-        yy: '%d बर्ष'
-	},
-})
-
 const addLeadingZero = (val) => {
 	return '0' + val
 }
@@ -50,4 +34,11 @@ export const getCurrentTime = () => {
 		}
 	}
 	return currentTimeInNepali.join('')
+}
+
+export const getFormattedDurationFromSeconds = (durationInSeconds) => {
+	const hours = Math.floor(durationInSeconds / (60 * 60))
+	const mins = Math.floor(durationInSeconds / 60 - hours * 60)
+
+	return hours > 0 ? hours + ' h ' + mins + ' mins' : mins + ' mins'
 }
