@@ -10,7 +10,7 @@ import SearchAuthorListContainer from './components/search-author/SearchAuthorLi
 
 import PodcastDetailContainer from '~/components/common/podcast-detail/PodcastDetailContainer'
 import Player from '~/components/common/player/PlayerContainer'
-import Home from './Discover'
+import Discover from './Discover'
 
 import {
 	getDefaultHeaderWithButton,
@@ -33,7 +33,7 @@ const LOCAL_STACK_ROUTES = {
 const RootStack = createStackNavigator(
 	{
 		[CONSTANTS.ROUTES.DISCOVER]: {
-			screen: (props) => <Home {...props} LOCAL_STACK_ROUTES={LOCAL_STACK_ROUTES} />,
+			screen: (props) => <Discover {...props} LOCAL_STACK_ROUTES={LOCAL_STACK_ROUTES} />,
 			navigationOptions: () => ({
 				headerShown: false,
 				headerBackTitle: null,

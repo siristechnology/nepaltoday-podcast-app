@@ -23,7 +23,7 @@ const ProgramCategoriesSeeAllList = styled(FlatList)`
 	height: 100%;
 `
 
-class ProgramCategoriesSeeAll extends Component {
+class Program extends Component {
 	state = {
 		podcasts: [],
 		program: {},
@@ -42,7 +42,7 @@ class ProgramCategoriesSeeAll extends Component {
 						title: res.podcast[0].program,
 						imageURL: res.podcast[0].thumbnailImageURL,
 						publisher: res.podcast[0].author.name,
-						category: res.podcast[0].category,						
+						category: res.podcast[0].category,
 					},
 				})
 			})
@@ -85,4 +85,4 @@ class ProgramCategoriesSeeAll extends Component {
 	}
 }
 
-export default ProgramCategoriesSeeAll
+export default Program

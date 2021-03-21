@@ -1,5 +1,3 @@
-// @flow
-
 import React, { Component } from 'react'
 
 import { bindActionCreators } from 'redux'
@@ -22,7 +20,7 @@ type Props = {
 	getDiscover: Function,
 }
 
-class HomeContainer extends Component<Props, {}> {
+class DiscoverContainer extends Component<Props, {}> {
 	componentDidMount() {
 		const { LOCAL_STACK_ROUTES, getDiscover, navigation } = this.props
 
@@ -81,4 +79,4 @@ const mapStateToProps = (state) => ({
 	home: state.discover,
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(DiscoverContainer)
