@@ -1,42 +1,37 @@
-// @flow
-
 import React from 'react'
 import { View, Text } from 'react-native'
 import FastImage from 'react-native-fast-image'
 import styled from 'styled-components'
-import ActionButtons from './ActionButtons'
 
 const Wrapper = styled(View)`
 	width: 100%;
-	flex-direction: column;
-	align-items: center;
+	flex-direction: row;
+	align-items: flex-start;
 `
-
 const InfoWrapper = styled(View)`
 	width: 100%;
 	flex-direction: row;
 	align-items: center;
 `
-
 const TextContentWrapper = styled(View)`
 	width: ${({ theme }) => theme.metrics.getWidthFromDP('65%')}px;
 	padding-horizontal: ${({ theme }) => theme.metrics.mediumSize}px;
-	justify-content: center;
+	align-items: flex-start;
 `
 
 const PodcastImage = styled(FastImage).attrs(({ uri }) => ({
 	source: { uri },
 }))`
 	width: ${({ theme }) => theme.metrics.getWidthFromDP('30%')}px;
-	height: ${({ theme }) => theme.metrics.getHeightFromDP('20%')}px;
-	border-radius: 2px;
+	height: ${({ theme }) => theme.metrics.getWidthFromDP('30%')}px;
+	border-radius: 8px;
 `
 
 const PodcastTitleText = styled(Text).attrs({
 	numberOfLines: 4,
 })`
 	margin-bottom: ${({ theme }) => theme.metrics.extraSmallSize}px;
-	font-size: ${({ theme }) => theme.metrics.largeSize * 1.15}px;
+	font-size: ${({ theme }) => theme.metrics.largeSize * 1.8}px;
 	color: ${({ theme }) => theme.colors.textColor};
 	font-family: CircularStd-Bold;
 `
@@ -63,7 +58,6 @@ type Props = {
 	imageURL: string,
 	subject: string,
 	title: string,
-	stars: number,
 }
 
 const ProgramInfo = ({ publisher, onSubscribe, category }: Props): Object => (
