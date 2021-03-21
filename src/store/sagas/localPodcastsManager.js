@@ -174,6 +174,7 @@ export function* setPodcastsDownloadedList() {
 }
 
 function* _handleDownloadPodcastResult(statusCode, path, podcast) {
+  console.log('printing statusCode', statusCode)
   if (statusCode === 206) {
     const podcastWithLocalURI = {
       ...podcast,

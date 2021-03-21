@@ -21,14 +21,9 @@ const navigationBarItems = [
 		route: CONSTANTS.ROUTES.DISCOVER,
 	},
 	{
-		label: 'Library',
-		icon: 'playlist-music',
-		route: CONSTANTS.ROUTES.LIBRARY,
-	},
-	{
-		label: 'Settings',
+		label: 'Profile',
 		icon: 'account',
-		route: CONSTANTS.ROUTES.SETTINGS,
+		route: CONSTANTS.ROUTES.PROFILE,
 	},
 ]
 
