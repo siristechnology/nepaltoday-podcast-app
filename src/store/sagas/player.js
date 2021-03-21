@@ -4,8 +4,7 @@ import {
 import { SERVER_URL } from 'react-native-dotenv';
 
 import { Creators as LocalPodcastsManagerCreators } from '../ducks/localPodcastsManager';
-import { Creators as PlayerCreators } from '../ducks/player';
-import api from '~/services/api';
+import { Creators as PlayerCreators } from '../ducks/player'
 import TrackPlayer from 'react-native-track-player';
 
 const _findIndexInsideOriginalPlaylist = (

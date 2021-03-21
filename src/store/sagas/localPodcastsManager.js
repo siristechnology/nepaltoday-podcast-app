@@ -1,8 +1,5 @@
 import RNFS from 'react-native-fs';
-import {
-  select, call, all, put,
-} from 'redux-saga/effects';
-import { SERVER_URL } from 'react-native-dotenv';
+import { select, call, all, put } from 'redux-saga/effects'
 
 import {
   removeItemFromStorage,

@@ -69,18 +69,14 @@ const HomeComponent = ({ navigation, loading, error, data, getHome, onTypeAuthor
 						onTypeAuthorName={onTypeAuthorName}
 					/>
 				</SearchAuthorTextInputWrapper>
-				{data && data.programs && data.programs.length && data.programs.map(((category,i)=>(
-					<CategoryWrapper key={i}>
-						<CategoryText>
-							{category.category}
-						</CategoryText>
-						<ProgramCategoriesDiscover
-							data={category.programs}
-							navigation={navigation}
-						/>
-					</CategoryWrapper>
-				)))
-				}
+				{data &&
+					data.length &&
+					Array.from(new Set(data.map((p) => p.category))).map((category) => (
+						<CategoryWrapper key={category}>
+							<CategoryText>{category}</CategoryText>
+							<ProgramCategoriesDiscover data={data.filter((d) => d.category == category)} navigation={navigation} />
+						</CategoryWrapper>
+					))}
 			</ScrollView>
 		)}
 	</Wrapper>

@@ -1,7 +1,6 @@
 import React from 'react'
 import { FlatList, View } from 'react-native'
 import styled from 'styled-components'
-import CONSTANTS from '~/utils/CONSTANTS'
 
 import ProgramCategoriesListItem from './ProgramCategoriesListItem'
 
@@ -26,19 +25,19 @@ const ProgramCategoriesDiscover = ({ navigation, data }) => {
 	return (
 		<Wrapper>
 			<ProgramCategoriesList
-				keyExtractor={(podcast) => `${podcast.programName}`}
+				keyExtractor={(podcast) => `${podcast.name}`}
 				showsHorizontalScrollIndicator={false}
 				horizontal
 				data={data.slice(0, 9)}
 				renderItem={({ item, index }) => (
 					<ProgramCategoriesListItem
-						sourceImage={item.profileImageURL}
+						sourceImage={item.imageUrl}
 						sourceName={item.sourceName}
-						podcastImage={item.imageURL}
+						podcastImage={item.imageUrl}
 						isLastIndex={index === data.length - 1}
 						navigation={navigation}
 						subject={item.category}
-						programName={item.programName}
+						programName={item.name}
 						onPressItem={onProgramPress}
 					/>
 				)}

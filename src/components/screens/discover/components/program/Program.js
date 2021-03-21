@@ -56,8 +56,6 @@ class Program extends Component {
 	render() {
 		const { navigation } = this.props
 
-		console.log('printing this.state.program', this.state.program)
-
 		return (
 			<Wrapper>
 				<ProgramCategoriesSeeAllList

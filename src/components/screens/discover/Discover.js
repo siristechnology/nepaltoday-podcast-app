@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Creators as HomeCreators } from '~/store/ducks/discover'
+import { Creators } from '~/store/ducks/discover'
 
 import HomeComponent from './components/HomeComponent'
 import CONSTANTS from '~/utils/CONSTANTS'
@@ -73,7 +73,7 @@ class DiscoverContainer extends Component<Props, {}> {
 	}
 }
 
-const mapDispatchToProps = (dispatch) => bindActionCreators(HomeCreators, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators(Creators, dispatch)
 
 const mapStateToProps = (state) => ({
 	home: state.discover,
