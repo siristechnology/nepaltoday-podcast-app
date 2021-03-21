@@ -1,87 +1,59 @@
-// @flow
+import React from 'react'
+import { TouchableOpacity, View } from 'react-native'
+import styled from 'styled-components'
 
-import React from 'react';
-import {
-  TouchableOpacity, Platform, View, Text,
-} from 'react-native';
-import styled from 'styled-components';
-
-import DefaultButton from '~/components/common/DefaultButton';
-import Loading from '~/components/common/Loading';
-import Icon from '~/components/common/Icon';
-import appStyles from '~/styles';
+import DefaultButton from '~/components/common/DefaultButton'
+import Loading from '~/components/common/Loading'
+import Icon from '~/components/common/Icon'
+import appStyles from '~/styles'
 
 const Wrapper = styled(View)`
-  width: 100%;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: ${({ theme }) => theme.metrics.largeSize}px;
-  margin-bottom: ${({ theme }) => theme.metrics.mediumSize}px;
-`;
+	width: 100%;
+	flex-direction: row;
+	justify-content: flex-end;
+	margin-top: ${({ theme }) => theme.metrics.largeSize}px;
+	margin-bottom: ${({ theme }) => theme.metrics.mediumSize}px;
+`
 
 const DownloadButton = styled(TouchableOpacity)`
-  width: ${({ theme }) => theme.metrics.getWidthFromDP('16%')}px;
-  height: ${({ theme }) => theme.metrics.getWidthFromDP('16%')}px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-right: ${({ theme }) => (Platform.OS === 'android' ? theme.metrics.extraSmallSize : 0)}px;
-  border-radius: ${({ theme }) => theme.metrics.getWidthFromDP('8%')}px;
-  background-color: ${({ theme }) => theme.colors.white};
-`;
-
-const ButtonsWrapper = styled(View)`
-  flex-direction: row;
-  justify-content: space-between;
-`;
+	width: ${({ theme }) => theme.metrics.getWidthFromDP('16%')}px;
+	height: ${({ theme }) => theme.metrics.getWidthFromDP('16%')}px;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	border-radius: ${({ theme }) => theme.metrics.getWidthFromDP('8%')}px;
+	background-color: ${({ theme }) => theme.colors.white};
+`
 
 const ButtonsSeparator = styled(View)`
-  width: ${({ theme }) => theme.metrics.mediumSize}px;
-`;
+	width: ${({ theme }) => theme.metrics.mediumSize}px;
+`
 
 type Props = {
-  onPressDownloadButton: Function,
-  onPressAddToPlaylist: Function,
-  isDownloadingPodcast: boolean,
-  isPodcastDownloaded: boolean,
-  onPressPlay: Function,
-};
+	onPressDownloadButton: Function,
+	onPressAddToPlaylist: Function,
+	isDownloadingPodcast: boolean,
+	isPodcastDownloaded: boolean,
+	onPressPlay: Function,
+}
 
-const renderProperIcon = (
-  isDownloadingPodcast,
-  isPodcastDownloaded,
-): Object => {
-  if (isDownloadingPodcast) {
-    return <Loading
-      size="small"
-    />;
-  }
+const renderProperIcon = (isDownloadingPodcast, isPodcastDownloaded): Object => {
+	if (isDownloadingPodcast) {
+		return <Loading size="small" />
+	}
 
-  if (isPodcastDownloaded) {
-    return (
-      <Icon
-        color={appStyles.colors.primaryColor}
-        name="cloud-check"
-        size={24}
-      />
-    );
-  }
+	if (isPodcastDownloaded) {
+		return <Icon color={appStyles.colors.primaryColor} name="cloud-check" size={24} />
+	}
 
-  return (
-    <Icon
-      color={appStyles.colors.subTextWhite}
-      name="cloud-download-outline"
-      size={25}
-    />
-  );
-};
+	return <Icon color={appStyles.colors.subTextWhite} name="cloud-download-outline" size={25} />
+}
 
 const ActionButtons = ({ onPressDownloadButton, isDownloadingPodcast, isPodcastDownloaded, onPressPlay }: Props): Object => (
 	<Wrapper>
-		<ButtonsWrapper>
-			<DefaultButton onPress={onPressPlay} size="large" text="PLAY" />
-      <ButtonsSeparator/>
-      <DownloadButton
+		<DefaultButton onPress={onPressPlay} size="large" text="PLAY" />
+		<ButtonsSeparator />
+		<DownloadButton
 			disabled={isDownloadingPodcast}
 			onPress={onPressDownloadButton}
 			style={{
@@ -97,8 +69,7 @@ const ActionButtons = ({ onPressDownloadButton, isDownloadingPodcast, isPodcastD
 		>
 			{renderProperIcon(isDownloadingPodcast, isPodcastDownloaded)}
 		</DownloadButton>
-		</ButtonsWrapper>		
 	</Wrapper>
 )
 
-export default ActionButtons;
+export default ActionButtons
