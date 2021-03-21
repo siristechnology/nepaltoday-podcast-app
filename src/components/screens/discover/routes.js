@@ -20,7 +20,7 @@ import {
 } from '~/routes/utils/navigationOptions'
 import CONSTANTS from '~/utils/CONSTANTS'
 import appStyles from '~/styles'
-import ProgramCategoriesSeeAll from './components/categories/ProgramCategoriesSeeAll'
+import Program from './components/program/Program'
 
 const LOCAL_STACK_ROUTES = {
 	TRENDING_AUTHORS_SEE_ALL: 'TRENDING_AUTHORS_SEE_ALL',
@@ -47,8 +47,8 @@ const RootStack = createStackNavigator(
 		},
 
 		[LOCAL_STACK_ROUTES.PROGRAM_CATEGORIES_SEE_ALL]: {
-			screen: ProgramCategoriesSeeAll,
-			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithButton(navigation, screenProps, 'Program Podcasts', 'play-circle-outline'),
+			screen: Program,
+			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithButton(navigation, screenProps, 'Program', 'play-circle-outline'),
 		},
 
 		[LOCAL_STACK_ROUTES.TRENDING_AUTHORS_SEE_ALL]: {
