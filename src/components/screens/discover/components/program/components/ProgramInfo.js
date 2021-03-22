@@ -7,6 +7,8 @@ const Wrapper = styled(View)`
 	width: 100%;
 	flex-direction: row;
 	align-items: flex-start;
+	padding: ${({ theme }) => theme.metrics.mediumSize}px;
+	background-color: ${({ theme }) => theme.colors.backgroundColor};
 `
 const InfoWrapper = styled(View)`
 	width: 100%;
