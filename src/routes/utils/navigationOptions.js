@@ -30,8 +30,7 @@ export const getPlayerNavigationOption = (navigation: Object): Object => {
   const { params } = navigation.state;
 
   const onPressHeaderRightButton = params[CONSTANTS.PARAMS.HEADER_BUTTON_RIGHT_PLAYER_ACTION];
-  const isRightMenuOpen = params[CONSTANTS.KEYS.IS_PLAYER_RIGHT_MENU_OPEN];
-  const title = params[CONSTANTS.PARAMS.PLAYER_TITLE];
+  const isRightMenuOpen = params[CONSTANTS.KEYS.IS_PLAYER_RIGHT_MENU_OPEN]
 
   return {
 		...DEFAULT_HEADER_STYLE,
@@ -39,8 +38,8 @@ export const getPlayerNavigationOption = (navigation: Object): Object => {
 			backgroundColor: 'transparent',
 			borderBottomWidth: 0,
 		},
-		header: isRightMenuOpen ? null : undefined,
-		title: title ? `#${title}` : '',
+		headerShown: isRightMenuOpen ? null : undefined,
+		title: '',
 		headerRight: () => <HeaderButton onPress={onPressHeaderRightButton} iconName="format-list-bulleted" position={POSITIONS.RIGHT} />,
   }
 };

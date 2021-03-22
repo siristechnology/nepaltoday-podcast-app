@@ -257,14 +257,7 @@ class Player extends Component<Props, State> {
               onToggleAddPlaylistModal={this.onToggleAddPlaylistModal}
               isCurrentPodcastDownloaded={isCurrentPodcastDownloaded}
               isAddPlaylistModalOpen={isAddPlaylistModalOpen}
-              shouldShufflePlaylist={shouldShufflePlaylist}
-              shouldRepeatPlaylist={shouldRepeatPlaylist}
-              shouldRepeatCurrent={shouldRepeatCurrent}
-              disableRepetition={disableRepetition}
-              setRepeatPlaylist={setRepeatPlaylist}
               seekProgressTimer={seekProgressTimer}
-              setRepeatCurrent={setRepeatCurrent}
-              shufflePlaylist={shufflePlaylist}
               currentPodcast={currentPodcast}
               playlistIndex={playlistIndex}
               playPrevious={()=>this.playPreviousClick(playPrevious)}
