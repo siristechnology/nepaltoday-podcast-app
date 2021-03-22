@@ -1,9 +1,6 @@
-// @flow
-
 import React from 'react';
 import { FlatList, View } from 'react-native';
 import styled from 'styled-components';
-import CONSTANTS from '~/utils/CONSTANTS';
 
 import ProgramCategoriesListItem from './ProgramCategoriesListItem';
 

@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import { RefreshControl } from 'react-native'
 import { FlatList, View } from 'react-native'
 import styled from 'styled-components'
 
 import ProgramCategoriesSeeAllListItem from '~/components/common/PodcastItemLIst'
-
 import { setHeaderPlayButtonPress } from '~/routes/utils/navigationOptions'
 import CONSTANTS from '~/utils/CONSTANTS'
+import appStyles from '~/styles'
 import ProgramInfo from './components/ProgramInfo'
 import CategoriesService from './programCategories.services'
 
@@ -25,6 +26,7 @@ const ProgramCategoriesSeeAllList = styled(FlatList)`
 
 class Program extends Component {
 	state = {
+		loading: true,
 		podcasts: [],
 		program: {},
 	}
@@ -44,6 +46,7 @@ class Program extends Component {
 						publisher: res.podcast[0].author.name,
 						category: res.podcast[0].category,
 					},
+					loading: false,
 				})
 			})
 			.catch((err) => {
@@ -77,6 +80,14 @@ class Program extends Component {
 							index={index + 1}
 						/>
 					)}
+					refreshControl={
+						<RefreshControl
+							progressBackgroundColor={appStyles.colors.primaryColor}
+							tintColor={appStyles.colors.primaryColor}
+							colors={[appStyles.colors.white]}
+							refreshing={this.state.loading}
+						/>
+					}
 				/>
 			</Wrapper>
 		)

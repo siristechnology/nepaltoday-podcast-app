@@ -57,20 +57,24 @@ type Props = {
 	category: string,
 }
 
-const ProgramInfo = ({ program, onSubscribe }: Props): Object => (
-	<Wrapper>
-		<InfoWrapper>
-			<PodcastImage uri={program.imageURL} />
-			<TextContentWrapper>
-				<PodcastTitleText>{program.title}</PodcastTitleText>
-				<SubjectWrapper>
-					<PodcastSubjectText>{`#${program.category}`}</PodcastSubjectText>
-					<PodcastSubjectText>{`#${program.publisher}`}</PodcastSubjectText>
-				</SubjectWrapper>
-			</TextContentWrapper>
-		</InfoWrapper>
-		{/* <ActionButtons onSubscribe={onSubscribe} /> */}
-	</Wrapper>
-)
+const ProgramInfo = ({ program, onSubscribe }: Props) => {
+	if (!program.title) return <></>
+
+	return (
+		<Wrapper>
+			<InfoWrapper>
+				<PodcastImage uri={program.imageURL || ''} />
+				<TextContentWrapper>
+					<PodcastTitleText>{program.title || ''}</PodcastTitleText>
+					<SubjectWrapper>
+						<PodcastSubjectText>{`#${program.category || ''}`}</PodcastSubjectText>
+						<PodcastSubjectText>{`#${program.publisher || ''}`}</PodcastSubjectText>
+					</SubjectWrapper>
+				</TextContentWrapper>
+			</InfoWrapper>
+			{/* <ActionButtons onSubscribe={onSubscribe} /> */}
+		</Wrapper>
+	)
+}
 
 export default ProgramInfo
