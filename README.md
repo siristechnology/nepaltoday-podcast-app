@@ -14,17 +14,11 @@
 <img src="./assets/images/mockup-3.png" alt="screenshot-2" width="200"/>
 </div>
 
-## Some Observations about this App
-
-1 - There's no functionality of Login/Register, the buttons and the forms in the Login Screen are only for UI matters.
-
-2 - The only option that works at _Settings_ screen it's toggle the Dark/Light theme, all the others are just for UI matters too.
-
 ## Functionalities
 
 - Choose your interests (all, technology, philosophy, science, business, pop-culture or history - it will be used to make requests in order to have a personalized app with what the user want to hear about)
 
-- Get informations about a specific Author, with his New Releases/Featured Podcats and Related Authors
+- Get informations about a specific Author, with his New Releases/Featured Podcasts and Related Authors
 
 - Get Informations about a specific Podcast, with its description and Author
 
@@ -36,11 +30,7 @@
 	- Undownload Playlists
 
 - Player to listen the selected podcasts and also be able to: 
-	- Shuffle Playlist
-	- Repeat Playist
-	- Repeat a single Podcast
 	- Download the current podcast
-	- Add the current Podcast to a Playlist
 	- Access the queue of next podcasts that will be played
 	- Remove podcasts from the queue
 	- Play/Pause the current Podcast
@@ -101,12 +91,6 @@ $ cd nepaltoday-podcast-app
 
 ```
 $ yarn
-```
-
-_or_
-
-```
-$ npm install
 ```
 
 ### Connecting the App with the Server
