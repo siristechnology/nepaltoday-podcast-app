@@ -7,11 +7,13 @@ import { getFormattedDurationFromSeconds, getRelativeTime } from '~/utils/time'
 import {
 	Container,
 	TitleRow,
+	TitleWrapper,
 	PodcastImage,
 	Title,
 	Description,
 	DurationView,
 	DurationText,
+	RightButtonWrapper,
 	BottomRow,
 	AuthorInfo,
 	AuthorImage,
@@ -30,22 +32,22 @@ const PodcastListItem = ({ podcastDetail, isLastIndex, onPress, navigation, them
 		<Container isLastIndex={isLastIndex} onPress={onPress}>
 			<TitleRow>
 				<PodcastImage uri={podcastDetail.imageURL} />
-				<View>
+				<TitleWrapper>
 					<Title>{podcastDetail.title}</Title>
 					<Description>{podcastDetail.description.slice(0, 100) + '..'}</Description>
-					<DurationView
-						onPress={() =>
-							navigation.navigate(CONSTANTS.ROUTES.PLAYER, {
-								[CONSTANTS.PARAMS.PLAYER]: {
-									[CONSTANTS.KEYS.PLAYLIST]: [podcastDetail],
-								},
-							})
-						}
-					>
-						<Icon name="play-circle-outline" size={20} />
-						<DurationText>{getFormattedDurationFromSeconds(podcastDetail.durationInSeconds)}</DurationText>
-					</DurationView>
-				</View>
+					<DurationText>{getFormattedDurationFromSeconds(podcastDetail.durationInSeconds)}</DurationText>
+				</TitleWrapper>
+				<RightButtonWrapper
+					onPress={() =>
+						navigation.navigate(CONSTANTS.ROUTES.PLAYER, {
+							[CONSTANTS.PARAMS.PLAYER]: {
+								[CONSTANTS.KEYS.PLAYLIST]: [podcastDetail],
+							},
+						})
+					}
+				>
+					<Icon name="play-circle-outline" size={40} />
+				</RightButtonWrapper>
 			</TitleRow>
 			<BottomRow>
 				<AuthorInfo>
