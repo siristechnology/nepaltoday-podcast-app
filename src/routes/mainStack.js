@@ -2,19 +2,16 @@ import React from 'react';
 import { createAppContainer } from 'react-navigation'
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs'
 
-import { withTheme } from 'styled-components';
-
 import Navigation from '~/components/common/navigation/Navigation';
 import HomeRoutes from '~/components/screens/home/routes';
 import DiscoverRoutes from '~/components/screens/discover/routes'
-import ProfileRoutes from '~/components/screens/profile/routes'
-import appStyles from '~/styles';
+import MoreRoutes from '~/components/screens/more/routes'
 
 export const ROUTE_NAMES = {
 	HOME: 'HOME',
 	DISCOVER: 'DISCOVER',
 	LIBRARY: 'LIBRARY',
-	PROFILE: 'PROFILE',
+	MORE: 'MORE',
 }
 
 const ApplicationTabs = createMaterialTopTabNavigator(
@@ -29,8 +26,8 @@ const ApplicationTabs = createMaterialTopTabNavigator(
 			headerShown: false,
 		},
 
-		[ROUTE_NAMES.PROFILE]: {
-			screen: ProfileRoutes,
+		[ROUTE_NAMES.MORE]: {
+			screen: MoreRoutes,
 			headerShown: false,
 		},
 	},

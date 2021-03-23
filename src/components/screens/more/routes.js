@@ -9,7 +9,7 @@ import RecentlyPlayed from './history/RecentlyPlayed'
 
 import CONSTANTS from '~/utils/CONSTANTS'
 
-import Profile from './Profile'
+import More from './More'
 import About from './about/About'
 
 const LOCAL_STACK_ROUTES = {
@@ -20,8 +20,8 @@ const LOCAL_STACK_ROUTES = {
 
 const RootStack = createStackNavigator(
 	{
-		[CONSTANTS.ROUTES.PROFILE]: {
-			screen: (props) => <Profile {...props} LOCAL_STACK_ROUTES={LOCAL_STACK_ROUTES} />,
+		[CONSTANTS.ROUTES.MORE]: {
+			screen: (props) => <More {...props} LOCAL_STACK_ROUTES={LOCAL_STACK_ROUTES} />,
 			navigationOptions: () => ({
 				headerBackTitle: null,
 				headerShown: false,
@@ -44,7 +44,7 @@ const RootStack = createStackNavigator(
 		},
 	},
 	{
-		initialRouteName: CONSTANTS.ROUTES.PROFILE,
+		initialRouteName: CONSTANTS.ROUTES.MORE,
 		mode: Platform.OS === 'ios' ? 'card' : 'modal',
 		headerMode: 'screen',
 		defaultNavigationOptions: {

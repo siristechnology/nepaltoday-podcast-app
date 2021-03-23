@@ -1,12 +1,6 @@
-// @flow
-
 import React, { Fragment } from 'react';
-import { TouchableOpacity, Text, View } from 'react-native';
-import styled from 'styled-components';
-
 import NavigationBar from './components/navigation-bar/NavigationBar';
 import PlayerTracker from './components/PlayerTracker';
-
 import CONSTANTS from '~/utils/CONSTANTS';
 
 const navigationBarItems = [
@@ -21,9 +15,9 @@ const navigationBarItems = [
 		route: CONSTANTS.ROUTES.DISCOVER,
 	},
 	{
-		label: 'Profile',
-		icon: 'account',
-		route: CONSTANTS.ROUTES.PROFILE,
+		label: 'More ...',
+		icon: 'dots-horizontal-circle-outline',
+		route: CONSTANTS.ROUTES.MORE,
 	},
 ]
 

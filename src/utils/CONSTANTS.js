@@ -10,7 +10,7 @@ const ROUTES = {
 	HOME: 'HOME',
 	DISCOVER: 'DISCOVER',
 	LIBRARY: 'LIBRARY',
-	PROFILE: 'PROFILE',
+	MORE: 'MORE',
 }
 
 const PARAMS = {
