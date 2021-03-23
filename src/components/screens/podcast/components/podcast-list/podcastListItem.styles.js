@@ -72,7 +72,7 @@ export const BottomRow = styled(View)`
 export const AuthorInfo = styled(View)`
 	flex-direction: row;
 	align-items: center;
-	margin-right: 30px;
+	margin-right: 14px;
 `
 
 export const AuthorImage = styled(FastImage).attrs(({ uri }) => ({

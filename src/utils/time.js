@@ -8,10 +8,14 @@ const addLeadingZero = (val) => {
 export const getRelativeTime = (date) => {
 	const convertedDate = Number(date)
 	if (!isNaN(convertedDate) && typeof convertedDate === 'number') {
-		return moment(convertedDate).startOf('hour').fromNow()
+		return formatRelativeTime(moment(convertedDate).startOf('hour').fromNow())
 	} else {
-		return moment(date).startOf('hour').fromNow()
+		return formatRelativeTime(moment(date).startOf('hour').fromNow())
 	}
+}
+
+function formatRelativeTime(relativeTime) {
+	return relativeTime.replace(' hours', 'h').replace('a day', '1d').replace(' days', 'd')
 }
 
 export const getCurrentTime = () => {

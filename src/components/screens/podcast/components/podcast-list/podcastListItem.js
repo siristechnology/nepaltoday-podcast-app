@@ -1,5 +1,6 @@
 import React from 'react'
 import { View } from 'react-native'
+import { withTheme } from 'styled-components'
 import Icon from '~/components/common/Icon'
 import CONSTANTS from '~/utils/CONSTANTS'
 import { getFormattedDurationFromSeconds, getRelativeTime } from '~/utils/time'
@@ -24,7 +25,7 @@ type Props = {
 	onPress: Function,
 }
 
-const PodcastListItem = ({ podcastDetail, isLastIndex, onPress, navigation }: Props): Object => {
+const PodcastListItem = ({ podcastDetail, isLastIndex, onPress, navigation, theme }: Props): Object => {
 	return (
 		<Container isLastIndex={isLastIndex} onPress={onPress}>
 			<TitleRow>
@@ -51,11 +52,11 @@ const PodcastListItem = ({ podcastDetail, isLastIndex, onPress, navigation }: Pr
 					<AuthorImage uri={podcastDetail.author.profileImageURL} />
 					<AuthorText>{podcastDetail.author.name}</AuthorText>
 				</AuthorInfo>
-				<Icon name="clock-outline" size={17} />
+				<Icon name="clock-outline" size={16} color={theme.colors.subTextColor} />
 				<SourceTimeText>{getRelativeTime(podcastDetail.createdDate)}</SourceTimeText>
 			</BottomRow>
 		</Container>
 	)
 }
 
-export default PodcastListItem
+export default withTheme(PodcastListItem)
