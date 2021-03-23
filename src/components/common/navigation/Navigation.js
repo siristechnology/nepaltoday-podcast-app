@@ -5,9 +5,9 @@ import CONSTANTS from '~/utils/CONSTANTS';
 
 const navigationBarItems = [
 	{
-		label: 'Home',
-		icon: 'home',
-		route: CONSTANTS.ROUTES.HOME,
+		label: 'Podcast',
+		icon: 'podcast',
+		route: CONSTANTS.ROUTES.PODCAST,
 	},
 	{
 		label: 'Discover',

@@ -5,15 +5,15 @@ import playlist from './playlist';
 import subject from './subject';
 import author from './author';
 import player from './player';
-import home from './home';
+import podcast from './podcast'
 import discover from './discover'
 
 export default combineReducers({
-  localPodcastsManager,
-  playlist,
-  subject,
-  author,
-  player,
-  home,
-  discover
-});
+	localPodcastsManager,
+	playlist,
+	subject,
+	author,
+	player,
+	podcast,
+	discover,
+})

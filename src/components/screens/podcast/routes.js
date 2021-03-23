@@ -1,32 +1,32 @@
-import React from 'react';
+import React from 'react'
 import { createStackNavigator } from 'react-navigation-stack'
-import { Platform } from 'react-native';
+import { Platform } from 'react-native'
 
-import AuthorDetailContainer from '~/components/common/author-detail/AuthorDetailContainer';
+import AuthorDetailContainer from '~/components/common/author-detail/AuthorDetailContainer'
 
-import PodcastDetailContainer from '~/components/common/podcast-detail/PodcastDetailContainer';
-import Player from '~/components/common/player/PlayerContainer';
-import Home from './Home';
+import PodcastDetailContainer from '~/components/common/podcast-detail/PodcastDetailContainer'
+import Player from '~/components/common/player/PlayerContainer'
+import Podacast from './Podacast'
 
 import {
-  getDefaultHeaderWithButton,
-  getDefaultHeaderWithTitle,
-  getPlayerNavigationOption,
-  getHiddenHeaderLayout,
-} from '~/routes/utils/navigationOptions';
-import CONSTANTS from '~/utils/CONSTANTS';
-import appStyles from '~/styles';
+	getDefaultHeaderWithButton,
+	getDefaultHeaderWithTitle,
+	getPlayerNavigationOption,
+	getHiddenHeaderLayout,
+} from '~/routes/utils/navigationOptions'
+import CONSTANTS from '~/utils/CONSTANTS'
+import appStyles from '~/styles'
 
 const LOCAL_STACK_ROUTES = {
-  TRENDING_AUTHORS_SEE_ALL: 'TRENDING_AUTHORS_SEE_ALL',
-  HOTTEST_PODCASTS_SEE_ALL: 'HOTTEST_PODCASTS_SEE_ALL',
-  NEW_RELEASES_SEE_ALL: 'NEW_RELEASES_SEE_ALL',
-};
+	TRENDING_AUTHORS_SEE_ALL: 'TRENDING_AUTHORS_SEE_ALL',
+	HOTTEST_PODCASTS_SEE_ALL: 'HOTTEST_PODCASTS_SEE_ALL',
+	NEW_RELEASES_SEE_ALL: 'NEW_RELEASES_SEE_ALL',
+}
 
 const RootStack = createStackNavigator(
 	{
-		[CONSTANTS.ROUTES.HOME]: {
-			screen: (props) => <Home {...props} LOCAL_STACK_ROUTES={LOCAL_STACK_ROUTES} />,
+		[CONSTANTS.ROUTES.PODCAST]: {
+			screen: (props) => <Podacast {...props} LOCAL_STACK_ROUTES={LOCAL_STACK_ROUTES} />,
 			navigationOptions: () => ({
 				headerShown: false,
 				headerBackTitle: null,
@@ -59,4 +59,4 @@ const RootStack = createStackNavigator(
 	},
 )
 
-export default RootStack;
+export default RootStack

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Creators as HomeCreators } from '~/store/ducks/home'
+import { Creators as PodcastCreators } from '~/store/ducks/podcast'
 
 import HomeComponent from './components/HomeComponent'
 
@@ -31,17 +31,17 @@ class HomeContainer extends Component<Props, {}> {
 	}
 
 	render() {
-		const { navigation, getHome, home } = this.props
-		const { loading, error, data } = home
+		const { navigation, getHome, podcast } = this.props
+		const { loading, error, data } = podcast
 
 		return <HomeComponent navigation={navigation} getHome={getHome} loading={loading} error={error} data={data} />
 	}
 }
 
-const mapDispatchToProps = (dispatch) => bindActionCreators(HomeCreators, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators(PodcastCreators, dispatch)
 
 const mapStateToProps = (state) => ({
-	home: state.home,
+	podcast: state.podcast,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer)

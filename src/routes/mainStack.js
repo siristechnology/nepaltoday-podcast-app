@@ -3,12 +3,12 @@ import { createAppContainer } from 'react-navigation'
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs'
 
 import Navigation from '~/components/common/navigation/Navigation';
-import HomeRoutes from '~/components/screens/home/routes';
+import PodcastRoutes from '~/components/screens/podcast/routes'
 import DiscoverRoutes from '~/components/screens/discover/routes'
 import MoreRoutes from '~/components/screens/more/routes'
 
 export const ROUTE_NAMES = {
-	HOME: 'HOME',
+	PODCAST: 'PODCAST',
 	DISCOVER: 'DISCOVER',
 	LIBRARY: 'LIBRARY',
 	MORE: 'MORE',
@@ -16,8 +16,8 @@ export const ROUTE_NAMES = {
 
 const ApplicationTabs = createMaterialTopTabNavigator(
 	{
-		[ROUTE_NAMES.HOME]: {
-			screen: HomeRoutes,
+		[ROUTE_NAMES.PODCAST]: {
+			screen: PodcastRoutes,
 			headerShown: false,
 		},
 
@@ -33,7 +33,7 @@ const ApplicationTabs = createMaterialTopTabNavigator(
 	},
 	{
 		tabBarComponent: ({ navigationState, navigation }) => <Navigation navigationState={navigationState} navigation={navigation} />,
-		initialRouteName: ROUTE_NAMES.HOME,
+		initialRouteName: ROUTE_NAMES.PODCAST,
 		tabBarPosition: 'bottom',
 		animationEnabled: true,
 		swipeEnabled: false,
