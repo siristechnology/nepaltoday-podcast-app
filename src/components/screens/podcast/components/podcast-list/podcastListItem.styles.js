@@ -2,7 +2,7 @@ import { TouchableOpacity, View, Text } from 'react-native'
 import styled from 'styled-components'
 import FastImage from 'react-native-fast-image'
 
-export const Container = styled(TouchableOpacity).attrs({
+export const Container = styled(View).attrs({
 	activeOpacity: 0.6,
 })`
 	margin-top: 5px;
@@ -19,7 +19,7 @@ export const TitleRow = styled(View)`
 	justify-content: space-around;
 `
 
-export const TitleWrapper = styled(View)`
+export const TitleWrapper = styled(TouchableOpacity)`
 	width: 60%;
 	margin-left: 5px;
 	margin-right: 15px;

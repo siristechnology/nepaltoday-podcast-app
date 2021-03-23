@@ -1,5 +1,4 @@
 import React from 'react'
-import { View } from 'react-native'
 import { withTheme } from 'styled-components'
 import Icon from '~/components/common/Icon'
 import CONSTANTS from '~/utils/CONSTANTS'
@@ -11,7 +10,6 @@ import {
 	PodcastImage,
 	Title,
 	Description,
-	DurationView,
 	DurationText,
 	RightButtonWrapper,
 	BottomRow,
@@ -29,10 +27,10 @@ type Props = {
 
 const PodcastListItem = ({ podcastDetail, isLastIndex, onPress, navigation, theme }: Props): Object => {
 	return (
-		<Container isLastIndex={isLastIndex} onPress={onPress}>
+		<Container isLastIndex={isLastIndex}>
 			<TitleRow>
 				<PodcastImage uri={podcastDetail.imageURL} />
-				<TitleWrapper>
+				<TitleWrapper onPress={onPress}>
 					<Title>{podcastDetail.title}</Title>
 					<Description>{podcastDetail.description.slice(0, 100) + '..'}</Description>
 					<DurationText>{getFormattedDurationFromSeconds(podcastDetail.durationInSeconds)}</DurationText>
