@@ -18,7 +18,7 @@ const Wrapper = styled(View)`
 const UpperSection = styled(View)`
 	padding-top: ${({ theme }) => theme.metrics.getHeightFromDP('16%')}px;
 `
-const PlayerComponent = ({ seekProgressTimer, currentPodcast, playPrevious, playNext, paused, pause, play }) => (
+const PlayerComponent = ({ seekProgressTimer, currentPodcast, playPrevious, playNext, paused, pause, play, jumpForward, jumpBackward }) => (
 	<Wrapper>
 		<StatusBar backgroundColor="#111" barStyle="light-content" animated />
 		<BackgroundImage imageURL={currentPodcast.thumbnailImageURL} />
@@ -26,7 +26,15 @@ const PlayerComponent = ({ seekProgressTimer, currentPodcast, playPrevious, play
 			<PodcastImage thumbnailImageURL={currentPodcast.thumbnailImageURL} imageURL={currentPodcast.imageURL} />
 			<PodcastTextContent author={currentPodcast.author.name} title={currentPodcast.title} />
 			<ProgressSlider seekProgressTimer={seekProgressTimer} />
-			<PlayerControls playPrevious={playPrevious} playNext={playNext} paused={paused} pause={pause} play={play} />
+			<PlayerControls
+				playPrevious={playPrevious}
+				playNext={playNext}
+				paused={paused}
+				pause={pause}
+				play={play}
+				jumpForward={jumpForward}
+				jumpBackward={jumpBackward}
+			/>
 		</UpperSection>
 	</Wrapper>
 )
