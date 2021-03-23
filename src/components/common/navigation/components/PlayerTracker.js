@@ -39,7 +39,7 @@ const PodcastImage = styled(FastImage).attrs(({ uri }) => ({
 
 const PlayerButtonsWrapper = styled(View)`
 	flex-direction: row;
-	align-items: flex-start;
+	align-items: center;
 `
 
 const TextContentWrapper = styled(View)`
@@ -135,7 +135,7 @@ const PlayerTracker = ({ currentPodcast, navigation, paused, pause, play }: Prop
 							paddingHorizontal: 10,
 						}}
 					>
-						<PlayerIcon name={paused ? 'play-circle' : 'pause-circle'} size={36} />
+						<PlayerIcon name={paused ? 'play-circle' : 'pause-circle'} size={40} />
 					</TouchableOpacity>
 					<TouchableOpacity
 						onPress={() => jumpForward()}
@@ -143,7 +143,7 @@ const PlayerTracker = ({ currentPodcast, navigation, paused, pause, play }: Prop
 							paddingHorizontal: 10,
 						}}
 					>
-						<PlayerIcon name="fast-forward-30" size={28} />
+						<PlayerIcon name="fast-forward-30" size={32} />
 					</TouchableOpacity>
 				</PlayerButtonsWrapper>
 			</Wrapper>
