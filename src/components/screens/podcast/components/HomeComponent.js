@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react'
 import { RefreshControl, View } from 'react-native'
 import styled from 'styled-components'

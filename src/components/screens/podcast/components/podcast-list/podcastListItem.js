@@ -17,6 +17,7 @@ import {
 	AuthorImage,
 	AuthorText,
 	SourceTimeText,
+	LeftWrapper,
 } from './podcastListItem.styles'
 
 type Props = {
@@ -29,12 +30,14 @@ const PodcastListItem = ({ podcastDetail, isLastIndex, onPress, navigation, them
 	return (
 		<Container isLastIndex={isLastIndex}>
 			<TitleRow>
-				<PodcastImage uri={podcastDetail.imageURL} />
-				<TitleWrapper onPress={onPress}>
-					<Title>{podcastDetail.title}</Title>
-					<Description>{podcastDetail.description.slice(0, 100) + '..'}</Description>
-					<DurationText>{getFormattedDurationFromSeconds(podcastDetail.durationInSeconds)}</DurationText>
-				</TitleWrapper>
+				<LeftWrapper onPress={onPress}>
+					<PodcastImage uri={podcastDetail.imageURL} />
+					<TitleWrapper>
+						<Title>{podcastDetail.title}</Title>
+						<Description>{podcastDetail.description.slice(0, 100) + '..'}</Description>
+						<DurationText>{getFormattedDurationFromSeconds(podcastDetail.durationInSeconds)}</DurationText>
+					</TitleWrapper>
+				</LeftWrapper>
 				<RightButtonWrapper
 					onPress={() =>
 						navigation.navigate(CONSTANTS.ROUTES.PLAYER, {

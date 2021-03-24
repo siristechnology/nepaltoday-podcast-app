@@ -7,20 +7,25 @@ export const Container = styled(View).attrs({
 })`
 	margin-top: 5px;
 	padding-left: 15px;
-	padding-right: 15px;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 `
 
 export const TitleRow = styled(View)`
 	width: 100%;
 	flex-direction: row;
 	align-items: stretch;
-	justify-content: space-around;
+	justify-content: space-between;
 `
 
-export const TitleWrapper = styled(TouchableOpacity)`
-	width: 60%;
+export const LeftWrapper = styled(TouchableOpacity)`
+	width: 80%;
+	flex-direction: row;
+	align-items: flex-start;
+`
+
+export const TitleWrapper = styled(View)`
 	align-items: flex-start;
 	margin-left: 5px;
 	margin-right: 15px;

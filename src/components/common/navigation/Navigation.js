@@ -15,7 +15,7 @@ const navigationBarItems = [
 		route: CONSTANTS.ROUTES.DISCOVER,
 	},
 	{
-		label: 'More ...',
+		label: 'More',
 		icon: 'dots-horizontal-circle-outline',
 		route: CONSTANTS.ROUTES.MORE,
 	},
