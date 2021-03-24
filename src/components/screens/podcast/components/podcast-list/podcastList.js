@@ -6,11 +6,10 @@ import CONSTANTS from '~/utils/CONSTANTS';
 import PodcastListItem from './podcastListItem';
 
 const Wrapper = styled(View)`
-  width: 100%;
-  flex: 1;
-  margin-top: 15px;
-  margin-bottom: ${({ theme }) => theme.metrics.extraLargeSize}px;
-`;
+	width: 100%;
+	flex: 1;
+	margin-top: 15px;
+`
 
 const AllPodcastList = styled(FlatList)`
   width: 100%;

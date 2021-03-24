@@ -10,17 +10,17 @@ import { Creators as PlayerCreators } from '~/store/ducks/player';
 import appStyles from '~/styles';
 
 const TotalDurationLine = styled(View)`
-  width: 100%;
-  height: 2px;
-  background-color: ${({ theme }) => theme.colors.subTextWhite};
-  position: absolute;
-`;
+	width: 100%;
+	height: 2px;
+	background-color: ${({ theme }) => theme.colors.subText};
+	position: absolute;
+`
 
 const CurrentTimeLine = styled(View)`
-  width: ${({ width }) => width};
-  height: 2px;
-  background-color: ${({ theme }) => theme.colors.primaryColor};
-`;
+	width: ${({ width }) => width};
+	height: 2px;
+	background-color: ${({ theme }) => theme.colors.subTextWhite};
+`
 
 type Props = {
   durationInSeconds: number,

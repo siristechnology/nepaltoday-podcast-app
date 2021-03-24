@@ -15,12 +15,13 @@ export const Container = styled(View).attrs({
 export const TitleRow = styled(View)`
 	width: 100%;
 	flex-direction: row;
-	align-items: center;
+	align-items: stretch;
 	justify-content: space-around;
 `
 
 export const TitleWrapper = styled(TouchableOpacity)`
 	width: 60%;
+	align-items: flex-start;
 	margin-left: 5px;
 	margin-right: 15px;
 `
@@ -55,9 +56,10 @@ export const DurationText = styled(Text)`
 	color: ${({ theme }) => theme.colors.textColor};
 `
 
-export const RightButtonWrapper = styled(Text)`
+export const RightButtonWrapper = styled(View)`
 	opacity: 0.9;
-	align-items: center;
+	flex-direction: column;
+	justify-content: center;
 `
 
 export const BottomRow = styled(View)`
