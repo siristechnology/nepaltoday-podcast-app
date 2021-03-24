@@ -15,7 +15,7 @@ export const getRelativeTime = (date) => {
 }
 
 function formatRelativeTime(relativeTime) {
-	return relativeTime.replace(' hours', 'h').replace('a day', '1d').replace(' days', 'd')
+	return relativeTime.replace(' minutes', 'm').replace('an hour', '1h').replace(' hours', 'h').replace('a day', '1d').replace(' days', 'd')
 }
 
 export const getCurrentTime = () => {
@@ -44,5 +44,5 @@ export const getFormattedDurationFromSeconds = (durationInSeconds) => {
 	const hours = Math.floor(durationInSeconds / (60 * 60))
 	const mins = Math.floor(durationInSeconds / 60 - hours * 60)
 
-	return hours > 0 ? hours + ' h ' + mins + ' mins' : mins + ' mins'
+	return hours > 0 ? hours + 'h ' + mins + ' m' : mins + 'm'
 }

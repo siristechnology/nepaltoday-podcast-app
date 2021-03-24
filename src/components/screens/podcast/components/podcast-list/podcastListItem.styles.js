@@ -7,7 +7,7 @@ export const Container = styled(View).attrs({
 })`
 	margin-top: 5px;
 	padding-left: 15px;
-	padding-right: 10px;
+	padding-right: 5px;
 	padding-top: 5px;
 	padding-bottom: 5px;
 `
@@ -20,9 +20,10 @@ export const TitleRow = styled(View)`
 `
 
 export const LeftWrapper = styled(TouchableOpacity)`
-	width: 80%;
+	width: 70%;
 	flex-direction: row;
 	align-items: flex-start;
+	margin-right: 5px;
 `
 
 export const TitleWrapper = styled(View)`
@@ -34,7 +35,6 @@ export const TitleWrapper = styled(View)`
 export const Title = styled(Text)`
 	font-size: 18px;
 	font-weight: bold;
-	opacity: 0.8;
 	color: ${({ theme }) => theme.colors.textColor};
 `
 
@@ -42,7 +42,6 @@ export const Description = styled(Text).attrs({
 	numberOfLines: 2,
 })`
 	font-size: 15px;
-	opacity: 0.7;
 	color: ${({ theme }) => theme.colors.subTextColor};
 `
 
@@ -65,9 +64,10 @@ export const RelativeTimeWrapper = styled(View)`
 `
 
 export const RightButtonWrapper = styled(TouchableOpacity)`
-	opacity: 0.9;
+	opacity: 0.7;
 	flex-direction: column;
 	justify-content: center;
+	align-items: flex-end;
 `
 
 export const BottomRow = styled(View)`
