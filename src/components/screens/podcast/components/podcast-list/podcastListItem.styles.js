@@ -56,7 +56,7 @@ export const DurationText = styled(Text)`
 	color: ${({ theme }) => theme.colors.textColor};
 `
 
-export const RightButtonWrapper = styled(View)`
+export const RightButtonWrapper = styled(TouchableOpacity)`
 	opacity: 0.9;
 	flex-direction: column;
 	justify-content: center;
