@@ -26,9 +26,9 @@ export const LeftWrapper = styled(TouchableOpacity)`
 `
 
 export const TitleWrapper = styled(View)`
+	flex: 1;
 	align-items: flex-start;
 	margin-left: 5px;
-	margin-right: 15px;
 `
 
 export const Title = styled(Text)`
@@ -63,7 +63,7 @@ export const RelativeTimeWrapper = styled(View)`
 `
 
 export const RightButtonWrapper = styled(TouchableOpacity)`
-	opacity: 0.7;
+	opacity: 0.9;
 	flex-direction: column;
 	justify-content: center;
 	align-items: flex-end;
