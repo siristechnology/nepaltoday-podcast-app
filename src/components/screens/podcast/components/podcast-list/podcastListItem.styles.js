@@ -13,14 +13,13 @@ export const Container = styled(View).attrs({
 `
 
 export const TitleRow = styled(View)`
-	width: 100%;
 	flex-direction: row;
 	align-items: stretch;
 	justify-content: space-between;
 `
 
 export const LeftWrapper = styled(TouchableOpacity)`
-	width: 70%;
+	flex-grow: 1;
 	flex-direction: row;
 	align-items: flex-start;
 	margin-right: 5px;
