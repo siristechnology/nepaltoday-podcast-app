@@ -18,6 +18,7 @@ import {
 	AuthorText,
 	SourceTimeText,
 	LeftWrapper,
+	RelativeTimeWrapper,
 } from './podcastListItem.styles'
 
 type Props = {
@@ -35,7 +36,10 @@ const PodcastListItem = ({ podcastDetail, isLastIndex, onPress, navigation, them
 					<TitleWrapper>
 						<Title>{podcastDetail.title}</Title>
 						<Description>{podcastDetail.description.slice(0, 100) + '..'}</Description>
-						<DurationText>{getFormattedDurationFromSeconds(podcastDetail.durationInSeconds)}</DurationText>
+						<RelativeTimeWrapper>
+							<Icon name="clock-outline" size={12} />
+							<SourceTimeText>{getRelativeTime(podcastDetail.createdDate)}</SourceTimeText>
+						</RelativeTimeWrapper>
 					</TitleWrapper>
 				</LeftWrapper>
 				<RightButtonWrapper
@@ -55,8 +59,8 @@ const PodcastListItem = ({ podcastDetail, isLastIndex, onPress, navigation, them
 					<AuthorImage uri={podcastDetail.author.profileImageURL} />
 					<AuthorText>{podcastDetail.author.name}</AuthorText>
 				</AuthorInfo>
-				<Icon name="clock-outline" size={16} color={theme.colors.subTextColor} />
-				<SourceTimeText>{getRelativeTime(podcastDetail.createdDate)}</SourceTimeText>
+				<Icon name="circle" size={6} color={theme.colors.subTextColor} />
+				<DurationText>{getFormattedDurationFromSeconds(podcastDetail.durationInSeconds)}</DurationText>
 			</BottomRow>
 		</Container>
 	)
