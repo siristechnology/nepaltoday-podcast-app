@@ -1,16 +1,37 @@
-import { SERVER_URL } from 'react-native-dotenv';
-export default class CategoriesService{
-    static getProgramPodcast(program){
-        return new Promise((resolve,reject)=>{
-            fetch(`${SERVER_URL}/podcasts/program/${program}`,{
-                method:'GET',
-                headers:{
-                    'Accept':'application/json',
-                    'Content-Type':'application/json'
-                }
-            }).then(res=>res.json()).then(info=>{
-                resolve(info)
-            }).catch(err=>reject(err))
-        })
-    }
+import gql from 'graphql-tag'
+
+import client from '~/graphql/graphql-client'
+
+export default class CategoriesService {
+	static async getProgramPodcast(id) {
+		const result = await client.query({
+			query: gql`
+				query getProgramDetail($id: String!) {
+					getProgramDetail(id: $id) {
+						id
+						title
+						imageUrl
+                        category
+                        publisher{
+                            id
+                            title
+                            imageUrl
+                        }
+						podcasts {
+							_id
+							title
+							audioUrl
+							category
+							imageUrl
+						}
+					}
+				}
+			`,
+            variables: {
+                id: id
+            }
+		})
+
+		return result.data.getProgramDetail
+	}
 }

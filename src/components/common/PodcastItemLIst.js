@@ -124,12 +124,12 @@ type Props = {
 const RecentlyPlayedListItem = ({ shouldShowDownloadStatus, isDownloading, roundedImage, onPressItem, podcast, index, theme }: Props): Object => (
 	<Wrapper onPress={() => onPressItem(podcast)}>
 		<Index isFirstIndex={index === 1}>{index}</Index>
-		<PodcastImage roundedImage={roundedImage} uri={podcast.imageURL} />
+		<PodcastImage roundedImage={roundedImage} uri={podcast.imageUrl} />
 		<ContentContainer shouldShowDownloadStatus={shouldShowDownloadStatus}>
 			<PodcastTitle>{podcast.title}</PodcastTitle>
 			<BottomContent>
 				{shouldShowDownloadStatus && <IconWrapper>{getDonwloadStatusIconConfig(podcast.isDownloaded, !!isDownloading, theme)}</IconWrapper>}
-				<AuthorName shouldShowDownloadStatus={shouldShowDownloadStatus}>{podcast.program.title}</AuthorName>
+				<AuthorName shouldShowDownloadStatus={shouldShowDownloadStatus}>{podcast.title}</AuthorName>
 			</BottomContent>
 		</ContentContainer>
 		<PodcastDuration>{podcast.duration}</PodcastDuration>

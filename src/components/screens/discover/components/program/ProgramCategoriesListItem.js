@@ -59,32 +59,29 @@ const ProgramCategory = styled(Text).attrs({
 `;
 
 const ProgramCategoriesListItem = ({
-  sourceImage,
-  sourceName,
+  program,
   isLastIndex,
   onPressItem,
-  programName,
-  subject,
 }) => (
   <Wrapper
     isLastIndex={isLastIndex}
-    onPress={()=>onPressItem(programName)}
+    onPress={()=>onPressItem(program.id)}
   >
     <SourceImage
-      uri={sourceImage}
+      uri={program.imageUrl}
     />
     <DarkLayer>
       <AuthorInfoWrapper>
         <AuthorInfo
-          imageURL={sourceImage}
+          imageURL={program.publisher.imageUrl}
           numberOfLines={2}
           textColor="white"
-          name={sourceName}
+          name={program.publisher.title}
         />
       </AuthorInfoWrapper>
       <View>
-        <ProgramTitle>{programName}</ProgramTitle>
-        <ProgramCategory>{`#${subject}`}</ProgramCategory>
+        <ProgramTitle>{program.title}</ProgramTitle>
+        <ProgramCategory>{`#${program.category}`}</ProgramCategory>
       </View>
     </DarkLayer>
   </Wrapper>

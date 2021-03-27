@@ -33,18 +33,18 @@ class Program extends Component {
 
 	componentDidMount() {
 		const { navigation } = this.props
-		const { program } = navigation.state.params
+		const { programId } = navigation.state.params
 
-		CategoriesService.getProgramPodcast(program)
-			.then((res) => {
-				setHeaderPlayButtonPress(res.podcast, navigation)
+		CategoriesService.getProgramPodcast(programId)
+			.then((program) => {
+				setHeaderPlayButtonPress(program.podcasts, navigation)
 				this.setState({
-					podcasts: res.podcast,
+					podcasts: program.podcasts,
 					program: {
-						title: res.podcast[0].program,
-						imageURL: res.podcast[0].thumbnailImageURL,
-						publisher: res.podcast[0].author.name,
-						category: res.podcast[0].category,
+						title: program.title,
+						imageUrl: program.imageUrl,
+						publisher: program.publisher.title,
+						category: program.category,
 					},
 					loading: false,
 				})
@@ -62,7 +62,6 @@ class Program extends Component {
 		return (
 			<Wrapper>
 				<ProgramCategoriesSeeAllList
-					keyExtractor={(podcast) => `${podcast.id}`}
 					showsVerticalScrollIndicator={false}
 					data={this.state.podcasts}
 					ListHeaderComponent={<ProgramInfo program={this.state.program} onSubscribe={this.onSubscribe} />}

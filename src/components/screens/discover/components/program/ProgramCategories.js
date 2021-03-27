@@ -17,9 +17,9 @@ const ProgramCategoriesList = styled(FlatList)`
 `
 
 const ProgramCategoriesDiscover = ({ navigation, data }) => {
-	const onProgramPress = (program) => {
+	const onProgramPress = (programId) => {
 		const { params } = navigation.state
-		navigation.navigate(params.LOCAL_STACK_ROUTES.PROGRAM_CATEGORIES_SEE_ALL, { program })
+		navigation.navigate(params.LOCAL_STACK_ROUTES.PROGRAM_CATEGORIES_SEE_ALL, { programId })
 	}
 
 	return (
@@ -30,13 +30,9 @@ const ProgramCategoriesDiscover = ({ navigation, data }) => {
 				data={data.slice(0, 9)}
 				renderItem={({ item, index }) => (
 					<ProgramCategoriesListItem
-						sourceImage={item.imageUrl}
-						sourceName={item.sourceName}
-						podcastImage={item.imageUrl}
+						program={item}
 						isLastIndex={index === data.length - 1}
 						navigation={navigation}
-						subject={item.category}
-						programName={item.name}
 						onPressItem={onProgramPress}
 					/>
 				)}

@@ -32,8 +32,8 @@ class ProgramCategoriesSeeAll extends Component {
 
     componentDidMount() {
         const { navigation } = this.props;
-        const { program } = navigation.state.params;
-        CategoriesService.getProgramPodcast(program).then(res => {
+        const { programId } = navigation.state.params;
+        CategoriesService.getProgramPodcast(programId).then(res => {
             setHeaderPlayButtonPress(res.podcast, navigation);
             this.setState({podcasts: res.podcast})
         }).catch(err=>{

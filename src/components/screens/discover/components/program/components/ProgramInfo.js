@@ -63,7 +63,7 @@ const ProgramInfo = ({ program, onSubscribe }: Props) => {
 	return (
 		<Wrapper>
 			<InfoWrapper>
-				<PodcastImage uri={program.imageURL || ''} />
+				<PodcastImage uri={program.imageUrl || ''} />
 				<TextContentWrapper>
 					<PodcastTitleText>{program.title || ''}</PodcastTitleText>
 					<SubjectWrapper>

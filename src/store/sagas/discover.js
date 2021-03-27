@@ -14,6 +14,11 @@ export function* getDiscover() {
 						title
 						imageUrl
 						category
+						publisher{
+							id
+							title
+							imageUrl
+						}
 					}
 				}
 			`,
