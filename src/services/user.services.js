@@ -1,30 +1,22 @@
-import api from "./api"
+import gql from 'graphql-tag'
+import client from '../graphql/graphql-client'
 
-export default class UserService{
-    static facebookSignin(accessToken){
-        return new Promise((resolve, reject) => {
-            api.post('/user', {
-                accessToken,
-                provider: 'facebook'
-            }).then(response=> {
-                resolve(response)
-            }).catch(err=> {
-                reject(err)
-            })
-        })
-    }
+export default class UserService {
+	static async googleSignin(accessToken) {
+		const result = await client.mutate({
+			mutation: gql`
+				mutation LOGIN_USER($accessToken: String!) {
+					loginUser(loginInput: { accessToken: $accessToken, provider: "google" }) {
+                        id
+						success
+					}
+				}
+			`,
+			variables: {
+				accessToken: accessToken,
+			},
+		})
 
-    static googleSignin(accessToken){
-        return new Promise((resolve, reject) => {
-            api.post('/user', {
-                accessToken,
-                provider: 'google'
-            }).then(response=> {
-                resolve(response)
-            }).catch(err=> {
-                reject(err)
-            })
-        })
-    }
-
+		return result.data.loginUser
+	}
 }
