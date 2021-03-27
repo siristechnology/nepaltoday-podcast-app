@@ -25,7 +25,6 @@ const ProgramCategoriesDiscover = ({ navigation, data }) => {
 	return (
 		<Wrapper>
 			<ProgramCategoriesList
-				keyExtractor={(podcast) => `${podcast.name}`}
 				showsHorizontalScrollIndicator={false}
 				horizontal
 				data={data.slice(0, 9)}

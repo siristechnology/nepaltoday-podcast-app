@@ -21,10 +21,10 @@ const UpperSection = styled(View)`
 const PlayerComponent = ({ seekProgressTimer, currentPodcast, playPrevious, playNext, paused, pause, play, jumpForward, jumpBackward }) => (
 	<Wrapper>
 		<StatusBar backgroundColor="#111" barStyle="light-content" animated />
-		<BackgroundImage imageURL={currentPodcast.thumbnailImageURL} />
+		<BackgroundImage imageURL={currentPodcast.imageUrl} />
 		<UpperSection>
-			<PodcastImage thumbnailImageURL={currentPodcast.thumbnailImageURL} imageURL={currentPodcast.imageURL} />
-			<PodcastTextContent author={currentPodcast.author.name} title={currentPodcast.title} />
+			<PodcastImage thumbnailImageURL={currentPodcast.imageUrl} imageURL={currentPodcast.imageUrl} />
+			<PodcastTextContent author={currentPodcast.program.title} title={currentPodcast.title} />
 			<ProgressSlider seekProgressTimer={seekProgressTimer} />
 			<PlayerControls
 				playPrevious={playPrevious}

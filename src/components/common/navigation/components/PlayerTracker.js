@@ -75,7 +75,7 @@ type AuthorProps = {
 
 type PodcastProps = {
 	author: AuthorProps,
-	imageURL: string,
+	imageUrl: string,
 	title: string,
 }
 
@@ -122,10 +122,10 @@ const PlayerTracker = ({ currentPodcast, navigation, paused, pause, play }: Prop
 						})
 					}
 				>
-					<PodcastImage uri={currentPodcast.imageURL} />
+					<PodcastImage uri={currentPodcast.imageUrl} />
 					<TextContentWrapper>
 						<PodcastTitle>{currentPodcast.title}</PodcastTitle>
-						<AuthorName>{currentPodcast.author.name}</AuthorName>
+						<AuthorName>{currentPodcast.program.title}</AuthorName>
 					</TextContentWrapper>
 				</ContentWrapper>
 				<PlayerButtonsWrapper>

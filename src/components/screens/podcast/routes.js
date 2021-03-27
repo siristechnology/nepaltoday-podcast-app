@@ -6,7 +6,7 @@ import AuthorDetailContainer from '~/components/common/author-detail/AuthorDetai
 
 import PodcastDetailContainer from '~/components/common/podcast-detail/PodcastDetailContainer'
 import Player from '~/components/common/player/PlayerContainer'
-import Podacast from './Podacast'
+import Podacast from './Podcast'
 
 import {
 	getDefaultHeaderWithButton,

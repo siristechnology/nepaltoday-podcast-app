@@ -1,36 +1,39 @@
-import { call, select, delay, put } from 'redux-saga/effects'
+import { put } from 'redux-saga/effects'
+import gql from 'graphql-tag'
 
-import api from '~/services/api'
-
-// import { getItemFromStorage } from '../../utils/AsyncStorageManager';
+import client from '../../graphql/graphql-client'
 import { Creators as PodcastCreators } from '../ducks/podcast'
-// import CONSTANTS from '../../utils/CONSTANTS';
-// import parseParams from './utils/parseParams';
 
 export function* getHome() {
 	try {
-		// const rawInterests = yield call(
-		//   getItemFromStorage,
-		//   CONSTANTS.KEYS.INTERESTS_STORAGE_KEY,
-		//   [],
-		// );
-
-		// const interests = typeof rawInterests === 'string'
-		//   ? JSON.parse(rawInterests)
-		//   : rawInterests;
-
-		// let interestsSelected = interests
-		//   .filter(interest => interest.isSelected)
-		//   .map(interest => interest.title.toLowerCase());
-
-		// interestsSelected = 'all'
-
-		const { data } = yield call(api.get, '/podcasts', {
-			// paramsSerializer: params => parseParams(params),
-			// params: { categories: interestsSelected },
+		const result = yield client.query({
+			query: gql`
+				query homeScreenQuery {
+					getTopPodcasts {
+						_id
+						title
+						description
+						imageUrl
+						originalAudioUrl
+						audioUrl
+						durationInSeconds
+						program{
+							id
+							title
+							imageUrl
+						}
+						publisher{
+							id
+							title
+							imageUrl
+						}
+						createdDate
+					}
+				}
+			`,
 		})
 
-		yield put(PodcastCreators.getHomeSuccess(data))
+		yield put(PodcastCreators.getHomeSuccess(result.data.getTopPodcasts))
 	} catch (err) {
 		yield put(PodcastCreators.getHomeFailure())
 	}

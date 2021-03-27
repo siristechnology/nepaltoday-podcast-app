@@ -37,9 +37,9 @@ const HomeComponent = ({ navigation, loading, error, data, getHome }: Props): Ob
 				title="Oops..."
 			/>
 		)}
-		{!loading && !error && data.podcasts && data.podcasts.length > 0 && (
+		{!loading && !error && data && data.length > 0 && (
 			<PodcastList
-				data={data.podcasts}
+				data={data}
 				navigation={navigation}
 				headerComponent={<ScreenTitle title="Latest Podcasts" />}
 				refreshControl={
