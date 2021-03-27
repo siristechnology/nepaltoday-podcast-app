@@ -6,7 +6,7 @@ import FastImage from 'react-native-fast-image';
 import Swipeout from 'react-native-swipeout';
 import styled from 'styled-components';
 
-import PodcastsDownloadedListItem from '~/components/common/PodcastItemLIst';
+import PodcastsDownloadedListItem from '~/components/common/PodcastListItem';
 import SwipeOutButton from '~/components/common/SwipeOutButton';
 import Loading from '~/components/common/Loading';
 import Icon from '~/components/common/Icon';

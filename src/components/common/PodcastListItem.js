@@ -114,7 +114,16 @@ type Props = {
 	theme: Object,
 }
 
-const RecentlyPlayedListItem = ({ shouldShowDownloadStatus, isDownloading, roundedImage, onPressItem, podcast, index, theme, navigation }: Props): Object => (
+const PodcastListItem = ({
+	shouldShowDownloadStatus,
+	isDownloading,
+	roundedImage,
+	onPressItem,
+	podcast,
+	index,
+	theme,
+	navigation,
+}: Props): Object => (
 	<Wrapper onPress={() => onPressItem(podcast)}>
 		<Index isFirstIndex={index === 1}>{index}</Index>
 		<PodcastImage roundedImage={roundedImage} uri={podcast.imageUrl} />
@@ -126,19 +135,19 @@ const RecentlyPlayedListItem = ({ shouldShowDownloadStatus, isDownloading, round
 				<AuthorName shouldShowDownloadStatus={shouldShowDownloadStatus}>{podcast.title}</AuthorName>
 			</BottomContent>
 		</ContentContainer>
-    <RightButtonWrapper
-					onPress={() =>
-						navigation.navigate(CONSTANTS.ROUTES.PLAYER, {
-							[CONSTANTS.PARAMS.PLAYER]: {
-								[CONSTANTS.KEYS.PLAYLIST]: [podcast],
-							},
-						})
-					}
-				>
-					<Icon name="play-circle-outline" size={40} />
-				</RightButtonWrapper>
+		<RightButtonWrapper
+			onPress={() =>
+				navigation.navigate(CONSTANTS.ROUTES.PLAYER, {
+					[CONSTANTS.PARAMS.PLAYER]: {
+						[CONSTANTS.KEYS.PLAYLIST]: [podcast],
+					},
+				})
+			}
+		>
+			<Icon name="play-circle-outline" size={40} />
+		</RightButtonWrapper>
 		<PodcastDuration>{podcast.duration}</PodcastDuration>
 	</Wrapper>
 )
 
-export default withTheme(RecentlyPlayedListItem)
+export default withTheme(PodcastListItem)

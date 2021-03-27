@@ -4,8 +4,6 @@ import { Platform } from 'react-native'
 
 import AuthorDetailContainer from '~/components/common/author-detail/AuthorDetailContainer'
 import TrendingAuthorsSeeAll from './components/trending-authors/TrendingAuthorsSeeAll'
-import HottestPodcastsSeeAll from './components/hottest-podcasts/HottestPodcastsSeeAll'
-import NewReleasesSeeAll from './components/new-releases/NewReleasesSeeAll'
 import SearchAuthorListContainer from './components/search-author/SearchAuthorListContainer'
 
 import PodcastDetailContainer from '~/components/common/podcast-detail/PodcastDetailContainer'
@@ -54,18 +52,6 @@ const RootStack = createStackNavigator(
 		[LOCAL_STACK_ROUTES.TRENDING_AUTHORS_SEE_ALL]: {
 			screen: TrendingAuthorsSeeAll,
 			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('Trending Authors', navigation, screenProps),
-		},
-
-		[LOCAL_STACK_ROUTES.HOTTEST_PODCASTS_SEE_ALL]: {
-			screen: HottestPodcastsSeeAll,
-			navigationOptions: ({ navigation, screenProps }) =>
-				getDefaultHeaderWithButton(navigation, screenProps, 'Hottest Podcasts', 'play-circle-outline'),
-		},
-
-		[LOCAL_STACK_ROUTES.NEW_RELEASES_SEE_ALL]: {
-			screen: NewReleasesSeeAll,
-			navigationOptions: ({ navigation, screenProps }) =>
-				getDefaultHeaderWithButton(navigation, screenProps, 'New Releases', 'play-circle-outline'),
 		},
 
 		[LOCAL_STACK_ROUTES.SEARCH_AUTHORS_RESULT]: {

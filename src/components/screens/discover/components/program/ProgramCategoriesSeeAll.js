@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { FlatList, View } from 'react-native';
 import styled from 'styled-components';
 
-import ProgramCategoriesSeeAllListItem from '~/components/common/PodcastItemLIst';
+import ProgramCategoriesSeeAllListItem from '~/components/common/PodcastListItem';
 
 import { setHeaderPlayButtonPress } from '~/routes/utils/navigationOptions';
 import CONSTANTS from '~/utils/CONSTANTS';

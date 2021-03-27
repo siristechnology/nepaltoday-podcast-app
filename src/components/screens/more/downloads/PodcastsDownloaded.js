@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { Creators as PlaylistsCreators } from '~/store/ducks/playlist';
 
 import { setHeaderPlayButtonPress } from '~/routes/utils/navigationOptions';
-import PodcastsDownloadedListItem from '~/components/common/PodcastItemLIst';
+import PodcastsDownloadedListItem from '~/components/common/PodcastListItem';
 import CONSTANTS from '~/utils/CONSTANTS';
 
 const Wrapper = styled(View)`

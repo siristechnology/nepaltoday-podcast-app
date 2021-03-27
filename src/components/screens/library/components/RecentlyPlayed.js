@@ -9,7 +9,7 @@ import { bindActionCreators } from 'redux';
 import { Creators as PlayerCreators } from '~/store/ducks/player';
 
 import { setHeaderPlayButtonPress } from '~/routes/utils/navigationOptions';
-import RecentlyPlayedListItem from '~/components/common/PodcastItemLIst';
+import RecentlyPlayedListItem from '~/components/common/PodcastListItem';
 import CONSTANTS from '~/utils/CONSTANTS';
 import appStyles from '~/styles';
 
