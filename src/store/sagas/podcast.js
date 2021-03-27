@@ -17,6 +17,7 @@ export function* getHome() {
 						originalAudioUrl
 						audioUrl
 						durationInSeconds
+						category
 						program{
 							id
 							title

@@ -55,14 +55,14 @@ const SubjectTextWrapper = styled(View)`
 `
 
 type Props = {
-	imageURL: string,
+	imageUrl: string,
 	subject: string,
 	title: string,
 }
 
-const PodcastInfo = ({ imageURL, subject, title }: Props): Object => (
+const PodcastInfo = ({ imageUrl, subject, title }: Props): Object => (
 	<Wrapper>
-		<PodcastImage uri={imageURL} />
+		<PodcastImage uri={imageUrl} />
 		<TextContentWrapper>
 			<PodcastTitleText>{title}</PodcastTitleText>
 

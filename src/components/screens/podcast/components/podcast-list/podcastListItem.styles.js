@@ -86,9 +86,9 @@ export const AuthorInfo = styled(View)`
 export const AuthorImage = styled(FastImage).attrs(({ uri }) => ({
 	source: { uri },
 }))`
-	width: 25;
-	height: 25;
-	border-radius: 15px;
+	width: 22;
+	height: 22;
+	border-radius: 14px;
 	margin-right: 4px;
 	margin-left: 6px;
 `

@@ -62,7 +62,7 @@ const PodcastDetailComponent = ({
 	podcast,
 }: Props): Object => (
 	<Wrapper showsVerticalScrollIndicator={false} alwaysBounceVertical={false}>
-		<PodcastInfo imageURL={podcast.imageURL} subject={podcast.category} title={podcast.title} stars={4} />
+		<PodcastInfo imageUrl={podcast.imageUrl} subject={podcast.category} title={podcast.title} stars={4} />
 		<ActionButtons
 			onPressAddToPlaylist={onToggleAddPlaylistModal}
 			isDownloadingPodcast={isDownloadingPodcast}
