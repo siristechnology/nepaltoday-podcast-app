@@ -80,7 +80,7 @@ const PodcastDetailComponent = ({
 				})
 			}}
 			description={podcast.description}
-			author={podcast.program}
+			author={podcast.publisher}
 		/>
 		{isAddPlaylistModalOpen && <PlaylistList onToggleModal={onToggleAddPlaylistModal} podcast={podcast} />}
 	</Wrapper>

@@ -9,7 +9,7 @@ import ScreenTitle from '~/components/common/ScreenTitle'
 import SearchAuthorTextInput from './SearchAuthorTextInput'
 import Loading from '~/components/common/Loading'
 import appStyles from '~/styles'
-import ProgramCategoriesDiscover from './categories/ProgramCategories'
+import ProgramCategoriesDiscover from './program/ProgramCategories'
 
 const Wrapper = styled(View)`
 	width: 100%;

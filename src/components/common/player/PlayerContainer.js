@@ -96,7 +96,7 @@ class Player extends Component<Props, State> {
 		const nextPodcast = nextProps.currentPodcast
 		const pastPodcast = this.props.currentPodcast
 
-		if (pastPodcast && nextPodcast && pastPodcast.id !== nextPodcast.id) {
+		if (pastPodcast && nextPodcast && pastPodcast._id !== nextPodcast._id) {
 			this.setHeaderTitle(nextPodcast.category)
 		}
 	}
@@ -155,7 +155,7 @@ class Player extends Component<Props, State> {
 		const playlist = playerParams[CONSTANTS.KEYS.PLAYLIST]
 
 		const isCurrentPodcastDefined = !!currentPodcast
-		const isPodcastChanged = isCurrentPodcastDefined && currentPodcast.id !== playlist[0].id
+		const isPodcastChanged = isCurrentPodcastDefined && currentPodcast._id !== playlist[0]._id
 		const isPlayingSamePlaylist = this.checkIsPlayingSamePlaylist(playlist, pastPlaylist)
 
 		if (!isCurrentPodcastDefined || isPodcastChanged || !isPlayingSamePlaylist || shouldShufflePlaylist) {
@@ -175,7 +175,7 @@ class Player extends Component<Props, State> {
 		}
 
 		for (let i = 0; i < currentPlaylist.length; i++) {
-			if (currentPlaylist[i].id !== pastPlaylist[i].id) {
+			if (currentPlaylist[i]._id !== pastPlaylist[i]._id) {
 				return false
 			}
 		}
