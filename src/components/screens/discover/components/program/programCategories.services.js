@@ -11,25 +11,36 @@ export default class CategoriesService {
 						id
 						title
 						imageUrl
-                        category
-                        publisher{
-                            id
-                            title
-                            imageUrl
-                        }
+						category
+						publisher {
+							id
+							title
+							imageUrl
+						}
 						podcasts {
 							_id
 							title
 							audioUrl
+							durationInSeconds
 							category
 							imageUrl
+							program {
+								id
+								title
+								imageUrl
+							}
+							publisher {
+								id
+								title
+								imageUrl
+							}
 						}
 					}
 				}
 			`,
-            variables: {
-                id: id
-            }
+			variables: {
+				id: id,
+			},
 		})
 
 		return result.data.getProgramDetail
