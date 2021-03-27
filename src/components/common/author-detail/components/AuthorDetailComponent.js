@@ -66,117 +66,110 @@ type Props = {
 };
 
 class AuthorDetailComponent extends PureComponent<Props, {}> {
-  _scrollViewOffset = new Animated.Value(0);
-  _scrollViewInitialPosition = new Animated.ValueXY({
-    x: 0,
-    y: appStyles.metrics.getHeightFromDP('40%'),
-  });
+	_scrollViewOffset = new Animated.Value(0)
+	_scrollViewInitialPosition = new Animated.ValueXY({
+		x: 0,
+		y: appStyles.metrics.getHeightFromDP('40%'),
+	})
 
-  UNSAFE_componentWillReceiveProps(nextProps: Props) {
-    const { loading, error, author } = nextProps;
-    const shouldShowContent = !loading && !error && !!author;
+	UNSAFE_componentWillReceiveProps(nextProps: Props) {
+		const { loading, error, author } = nextProps
+		const shouldShowContent = !loading && !error && !!author
 
-    if (shouldShowContent) {
-      this._scrollViewOffset.setValue(0);
+		if (shouldShowContent) {
+			this._scrollViewOffset.setValue(0)
 
-      Animated.spring(this._scrollViewInitialPosition.y, {
-        toValue: 0,
-        speed: 3.5,
-        useNativeDriver: true,
-      }).start();
-    }
-  }
+			Animated.spring(this._scrollViewInitialPosition.y, {
+				toValue: 0,
+				speed: 3.5,
+				useNativeDriver: true,
+			}).start()
+		}
+	}
 
-  onPressPodcastListItem = (podcast: Object, navigation: Object): void => {
-    const pushAction = StackActions.push({
-      routeName: CONSTANTS.ROUTES.PODCAST_DETAIL,
-      params: {
-        [CONSTANTS.KEYS.PODCAST_DETAIL_SHOULD_SHOW_AUTHOR_SECTION]: false,
-        [CONSTANTS.PARAMS.PODCAST_DETAIL]: podcast,
-      },
-    });
+	onPressPodcastListItem = (podcast: Object, navigation: Object): void => {
+		const pushAction = StackActions.push({
+			routeName: CONSTANTS.ROUTES.PODCAST_DETAIL,
+			params: {
+				[CONSTANTS.KEYS.PODCAST_DETAIL_SHOULD_SHOW_AUTHOR_SECTION]: false,
+				[CONSTANTS.PARAMS.PODCAST_DETAIL]: podcast,
+			},
+		})
 
-    navigation.dispatch(pushAction);
-  };
+		navigation.dispatch(pushAction)
+	}
 
-  renderContent = (author: Object, navigation: Object): Object => (
-    <Fragment>
-      <Header
-        style={{
-          opacity: this._scrollViewOffset.interpolate({
-            inputRange: [0, appStyles.metrics.getHeightFromDP('25%')],
-            outputRange: [1, 0],
-            extrapolate: 'clamp',
-          }),
-        }}
-      >
-        <ImageWrapper>
-          <ProgressiveImage
-            thumbnailImageURL={author.thumbnailProfileImageURL}
-            imageURL={author.profileImageURL}
-          />
-        </ImageWrapper>
-      </Header>
-      <Animated.View
-        style={{
-          opacity: this._scrollViewOffset.interpolate({
-            inputRange: [
-              0,
-              appStyles.metrics.getHeightFromDP('25%'),
-              appStyles.metrics.getHeightFromDP('30%'),
-            ],
-            outputRange: [1, 1, 0],
-            extrapolate: 'clamp',
-          }),
-        }}
-      >
-        <SmokeShadow />
-      </Animated.View>
-      <Animated.ScrollView
-        scrollEventThrottle={16}
-        style={[
-          {
-            paddingBottom: appStyles.metrics.getHeightFromDP('6%'),
-            transform: [
-              {
-                translateY: this._scrollViewInitialPosition.y,
-              },
-            ],
-          },
-        ]}
-        onScroll={Animated.event([
-          {
-            nativeEvent: {
-              contentOffset: { y: this._scrollViewOffset },
-            },
-          },
-        ],{useNativeDriver: false})}
-        showsVerticalScrollIndicator={false}
-      >
-        <SectionWrapper>
-          <AuthorName
-            name={author.name}
-          />
-        </SectionWrapper>
-        {/* <SectionWrapper>
+	renderContent = (author: Object, navigation: Object): Object => (
+		<Fragment>
+			<Header
+				style={{
+					opacity: this._scrollViewOffset.interpolate({
+						inputRange: [0, appStyles.metrics.getHeightFromDP('25%')],
+						outputRange: [1, 0],
+						extrapolate: 'clamp',
+					}),
+				}}
+			>
+				<ImageWrapper>
+					<ProgressiveImage thumbnailImageURL={author.imageUrl} imageURL={author.imageUrl} />
+				</ImageWrapper>
+			</Header>
+			<Animated.View
+				style={{
+					opacity: this._scrollViewOffset.interpolate({
+						inputRange: [0, appStyles.metrics.getHeightFromDP('25%'), appStyles.metrics.getHeightFromDP('30%')],
+						outputRange: [1, 1, 0],
+						extrapolate: 'clamp',
+					}),
+				}}
+			>
+				<SmokeShadow />
+			</Animated.View>
+			<Animated.ScrollView
+				scrollEventThrottle={16}
+				style={[
+					{
+						paddingBottom: appStyles.metrics.getHeightFromDP('6%'),
+						transform: [
+							{
+								translateY: this._scrollViewInitialPosition.y,
+							},
+						],
+					},
+				]}
+				onScroll={Animated.event(
+					[
+						{
+							nativeEvent: {
+								contentOffset: { y: this._scrollViewOffset },
+							},
+						},
+					],
+					{ useNativeDriver: false },
+				)}
+				showsVerticalScrollIndicator={false}
+			>
+				<SectionWrapper>
+					<AuthorName name={author.name} />
+				</SectionWrapper>
+				{/* <SectionWrapper>
           <AboutSection
             about={author.name}
           />
         </SectionWrapper> */}
-        {/* <SectionWrapper>
+				{/* <SectionWrapper>
           <SubjectsSection
             subjects={author.categories}
           />
         </SectionWrapper> */}
-        {author.podcasts && author.podcasts.length && (
-          <NewReleasesSection
-            onPressItem={podcast => this.onPressPodcastListItem(podcast, navigation)
-            }
-            newReleases={author.podcasts}
-            navigation={navigation}
-          />
-        )}
-        {/* {author.podcasts.featured && author.podcasts.featured.length > 0}
+				{author.podcasts && author.podcasts.length && (
+					<NewReleasesSection
+						onPressItem={(podcast) => this.onPressPodcastListItem(podcast, navigation)}
+						newReleases={author.podcasts}
+						navigation={navigation}
+					/>
+				)}
+				{/* {author.podcasts.featured && author.podcasts.featured.length > 0}
         <FeaturedSection
           onPressItem={podcast => this.onPressPodcastListItem(podcast, navigation)
           }
@@ -188,32 +181,27 @@ class AuthorDetailComponent extends PureComponent<Props, {}> {
             relatedAuthors={author.relatedAuthors}
           />
         )} */}
-      </Animated.ScrollView>
-    </Fragment>
-  );
+			</Animated.ScrollView>
+		</Fragment>
+	)
 
-  render() {
-    const {
-      navigation, loading, author, error,
-    } = this.props;
+	render() {
+		const { navigation, loading, author, error } = this.props
 
-    return (
-      <Container>
-        {loading && <Loading />}
-        {!loading
-          && !error
-          && !!author
-          && this.renderContent(author, navigation)}
-        {error && (
-          <ErrorMessage
-            message="Seems like you're having some troubles when trying to connect with the server."
-            icon="server-network-off"
-            title="Oops..."
-          />
-        )}
-      </Container>
-    );
-  }
+		return (
+			<Container>
+				{loading && <Loading />}
+				{!loading && !error && !!author && this.renderContent(author, navigation)}
+				{error && (
+					<ErrorMessage
+						message="Seems like you're having some troubles when trying to connect with the server."
+						icon="server-network-off"
+						title="Oops..."
+					/>
+				)}
+			</Container>
+		)
+	}
 }
 
 export default AuthorDetailComponent;

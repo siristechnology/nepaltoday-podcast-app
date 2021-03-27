@@ -32,7 +32,7 @@ const PodcastListItem = ({ podcastDetail, isLastIndex, onPress, navigation, them
 		<Container isLastIndex={isLastIndex}>
 			<TitleRow>
 				<LeftWrapper onPress={onPress}>
-					<PodcastImage uri={podcastDetail.imageURL} />
+					<PodcastImage uri={podcastDetail.imageUrl} />
 					<TitleWrapper>
 						<Title>{podcastDetail.title}</Title>
 						<Description>{podcastDetail.description.slice(0, 100) + '..'}</Description>
@@ -44,11 +44,14 @@ const PodcastListItem = ({ podcastDetail, isLastIndex, onPress, navigation, them
 				</LeftWrapper>
 				<RightButtonWrapper
 					onPress={() =>
-						navigation.navigate(CONSTANTS.ROUTES.PLAYER, {
+						{
+							console.log('printing podcastDetail', podcastDetail);
+							
+							navigation.navigate(CONSTANTS.ROUTES.PLAYER, {
 							[CONSTANTS.PARAMS.PLAYER]: {
 								[CONSTANTS.KEYS.PLAYLIST]: [podcastDetail],
 							},
-						})
+						})}
 					}
 				>
 					<Icon name="play-circle-outline" size={40} />
@@ -56,8 +59,8 @@ const PodcastListItem = ({ podcastDetail, isLastIndex, onPress, navigation, them
 			</TitleRow>
 			<BottomRow>
 				<AuthorInfo>
-					<AuthorImage uri={podcastDetail.author.profileImageURL} />
-					<AuthorText>{podcastDetail.author.name}</AuthorText>
+					<AuthorImage uri={podcastDetail.program.imageUrl} />
+					<AuthorText>{podcastDetail.program.title}</AuthorText>
 				</AuthorInfo>
 				<Icon name="circle" size={6} color={theme.colors.subTextColor} />
 				<DurationText>{getFormattedDurationFromSeconds(podcastDetail.durationInSeconds)}</DurationText>

@@ -31,7 +31,9 @@ export const TitleWrapper = styled(View)`
 	margin-left: 5px;
 `
 
-export const Title = styled(Text)`
+export const Title = styled(Text).attrs({
+	numberOfLines: 2,
+})`
 	font-size: 18px;
 	font-weight: bold;
 	color: ${({ theme }) => theme.colors.textColor};

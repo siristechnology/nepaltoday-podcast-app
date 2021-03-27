@@ -65,7 +65,7 @@ const RightContent = styled(View)`
 `;
 type AuthorProps = {
   onPressItem: Function,
-  imageURL: string,
+  imageUrl: string,
   name: string,
   id: string,
 };
@@ -88,12 +88,12 @@ const AuthorListItem = ({
   <ContentWrapper>
     {withIndex && <Index>{index}</Index>}
     <AuthorImage
-      uri={author.profileImageURL}
+      uri={author.imageUrl}
     />
     <RightContent
       withIndex={withIndex}
     >
-      <AuthorName>{author.name}</AuthorName>
+      <AuthorName>{author.title}</AuthorName>
       <DetailButton
         onPress={onPressItem}
       >

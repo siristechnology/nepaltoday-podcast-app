@@ -1,7 +1,4 @@
-import {
-  select, delay, call, all, put,
-} from 'redux-saga/effects';
-import { SERVER_URL } from 'react-native-dotenv';
+import { select, delay, call, all, put } from 'redux-saga/effects'
 
 import { Creators as LocalPodcastsManagerCreators } from '../ducks/localPodcastsManager';
 import { Creators as PlayerCreators } from '../ducks/player'
@@ -37,7 +34,7 @@ function* _definePodcastURI(podcast) {
     && !!podcastStored.path
     && typeof podcastStored.path === 'string';
 
-  const uri = isPodcastStored ? podcastStored.path : `${SERVER_URL}/podcasts/${podcast.id}`
+  const uri = isPodcastStored ? podcastStored.path : podcast.audioUrl
 
   const podcastWithURI = {
     ...podcast,
@@ -202,16 +199,17 @@ export function* setPodcast() {
 
     const currentPodcast = playlist[playlistIndex];
 
-    const podcastWithURI = yield _definePodcastURI(currentPodcast);
+    const podcastWithURI = yield _definePodcastURI(currentPodcast);    
+
     if(currentPodcast){
       TrackPlayer.reset();
       TrackPlayer.add({
-        id: currentPodcast.id,
-        url: currentPodcast.audioLink,
+        id: currentPodcast._id,
+        url: currentPodcast.audioUrl,
         title: currentPodcast.title,
-        album: currentPodcast.program,
-        artist: currentPodcast.author.name,
-        artwork: currentPodcast.imageURL
+        album: currentPodcast.publisher.title,
+        artist: currentPodcast.program.title,
+        artwork: currentPodcast.imageUrl,
       })
       TrackPlayer.play()
     }
