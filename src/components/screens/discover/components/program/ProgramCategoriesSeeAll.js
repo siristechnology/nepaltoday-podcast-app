@@ -44,28 +44,29 @@ class ProgramCategoriesSeeAll extends Component {
     render() {
         const { navigation } = this.props;
         return (
-            <Wrapper>
-                <ProgramCategoriesSeeAllList
-                    keyExtractor={podcast => `${podcast.id}`}
-                    showsVerticalScrollIndicator={false}
-                    data={this.state.podcasts}
-                    renderItem={({ item, index }) => (
-                        <ProgramCategoriesSeeAllListItem
-                            onPressItem={() => navigation.navigate(CONSTANTS.ROUTES.PODCAST_DETAIL, {
-                                [CONSTANTS.KEYS
-                                    .PODCAST_DETAIL_SHOULD_SHOW_AUTHOR_SECTION]: true,
-                                [CONSTANTS.PARAMS.PODCAST_DETAIL]: item,
-                            })
-                            }
-                            shouldShowDownloadStatus={false}
-                            roundedImage={false}
-                            podcast={item}
-                            index={index + 1}
-                        />
-                    )}
-                />
-            </Wrapper>
-        );
+			<Wrapper>
+				<ProgramCategoriesSeeAllList
+					keyExtractor={(podcast) => `${podcast.id}`}
+					showsVerticalScrollIndicator={false}
+					data={this.state.podcasts}
+					renderItem={({ item, index }) => (
+						<ProgramCategoriesSeeAllListItem
+							onPressItem={() =>
+								navigation.navigate(CONSTANTS.ROUTES.PODCAST_DETAIL, {
+									[CONSTANTS.KEYS.PODCAST_DETAIL_SHOULD_SHOW_AUTHOR_SECTION]: true,
+									[CONSTANTS.PARAMS.PODCAST_DETAIL]: item,
+								})
+							}
+							shouldShowDownloadStatus={false}
+							roundedImage={false}
+							podcast={item}
+							index={index + 1}
+                            navigation={navigation}
+						/>
+					)}
+				/>
+			</Wrapper>
+		)
     }
 }
 

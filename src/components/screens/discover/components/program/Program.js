@@ -77,8 +77,10 @@ class Program extends Component {
 							roundedImage={false}
 							podcast={item}
 							index={index + 1}
+							navigation={navigation}
 						/>
 					)}
+					keyExtractor={(podcast) => `${podcast._id}`}
 					refreshControl={
 						<RefreshControl
 							progressBackgroundColor={appStyles.colors.primaryColor}

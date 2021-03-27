@@ -8,6 +8,8 @@ import fetch from 'node-fetch'
 import crashlytics from '@react-native-firebase/crashlytics'
 import { SERVER_URL } from 'react-native-dotenv'
 
+console.log('printing SERVER_URL', SERVER_URL)
+
 const cache = new InMemoryCache()
 
 const requestLink = new ApolloLink(

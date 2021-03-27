@@ -32,45 +32,46 @@ type Props = {
 };
 
 const PlaylistDetailComponent = ({
-  onTogglePlaylistDownloadedSwitch,
-  onRemovePodcastFromPlaylist,
-  isPlaylistAvailableOffline,
-  onPressPlayAllButton,
-  onPressShuffleButton,
-  podcastsImages,
-  navigation,
-  podcasts,
-  title,
+	onTogglePlaylistDownloadedSwitch,
+	onRemovePodcastFromPlaylist,
+	isPlaylistAvailableOffline,
+	onPressPlayAllButton,
+	onPressShuffleButton,
+	podcastsImages,
+	navigation,
+	podcasts,
+	title,
 }: Props): Object => (
-  <Container>
-    <Header
-      onTogglePlaylistDownloadedSwitch={onTogglePlaylistDownloadedSwitch}
-      isPlaylistAvailableOffline={isPlaylistAvailableOffline}
-      onPressPlayAllButton={onPressPlayAllButton}
-      onPressShuffleButton={onPressShuffleButton}
-      images={podcastsImages}
-      title={title}
-    />
-    <FlatList
-      renderItem={({ item, index }) => (
-        <PodcastListItem
-          onRemovePodcastFromPlaylist={() => onRemovePodcastFromPlaylist(index)}
-          onPressPodcastsListItem={() => {
-            navigation.navigate(CONSTANTS.ROUTES.PODCAST_DETAIL, {
-              [CONSTANTS.KEYS.PODCAST_DETAIL_SHOULD_SHOW_AUTHOR_SECTION]: true,
-              [CONSTANTS.PARAMS.PODCAST_DETAIL]: item,
-            });
-          }}
-          isDownloading={item.isDownloading}
-          podcast={item}
-          index={index}
-        />
-      )}
-      keyExtractor={(item, index) => `${item.title}-${index}`}
-      showsVerticalScrollIndicator={false}
-      data={podcasts}
-    />
-  </Container>
-);
+	<Container>
+		<Header
+			onTogglePlaylistDownloadedSwitch={onTogglePlaylistDownloadedSwitch}
+			isPlaylistAvailableOffline={isPlaylistAvailableOffline}
+			onPressPlayAllButton={onPressPlayAllButton}
+			onPressShuffleButton={onPressShuffleButton}
+			images={podcastsImages}
+			title={title}
+		/>
+		<FlatList
+			renderItem={({ item, index }) => (
+				<PodcastListItem
+					onRemovePodcastFromPlaylist={() => onRemovePodcastFromPlaylist(index)}
+					onPressPodcastsListItem={() => {
+						navigation.navigate(CONSTANTS.ROUTES.PODCAST_DETAIL, {
+							[CONSTANTS.KEYS.PODCAST_DETAIL_SHOULD_SHOW_AUTHOR_SECTION]: true,
+							[CONSTANTS.PARAMS.PODCAST_DETAIL]: item,
+						})
+					}}
+					isDownloading={item.isDownloading}
+					podcast={item}
+					index={index}
+					navigation={navigation}
+				/>
+			)}
+			keyExtractor={(item, index) => `${item.title}-${index}`}
+			showsVerticalScrollIndicator={false}
+			data={podcasts}
+		/>
+	</Container>
+)
 
 export default PlaylistDetailComponent;

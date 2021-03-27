@@ -63,6 +63,7 @@ const PodcastListItem = ({
         shouldShowDownloadStatus
         podcast={podcast}
         index={index + 1}
+        navigation={navigation}
       />
     </Swipeout>
   </Wrapper>
