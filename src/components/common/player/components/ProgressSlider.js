@@ -1,14 +1,8 @@
-// @flow
-
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text } from 'react-native'
 import Slider from '@react-native-community/slider'
 import styled from 'styled-components';
-
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Creators as PlayerCreators } from '~/store/ducks/player';
-
 import TrackPlayer, { ProgressComponent } from 'react-native-track-player'
 
 import appStyles from '~/styles';
@@ -95,10 +89,11 @@ class ProgressSlider extends ProgressComponent<Props, State> {
     const { player } = this.props;
 
     const { currentPodcast } = player;
-    const { durationInSeconds, duration } = currentPodcast;
+    const { durationInSeconds } = currentPodcast
 
     const slideValue = this.getProgress() * durationInSeconds
-    const currentTime = new Date(slideValue * 1000).toISOString().substr(14, 5)
+    const currentTime = new Date(slideValue * 1000).toISOString().substr(11, 8).replace("00:", "")
+    const duration = new Date(durationInSeconds * 1000).toISOString().substr(11, 8).replace("00:", "")
 
     return (
       <Wrapper>
