@@ -1,8 +1,7 @@
-// @flow
-
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { TouchableOpacity, ScrollView, Platform, Text, View } from 'react-native'
 import styled from 'styled-components'
+import { GoogleSignin } from '@react-native-community/google-signin'
 
 import { getItemFromStorage, persistItemInStorage } from '~/utils/AsyncStorageManager'
 import ThemeContextConsumer from '~/ThemeContextProvider'
@@ -108,7 +107,9 @@ class Profile extends Component<Props, State> {
 		await persistItemInStorage(storageKey, !currentOptionValue)
 	}
 
-	onSignoutPress = () => {
+	onSignoutPress = async () => {
+		await GoogleSignin.revokeAccess()
+		await GoogleSignin.signOut()
 		clearUserInfo()
 		this.props.navigation.dangerouslyGetParent().navigate('LOGIN')
 	}

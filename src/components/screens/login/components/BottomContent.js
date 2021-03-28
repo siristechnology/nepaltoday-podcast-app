@@ -19,22 +19,17 @@ const GetStartedButton = styled(TouchableOpacity)`
 
 const BottomContent = (props) => {
 	const onGoogleLoginClick = async () => {
-		googleLogin()
-			.then((res) => {
-				UserService.googleSignin(res.accessToken)
-					.then((response) => {
-						setUserInfo(response)
-						props.onNavigateToMainStack()
-					})
-					.catch((err) => {
-						crashlytics().recordError(err)
-						alert('google login failed', JSON.stringify(err))
-					})
-			})
-			.catch((err) => {
-				crashlytics().recordError(err)
-				alert('google login failed', JSON.stringify(err))
-			})
+		googleLogin().then((res) => {
+			UserService.googleSignin(res.accessToken)
+				.then((response) => {
+					setUserInfo(response)
+					props.onNavigateToMainStack()
+				})
+				.catch((err) => {
+					crashlytics().recordError(err)
+					alert('Login failed', JSON.stringify(err))
+				})
+		})
 	}
 
 	return (
