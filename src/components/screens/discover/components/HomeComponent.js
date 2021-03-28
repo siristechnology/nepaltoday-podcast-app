@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react'
 import { ScrollView, RefreshControl, View, Text } from 'react-native'
 import styled, { withTheme } from 'styled-components'
@@ -37,6 +35,7 @@ const SearchAuthorTextInputWrapper = styled(View)`
 	padding-right: ${({ theme }) => theme.metrics.largeSize}px;
 	padding-left: ${({ theme }) => theme.metrics.largeSize}px;
 `
+const categories = ['Headline', 'Politics', 'News', 'Entertainment', 'Sports', 'Business', 'Social', 'Health', 'Technology', 'Agriculture', 'Share']
 
 const HomeComponent = ({ navigation, loading, error, data, getHome, onTypeAuthorName, onSearchForAuthor, onToggleDarkLayer }) => (
 	<Wrapper>
@@ -71,12 +70,16 @@ const HomeComponent = ({ navigation, loading, error, data, getHome, onTypeAuthor
 				</SearchAuthorTextInputWrapper>
 				{data &&
 					data.length &&
-					Array.from(new Set(data.map((p) => p.category))).map((category) => (
-						<CategoryWrapper key={category}>
-							<CategoryText>{category}</CategoryText>
-							<ProgramCategoriesDiscover data={data.filter((d) => d.category == category)} navigation={navigation} />
-						</CategoryWrapper>
-					))}
+					categories
+						.filter((cat) => data.some((d) => d.category === cat))
+						.map((category) => (
+							<CategoryWrapper key={category}>
+								<CategoryText>{category}</CategoryText>
+								<ProgramCategoriesDiscover data={data
+									.filter((d) => d.category == category)
+									.sort((a,b) => b.weight - a.weight)} navigation={navigation} />
+							</CategoryWrapper>
+						))}
 			</ScrollView>
 		)}
 	</Wrapper>

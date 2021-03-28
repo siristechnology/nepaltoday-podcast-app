@@ -14,6 +14,7 @@ export function* getDiscover() {
 						title
 						imageUrl
 						category
+						weight
 						publisher{
 							id
 							title
