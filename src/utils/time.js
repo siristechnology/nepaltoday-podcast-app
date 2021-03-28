@@ -44,5 +44,5 @@ export const getFormattedDurationFromSeconds = (durationInSeconds) => {
 	const hours = Math.floor(durationInSeconds / (60 * 60))
 	const mins = Math.floor(durationInSeconds / 60 - hours * 60)
 
-	return hours > 0 ? hours + 'h ' + mins + ' m' : mins + 'm'
+	return hours > 0 ? hours + 'h ' + mins + 'm' : mins + 'm'
 }

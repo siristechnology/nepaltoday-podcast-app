@@ -146,8 +146,7 @@ export function* shufflePlaylist() {
 const trackPlayerInit = async () => {
   await TrackPlayer.setupPlayer()
   TrackPlayer.updateOptions({
-		stopWithApp: true,
-    jumpInterval: 30,
+		jumpInterval: 30,
 		capabilities: [
 			TrackPlayer.CAPABILITY_PLAY,
 			TrackPlayer.CAPABILITY_PAUSE,
