@@ -27,7 +27,7 @@ type Props = {
 	onPress: Function,
 }
 
-const PodcastListItem = ({ podcastDetail, isLastIndex, onPress, navigation, theme }: Props): Object => {
+const PodcastListItem = ({ podcastDetail, isLastIndex, onPress, onPodcastPlay, navigation, theme }: Props): Object => {
 	return (
 		<Container isLastIndex={isLastIndex}>
 			<TitleRow>
@@ -42,15 +42,7 @@ const PodcastListItem = ({ podcastDetail, isLastIndex, onPress, navigation, them
 						</RelativeTimeWrapper>
 					</TitleWrapper>
 				</LeftWrapper>
-				<RightButtonWrapper
-					onPress={() =>
-						navigation.navigate(CONSTANTS.ROUTES.PLAYER, {
-							[CONSTANTS.PARAMS.PLAYER]: {
-								[CONSTANTS.KEYS.PLAYLIST]: [podcastDetail],
-							},
-						})
-					}
-				>
+				<RightButtonWrapper onPress={() => onPodcastPlay(podcastDetail)}>
 					<Icon name="play-circle-outline" size={40} />
 				</RightButtonWrapper>
 			</TitleRow>

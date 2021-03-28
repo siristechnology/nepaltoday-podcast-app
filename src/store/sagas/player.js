@@ -146,14 +146,17 @@ export function* shufflePlaylist() {
 const trackPlayerInit = async () => {
   await TrackPlayer.setupPlayer()
   TrackPlayer.updateOptions({
-    stopWithApp: true,
-    capabilities: [
-      TrackPlayer.CAPABILITY_PLAY,
-      TrackPlayer.CAPABILITY_PAUSE,
-      TrackPlayer.CAPABILITY_STOP,
-      TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
-      TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
-    ],
+		stopWithApp: true,
+    jumpInterval: 30,
+		capabilities: [
+			TrackPlayer.CAPABILITY_PLAY,
+			TrackPlayer.CAPABILITY_PAUSE,
+			TrackPlayer.CAPABILITY_STOP,
+			TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
+			TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
+			TrackPlayer.CAPABILITY_JUMP_FORWARD,
+			TrackPlayer.CAPABILITY_JUMP_BACKWARD,
+		],
   })
   return true
 }

@@ -80,11 +80,6 @@ class Player extends Component<Props, State> {
 
 		this.handlePlayerConfiguration(playerParams)
 
-		TrackPlayer.updateOptions({
-			jumpInterval: 30,
-			capabilities: [TrackPlayer.CAPABILITY_JUMP_FORWARD, TrackPlayer.CAPABILITY_JUMP_BACKWARD],
-		})
-
 		TrackPlayer.addEventListener('remote-play', () => this.props.play())
 		TrackPlayer.addEventListener('remote-pause', () => this.props.pause())
 		TrackPlayer.addEventListener('remote-stop', () => this.props.pause())
