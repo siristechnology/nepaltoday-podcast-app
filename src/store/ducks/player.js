@@ -104,9 +104,9 @@ export const Creators = {
     type: Types.SET_REPEAT_CURRENT,
   }),
 
-  removeFromPlaylist: id => ({
+  removeFromPlaylist: _id => ({
     type: Types.REMOVE_FROM_PLAYLIST,
-    payload: { id },
+    payload: { _id },
   }),
 
   setCurrentTime: currentTime => ({
@@ -294,7 +294,7 @@ const player = (state = INITIAL_STATE, { type, payload }) => {
         ...state,
         playlist: state.playlist.filter((podcast) => {
           const isRemovingCurrentPodcast = podcast._id === state.currentPodcast._id
-			const isLookingToOtherPodcast = podcast._id !== payload._id
+			    const isLookingToOtherPodcast = podcast._id !== payload._id
 
           return isLookingToOtherPodcast;
         }),
