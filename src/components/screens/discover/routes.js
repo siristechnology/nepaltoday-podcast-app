@@ -41,7 +41,7 @@ const RootStack = createStackNavigator(
 
 		[CONSTANTS.ROUTES.PODCAST_DETAIL]: {
 			screen: PodcastDetailContainer,
-			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('Podcast Detail', navigation, screenProps),
+			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('', navigation, screenProps),
 		},
 
 		[LOCAL_STACK_ROUTES.PROGRAM_CATEGORIES_SEE_ALL]: {
@@ -49,14 +49,9 @@ const RootStack = createStackNavigator(
 			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithButton(navigation, screenProps, 'Program', 'play-circle-outline'),
 		},
 
-		[LOCAL_STACK_ROUTES.TRENDING_AUTHORS_SEE_ALL]: {
-			screen: TrendingAuthorsSeeAll,
-			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('Trending Authors', navigation, screenProps),
-		},
-
 		[LOCAL_STACK_ROUTES.SEARCH_AUTHORS_RESULT]: {
 			screen: SearchAuthorListContainer,
-			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('Search Programs', navigation, screenProps),
+			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('Search Podcasts', navigation, screenProps),
 		},
 
 		[CONSTANTS.ROUTES.AUTHOR_DETAIL]: {
