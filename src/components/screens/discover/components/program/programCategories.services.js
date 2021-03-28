@@ -34,6 +34,7 @@ export default class CategoriesService {
 								title
 								imageUrl
 							}
+							createdDate
 						}
 					}
 				}

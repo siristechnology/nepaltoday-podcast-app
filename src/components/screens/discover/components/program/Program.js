@@ -3,7 +3,7 @@ import { RefreshControl } from 'react-native'
 import { FlatList, View } from 'react-native'
 import styled from 'styled-components'
 
-import ProgramCategoriesSeeAllListItem from '~/components/common/PodcastListItem'
+import PodcastListItem from '~/components/common/PodcastListItem'
 import { setHeaderPlayButtonPress } from '~/routes/utils/navigationOptions'
 import CONSTANTS from '~/utils/CONSTANTS'
 import appStyles from '~/styles'
@@ -66,7 +66,7 @@ class Program extends Component {
 					data={this.state.podcasts}
 					ListHeaderComponent={<ProgramInfo program={this.state.program} onSubscribe={this.onSubscribe} />}
 					renderItem={({ item, index }) => (
-						<ProgramCategoriesSeeAllListItem
+						<PodcastListItem
 							onPressItem={() =>
 								navigation.navigate(CONSTANTS.ROUTES.PODCAST_DETAIL, {
 									[CONSTANTS.KEYS.PODCAST_DETAIL_SHOULD_SHOW_AUTHOR_SECTION]: true,
