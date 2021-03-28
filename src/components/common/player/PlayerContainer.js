@@ -85,6 +85,8 @@ class Player extends Component<Props, State> {
 		TrackPlayer.addEventListener('remote-stop', () => this.props.pause())
 		TrackPlayer.addEventListener('remote-next', () => this.props.playNext())
 		TrackPlayer.addEventListener('remote-previous', () => this.props.playPrevious())
+
+		TrackPlayer.addEventListener('playback-queue-ended', () => this.props.playNext())
 	}
 
 	componentWillUpdate(nextProps: Props) {
