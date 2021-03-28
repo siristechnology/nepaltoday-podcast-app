@@ -74,9 +74,7 @@ class PlaylistListContainer extends Component<Props, {}> {
   checkIsPodcastAlreadyDownloaded = (playlist: Playlist): boolean => {
     const { podcastsDownloaded, podcast } = this.props;
 
-    const isPodcastAlreadyDownloaded = podcastsDownloaded.some(
-      podcastDownloaded => podcastDownloaded.id === podcast.id,
-    );
+    const isPodcastAlreadyDownloaded = podcastsDownloaded.some((podcastDownloaded) => podcastDownloaded._id === podcast._id)
 
     return isPodcastAlreadyDownloaded;
   };
@@ -84,9 +82,7 @@ class PlaylistListContainer extends Component<Props, {}> {
   checkIsPodcastAlreadyInPlaylist = (playlist: Playlist): boolean => {
     const { podcast } = this.props;
 
-    const isPodcastAlreadyInPlaylist = playlist.podcasts.some(
-      podcastInPlaylist => podcastInPlaylist.id === podcast.id,
-    );
+    const isPodcastAlreadyInPlaylist = playlist.podcasts.some((podcastInPlaylist) => podcastInPlaylist._id === podcast._id)
 
     return isPodcastAlreadyInPlaylist;
   };

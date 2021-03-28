@@ -41,26 +41,27 @@ class PodcastsDownloaded extends PureComponent<Props, {}> {
     const { podcastsDownloaded, navigation } = this.props;
 
     return (
-      <Wrapper>
-        <PodcastsDownloadedList
-          renderItem={({ item, index }) => (
-            <PodcastsDownloadedListItem
-              onPressItem={() => navigation.navigate(CONSTANTS.ROUTES.PLAYER, {
-                [CONSTANTS.PARAMS.PLAYER]: {
-                  [CONSTANTS.KEYS.PLAYLIST]: [item],
-                },
-              })
-              }
-              index={index + 1}
-              podcast={item}
-            />
-          )}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={item => `${item.id}`}
-          data={podcastsDownloaded}
-        />
-      </Wrapper>
-    );
+		<Wrapper>
+			<PodcastsDownloadedList
+				renderItem={({ item, index }) => (
+					<PodcastsDownloadedListItem
+						onPressItem={() =>
+							navigation.navigate(CONSTANTS.ROUTES.PLAYER, {
+								[CONSTANTS.PARAMS.PLAYER]: {
+									[CONSTANTS.KEYS.PLAYLIST]: [item],
+								},
+							})
+						}
+						index={index + 1}
+						podcast={item}
+					/>
+				)}
+				showsVerticalScrollIndicator={false}
+				keyExtractor={(item) => `${item._id}`}
+				data={podcastsDownloaded}
+			/>
+		</Wrapper>
+	)
   }
 }
 

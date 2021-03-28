@@ -78,32 +78,27 @@ type Props = {
   podcast: PodcastProps,
 };
 
-const NextPodcastListItem = ({
-  removeFromPlaylist,
-  podcast,
-}: Props): Object => (
-  <Wrapper>
-    <PodcastImage
-      uri={podcast.imageURL}
-    />
-    <TextContentWrapper>
-      <TextWrapper>
-        <Title>{podcast.title}</Title>
-        <AuthorName>{podcast.author.name}</AuthorName>
-      </TextWrapper>
-      <TouchableOpacity
-        onPress={() => removeFromPlaylist(podcast.id)}
-        hitSlop={{
-          bottom: appStyles.metrics.smallSize,
-          right: appStyles.metrics.smallSize,
-          left: appStyles.metrics.smallSize,
-          top: appStyles.metrics.smallSize,
-        }}
-      >
-        <ShowListIcon />
-      </TouchableOpacity>
-    </TextContentWrapper>
-  </Wrapper>
-);
+const NextPodcastListItem = ({ removeFromPlaylist, podcast }: Props): Object => (
+	<Wrapper>
+		<PodcastImage uri={podcast.imageURL} />
+		<TextContentWrapper>
+			<TextWrapper>
+				<Title>{podcast.title}</Title>
+				<AuthorName>{podcast.author.name}</AuthorName>
+			</TextWrapper>
+			<TouchableOpacity
+				onPress={() => removeFromPlaylist(podcast._id)}
+				hitSlop={{
+					bottom: appStyles.metrics.smallSize,
+					right: appStyles.metrics.smallSize,
+					left: appStyles.metrics.smallSize,
+					top: appStyles.metrics.smallSize,
+				}}
+			>
+				<ShowListIcon />
+			</TouchableOpacity>
+		</TextContentWrapper>
+	</Wrapper>
+)
 
 export default NextPodcastListItem;

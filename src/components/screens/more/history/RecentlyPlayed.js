@@ -57,7 +57,7 @@ class RecentlyPlayed extends PureComponent<Props, State> {
     let listOrderChanged = false;
 
     for (let i = 0; i < prevState.podcastsRecentlyPlayed.length; i++) {
-      const isSamePodcast = prevState.podcastsRecentlyPlayed[i].id === podcastsRecentlyPlayed[i].id;
+      const isSamePodcast = prevState.podcastsRecentlyPlayed[i]._id === podcastsRecentlyPlayed[i]._id
 
       if (!isSamePodcast) {
         listOrderChanged = true;
@@ -78,9 +78,7 @@ class RecentlyPlayed extends PureComponent<Props, State> {
 
     const podcastsRecentlyPlayedWithDownloadStatus = podcastsRecentlyPlayed.map(
       (podcastRecentlyPlayed) => {
-        const isDownloaded = podcastsDownloaded.some(
-          podcast => podcast.id === podcastRecentlyPlayed.id,
-        );
+        const isDownloaded = podcastsDownloaded.some((podcast) => podcast._id === podcastRecentlyPlayed._id)
 
         return {
           ...podcastRecentlyPlayed,
@@ -99,29 +97,29 @@ class RecentlyPlayed extends PureComponent<Props, State> {
     const { navigation } = this.props;
 
     return (
-      <Wrapper>
-        <RecentlyPlayedList
-          renderItem={({ item, index }) => (
-            <RecentlyPlayedListItem
-              onPressItem={() => navigation.navigate(CONSTANTS.ROUTES.PODCAST_DETAIL, {
-                [CONSTANTS.KEYS
-                  .PODCAST_DETAIL_SHOULD_SHOW_AUTHOR_SECTION]: true,
-                [CONSTANTS.PARAMS.PODCAST_DETAIL]: item,
-              })
-              }
-              shouldShowDownloadStatus
-              isDownloading={false}
-              index={index + 1}
-              podcast={item}
-              roundedImage
-            />
-          )}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={item => `${item.id}`}
-          data={podcastsRecentlyPlayed}
-        />
-      </Wrapper>
-    );
+		<Wrapper>
+			<RecentlyPlayedList
+				renderItem={({ item, index }) => (
+					<RecentlyPlayedListItem
+						onPressItem={() =>
+							navigation.navigate(CONSTANTS.ROUTES.PODCAST_DETAIL, {
+								[CONSTANTS.KEYS.PODCAST_DETAIL_SHOULD_SHOW_AUTHOR_SECTION]: true,
+								[CONSTANTS.PARAMS.PODCAST_DETAIL]: item,
+							})
+						}
+						shouldShowDownloadStatus
+						isDownloading={false}
+						index={index + 1}
+						podcast={item}
+						roundedImage
+					/>
+				)}
+				showsVerticalScrollIndicator={false}
+				keyExtractor={(item) => `${item._id}`}
+				data={podcastsRecentlyPlayed}
+			/>
+		</Wrapper>
+	)
   }
 }
 

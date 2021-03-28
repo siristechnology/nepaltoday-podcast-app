@@ -46,7 +46,7 @@ class ProgramCategoriesSeeAll extends Component {
         return (
 			<Wrapper>
 				<ProgramCategoriesSeeAllList
-					keyExtractor={(podcast) => `${podcast.id}`}
+					keyExtractor={(podcast) => `${podcast._id}`}
 					showsVerticalScrollIndicator={false}
 					data={this.state.podcasts}
 					renderItem={({ item, index }) => (
@@ -61,7 +61,7 @@ class ProgramCategoriesSeeAll extends Component {
 							roundedImage={false}
 							podcast={item}
 							index={index + 1}
-                            navigation={navigation}
+							navigation={navigation}
 						/>
 					)}
 				/>

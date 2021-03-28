@@ -8,9 +8,7 @@ const _findIndexInsideOriginalPlaylist = (
   originalPlaylist,
   podcastSearched,
 ) => {
-  const index = originalPlaylist.findIndex(
-    podcast => podcast.id === podcastSearched.id,
-  );
+  const index = originalPlaylist.findIndex((podcast) => podcast._id === podcastSearched._id)
 
   return index;
 };
@@ -20,15 +18,13 @@ function* _getPodcastFromStorage(id) {
     state => state.localPodcastsManager,
   );
 
-  const podcastStored = podcastsDownloaded.filter(
-    podcast => podcast.id === id,
-  )[0];
+  const podcastStored = podcastsDownloaded.filter((podcast) => podcast._id === id)[0]
 
   return podcastStored;
 }
 
 function* _definePodcastURI(podcast) {
-  const podcastStored = yield _getPodcastFromStorage(podcast.id);
+  const podcastStored = yield _getPodcastFromStorage(podcast._id);
 
   const isPodcastStored = !!podcastStored
     && !!podcastStored.path
@@ -124,9 +120,7 @@ export function* shufflePlaylist() {
       );
     }
 
-    const playlistWithoutCurrentPodcast = originalPlaylist.filter(
-      podcast => podcast.id !== currentPodcast.id,
-    );
+    const playlistWithoutCurrentPodcast = originalPlaylist.filter((podcast) => podcast._id !== currentPodcast._id)
 
     const shuffledPlaylist = _shufflePlaylistItems(
       playlistWithoutCurrentPodcast,

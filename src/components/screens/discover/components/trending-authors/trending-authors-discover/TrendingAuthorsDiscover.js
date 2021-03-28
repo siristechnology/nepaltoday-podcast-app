@@ -27,43 +27,41 @@ type Props = {
 };
 
 const TrendingAuthorsDiscover = ({ navigation, data }: Props): Object => (
-  <Wrapper>
-    <SectionWithButton
-      onPress={() => {
-        const { params } = navigation.state;
+	<Wrapper>
+		<SectionWithButton
+			onPress={() => {
+				const { params } = navigation.state
 
-        navigation.navigate(
-          params.LOCAL_STACK_ROUTES.TRENDING_AUTHORS_SEE_ALL,
-          { [CONSTANTS.PARAMS.TRENDING_AUTHORS]: data },
-        );
-      }}
-      sectionTitle="Trending Authors"
-      buttonText="SEE ALL"
-      buttonSize="small"
-    />
-    <TrendingAuthorsList
-      renderItem={({ item, index }) => (
-        <TrendingAuthorsDiscoverListItem
-          isLastIndex={index === data.length - 1}
-          isFirst={index === 0}
-          author={item}
-          onPress={() => navigation.navigate(CONSTANTS.ROUTES.AUTHOR_DETAIL, {
-            [CONSTANTS.PARAMS.AUTHOR_DETAIL]: {
-              id: item.id,
-            },
-          })
-          }
-        />
-      )}
-      keyExtractor={podcast => `${podcast.id}`}
-      showsHorizontalScrollIndicator={false}
-      contentContainerStyle={{
-        alignItems: 'center',
-      }}
-      data={data.slice(0, 5)}
-      horizontal
-    />
-  </Wrapper>
-);
+				navigation.navigate(params.LOCAL_STACK_ROUTES.TRENDING_AUTHORS_SEE_ALL, { [CONSTANTS.PARAMS.TRENDING_AUTHORS]: data })
+			}}
+			sectionTitle="Trending Authors"
+			buttonText="SEE ALL"
+			buttonSize="small"
+		/>
+		<TrendingAuthorsList
+			renderItem={({ item, index }) => (
+				<TrendingAuthorsDiscoverListItem
+					isLastIndex={index === data.length - 1}
+					isFirst={index === 0}
+					author={item}
+					onPress={() =>
+						navigation.navigate(CONSTANTS.ROUTES.AUTHOR_DETAIL, {
+							[CONSTANTS.PARAMS.AUTHOR_DETAIL]: {
+								id: item.id,
+							},
+						})
+					}
+				/>
+			)}
+			keyExtractor={(podcast) => `${podcast._id}`}
+			showsHorizontalScrollIndicator={false}
+			contentContainerStyle={{
+				alignItems: 'center',
+			}}
+			data={data.slice(0, 5)}
+			horizontal
+		/>
+	</Wrapper>
+)
 
 export default TrendingAuthorsDiscover;

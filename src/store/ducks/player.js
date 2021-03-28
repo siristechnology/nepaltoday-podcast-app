@@ -293,8 +293,8 @@ const player = (state = INITIAL_STATE, { type, payload }) => {
       return {
         ...state,
         playlist: state.playlist.filter((podcast) => {
-          const isRemovingCurrentPodcast = podcast.id === state.currentPodcast.id;
-          const isLookingToOtherPodcast = podcast.id !== payload.id;
+          const isRemovingCurrentPodcast = podcast._id === state.currentPodcast._id
+			const isLookingToOtherPodcast = podcast._id !== payload._id
 
           return isLookingToOtherPodcast;
         }),

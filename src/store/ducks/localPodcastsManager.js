@@ -117,11 +117,9 @@ const localPodcastsManagerCreators = (
 
     case Types.REMOVE_FROM_DOWNLOADED_LIST:
       return {
-        ...state,
-        podcastsDownloaded: state.podcastsDownloaded.filter(
-          podcastDownloaded => podcastDownloaded.id !== payload.id,
-        ),
-      };
+			...state,
+			podcastsDownloaded: state.podcastsDownloaded.filter((podcastDownloaded) => podcastDownloaded._id !== payload._id),
+		}
 
     case Types.ADD_TO_DOWNLOADED_LIST:
       return {
@@ -131,11 +129,9 @@ const localPodcastsManagerCreators = (
 
     case Types.REMOVE_FROM_DOWNLOADING_LIST:
       return {
-        ...state,
-        downloadingList: state.downloadingList.filter(
-          downloadInfo => downloadInfo.id !== payload.id,
-        ),
-      };
+			...state,
+			downloadingList: state.downloadingList.filter((downloadInfo) => downloadInfo._id !== payload._id),
+		}
 
     case Types.ADD_TO_DOWNLOADING_LIST:
       return {

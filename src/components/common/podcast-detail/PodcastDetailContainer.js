@@ -92,10 +92,8 @@ class PodcastDetail extends Component<Props, State> {
     const { playlists } = this.props;
 
     const isPodcastDownloadedByPlaylist = playlists
-      .filter(playlist => playlist.isAvailableOffline)
-      .some(playlist => playlist.podcasts.some(
-        playlistPodcast => playlistPodcast.id === podcast.id,
-      ));
+		.filter((playlist) => playlist.isAvailableOffline)
+		.some((playlist) => playlist.podcasts.some((playlistPodcast) => playlistPodcast._id === podcast._id))
 
     return isPodcastDownloadedByPlaylist;
   };
@@ -105,7 +103,7 @@ class PodcastDetail extends Component<Props, State> {
 
     const isPodcastOnTheList = localPodcastsManager[listKey].some((podcast) => {
       if (typeof podcast === 'object') {
-        return podcast.id === podcastId;
+        return podcast._id === podcastId
       }
 
       return podcast === podcastId;
@@ -120,15 +118,9 @@ class PodcastDetail extends Component<Props, State> {
 
     const { shouldShowAuthorSection, podcast } = this.getProps();
 
-    const isPodcastDownloaded = this.checkPodcastDownloadStatus(
-      'podcastsDownloaded',
-      podcast.id,
-    );
+    const isPodcastDownloaded = this.checkPodcastDownloadStatus('podcastsDownloaded', podcast._id)
 
-    const isDownloadingPodcast = this.checkPodcastDownloadStatus(
-      'downloadingList',
-      podcast.id,
-    );
+    const isDownloadingPodcast = this.checkPodcastDownloadStatus('downloadingList', podcast._id)
 
     return (
       <PodcastDetailComponent

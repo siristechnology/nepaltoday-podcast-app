@@ -25,32 +25,33 @@ type Props = {
 };
 
 const Featured = ({ onPressItem, navigation, featured }: Props): Object => (
-  <Wrapper>
-    <SectionWithButton
-      onPress={() => navigation.navigate(CONSTANTS.ROUTES.PLAYER, {
-        [CONSTANTS.PARAMS.PLAYER]: {
-          [CONSTANTS.KEYS.PLAYLIST]: featured,
-        },
-      })
-      }
-      buttonSize="small"
-      buttonText="LISTEN NOW"
-      sectionTitle="Featured"
-    />
-    <ItemsWrapper>
-      {featured.map((podcast, index) => (
-        <FeaturedListItem
-          onPress={() => onPressItem(podcast)}
-          imageURL={podcast.imageURL}
-          fileName={podcast.fileName}
-          subject={podcast.category}
-          title={podcast.title}
-          index={index + 1}
-          key={podcast.id}
-        />
-      ))}
-    </ItemsWrapper>
-  </Wrapper>
-);
+	<Wrapper>
+		<SectionWithButton
+			onPress={() =>
+				navigation.navigate(CONSTANTS.ROUTES.PLAYER, {
+					[CONSTANTS.PARAMS.PLAYER]: {
+						[CONSTANTS.KEYS.PLAYLIST]: featured,
+					},
+				})
+			}
+			buttonSize="small"
+			buttonText="LISTEN NOW"
+			sectionTitle="Featured"
+		/>
+		<ItemsWrapper>
+			{featured.map((podcast, index) => (
+				<FeaturedListItem
+					onPress={() => onPressItem(podcast)}
+					imageURL={podcast.imageURL}
+					fileName={podcast.fileName}
+					subject={podcast.category}
+					title={podcast.title}
+					index={index + 1}
+					key={podcast._id}
+				/>
+			))}
+		</ItemsWrapper>
+	</Wrapper>
+)
 
 export default Featured;

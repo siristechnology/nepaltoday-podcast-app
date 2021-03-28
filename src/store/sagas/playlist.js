@@ -144,15 +144,13 @@ export function* addPodcast({ payload }) {
         state => state.localPodcastsManager,
       );
 
-      const isPodcastAlreadyDownloaded = podcastsDownloaded.some(
-        podcastDownloaded => podcastDownloaded.id === podcast.id,
-      );
+      const isPodcastAlreadyDownloaded = podcastsDownloaded.some((podcastDownloaded) => podcastDownloaded._id === podcast._id)
 
       if (!isPodcastAlreadyDownloaded) {
         playlistUpdated = {
-          ...playlistUpdated,
-          downloads: [podcast.id, ...playlistUpdated.downloads],
-        };
+			...playlistUpdated,
+			downloads: [podcast._id, ...playlistUpdated.downloads],
+		}
 
         yield call(downloadPodcast, podcast);
       }
@@ -183,15 +181,13 @@ export function* removePodcast({ payload }) {
 
     if (playlist.isAvailableOffline) {
       const podcast = playlist.podcasts[podcastIndex];
-      const isPodcastDownloadedByPlaylist = playlist.downloads.some(
-        podcastId => podcastId === podcast.id,
-      );
+      const isPodcastDownloadedByPlaylist = playlist.downloads.some((podcastId) => podcastId === podcast._id)
 
       if (isPodcastDownloadedByPlaylist) {
         yield call(removePodcastFromLocalStorage, {
           payload: {
             podcast: {
-              id: podcast.id,
+              id: podcast._id,
             },
           },
         });
@@ -231,12 +227,10 @@ export function* getPlaylist({ payload }) {
       playlistInStore => playlistInStore.title === title,
     );
 
-    const podcasts = playlistSelected.podcasts.map(podcast => ({
-      ...podcast,
-      isDownloaded: podcastsDownloaded.some(
-        podcastDownloaded => podcastDownloaded.id === podcast.id,
-      ),
-    }));
+    const podcasts = playlistSelected.podcasts.map((podcast) => ({
+		...podcast,
+		isDownloaded: podcastsDownloaded.some((podcastDownloaded) => podcastDownloaded._id === podcast._id),
+	}))
 
     yield put(
       PlaylistCreators.getPlaylistSuccess({
@@ -257,18 +251,16 @@ function* _setPlaylistToAvailableOffline(playlistSelected) {
     const podcastsDownloadedByPlaylist = [];
 
     const podcastsToDownload = playlistSelected.podcasts.filter((podcast) => {
-      const isPodcastAlreadyDownloaded = podcastsDownloaded.some(
-        podcastDownloaded => podcastDownloaded.id === podcast.id,
-      );
+      const isPodcastAlreadyDownloaded = podcastsDownloaded.some((podcastDownloaded) => podcastDownloaded._id === podcast._id)
 
       return !isPodcastAlreadyDownloaded;
     });
 
     const playlistUpdated = {
-      ...playlistSelected,
-      isAvailableOffline: true,
-      downloads: podcastsToDownload.map(podcast => podcast.id),
-    };
+		...playlistSelected,
+		isAvailableOffline: true,
+		downloads: podcastsToDownload.map((podcast) => podcast._id),
+	}
 
     yield call(
       _handlePersistsPlaylistsUpdated,
@@ -299,17 +291,13 @@ function* _setPlaylistToUnvailableOffline(playlistSelected) {
     const { podcastsDownloaded, downloadingList } = localPodcastsManager;
 
     const jobsToCancel = downloadingList.filter((downloadingItem) => {
-      const shouldCancelPodcatDownload = playlistSelected.downloads.some(
-        podcastId => downloadingItem.id === podcastId,
-      );
+      const shouldCancelPodcatDownload = playlistSelected.downloads.some((podcastId) => downloadingItem._id === podcastId)
       return shouldCancelPodcatDownload;
     });
 
     const podcastsAlreadyDownloadedByPlaylistSelected = playlistSelected.downloads.filter(
       (podcast) => {
-        const isPodcastAlreadyDownloaded = podcastsDownloaded.some(
-          podcastDownloaded => podcastsDownloaded.id === podcast.id,
-        );
+        const isPodcastAlreadyDownloaded = podcastsDownloaded.some((podcastDownloaded) => podcastsDownloaded._id === podcast._id)
         return isPodcastAlreadyDownloaded;
       },
     );

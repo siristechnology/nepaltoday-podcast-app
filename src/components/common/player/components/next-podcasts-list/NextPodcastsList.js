@@ -77,22 +77,14 @@ const renderHeader = (onBackPress: Function, iconName: string): Object => {
   );
 };
 
-const renderNextPodcastsList = (
-  nextPodcasts: Array<Object>,
-  removeFromPlaylist: Function,
-): Object => (
-  <Playlist
-    showsHorizontalScrollIndicator={false}
-    keyExtractor={item => `${item.id}`}
-    data={nextPodcasts}
-    renderItem={({ item }) => (
-      <NextPodcastListItem
-        removeFromPlaylist={removeFromPlaylist}
-        podcast={item}
-      />
-    )}
-  />
-);
+const renderNextPodcastsList = (nextPodcasts: Array<Object>, removeFromPlaylist: Function): Object => (
+	<Playlist
+		showsHorizontalScrollIndicator={false}
+		keyExtractor={(item) => `${item._id}`}
+		data={nextPodcasts}
+		renderItem={({ item }) => <NextPodcastListItem removeFromPlaylist={removeFromPlaylist} podcast={item} />}
+	/>
+)
 
 const NextPodcastsList = ({
   shouldRepeatPlaylist,

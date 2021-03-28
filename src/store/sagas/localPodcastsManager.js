@@ -47,8 +47,8 @@ export function* addPodcastToRecentlyPlayedList({ payload }) {
     );
 
     const podcastsRecentlyPlayedWithourCurrentPodcast = podcastsRecentlyPlayed.filter(
-      podcastRecentlyPlayed => podcastRecentlyPlayed.id !== podcast.id,
-    );
+		(podcastRecentlyPlayed) => podcastRecentlyPlayed._id !== podcast._id,
+	)
 
     const podcastsRecentlyPlayedUpdated = [
       podcast,
@@ -91,9 +91,7 @@ function* _addPodcastToSavedPodcastsList(podcastToSave) {
       state => state.localPodcastsManager,
     );
 
-    const isPodcastSaved = podcastsDownloaded.findIndex(
-      podcastSaved => podcastSaved.id === podcastToSave.id,
-    ) >= 0;
+    const isPodcastSaved = podcastsDownloaded.findIndex((podcastSaved) => podcastSaved._id === podcastToSave._id) >= 0
 
     if (!isPodcastSaved) {
       yield persistItemInStorage(CONSTANTS.KEYS.PODCASTS_SAVED, [
@@ -112,9 +110,7 @@ function* _removePersistedPodcasts(id) {
       state => state.localPodcastsManager,
     );
 
-    const podcastsSaved = podcastsDownloaded.filter(
-      podcast => podcast.id !== id,
-    );
+    const podcastsSaved = podcastsDownloaded.filter((podcast) => podcast._id !== id)
 
     yield persistItemInStorage(CONSTANTS.KEYS.PODCASTS_SAVED, podcastsSaved);
   } catch (err) {
@@ -132,7 +128,7 @@ function* _getPodcastsDownloadedFromFS(podcastsFromFS) {
     const directoryFiles = directoryContent.filter(directoryItem => directoryItem.isFile());
 
     const podcastsDownloaded = podcastsFromFS.filter((podcastFromFS) => {
-      const podcastFilename = `${podcastFromFS.id}.mp3`;
+      const podcastFilename = `${podcastFromFS._id}.mp3`
 
       const isPodcastsStillDownloaded = directoryFiles.some(
         file => file.name === podcastFilename,
@@ -182,7 +178,7 @@ function* _handleDownloadPodcastResult(statusCode, path, podcast) {
 
     yield put(
       LocalPodcastsManagerCreators.removeFromDownloadingList(
-        podcastWithLocalURI.id,
+        podcastWithLocalURI._id,
       ),
     );
 
@@ -198,18 +194,12 @@ function* _handleDownloadPodcastResult(statusCode, path, podcast) {
 
 export function* downloadPodcast(podcast) {
 	try {
-		const { id } = podcast
+		const { _id, audioUrl } = podcast
 
-		const {
-			data: {
-				podcast: { audioLink },
-			},
-		} = yield call(api.get, `/podcasts/${id}`)
-
-		const PATH_TO_FILE = `${RNFS.DocumentDirectoryPath}/${id}.mp3`
+		const PATH_TO_FILE = `${RNFS.DocumentDirectoryPath}/${_id}.mp3`
 
 		const { jobId, promise } = yield call(RNFS.downloadFile, {
-			fromUrl: audioLink,
+			fromUrl: audioUrl,
 			toFile: PATH_TO_FILE,
 			discretionary: true,
 		})
@@ -217,7 +207,7 @@ export function* downloadPodcast(podcast) {
 		yield put(
 			LocalPodcastsManagerCreators.addToDownloadingList({
 				jobId,
-				id,
+			  id:_id,
 			}),
 		)
 
@@ -245,19 +235,19 @@ export function* downloadPodcastToLocalStorage({ payload }) {
 
 export function* stopPodcastDownload(downloadInfo) {
   try {
-    const { jobId, id } = downloadInfo;
+    const { jobId, _id } = downloadInfo
 
     yield call(RNFS.stopDownload, jobId);
 
     yield call(removePodcastFromLocalStorage, {
       payload: {
         podcast: {
-          id,
+          _id,
         },
       },
     });
 
-    yield put(LocalPodcastsManagerCreators.removeFromDownloadingList(id));
+    yield put(LocalPodcastsManagerCreators.removeFromDownloadingList(_id));
   } catch (err) {
     throw err;
   }
@@ -266,18 +256,18 @@ export function* stopPodcastDownload(downloadInfo) {
 export function* removePodcastFromLocalStorage({ payload }) {
   try {
     const { podcast } = payload;
-    const { id } = podcast;
+    const { _id } = podcast
 
-    const uri = `${RNFS.DocumentDirectoryPath}/${id}.mp3`;
+    const uri = `${RNFS.DocumentDirectoryPath}/${_id}.mp3`
 
     const isPodcastFileExists = yield call(RNFS.exists, uri);
 
     if (isPodcastFileExists) {
       yield call(RNFS.unlink, uri);
 
-      yield _removePersistedPodcasts(id);
+      yield _removePersistedPodcasts(_id);
 
-      yield put(LocalPodcastsManagerCreators.removeFromDownloadedList(id));
+      yield put(LocalPodcastsManagerCreators.removeFromDownloadedList(_id));
 
       yield put(PlayerCreators.updatePodcastURI(podcast.url));
     }
@@ -296,9 +286,7 @@ export function* clearAllLocalPodcastsReferences() {
 
     if (hasPodcastsDownloaded) {
       const removeFiles = podcastsDownloaded.map(async (podcastDownloaded) => {
-        const PATH_TO_FILE = `${RNFS.DocumentDirectoryPath}/${
-          podcastDownloaded.id
-        }.mp3`;
+        const PATH_TO_FILE = `${RNFS.DocumentDirectoryPath}/${podcastDownloaded._id}.mp3`
 
         return RNFS.unlink(PATH_TO_FILE);
       });

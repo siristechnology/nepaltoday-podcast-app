@@ -45,27 +45,19 @@ type Props = {
 };
 
 const RelatedAuthors = ({ relatedAuthors }: Props): Object => (
-  <Wrapper>
-    <TitleWrapper>
-      <SectionTitle
-        title="Related Authors"
-      />
-    </TitleWrapper>
-    <RelatedAuthorsList
-      ListFooterComponent={ListFooterComponent}
-      showsHorizontalScrollIndicator={false}
-      horizontal
-      data={relatedAuthors}
-      keyExtractor={podcast => `${podcast.id}`}
-      renderItem={({ item }) => (
-        <RelatedAuthorsListItem
-          profileImage={item.profileImageURL}
-          name={item.name}
-          id={item.id}
-        />
-      )}
-    />
-  </Wrapper>
-);
+	<Wrapper>
+		<TitleWrapper>
+			<SectionTitle title="Related Authors" />
+		</TitleWrapper>
+		<RelatedAuthorsList
+			ListFooterComponent={ListFooterComponent}
+			showsHorizontalScrollIndicator={false}
+			horizontal
+			data={relatedAuthors}
+			keyExtractor={(podcast) => `${podcast._id}`}
+			renderItem={({ item }) => <RelatedAuthorsListItem profileImage={item.profileImageURL} name={item.name} id={item.id} />}
+		/>
+	</Wrapper>
+)
 
 export default RelatedAuthors;
