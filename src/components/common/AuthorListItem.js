@@ -72,8 +72,6 @@ type Props = {
 }
 
 const AuthorListItem = ({ withBottomline, onPressItem, withIndex, author, index }: Props): Object => {
-	console.log('printing author', author)
-
 	return (
 		<ContentWrapper>
 			{withIndex && <Index>{index}</Index>}

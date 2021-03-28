@@ -1,10 +1,8 @@
-// @flow
-
 import React, { Component } from 'react';
 import { TouchableOpacity, View, Text } from 'react-native';
 import styled from 'styled-components';
 
-import CreatePlaylistAlert from '~/components/screens/library/components/playlists/PlaylistOperationModal';
+import CreatePlaylistAlert from '~/components/common/playlists/PlaylistOperationModal';
 import CreatePlaylist from '~/components/common/DefaultButton';
 
 const Wrapper = styled(View)`
