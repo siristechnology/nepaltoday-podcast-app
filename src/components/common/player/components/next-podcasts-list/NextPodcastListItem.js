@@ -67,11 +67,11 @@ type AuthorProps = {
 };
 
 type PodcastProps = {
-  author: AuthorProps,
-  imageURL: string,
-  title: string,
-  id: string,
-};
+	publisher: AuthorProps,
+	imageUrl: string,
+	title: string,
+	id: string,
+}
 
 type Props = {
   removeFromPlaylist: Function,
@@ -80,11 +80,11 @@ type Props = {
 
 const NextPodcastListItem = ({ removeFromPlaylist, podcast }: Props): Object => (
 	<Wrapper>
-		<PodcastImage uri={podcast.imageURL} />
+		<PodcastImage uri={podcast.imageUrl} />
 		<TextContentWrapper>
 			<TextWrapper>
 				<Title>{podcast.title}</Title>
-				<AuthorName>{podcast.author.name}</AuthorName>
+				<AuthorName>{podcast.publisher.title}</AuthorName>
 			</TextWrapper>
 			<TouchableOpacity
 				onPress={() => removeFromPlaylist(podcast._id)}
