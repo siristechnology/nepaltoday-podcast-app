@@ -19,11 +19,6 @@ const Wrapper = styled(View)`
 	background-color: ${({ theme }) => theme.colors.backgroundColor};
 `
 
-const ProgramCategoriesSeeAllList = styled(FlatList)`
-	width: 100%;
-	height: 100%;
-`
-
 class Program extends Component {
 	state = {
 		loading: true,
@@ -37,7 +32,6 @@ class Program extends Component {
 
 		CategoriesService.getProgramPodcast(programId)
 			.then((program) => {
-				setHeaderPlayButtonPress(program.podcasts, navigation)
 				this.setState({
 					podcasts: program.podcasts,
 					program: {
@@ -54,17 +48,23 @@ class Program extends Component {
 			})
 	}
 
-	onSubscribe() {}
-
 	render() {
 		const { navigation } = this.props
 
+		const onPlayAll =  () => {
+			navigation.navigate(CONSTANTS.ROUTES.PLAYER, {
+				[CONSTANTS.PARAMS.PLAYER]: {
+				  [CONSTANTS.KEYS.PLAYLIST]: this.state.podcasts,
+				},
+			  });
+		}
+
 		return (
 			<Wrapper>
-				<ProgramCategoriesSeeAllList
+				<FlatList
 					showsVerticalScrollIndicator={false}
 					data={this.state.podcasts}
-					ListHeaderComponent={<ProgramInfo program={this.state.program} onSubscribe={this.onSubscribe} />}
+					ListHeaderComponent={<ProgramInfo program={this.state.program} onPlayAll={onPlayAll} />}
 					renderItem={({ item, index }) => (
 						<PodcastListItem
 							onPressItem={() =>

@@ -2,10 +2,11 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import FastImage from 'react-native-fast-image'
 import styled from 'styled-components'
+import ActionButtons from './ActionButtons'
 
 const Wrapper = styled(View)`
 	width: 100%;
-	flex-direction: row;
+	flex-direction: column;
 	align-items: flex-start;
 	padding: ${({ theme }) => theme.metrics.mediumSize}px;
 	background-color: ${({ theme }) => theme.colors.backgroundColor};
@@ -57,7 +58,7 @@ type Props = {
 	category: string,
 }
 
-const ProgramInfo = ({ program, onSubscribe }: Props) => {
+const ProgramInfo = ({ program, onPlayAll }: Props) => {
 	if (!program.title) return <></>
 
 	return (
@@ -72,7 +73,7 @@ const ProgramInfo = ({ program, onSubscribe }: Props) => {
 					</SubjectWrapper>
 				</TextContentWrapper>
 			</InfoWrapper>
-			{/* <ActionButtons onSubscribe={onSubscribe} /> */}
+			<ActionButtons onPlayAll={onPlayAll} />
 		</Wrapper>
 	)
 }

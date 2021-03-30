@@ -15,7 +15,7 @@ import TrackPlayer from 'react-native-track-player'
 
 const Wrapper = styled(View)`
 	width: 100%;
-	height: ${({ theme }) => theme.metrics.getWidthFromDP('20%')}px;
+	height: ${({ theme }) => theme.metrics.getWidthFromDP('16%')}px;
 	flex-direction: row;
 	justify-content: space-around;
 	align-items: center;
@@ -33,7 +33,7 @@ const PodcastImage = styled(FastImage).attrs(({ uri }) => ({
 	source: { uri },
 }))`
 	width: ${({ theme }) => theme.metrics.getWidthFromDP('13%')}px;
-	height: ${({ theme }) => theme.metrics.getWidthFromDP('15%')}px;
+	height: ${({ theme }) => theme.metrics.getWidthFromDP('13%')}px;
 	border-radius: 3px;
 `
 

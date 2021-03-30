@@ -3,7 +3,6 @@ import { createStackNavigator } from 'react-navigation-stack'
 import { Platform } from 'react-native'
 
 import AuthorDetailContainer from '~/components/common/author-detail/AuthorDetailContainer'
-import TrendingAuthorsSeeAll from './components/trending-authors/TrendingAuthorsSeeAll'
 import SearchAuthorListContainer from './components/search-author/SearchAuthorListContainer'
 
 import PodcastDetailContainer from '~/components/common/podcast-detail/PodcastDetailContainer'
@@ -46,7 +45,7 @@ const RootStack = createStackNavigator(
 
 		[LOCAL_STACK_ROUTES.PROGRAM_CATEGORIES_SEE_ALL]: {
 			screen: Program,
-			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithButton(navigation, screenProps, 'Program', 'play-circle-outline'),
+			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('', navigation, screenProps),
 		},
 
 		[LOCAL_STACK_ROUTES.SEARCH_AUTHORS_RESULT]: {

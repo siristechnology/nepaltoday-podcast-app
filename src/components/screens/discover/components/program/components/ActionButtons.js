@@ -8,8 +8,8 @@ const Wrapper = styled(View)`
 	width: 100%;
 	flex-direction: row;
 	justify-content: flex-end;
-	margin-top: ${({ theme }) => theme.metrics.largeSize}px;
-	margin-bottom: ${({ theme }) => theme.metrics.mediumSize}px;
+	margin-top: ${({ theme }) => theme.metrics.smallSize}px;
+	margin-bottom: ${({ theme }) => theme.metrics.smallSize}px;
 `
 
 const ButtonsSeparator = styled(View)`
@@ -17,13 +17,12 @@ const ButtonsSeparator = styled(View)`
 `
 
 type Props = {
-	onSubscribe: Function,
+	onPlayAll: Function,
 }
 
-const ActionButtons = ({ onSubscribe }: Props): Object => (
+const ActionButtons = ({ onPlayAll }: Props): Object => (
 	<Wrapper>
-		<DefaultButton onPress={onSubscribe} size="large" text="SUBSCRIBE" />
-		<ButtonsSeparator />
+		<DefaultButton onPress={onPlayAll} size="large" text="Play All" />
 	</Wrapper>
 )
 
