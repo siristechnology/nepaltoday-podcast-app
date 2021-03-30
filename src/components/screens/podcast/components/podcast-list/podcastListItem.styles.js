@@ -57,11 +57,9 @@ export const PodcastImage = styled(FastImage).attrs(({ uri }) => ({
 
 export const RelativeTimeWrapper = styled(View)`
 	flex-direction: row;
-	align-items: center;
-	justify-content: center;
 	opacity: 0.8;
-	margin-top: 4px;
-	color: ${({ theme }) => theme.colors.textColor};
+	font-size: 12px;
+	color: ${({ theme }) => theme.colors.subTextColor};
 `
 
 export const RightButtonWrapper = styled(TouchableOpacity)`
@@ -100,9 +98,9 @@ export const AuthorText = styled(Text)`
 `
 
 export const SourceTimeText = styled(Text)`
-	font-size: 14px;
-	margin-left: 4px;
-	color: ${({ theme }) => theme.colors.textColor};
+	font-size: 12px;
+	margin-left: 2px;
+	color: ${({ theme }) => theme.colors.subTextColor};
 `
 
 export const DurationText = styled(Text)`

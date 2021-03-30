@@ -1,6 +1,21 @@
 import moment from 'moment'
 import { convertNos } from './dateConverter'
 
+moment.updateLocale('en', {
+	calendar: {
+		lastDay: '[हिजो]',
+		sameDay: '[आज]',
+		nextDay: '[भोलि]',
+		lastWeek: '[अन्तिम] dddd',
+		nextWeek: '[Next] dddd',
+		sameElse: 'L',
+	},
+})
+
+moment.updateLocale('en', {
+	weekdays: ['आइतवार', 'सोमबार', 'मंगलबार', 'बुधवार', 'बिहीबार', 'शुक्रवार', 'शनिबार'],
+})
+
 const addLeadingZero = (val) => {
 	return '0' + val
 }
@@ -8,14 +23,10 @@ const addLeadingZero = (val) => {
 export const getRelativeTime = (date) => {
 	const convertedDate = Number(date)
 	if (!isNaN(convertedDate) && typeof convertedDate === 'number') {
-		return formatRelativeTime(moment(convertedDate).startOf('hour').fromNow())
+		return moment(convertedDate).calendar()
 	} else {
-		return formatRelativeTime(moment(date).startOf('hour').fromNow())
+		return moment(date).calendar()
 	}
-}
-
-function formatRelativeTime(relativeTime) {
-	return relativeTime.replace(' minutes', 'm').replace('an hour', '1h').replace(' hours', 'h').replace('a day', '1d').replace(' days', 'd')
 }
 
 export const getCurrentTime = () => {
@@ -44,5 +55,5 @@ export const getFormattedDurationFromSeconds = (durationInSeconds) => {
 	const hours = Math.floor(durationInSeconds / (60 * 60))
 	const mins = Math.floor(durationInSeconds / 60 - hours * 60)
 
-	return hours > 0 ? hours + 'h ' + mins + 'm' : mins + 'm'
+	return hours > 0 ? hours + 'h ' + (mins > 20 ? mins + 'm' : '') : mins + 'm'
 }

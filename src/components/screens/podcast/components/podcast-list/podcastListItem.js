@@ -34,12 +34,11 @@ const PodcastListItem = ({ podcastDetail, isLastIndex, onPress, onPodcastPlay, n
 				<LeftWrapper onPress={onPress}>
 					<PodcastImage uri={podcastDetail.imageUrl} />
 					<TitleWrapper>
-						<Title>{podcastDetail.title}</Title>
-						<Description>{podcastDetail.description}</Description>
 						<RelativeTimeWrapper>
-							<Icon name="clock-outline" size={12} />
 							<SourceTimeText>{getRelativeTime(podcastDetail.createdDate)}</SourceTimeText>
 						</RelativeTimeWrapper>
+						<Title>{podcastDetail.title}</Title>
+						<Description>{podcastDetail.description}</Description>
 					</TitleWrapper>
 				</LeftWrapper>
 				<RightButtonWrapper onPress={() => onPodcastPlay(podcastDetail)}>
