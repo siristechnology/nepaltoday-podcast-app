@@ -72,7 +72,7 @@ export const RightButtonWrapper = styled(TouchableOpacity)`
 export const BottomRow = styled(View)`
 	flex-direction: row;
 	align-items: center;
-	margin-top: 10px;
+	margin-top: 2px;
 `
 
 export const AuthorInfo = styled(View)`
@@ -84,8 +84,8 @@ export const AuthorInfo = styled(View)`
 export const AuthorImage = styled(FastImage).attrs(({ uri }) => ({
 	source: { uri },
 }))`
-	width: 22;
-	height: 22;
+	width: 18;
+	height: 18;
 	border-radius: 14px;
 	margin-right: 4px;
 	margin-left: 6px;

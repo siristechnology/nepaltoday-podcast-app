@@ -8,7 +8,6 @@ import PodcastListItem from './podcastListItem'
 const Wrapper = styled(View)`
 	width: 100%;
 	flex: 1;
-	margin-top: 15px;
 `
 
 const AllPodcastList = styled(FlatList)`
