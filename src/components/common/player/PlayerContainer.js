@@ -205,7 +205,7 @@ class Player extends Component<Props, State> {
 
 	jumpBackwardClick = async () => {
 		const currentPosition = await TrackPlayer.getPosition()
-    const nextPostion = currentPosition > 30 ? currentPosition - 30 : 0
+    	const nextPostion = currentPosition > 30 ? currentPosition - 30 : 0
 		TrackPlayer.seekTo(nextPostion)
 	}
 
