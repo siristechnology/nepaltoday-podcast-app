@@ -63,6 +63,11 @@ const client = new ApolloClient({
 		}),
 	]),
 	cache,
+	defaultOptions: {
+		watchQuery: {
+			fetchPolicy: 'cache-and-network',
+		},
+	},
 })
 
 export default client
