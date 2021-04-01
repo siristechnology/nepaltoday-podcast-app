@@ -4,7 +4,6 @@ import { FlatList, View } from 'react-native'
 import styled from 'styled-components'
 
 import PodcastListItem from '~/components/common/PodcastListItem'
-import { setHeaderPlayButtonPress } from '~/routes/utils/navigationOptions'
 import CONSTANTS from '~/utils/CONSTANTS'
 import appStyles from '~/styles'
 import ProgramInfo from './components/ProgramInfo'

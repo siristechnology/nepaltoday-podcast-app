@@ -22,6 +22,7 @@ export default class CategoriesService {
 							title
 							audioUrl
 							durationInSeconds
+							description
 							category
 							imageUrl
 							program {
