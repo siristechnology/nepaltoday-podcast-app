@@ -31,7 +31,7 @@ const PodcastTitleText = styled(Text).attrs({
 	numberOfLines: 4,
 })`
 	margin-bottom: ${({ theme }) => theme.metrics.extraSmallSize}px;
-	font-size: ${({ theme }) => theme.metrics.largeSize * 1.8}px;
+	font-size: ${({ theme }) => theme.metrics.largeSize * 1.5}px;
 	color: ${({ theme }) => theme.colors.textColor};
 	font-family: CircularStd-Bold;
 `

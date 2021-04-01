@@ -107,6 +107,7 @@ class RecentlyPlayed extends PureComponent<Props, State> {
 								[CONSTANTS.PARAMS.PODCAST_DETAIL]: item,
 							})
 						}
+						navigation={navigation}
 						shouldShowDownloadStatus
 						isDownloading={false}
 						index={index + 1}

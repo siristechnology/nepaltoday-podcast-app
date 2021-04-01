@@ -46,14 +46,17 @@ class PodcastsDownloaded extends PureComponent<Props, {}> {
 				renderItem={({ item, index }) => (
 					<PodcastsDownloadedListItem
 						onPressItem={() =>
-							navigation.navigate(CONSTANTS.ROUTES.PLAYER, {
-								[CONSTANTS.PARAMS.PLAYER]: {
-									[CONSTANTS.KEYS.PLAYLIST]: [item],
-								},
+							navigation.navigate(CONSTANTS.ROUTES.PODCAST_DETAIL, {
+								[CONSTANTS.KEYS.PODCAST_DETAIL_SHOULD_SHOW_AUTHOR_SECTION]: true,
+								[CONSTANTS.PARAMS.PODCAST_DETAIL]: item,
 							})
 						}
+						navigation={navigation}
+						shouldShowDownloadStatus
+						isDownloading={false}
 						index={index + 1}
 						podcast={item}
+						roundedImage
 					/>
 				)}
 				showsVerticalScrollIndicator={false}

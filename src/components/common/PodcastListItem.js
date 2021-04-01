@@ -86,7 +86,7 @@ export const RightButtonWrapper = styled(TouchableOpacity)`
 	align-items: flex-end;
 `
 
-const getDonwloadStatusIconConfig = (isDownloaded: boolean, isDownloading: boolean, theme): Object => {
+const getDownloadStatusIconConfig = (isDownloaded: boolean, isDownloading: boolean, theme): Object => {
 	if (isDownloading) {
 		return <ActivityIndicator color={theme.colors.primaryColor} size="small" />
 	}
@@ -131,7 +131,7 @@ const PodcastListItem = ({
 			<SourceTimeText>{getRelativeTime(podcast.createdDate)}</SourceTimeText>
 			<PodcastTitle>{podcast.title}</PodcastTitle>
 			<BottomContent>
-				{shouldShowDownloadStatus && <IconWrapper>{getDonwloadStatusIconConfig(podcast.isDownloaded, !!isDownloading, theme)}</IconWrapper>}
+				{shouldShowDownloadStatus && <IconWrapper>{getDownloadStatusIconConfig(podcast.isDownloaded, !!isDownloading, theme)}</IconWrapper>}
 				<AuthorName shouldShowDownloadStatus={shouldShowDownloadStatus}>{podcast.title}</AuthorName>
 			</BottomContent>
 		</ContentContainer>

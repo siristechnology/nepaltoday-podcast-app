@@ -1,5 +1,3 @@
-// @flow
-
 import React, { Component } from 'react';
 
 import { bindActionCreators } from 'redux';
