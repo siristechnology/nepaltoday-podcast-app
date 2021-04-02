@@ -5,9 +5,10 @@ import FastImage from 'react-native-fast-image'
 export const Container = styled(View).attrs({
 	activeOpacity: 0.6,
 })`
-	margin-top: 5px;
-	padding-left: 15px;
-	padding-right: 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
 	padding-top: 5px;
 	padding-bottom: 5px;
 `
@@ -66,7 +67,7 @@ export const RightButtonWrapper = styled(TouchableOpacity)`
 	opacity: 0.9;
 	flex-direction: column;
 	justify-content: center;
-	align-items: flex-end;
+	align-items: center;
 `
 
 export const BottomRow = styled(View)`

@@ -41,7 +41,7 @@ const HomeComponent = ({ navigation, loading, error, data, getHome }: Props): Ob
 			<PodcastList
 				data={data}
 				navigation={navigation}
-				headerComponent={<ScreenTitle title="Latest Podcasts" />}
+				headerComponent={<ScreenTitle title="Top Podcasts" />}
 				refreshControl={
 					<RefreshControl
 						progressBackgroundColor={appStyles.colors.primaryColor}

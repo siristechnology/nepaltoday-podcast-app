@@ -1,7 +1,6 @@
 import React from 'react'
 import { withTheme } from 'styled-components'
 import Icon from '~/components/common/Icon'
-import CONSTANTS from '~/utils/CONSTANTS'
 import { getFormattedDurationFromSeconds, getRelativeTime } from '~/utils/time'
 import {
 	Container,
@@ -12,10 +11,6 @@ import {
 	Description,
 	DurationText,
 	RightButtonWrapper,
-	BottomRow,
-	AuthorInfo,
-	AuthorImage,
-	AuthorText,
 	SourceTimeText,
 	LeftWrapper,
 	RelativeTimeWrapper,
@@ -43,16 +38,9 @@ const PodcastListItem = ({ podcastDetail, isLastIndex, onPress, onPodcastPlay, n
 				</LeftWrapper>
 				<RightButtonWrapper onPress={() => onPodcastPlay(podcastDetail)}>
 					<Icon name="play-circle-outline" size={40} />
+					<DurationText>{getFormattedDurationFromSeconds(podcastDetail.durationInSeconds)}</DurationText>
 				</RightButtonWrapper>
 			</TitleRow>
-			<BottomRow>
-				<AuthorInfo>
-					<AuthorImage uri={podcastDetail.publisher.imageUrl} />
-					<AuthorText>{podcastDetail.publisher.title}</AuthorText>
-				</AuthorInfo>
-				<Icon name="circle" size={6} color={theme.colors.subTextColor} />
-				<DurationText>{getFormattedDurationFromSeconds(podcastDetail.durationInSeconds)}</DurationText>
-			</BottomRow>
 		</Container>
 	)
 }

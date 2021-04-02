@@ -5,7 +5,7 @@ import client from '../../graphql/graphql-client'
 import { Creators as PodcastCreators } from '../ducks/podcast'
 
 export function* getHome() {
-	try {		
+	try {
 		const result = yield client.query({
 			query: gql`
 				query homeScreenQuery {
@@ -18,12 +18,12 @@ export function* getHome() {
 						audioUrl
 						durationInSeconds
 						category
-						program{
+						program {
 							id
 							title
 							imageUrl
 						}
-						publisher{
+						publisher {
 							id
 							title
 							imageUrl
@@ -32,7 +32,6 @@ export function* getHome() {
 					}
 				}
 			`,
-			fetchPolicy: 'network-only'
 		})
 
 		yield put(PodcastCreators.getHomeSuccess(result.data.getTopPodcasts))
