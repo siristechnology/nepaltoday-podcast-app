@@ -1,24 +1,12 @@
 {
+	"root": true,
 	"env": {
 		"es6": true,
 		"node": true,
 		"jest": true
 	},
-	"extends": ["standard", "@react-native-community"],
-	"plugins": ["react", "prettier", "@typescript-eslint/eslint-plugin"],
-	"globals": {
-		"Atomics": "readonly",
-		"SharedArrayBuffer": "readonly",
-		"fetch": "readonly"
-	},
-	"parser": "babel-eslint",
-	"parserOptions": {
-		"ecmaFeatures": {
-			"jsx": true
-		},
-		"ecmaVersion": 2018,
-		"sourceType": "module"
-	},
+	"extends": ["@react-native-community"],
+	"plugins": ["prettier"],
 	"rules": {
 		"prettier/prettier": ["error"],
 		"no-console": "warn"
