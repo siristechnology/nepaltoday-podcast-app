@@ -11,9 +11,6 @@ export const Container = styled(View).attrs({
 	padding-right: 10px;
 	padding-top: 5px;
 	padding-bottom: 5px;
-`
-
-export const TitleRow = styled(View)`
 	flex-direction: row;
 	align-items: stretch;
 	justify-content: space-between;
@@ -22,7 +19,7 @@ export const TitleRow = styled(View)`
 export const LeftWrapper = styled(TouchableOpacity)`
 	flex-grow: 1;
 	flex-direction: row;
-	align-items: flex-start;
+	align-items: center;
 	margin-right: 5px;
 `
 
@@ -70,36 +67,8 @@ export const RightButtonWrapper = styled(TouchableOpacity)`
 	align-items: center;
 `
 
-export const BottomRow = styled(View)`
-	flex-direction: row;
-	align-items: center;
-	margin-top: 2px;
-`
-
-export const AuthorInfo = styled(View)`
-	flex-direction: row;
-	align-items: center;
-	margin-right: 14px;
-`
-
-export const AuthorImage = styled(FastImage).attrs(({ uri }) => ({
-	source: { uri },
-}))`
-	width: 18;
-	height: 18;
-	border-radius: 14px;
-	margin-right: 4px;
-	margin-left: 6px;
-`
-
-export const AuthorText = styled(Text)`
-	font-size: 15px;
-	opacity: 0.7;
-	color: ${({ theme }) => theme.colors.subTextColor};
-`
-
 export const SourceTimeText = styled(Text)`
-	font-size: 12px;
+	font-size: 14px;
 	margin-left: 2px;
 	color: ${({ theme }) => theme.colors.subTextColor};
 `
