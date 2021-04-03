@@ -211,9 +211,15 @@ function count_bs_days(t, e) {
 		h = +a[1],
 		p = 0,
 		l = 0
-	for (l = s; d >= l; l++) p += arraySum(this.bs[l])
-	for (l = 0; r > l; l++) p -= this.bs[s][l]
-	for (p += this.bs[s][11], l = o - 1; l < 12; l++) p -= this.bs[d][l]
+	for (l = s; d >= l; l++) {
+		p += arraySum(this.bs[l])
+	}
+	for (l = 0; r > l; l++) {
+		p -= this.bs[s][l]
+	}
+	for (p += this.bs[s][11], l = o - 1; l < 12; l++) {
+		p -= this.bs[d][l]
+	}
 	return (p -= i + 1), (p += h - 1)
 }
 function add_ad_days(t, e) {
@@ -230,7 +236,9 @@ function add_bs_days(t, e) {
 		a = +n[2],
 		s = +n[0],
 		r = +n[1]
-	for (r += e; r > this.bs[a][s - 1]; ) (r -= this.bs[a][s - 1]), s++, s > 12 && ((s = 1), a++)
+	for (r += e; r > this.bs[a][s - 1]; ) {
+		;(r -= this.bs[a][s - 1]), s++, s > 12 && ((s = 1), a++)
+	}
 	return a + '-' + (s < 10 ? '0' + s : s) + '-' + (r < 10 ? '0' + r : r)
 }
 function bs2ad(t) {

@@ -1,34 +1,34 @@
 // @flow
 
-import React, { Component } from 'react';
-import { StatusBar, FlatList, View } from 'react-native';
-import styled from 'styled-components';
+import React, { Component } from 'react'
+import { StatusBar, FlatList, View } from 'react-native'
+import styled from 'styled-components'
 
-import BottomContent from './components/BottomContent';
-import MiddleContent from './components/MiddleContent';
+import BottomContent from './components/BottomContent'
+import MiddleContent from './components/MiddleContent'
 
-import CONSTANTS from '~/utils/CONSTANTS';
-import appStyles from '~/styles';
+import CONSTANTS from '~/utils/CONSTANTS'
+import appStyles from '~/styles'
 
 const Wrapper = styled(View)`
-  flex: 1;
-  justify-content: space-between;
-  padding-top: ${({ theme }) => theme.metrics.getHeightFromDP('15%')}px;
-  background-color: ${({ theme }) => theme.colors.white};
-`;
+	flex: 1;
+	justify-content: space-between;
+	padding-top: ${({ theme }) => theme.metrics.getHeightFromDP('15%')}px;
+	background-color: ${({ theme }) => theme.colors.white};
+`
 
 const IntroScreenWrapper = styled(View)`
-  width: ${({ theme }) => theme.metrics.width}px;
-  height: ${({ theme }) => theme.metrics.height}px;
-`;
+	width: ${({ theme }) => theme.metrics.width}px;
+	height: ${({ theme }) => theme.metrics.height}px;
+`
 
 type Props = {
-  navigation: Object,
-};
+	navigation: Object,
+}
 
 type State = {
-  currentPageIndex: number,
-};
+	currentPageIndex: number,
+}
 
 class OnboardingIntro extends Component<Props, State> {
 	_pagesListRef: Object = {}
@@ -97,10 +97,10 @@ class OnboardingIntro extends Component<Props, State> {
 					data={PAGES}
 					horizontal
 				/>
-				<BottomContent onNavigateToMainStack={this.onNavigateToMainStack}          />
+				<BottomContent onNavigateToMainStack={this.onNavigateToMainStack} />
 			</Wrapper>
 		)
 	}
 }
 
-export default OnboardingIntro;
+export default OnboardingIntro

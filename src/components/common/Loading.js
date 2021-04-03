@@ -1,28 +1,25 @@
 // @flow
 
-import React from 'react';
-import { ActivityIndicator, View } from 'react-native';
+import React from 'react'
+import { ActivityIndicator, View } from 'react-native'
 
-import styled from 'styled-components';
-import appStyles from '~/styles';
+import styled from 'styled-components'
+import appStyles from '~/styles'
 
 const LoadingWrapper = styled(View)`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+`
 
 type Props = {
-  size: ?string,
-};
+	size: ?string,
+}
 
 const Loading = ({ size }: Props): Object => (
-  <LoadingWrapper>
-    <ActivityIndicator
-      color={appStyles.colors.primaryColor}
-      size={size || 'large'}
-    />
-  </LoadingWrapper>
-);
+	<LoadingWrapper>
+		<ActivityIndicator color={appStyles.colors.primaryColor} size={size || 'large'} />
+	</LoadingWrapper>
+)
 
-export default Loading;
+export default Loading

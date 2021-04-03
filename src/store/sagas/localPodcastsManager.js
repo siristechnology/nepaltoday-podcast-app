@@ -1,195 +1,132 @@
-import RNFS from 'react-native-fs';
+import RNFS from 'react-native-fs'
 import { select, call, all, put } from 'redux-saga/effects'
 
-import {
-  removeItemFromStorage,
-  persistItemInStorage,
-  getItemFromStorage,
-} from '~/utils/AsyncStorageManager';
-import CONSTANTS from '~/utils/CONSTANTS';
+import { removeItemFromStorage, persistItemInStorage, getItemFromStorage } from '~/utils/AsyncStorageManager'
+import CONSTANTS from '~/utils/CONSTANTS'
 
-import { Creators as LocalPodcastsManagerCreators } from '../ducks/localPodcastsManager';
-import { Creators as PlayerCreators } from '../ducks/player';
+import { Creators as LocalPodcastsManagerCreators } from '../ducks/localPodcastsManager'
+import { Creators as PlayerCreators } from '../ducks/player'
 import api from '~/services/api'
 
 export function* loadPodcastsRecentlyPlayed() {
-  try {
-    const rawPodcastsRecentlyPlayed = yield call(
-      getItemFromStorage,
-      CONSTANTS.KEYS.PODCASTS_PLAYED_RECENTLY,
-      [],
-    );
+	try {
+		const rawPodcastsRecentlyPlayed = yield call(getItemFromStorage, CONSTANTS.KEYS.PODCASTS_PLAYED_RECENTLY, [])
 
-    const podcastsRecentlyPlayed = typeof rawPodcastsRecentlyPlayed === 'string'
-      ? JSON.parse(rawPodcastsRecentlyPlayed)
-      : rawPodcastsRecentlyPlayed;
+		const podcastsRecentlyPlayed =
+			typeof rawPodcastsRecentlyPlayed === 'string' ? JSON.parse(rawPodcastsRecentlyPlayed) : rawPodcastsRecentlyPlayed
 
-    yield put(
-      LocalPodcastsManagerCreators.loadPodcastsRecentlyPlayedSuccess(
-        podcastsRecentlyPlayed,
-      ),
-    );
-  } catch (err) {
-    yield call(
-      persistItemInStorage,
-      CONSTANTS.KEYS.PODCASTS_PLAYED_RECENTLY,
-      [],
-    );
-  }
+		yield put(LocalPodcastsManagerCreators.loadPodcastsRecentlyPlayedSuccess(podcastsRecentlyPlayed))
+	} catch (err) {
+		yield call(persistItemInStorage, CONSTANTS.KEYS.PODCASTS_PLAYED_RECENTLY, [])
+	}
 }
 
 export function* addPodcastToRecentlyPlayedList({ payload }) {
-  try {
-    const { podcast } = payload;
+	try {
+		const { podcast } = payload
 
-    const { podcastsRecentlyPlayed } = yield select(
-      state => state.localPodcastsManager,
-    );
+		const { podcastsRecentlyPlayed } = yield select((state) => state.localPodcastsManager)
 
-    const podcastsRecentlyPlayedWithourCurrentPodcast = podcastsRecentlyPlayed.filter(
-		(podcastRecentlyPlayed) => podcastRecentlyPlayed._id !== podcast._id,
-	)
+		const podcastsRecentlyPlayedWithourCurrentPodcast = podcastsRecentlyPlayed.filter(
+			(podcastRecentlyPlayed) => podcastRecentlyPlayed._id !== podcast._id,
+		)
 
-    const podcastsRecentlyPlayedUpdated = [
-      podcast,
-      ...podcastsRecentlyPlayedWithourCurrentPodcast,
-    ].slice(0, 20);
+		const podcastsRecentlyPlayedUpdated = [podcast, ...podcastsRecentlyPlayedWithourCurrentPodcast].slice(0, 20)
 
-    yield all([
-      call(
-        persistItemInStorage,
-        CONSTANTS.KEYS.PODCASTS_PLAYED_RECENTLY,
-        podcastsRecentlyPlayedUpdated,
-      ),
-      put(
-        LocalPodcastsManagerCreators.addPodcastToRecentlyPlayedListSuccess(
-          podcastsRecentlyPlayedUpdated,
-        ),
-      ),
-    ]);
-  } catch (err) {
-    throw err;
-  }
+		yield all([
+			call(persistItemInStorage, CONSTANTS.KEYS.PODCASTS_PLAYED_RECENTLY, podcastsRecentlyPlayedUpdated),
+			put(LocalPodcastsManagerCreators.addPodcastToRecentlyPlayedListSuccess(podcastsRecentlyPlayedUpdated)),
+		])
+	} catch (err) {
+		throw err
+	}
 }
 
 const _getPodcastsSaved = async () => {
-  const rawPodcastsSaved = await getItemFromStorage(
-    CONSTANTS.KEYS.PODCASTS_SAVED,
-    [],
-  );
+	const rawPodcastsSaved = await getItemFromStorage(CONSTANTS.KEYS.PODCASTS_SAVED, [])
 
-  const podcastsSaved = typeof rawPodcastsSaved === 'string'
-    ? JSON.parse(rawPodcastsSaved)
-    : rawPodcastsSaved;
+	const podcastsSaved = typeof rawPodcastsSaved === 'string' ? JSON.parse(rawPodcastsSaved) : rawPodcastsSaved
 
-  return podcastsSaved;
-};
+	return podcastsSaved
+}
 
 function* _addPodcastToSavedPodcastsList(podcastToSave) {
-  try {
-    const { podcastsDownloaded } = yield select(
-      state => state.localPodcastsManager,
-    );
+	try {
+		const { podcastsDownloaded } = yield select((state) => state.localPodcastsManager)
 
-    const isPodcastSaved = podcastsDownloaded.findIndex((podcastSaved) => podcastSaved._id === podcastToSave._id) >= 0
+		const isPodcastSaved = podcastsDownloaded.findIndex((podcastSaved) => podcastSaved._id === podcastToSave._id) >= 0
 
-    if (!isPodcastSaved) {
-      yield persistItemInStorage(CONSTANTS.KEYS.PODCASTS_SAVED, [
-        ...podcastsDownloaded,
-        podcastToSave,
-      ]);
-    }
-  } catch (err) {
-    console.log(err);
-  }
+		if (!isPodcastSaved) {
+			yield persistItemInStorage(CONSTANTS.KEYS.PODCASTS_SAVED, [...podcastsDownloaded, podcastToSave])
+		}
+	} catch (err) {
+		console.log(err)
+	}
 }
 
 function* _removePersistedPodcasts(id) {
-  try {
-    const { podcastsDownloaded } = yield select(
-      state => state.localPodcastsManager,
-    );
+	try {
+		const { podcastsDownloaded } = yield select((state) => state.localPodcastsManager)
 
-    const podcastsSaved = podcastsDownloaded.filter((podcast) => podcast._id !== id)
+		const podcastsSaved = podcastsDownloaded.filter((podcast) => podcast._id !== id)
 
-    yield persistItemInStorage(CONSTANTS.KEYS.PODCASTS_SAVED, podcastsSaved);
-  } catch (err) {
-    console.log(err);
-  }
+		yield persistItemInStorage(CONSTANTS.KEYS.PODCASTS_SAVED, podcastsSaved)
+	} catch (err) {
+		console.log(err)
+	}
 }
 
 function* _getPodcastsDownloadedFromFS(podcastsFromFS) {
-  try {
-    const directoryContent = yield call(
-      RNFS.readDir,
-      RNFS.DocumentDirectoryPath,
-    );
+	try {
+		const directoryContent = yield call(RNFS.readDir, RNFS.DocumentDirectoryPath)
 
-    const directoryFiles = directoryContent.filter(directoryItem => directoryItem.isFile());
+		const directoryFiles = directoryContent.filter((directoryItem) => directoryItem.isFile())
 
-    const podcastsDownloaded = podcastsFromFS.filter((podcastFromFS) => {
-      const podcastFilename = `${podcastFromFS._id}.mp3`
+		const podcastsDownloaded = podcastsFromFS.filter((podcastFromFS) => {
+			const podcastFilename = `${podcastFromFS._id}.mp3`
 
-      const isPodcastsStillDownloaded = directoryFiles.some(
-        file => file.name === podcastFilename,
-      );
+			const isPodcastsStillDownloaded = directoryFiles.some((file) => file.name === podcastFilename)
 
-      return isPodcastsStillDownloaded;
-    });
+			return isPodcastsStillDownloaded
+		})
 
-    return podcastsDownloaded;
-  } catch (err) {
-    throw err;
-  }
+		return podcastsDownloaded
+	} catch (err) {
+		throw err
+	}
 }
 
 export function* setPodcastsDownloadedList() {
-  try {
-    const podcastsFromFS = yield _getPodcastsSaved();
+	try {
+		const podcastsFromFS = yield _getPodcastsSaved()
 
-    const podcastsDownloaded = yield call(
-      _getPodcastsDownloadedFromFS,
-      podcastsFromFS,
-    );
+		const podcastsDownloaded = yield call(_getPodcastsDownloadedFromFS, podcastsFromFS)
 
-    yield persistItemInStorage(
-      CONSTANTS.KEYS.PODCASTS_SAVED,
-      podcastsDownloaded,
-    );
+		yield persistItemInStorage(CONSTANTS.KEYS.PODCASTS_SAVED, podcastsDownloaded)
 
-    yield put(
-      LocalPodcastsManagerCreators.setPodcastsDownloadedListSuccess(
-        podcastsDownloaded,
-      ),
-    );
-  } catch (err) {
-    console.log(err);
-  }
+		yield put(LocalPodcastsManagerCreators.setPodcastsDownloadedListSuccess(podcastsDownloaded))
+	} catch (err) {
+		console.log(err)
+	}
 }
 
 function* _handleDownloadPodcastResult(statusCode, path, podcast) {
-  if (statusCode === 200) {
-    const podcastWithLocalURI = {
-      ...podcast,
-      path,
-    };
+	if (statusCode === 200) {
+		const podcastWithLocalURI = {
+			...podcast,
+			path,
+		}
 
-    yield _addPodcastToSavedPodcastsList(podcastWithLocalURI);
+		yield _addPodcastToSavedPodcastsList(podcastWithLocalURI)
 
-    yield put(
-      LocalPodcastsManagerCreators.removeFromDownloadingList(
-        podcastWithLocalURI._id,
-      ),
-    );
+		yield put(LocalPodcastsManagerCreators.removeFromDownloadingList(podcastWithLocalURI._id))
 
-    yield put(
-      LocalPodcastsManagerCreators.addToDownloadedList(podcastWithLocalURI),
-    );
+		yield put(LocalPodcastsManagerCreators.addToDownloadedList(podcastWithLocalURI))
 
-    return podcastWithLocalURI;
-  }
+		return podcastWithLocalURI
+	}
 
-  throw new Error('Something goes wrong when trying to Download the Podcast');
+	throw new Error('Something goes wrong when trying to Download the Podcast')
 }
 
 export function* downloadPodcast(podcast) {
@@ -207,7 +144,7 @@ export function* downloadPodcast(podcast) {
 		yield put(
 			LocalPodcastsManagerCreators.addToDownloadingList({
 				jobId,
-			  id:_id,
+				id: _id,
 			}),
 		)
 
@@ -222,84 +159,80 @@ export function* downloadPodcast(podcast) {
 }
 
 export function* downloadPodcastToLocalStorage({ payload }) {
-  try {
-    const { podcast } = payload;
+	try {
+		const { podcast } = payload
 
-    const { path } = yield call(downloadPodcast, podcast);
+		const { path } = yield call(downloadPodcast, podcast)
 
-    yield put(PlayerCreators.updatePodcastURI(path));
-  } catch (err) {
-    console.log(err);
-  }
+		yield put(PlayerCreators.updatePodcastURI(path))
+	} catch (err) {
+		console.log(err)
+	}
 }
 
 export function* stopPodcastDownload(downloadInfo) {
-  try {
-    const { jobId, _id } = downloadInfo
+	try {
+		const { jobId, _id } = downloadInfo
 
-    yield call(RNFS.stopDownload, jobId);
+		yield call(RNFS.stopDownload, jobId)
 
-    yield call(removePodcastFromLocalStorage, {
-      payload: {
-        podcast: {
-          _id,
-        },
-      },
-    });
+		yield call(removePodcastFromLocalStorage, {
+			payload: {
+				podcast: {
+					_id,
+				},
+			},
+		})
 
-    yield put(LocalPodcastsManagerCreators.removeFromDownloadingList(_id));
-  } catch (err) {
-    throw err;
-  }
+		yield put(LocalPodcastsManagerCreators.removeFromDownloadingList(_id))
+	} catch (err) {
+		throw err
+	}
 }
 
 export function* removePodcastFromLocalStorage({ payload }) {
-  try {
-    const { podcast } = payload;
-    const { _id } = podcast
+	try {
+		const { podcast } = payload
+		const { _id } = podcast
 
-    const uri = `${RNFS.DocumentDirectoryPath}/${_id}.mp3`
+		const uri = `${RNFS.DocumentDirectoryPath}/${_id}.mp3`
 
-    const isPodcastFileExists = yield call(RNFS.exists, uri);
+		const isPodcastFileExists = yield call(RNFS.exists, uri)
 
-    if (isPodcastFileExists) {
-      yield call(RNFS.unlink, uri);
+		if (isPodcastFileExists) {
+			yield call(RNFS.unlink, uri)
 
-      yield _removePersistedPodcasts(_id);
+			yield _removePersistedPodcasts(_id)
 
-      yield put(LocalPodcastsManagerCreators.removeFromDownloadedList(_id));
+			yield put(LocalPodcastsManagerCreators.removeFromDownloadedList(_id))
 
-      yield put(PlayerCreators.updatePodcastURI(podcast.url));
-    }
-  } catch (err) {
-    console.log(err);
-  }
+			yield put(PlayerCreators.updatePodcastURI(podcast.url))
+		}
+	} catch (err) {
+		console.log(err)
+	}
 }
 
 export function* clearAllLocalPodcastsReferences() {
-  try {
-    const { podcastsDownloaded } = yield select(
-      state => state.localPodcastsManager,
-    );
+	try {
+		const { podcastsDownloaded } = yield select((state) => state.localPodcastsManager)
 
-    const hasPodcastsDownloaded = podcastsDownloaded.length > 0;
+		const hasPodcastsDownloaded = podcastsDownloaded.length > 0
 
-    if (hasPodcastsDownloaded) {
-      const removeFiles = podcastsDownloaded.map(async (podcastDownloaded) => {
-        const PATH_TO_FILE = `${RNFS.DocumentDirectoryPath}/${podcastDownloaded._id}.mp3`
+		if (hasPodcastsDownloaded) {
+			const removeFiles = podcastsDownloaded.map(async (podcastDownloaded) => {
+				const PATH_TO_FILE = `${RNFS.DocumentDirectoryPath}/${podcastDownloaded._id}.mp3`
 
-        return RNFS.unlink(PATH_TO_FILE);
-      });
+				return RNFS.unlink(PATH_TO_FILE)
+			})
 
-      yield removeFiles;
+			yield removeFiles
 
-      yield removeItemFromStorage(CONSTANTS.KEYS.PODCASTS_SAVED);
+			yield removeItemFromStorage(CONSTANTS.KEYS.PODCASTS_SAVED)
 
-      yield put(
-        LocalPodcastsManagerCreators.clearAllLocalPodcastsReferencesSuccess(),
-      );
-    }
-  } catch (err) {
-    console.log(err);
-  }
+			yield put(LocalPodcastsManagerCreators.clearAllLocalPodcastsReferencesSuccess())
+		}
+	} catch (err) {
+		console.log(err)
+	}
 }

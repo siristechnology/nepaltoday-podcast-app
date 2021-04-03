@@ -1,69 +1,69 @@
 // @flow
 
-import React, { PureComponent, Fragment } from 'react';
-import { Animated, View } from 'react-native';
-import styled from 'styled-components';
-import LinearGradient from 'react-native-linear-gradient';
-import { StackActions } from 'react-navigation';
+import React, { PureComponent, Fragment } from 'react'
+import { Animated, View } from 'react-native'
+import styled from 'styled-components'
+import LinearGradient from 'react-native-linear-gradient'
+import { StackActions } from 'react-navigation'
 
-import ProgressiveImage from '~/components/common/ProgressiveImage';
-import ErrorMessage from '~/components/common/ErrorMessage';
-import Loading from '~/components/common/Loading';
-import CONSTANTS from '~/utils/CONSTANTS';
-import appStyles from '~/styles';
+import ProgressiveImage from '~/components/common/ProgressiveImage'
+import ErrorMessage from '~/components/common/ErrorMessage'
+import Loading from '~/components/common/Loading'
+import CONSTANTS from '~/utils/CONSTANTS'
+import appStyles from '~/styles'
 
-import FeaturedSection from './featured-section/FeaturedSection';
-import NewReleasesSection from './new-releases-section/NewReleasesSection';
-import SubjectsSection from './SubjectsSection';
-import RelatedAuthors from './related-authors/RelatedAuthors';
-import SectionWrapper from './SectionWrapper';
-import AboutSection from './AboutSection';
-import AuthorName from './AuthorName';
+import FeaturedSection from './featured-section/FeaturedSection'
+import NewReleasesSection from './new-releases-section/NewReleasesSection'
+import SubjectsSection from './SubjectsSection'
+import RelatedAuthors from './related-authors/RelatedAuthors'
+import SectionWrapper from './SectionWrapper'
+import AboutSection from './AboutSection'
+import AuthorName from './AuthorName'
 
 const Container = styled(View)`
-  width: 100%;
-  height: 100%;
-  background-color: ${({ theme }) => theme.colors.secondaryColor};
-`;
+	width: 100%;
+	height: 100%;
+	background-color: ${({ theme }) => theme.colors.secondaryColor};
+`
 
 const Header = styled(Animated.View)`
-  width: 100%;
-  height: ${({ theme }) => theme.metrics.getHeightFromDP('30%')};
-  position: absolute;
-  justify-content: flex-end;
-`;
+	width: 100%;
+	height: ${({ theme }) => theme.metrics.getHeightFromDP('30%')};
+	position: absolute;
+	justify-content: flex-end;
+`
 
 const ImageWrapper = styled(View)`
-  width: 100%;
-  height: 100%;
-`;
+	width: 100%;
+	height: 100%;
+`
 
 const SmokeShadow = styled(LinearGradient).attrs(({ theme }) => ({
-  colors: ['transparent', theme.colors.secondaryColor],
+	colors: ['transparent', theme.colors.secondaryColor],
 }))`
-  width: 100%;
-  height: ${({ theme }) => theme.metrics.getHeightFromDP('30%')};
-  position: absolute;
-`;
+	width: 100%;
+	height: ${({ theme }) => theme.metrics.getHeightFromDP('30%')};
+	position: absolute;
+`
 
 type AuthorProps = {
-  profileImageThumbnail: string,
-  relatedAuthors: Array<Object>,
-  newReleases: Array<Object>,
-  categories: Array<string>,
-  featured: Array<Object>,
-  profileImage: string,
-  about: string,
-  name: string,
-  id: string,
-};
+	profileImageThumbnail: string,
+	relatedAuthors: Array<Object>,
+	newReleases: Array<Object>,
+	categories: Array<string>,
+	featured: Array<Object>,
+	profileImage: string,
+	about: string,
+	name: string,
+	id: string,
+}
 
 type Props = {
-  author: AuthorProps,
-  navigation: Object,
-  loading: boolean,
-  error: boolean,
-};
+	author: AuthorProps,
+	navigation: Object,
+	loading: boolean,
+	error: boolean,
+}
 
 class AuthorDetailComponent extends PureComponent<Props, {}> {
 	_scrollViewOffset = new Animated.Value(0)
@@ -204,4 +204,4 @@ class AuthorDetailComponent extends PureComponent<Props, {}> {
 	}
 }
 
-export default AuthorDetailComponent;
+export default AuthorDetailComponent

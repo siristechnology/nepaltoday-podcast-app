@@ -1,75 +1,75 @@
 // @flow
 
-import React, { PureComponent } from 'react';
-import { FlatList, View, Text } from 'react-native';
-import styled from 'styled-components';
+import React, { PureComponent } from 'react'
+import { FlatList, View, Text } from 'react-native'
+import styled from 'styled-components'
 
-import { connect } from 'react-redux';
-import { Creators as PlaylistsCreators } from '~/store/ducks/playlist';
+import { connect } from 'react-redux'
+import { Creators as PlaylistsCreators } from '~/store/ducks/playlist'
 
-import { setHeaderPlayButtonPress } from '~/routes/utils/navigationOptions';
-import PodcastsDownloadedListItem from '~/components/common/PodcastListItem';
-import CONSTANTS from '~/utils/CONSTANTS';
+import { setHeaderPlayButtonPress } from '~/routes/utils/navigationOptions'
+import PodcastsDownloadedListItem from '~/components/common/PodcastListItem'
+import CONSTANTS from '~/utils/CONSTANTS'
 
 const Wrapper = styled(View)`
-  width: 100%;
-  height: 100%;
-  flex: 1;
-  background-color: ${({ theme }) => theme.colors.backgroundColor};
-`;
+	width: 100%;
+	height: 100%;
+	flex: 1;
+	background-color: ${({ theme }) => theme.colors.backgroundColor};
+`
 
 const PodcastsDownloadedList = styled(FlatList)`
-  width: 100%;
-  height: 100%;
-  padding-horizontal: ${({ theme }) => theme.metrics.mediumSize}px;
-`;
+	width: 100%;
+	height: 100%;
+	padding-horizontal: ${({ theme }) => theme.metrics.mediumSize}px;
+`
 
 type Props = {
-  podcastsDownloaded: Array<Object>,
-  navigation: Object,
-};
-
-class PodcastsDownloaded extends PureComponent<Props, {}> {
-  componentDidMount() {
-    const { podcastsDownloaded, navigation } = this.props;
-    const { params } = navigation.state;
-
-    setHeaderPlayButtonPress(podcastsDownloaded, navigation);
-  }
-
-  render() {
-    const { podcastsDownloaded, navigation } = this.props;
-
-    return (
-		<Wrapper>
-			<PodcastsDownloadedList
-				renderItem={({ item, index }) => (
-					<PodcastsDownloadedListItem
-						onPressItem={() =>
-							navigation.navigate(CONSTANTS.ROUTES.PODCAST_DETAIL, {
-								[CONSTANTS.KEYS.PODCAST_DETAIL_SHOULD_SHOW_AUTHOR_SECTION]: true,
-								[CONSTANTS.PARAMS.PODCAST_DETAIL]: item,
-							})
-						}
-						navigation={navigation}
-						shouldShowDownloadStatus
-						isDownloading={false}
-						index={index + 1}
-						podcast={item}
-						roundedImage
-					/>
-				)}
-				showsVerticalScrollIndicator={false}
-				keyExtractor={(item) => `${item._id}`}
-				data={podcastsDownloaded}
-			/>
-		</Wrapper>
-	)
-  }
+	podcastsDownloaded: Array<Object>,
+	navigation: Object,
 }
 
-const mapStateToProps = state => ({
-  podcastsDownloaded: state.localPodcastsManager.podcastsDownloaded,
-});
+class PodcastsDownloaded extends PureComponent<Props, {}> {
+	componentDidMount() {
+		const { podcastsDownloaded, navigation } = this.props
+		const { params } = navigation.state
 
-export default connect(mapStateToProps)(PodcastsDownloaded);
+		setHeaderPlayButtonPress(podcastsDownloaded, navigation)
+	}
+
+	render() {
+		const { podcastsDownloaded, navigation } = this.props
+
+		return (
+			<Wrapper>
+				<PodcastsDownloadedList
+					renderItem={({ item, index }) => (
+						<PodcastsDownloadedListItem
+							onPressItem={() =>
+								navigation.navigate(CONSTANTS.ROUTES.PODCAST_DETAIL, {
+									[CONSTANTS.KEYS.PODCAST_DETAIL_SHOULD_SHOW_AUTHOR_SECTION]: true,
+									[CONSTANTS.PARAMS.PODCAST_DETAIL]: item,
+								})
+							}
+							navigation={navigation}
+							shouldShowDownloadStatus
+							isDownloading={false}
+							index={index + 1}
+							podcast={item}
+							roundedImage
+						/>
+					)}
+					showsVerticalScrollIndicator={false}
+					keyExtractor={(item) => `${item._id}`}
+					data={podcastsDownloaded}
+				/>
+			</Wrapper>
+		)
+	}
+}
+
+const mapStateToProps = (state) => ({
+	podcastsDownloaded: state.localPodcastsManager.podcastsDownloaded,
+})
+
+export default connect(mapStateToProps)(PodcastsDownloaded)

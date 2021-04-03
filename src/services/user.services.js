@@ -7,7 +7,7 @@ export default class UserService {
 			mutation: gql`
 				mutation LOGIN_USER($accessToken: String!) {
 					loginUser(loginInput: { accessToken: $accessToken, provider: "google" }) {
-                        id
+						id
 						success
 					}
 				}

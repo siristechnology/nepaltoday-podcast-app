@@ -12,10 +12,10 @@ const Container = styled(View)`
 `
 
 const Wrapper = styled(View)`
-  width: 90%;
+	width: 90%;
 	flex-direction: row;
 	align-items: center;
-  justify-content: space-between;
+	justify-content: space-between;
 `
 
 const PlayOutterCircle = styled(View)`
@@ -74,10 +74,10 @@ const renderSideButton = (iconName: string, action: Function): Object => (
 const PlayerControls = ({ playPrevious, playNext, paused, pause, play, jumpForward, jumpBackward }: Props): Object => (
 	<Container>
 		<Wrapper>
-      {renderSideButton('skip-previous', playPrevious)}
+			{renderSideButton('skip-previous', playPrevious)}
 			{renderSideButton('backup-restore', jumpBackward)}
 			{renderCenterButton(paused, pause, play)}
-      {renderSideButton('fast-forward-30', jumpForward)}
+			{renderSideButton('fast-forward-30', jumpForward)}
 			{renderSideButton('skip-next', playNext)}
 		</Wrapper>
 	</Container>

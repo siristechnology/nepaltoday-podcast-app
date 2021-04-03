@@ -1,30 +1,30 @@
 // @flow
 
-import React from 'react';
-import { FlatList, Platform, View } from 'react-native';
-import styled from 'styled-components';
+import React from 'react'
+import { FlatList, Platform, View } from 'react-native'
+import styled from 'styled-components'
 
-import TrendingAuthorsDiscoverListItem from './TrendingAuthorsDiscoverListItem';
-import SectionWithButton from '~/components/common/SectionWithButton';
-import CONSTANTS from '~/utils/CONSTANTS';
+import TrendingAuthorsDiscoverListItem from './TrendingAuthorsDiscoverListItem'
+import SectionWithButton from '~/components/common/SectionWithButton'
+import CONSTANTS from '~/utils/CONSTANTS'
 
 const Wrapper = styled(View)`
-  width: 100%;
-  flex: 1;
-  margin-top: ${({ theme }) => theme.metrics.extraLargeSize * 1.5}px;
-  margin-bottom: ${({ theme }) => theme.metrics.extraLargeSize}px;
-`;
+	width: 100%;
+	flex: 1;
+	margin-top: ${({ theme }) => theme.metrics.extraLargeSize * 1.5}px;
+	margin-bottom: ${({ theme }) => theme.metrics.extraLargeSize}px;
+`
 
 const TrendingAuthorsList = styled(FlatList)`
-  width: 100%;
-  flex: 1;
-  margin-top: ${({ theme }) => theme.metrics.extraLargeSize}px;
-`;
+	width: 100%;
+	flex: 1;
+	margin-top: ${({ theme }) => theme.metrics.extraLargeSize}px;
+`
 
 type Props = {
-  data: Array<Object>,
-  navigation: Object,
-};
+	data: Array<Object>,
+	navigation: Object,
+}
 
 const TrendingAuthorsDiscover = ({ navigation, data }: Props): Object => (
 	<Wrapper>
@@ -64,4 +64,4 @@ const TrendingAuthorsDiscover = ({ navigation, data }: Props): Object => (
 	</Wrapper>
 )
 
-export default TrendingAuthorsDiscover;
+export default TrendingAuthorsDiscover

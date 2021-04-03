@@ -59,7 +59,9 @@ type Props = {
 }
 
 const ProgramInfo = ({ program, onPlayAll }: Props) => {
-	if (!program.title) return <></>
+	if (!program.title) {
+		return <></>
+	}
 
 	return (
 		<Wrapper>

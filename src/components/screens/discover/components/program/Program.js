@@ -50,12 +50,12 @@ class Program extends Component {
 	render() {
 		const { navigation } = this.props
 
-		const onPlayAll =  () => {
+		const onPlayAll = () => {
 			navigation.navigate(CONSTANTS.ROUTES.PLAYER, {
 				[CONSTANTS.PARAMS.PLAYER]: {
-				  [CONSTANTS.KEYS.PLAYLIST]: this.state.podcasts,
+					[CONSTANTS.KEYS.PLAYLIST]: this.state.podcasts,
 				},
-			  });
+			})
 		}
 
 		return (

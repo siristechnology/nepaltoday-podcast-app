@@ -1,28 +1,28 @@
 // @flow
 
-import React from 'react';
-import { View } from 'react-native';
-import styled from 'styled-components';
+import React from 'react'
+import { View } from 'react-native'
+import styled from 'styled-components'
 
-import SectionWithButton from '~/components/common/SectionWithButton';
-import FeaturedListItem from './FeaturedListItem';
-import CONSTANTS from '~/utils/CONSTANTS';
+import SectionWithButton from '~/components/common/SectionWithButton'
+import FeaturedListItem from './FeaturedListItem'
+import CONSTANTS from '~/utils/CONSTANTS'
 
 const Wrapper = styled(View)`
-  width: 100%;
-  margin-vertical: ${({ theme }) => theme.metrics.extraLargeSize}px;
-`;
+	width: 100%;
+	margin-vertical: ${({ theme }) => theme.metrics.extraLargeSize}px;
+`
 
 const ItemsWrapper = styled(View)`
-  margin-left: ${({ theme }) => theme.metrics.extraLargeSize}px;
-  margin-top: ${({ theme }) => theme.metrics.extraLargeSize}px;
-`;
+	margin-left: ${({ theme }) => theme.metrics.extraLargeSize}px;
+	margin-top: ${({ theme }) => theme.metrics.extraLargeSize}px;
+`
 
 type Props = {
-  featured: Array<Object>,
-  onPressItem: Function,
-  navigation: Object,
-};
+	featured: Array<Object>,
+	onPressItem: Function,
+	navigation: Object,
+}
 
 const Featured = ({ onPressItem, navigation, featured }: Props): Object => (
 	<Wrapper>
@@ -54,4 +54,4 @@ const Featured = ({ onPressItem, navigation, featured }: Props): Object => (
 	</Wrapper>
 )
 
-export default Featured;
+export default Featured

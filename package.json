@@ -16,7 +16,7 @@
     "test-detox-android": "detox test -c android.emu.debug",
     "test": "jest",
     "lint": "eslint .",
-    "lint:fix": "prettier-eslint '**/*.js' --write"
+    "lint:fix": "prettier-eslint --write $PWD/'**/*.js'"
   },
   "rnpm": {
     "assets": [

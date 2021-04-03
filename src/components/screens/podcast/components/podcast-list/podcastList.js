@@ -24,14 +24,14 @@ const PodcastList = ({ navigation, data, headerComponent, refreshControl }) => {
 	}
 
 	const onPodcastPlay = (podcast, playlist) => {
-        playlist = playlist.filter(p => p._id != podcast._id)
-        playlist.unshift(podcast)
+		playlist = playlist.filter((p) => p._id != podcast._id)
+		playlist.unshift(podcast)
 
-        navigation.navigate(CONSTANTS.ROUTES.PLAYER, {
-            [CONSTANTS.PARAMS.PLAYER]: {
-                [CONSTANTS.KEYS.PLAYLIST]: playlist,
-            },
-        })
+		navigation.navigate(CONSTANTS.ROUTES.PLAYER, {
+			[CONSTANTS.PARAMS.PLAYER]: {
+				[CONSTANTS.KEYS.PLAYLIST]: playlist,
+			},
+		})
 	}
 
 	return (

@@ -1,139 +1,136 @@
 // @flow
 
-import React from 'react';
-import {
-  TouchableOpacity, Platform, Linking, View, Text,
-} from 'react-native';
-import styled from 'styled-components';
-import FastImage from 'react-native-fast-image';
+import React from 'react'
+import { TouchableOpacity, Platform, Linking, View, Text } from 'react-native'
+import styled from 'styled-components'
+import FastImage from 'react-native-fast-image'
 
-import Icon from '~/components/common/Icon';
-import SOCIAL_BUTTONS from './SOCIAL_BUTTONS';
-import HeartBeating from './HeartBeating';
-import appStyles from '~/styles';
+import Icon from '~/components/common/Icon'
+import SOCIAL_BUTTONS from './SOCIAL_BUTTONS'
+import HeartBeating from './HeartBeating'
+import appStyles from '~/styles'
 
 const Wrapper = styled(View)`
-  width: 100%;
-  height: 100%;
-  background-color: ${({ theme }) => theme.colors.backgroundColor};
-  align-items: center;
-  padding-top: ${({ theme }) => theme.metrics.getWidthFromDP('24%')}px;
-`;
+	width: 100%;
+	height: 100%;
+	background-color: ${({ theme }) => theme.colors.backgroundColor};
+	align-items: center;
+	padding-top: ${({ theme }) => theme.metrics.getWidthFromDP('24%')}px;
+`
 
 const CardWrapper = styled(View)`
-  width: ${({ theme }) => theme.metrics.getWidthFromDP('85%')}px;
-  padding: ${({ theme }) => theme.metrics.largeSize}px;
-  padding-top: 0px;
-  background-color: ${({ theme }) => theme.colors.white};
-  border-radius: 5px;
-`;
+	width: ${({ theme }) => theme.metrics.getWidthFromDP('85%')}px;
+	padding: ${({ theme }) => theme.metrics.largeSize}px;
+	padding-top: 0px;
+	background-color: ${({ theme }) => theme.colors.white};
+	border-radius: 5px;
+`
 
 const BeautifulRoleWrapper = styled(View)`
-  height: ${({ theme }) => theme.metrics.getWidthFromDP('10%')};
-  flex-direction: row;
-  justify-content: center;
-  margin-top: ${({ theme }) => theme.metrics.extraSmallSize}px;
-  /* align-items: center; */
-`;
+	height: ${({ theme }) => theme.metrics.getWidthFromDP('10%')};
+	flex-direction: row;
+	justify-content: center;
+	margin-top: ${({ theme }) => theme.metrics.extraSmallSize}px;
+	/* align-items: center; */
+`
 
 const ContentWrapper = styled(View)`
-  width: 100%;
-  align-items: center;
-`;
+	width: 100%;
+	align-items: center;
+`
 
 const BeautifulImageBack = styled(View)`
-  width: ${({ theme }) => theme.metrics.getWidthFromDP('34%')}px;
-  height: ${({ theme }) => theme.metrics.getWidthFromDP('34%')}px;
-  align-self: center;
-  margin-top: ${({ theme }) => theme.metrics.getWidthFromDP('7%')}px;
-  position: absolute;
-  border-radius: ${({ theme }) => theme.metrics.getWidthFromDP('17%')}px;
-  background-color: ${({ theme }) => theme.colors.white};
-`;
+	width: ${({ theme }) => theme.metrics.getWidthFromDP('34%')}px;
+	height: ${({ theme }) => theme.metrics.getWidthFromDP('34%')}px;
+	align-self: center;
+	margin-top: ${({ theme }) => theme.metrics.getWidthFromDP('7%')}px;
+	position: absolute;
+	border-radius: ${({ theme }) => theme.metrics.getWidthFromDP('17%')}px;
+	background-color: ${({ theme }) => theme.colors.white};
+`
 
 const BeautifulName = styled(Text)`
-  font-family: CircularStd-Black;
-  font-size: ${({ theme }) => theme.metrics.getWidthFromDP('7%')}px;
-  color: ${({ theme }) => theme.colors.darkText};
-`;
+	font-family: CircularStd-Black;
+	font-size: ${({ theme }) => theme.metrics.getWidthFromDP('7%')}px;
+	color: ${({ theme }) => theme.colors.darkText};
+`
 
 const BeautifulRole = styled(Text)`
-  margin-top: ${({ theme }) => theme.metrics.extraSmallSize}px;
-  font-family: CircularStd-Medium;
-  font-size: ${({ theme }) => theme.metrics.getWidthFromDP('5.5%')}px;
-  color: ${({ theme }) => theme.colors.subText};
-`;
+	margin-top: ${({ theme }) => theme.metrics.extraSmallSize}px;
+	font-family: CircularStd-Medium;
+	font-size: ${({ theme }) => theme.metrics.getWidthFromDP('5.5%')}px;
+	color: ${({ theme }) => theme.colors.subText};
+`
 
 const BeautifulImage = styled(FastImage).attrs(() => ({
-  source: {
-    uri:
-      'https://siristechnology.com/static/262427b2f72af83c3810602d5f7a3d96/logo.png',
-  },
+	source: {
+		uri: 'https://siristechnology.com/static/262427b2f72af83c3810602d5f7a3d96/logo.png',
+	},
 }))`
-  width: ${({ theme }) => theme.metrics.getWidthFromDP('32%')}px;
-  height: ${({ theme }) => theme.metrics.getWidthFromDP('32%')}px;
-  margin-top: -${({ theme }) => theme.metrics.getWidthFromDP('16%')}px;
-  align-self: center;
-  border-radius: ${({ theme }) => theme.metrics.getWidthFromDP('16%')}px;
-  border-width: ${({ theme }) => theme.metrics.smallSize}px;
-  border-color: ${({ theme }) => theme.colors.white};
-`;
+	width: ${({ theme }) => theme.metrics.getWidthFromDP('32%')}px;
+	height: ${({ theme }) => theme.metrics.getWidthFromDP('32%')}px;
+	margin-top: -${({ theme }) => theme.metrics.getWidthFromDP('16%')}px;
+	align-self: center;
+	border-radius: ${({ theme }) => theme.metrics.getWidthFromDP('16%')}px;
+	border-width: ${({ theme }) => theme.metrics.smallSize}px;
+	border-color: ${({ theme }) => theme.colors.white};
+`
 
 const AboutText = styled(Text)`
-  margin-bottom: ${({ theme }) => theme.metrics.largeSize}px;
-  font-family: CircularStd-Medium;
-  font-size: ${({ theme }) => theme.metrics.largeSize * 1.1}px;
-  color: ${({ theme }) => theme.colors.subText};
-  text-align: center;
-`;
+	margin-bottom: ${({ theme }) => theme.metrics.largeSize}px;
+	font-family: CircularStd-Medium;
+	font-size: ${({ theme }) => theme.metrics.largeSize * 1.1}px;
+	color: ${({ theme }) => theme.colors.subText};
+	text-align: center;
+`
 
 const SocialButtonsWrapper = styled(View)`
-  width: ${({ theme }) => theme.metrics.getWidthFromDP('50%')}px;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  align-self: center;
-  margin-top: ${({ theme }) => theme.metrics.mediumSize}px;
-`;
+	width: ${({ theme }) => theme.metrics.getWidthFromDP('50%')}px;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	align-self: center;
+	margin-top: ${({ theme }) => theme.metrics.mediumSize}px;
+`
 
 const SocialButton = styled(TouchableOpacity)`
-  width: ${({ theme }) => theme.metrics.getWidthFromDP('11%')}px;
-  height: ${({ theme }) => theme.metrics.getWidthFromDP('11%')}px;
-  padding-top: ${({ withPadingTop, theme }) => (Platform.OS === 'ios' && withPadingTop ? 2 : 0)}px;
-  justify-content: center;
-  align-items: center;
-  background-color: ${({ color }) => color};
-  border-radius: ${({ theme }) => theme.metrics.getWidthFromDP('5.5%')}px;
-`;
+	width: ${({ theme }) => theme.metrics.getWidthFromDP('11%')}px;
+	height: ${({ theme }) => theme.metrics.getWidthFromDP('11%')}px;
+	padding-top: ${({ withPadingTop, theme }) => (Platform.OS === 'ios' && withPadingTop ? 2 : 0)}px;
+	justify-content: center;
+	align-items: center;
+	background-color: ${({ color }) => color};
+	border-radius: ${({ theme }) => theme.metrics.getWidthFromDP('5.5%')}px;
+`
 
 const RedLine = styled(View)`
-  width: ${({ theme }) => theme.metrics.getWidthFromDP('20%')}px;
-  height: 2.5px;
-  margin-top: ${({ theme }) => theme.metrics.extraLargeSize + 4}px;
-  margin-bottom: ${({ theme }) => theme.metrics.extraLargeSize}px;
-  background-color: ${({ theme }) => theme.colors.primaryColor};
-`;
+	width: ${({ theme }) => theme.metrics.getWidthFromDP('20%')}px;
+	height: 2.5px;
+	margin-top: ${({ theme }) => theme.metrics.extraLargeSize + 4}px;
+	margin-bottom: ${({ theme }) => theme.metrics.extraLargeSize}px;
+	background-color: ${({ theme }) => theme.colors.primaryColor};
+`
 
 const onPressSocialButton = async (url: string) => {
-  const canOpenURL = await Linking.canOpenURL(url);
+	const canOpenURL = await Linking.canOpenURL(url)
 
-  if (canOpenURL) {
-    Linking.openURL(url);
-  } else {
-    alert("Unfortunately, this URL can't be opened on your devices! :(");
-  }
-};
+	if (canOpenURL) {
+		Linking.openURL(url)
+	} else {
+		alert("Unfortunately, this URL can't be opened on your devices! :(")
+	}
+}
 
 const shadowStyle = {
-  shadowColor: '#000',
-  shadowOffset: {
-    width: 0,
-    height: 1,
-  },
-  shadowOpacity: 0.2,
-  shadowRadius: 1.41,
-  elevation: 2,
-};
+	shadowColor: '#000',
+	shadowOffset: {
+		width: 0,
+		height: 1,
+	},
+	shadowOpacity: 0.2,
+	shadowRadius: 1.41,
+	elevation: 2,
+}
 
 const About = (): Object => (
 	<Wrapper>
@@ -166,4 +163,4 @@ const About = (): Object => (
 	</Wrapper>
 )
 
-export default About;
+export default About

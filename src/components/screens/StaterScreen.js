@@ -1,20 +1,20 @@
-import React, { Component, Fragment } from 'react';
-import SplashScreen from 'react-native-splash-screen';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { Creators as PlayerCreators } from '~/store/ducks/player';
-import { Creators as LocalPodcastsManagerCreators } from '~/store/ducks/localPodcastsManager';
-import { Creators as PlaylistsCreators } from '~/store/ducks/playlist';
+import React, { Component, Fragment } from 'react'
+import SplashScreen from 'react-native-splash-screen'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { Creators as PlayerCreators } from '~/store/ducks/player'
+import { Creators as LocalPodcastsManagerCreators } from '~/store/ducks/localPodcastsManager'
+import { Creators as PlaylistsCreators } from '~/store/ducks/playlist'
 
-import CONSTANTS from '~/utils/CONSTANTS';
-import { getUserInfo } from '~/services/asyncStorage.services';
+import CONSTANTS from '~/utils/CONSTANTS'
+import { getUserInfo } from '~/services/asyncStorage.services'
 
 type Props = {
-  loadPodcastsRecentlyPlayed: Function,
-  setPodcastsDownloadedList: Function,
-  loadPlaylists: Function,
-  navigation: Object,
-};
+	loadPodcastsRecentlyPlayed: Function,
+	setPodcastsDownloadedList: Function,
+	loadPlaylists: Function,
+	navigation: Object,
+}
 
 class StaterScreen extends Component<Props, {}> {
 	componentDidMount() {
@@ -42,16 +42,8 @@ class StaterScreen extends Component<Props, {}> {
 	}
 }
 
-const Creators = Object.assign(
-  {},
-  LocalPodcastsManagerCreators,
-  PlaylistsCreators,
-  PlayerCreators,
-);
+const Creators = Object.assign({}, LocalPodcastsManagerCreators, PlaylistsCreators, PlayerCreators)
 
-const mapDispatchToProps = dispatch => bindActionCreators(Creators, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators(Creators, dispatch)
 
-export default connect(
-  null,
-  mapDispatchToProps,
-)(StaterScreen);
+export default connect(null, mapDispatchToProps)(StaterScreen)

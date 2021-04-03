@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 import { createAppContainer } from 'react-navigation'
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs'
 
-import Navigation from '~/components/common/navigation/Navigation';
+import Navigation from '~/components/common/navigation/Navigation'
 import PodcastRoutes from '~/components/screens/podcast/routes'
 import DiscoverRoutes from '~/components/screens/discover/routes'
 import MoreRoutes from '~/components/screens/more/routes'
@@ -41,6 +41,6 @@ const ApplicationTabs = createMaterialTopTabNavigator(
 	},
 )
 
-const AppContainer = createAppContainer(ApplicationTabs);
+const AppContainer = createAppContainer(ApplicationTabs)
 
-export default AppContainer;
+export default AppContainer

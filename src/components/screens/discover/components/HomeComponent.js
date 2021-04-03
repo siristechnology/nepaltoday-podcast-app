@@ -75,9 +75,10 @@ const HomeComponent = ({ navigation, loading, error, data, getHome, onTypeAuthor
 						.map((category) => (
 							<CategoryWrapper key={category}>
 								<CategoryText>{category}</CategoryText>
-								<ProgramCategoriesDiscover data={data
-									.filter((d) => d.category == category)
-									.sort((a,b) => b.weight - a.weight)} navigation={navigation} />
+								<ProgramCategoriesDiscover
+									data={data.filter((d) => d.category == category).sort((a, b) => b.weight - a.weight)}
+									navigation={navigation}
+								/>
 							</CategoryWrapper>
 						))}
 			</ScrollView>
