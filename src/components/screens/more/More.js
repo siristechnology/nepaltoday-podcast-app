@@ -72,7 +72,7 @@ type State = {
 
 const darkThemeSetting = {
 	title: 'Dark Theme',
-	description: 'Activate the Dark theme (the Light Theme will be activated otherwise).',
+	description: 'Activate the Dark theme.',
 	stateReference: DARK_THEME_STATE_REF,
 }
 
@@ -119,7 +119,7 @@ class Profile extends Component<Props, State> {
 
 		return (
 			<Wrapper>
-				<ScreenTitle title="Profile & Settings" />
+				<ScreenTitle title="Settings & More" />
 				<ThemeContextConsumer>
 					{(context) => {
 						const { onToggleDarkTheme, isDarkThemeActivated } = context
