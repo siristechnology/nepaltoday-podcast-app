@@ -79,7 +79,7 @@
     "babel-plugin-module-resolver": "^4.0.0",
     "babel-plugin-root-import": "^6.6.0",
     "eslint": "^7.14.0",
-    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-config-prettier": "^8.1.0",
     "husky": "^6.0.0",
     "lint-staged": "^10.5.2",
     "prettier-eslint": "^12.0.0",
