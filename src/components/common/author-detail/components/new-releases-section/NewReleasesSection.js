@@ -1,6 +1,6 @@
 import React from 'react'
 import { FlatList, View } from 'react-native'
-import { StackActions } from 'react-navigation'
+import { StackActions } from '@react-navigation/native'
 import styled from 'styled-components'
 
 import NewReleasesSectionItemList from './NewReleasesSectionItemList'

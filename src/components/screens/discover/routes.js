@@ -1,5 +1,5 @@
 import React from 'react'
-import { createStackNavigator } from 'react-navigation-stack'
+import { createStackNavigator } from '@react-navigation/stack'
 import { Platform } from 'react-native'
 
 import AuthorDetailContainer from '~/components/common/author-detail/AuthorDetailContainer'
@@ -27,50 +27,62 @@ const LOCAL_STACK_ROUTES = {
 	PROGRAM_CATEGORIES_SEE_ALL: 'PROGRAM_CATEGORIES_SEE_ALL',
 }
 
-const RootStack = createStackNavigator(
-	{
-		[CONSTANTS.ROUTES.DISCOVER]: {
-			screen: (props) => <Discover {...props} LOCAL_STACK_ROUTES={LOCAL_STACK_ROUTES} />,
-			navigationOptions: () => ({
-				headerShown: false,
-				headerBackTitle: null,
-				headerTransparent: true,
-			}),
-		},
+// const RootStack = createStackNavigator(
+// 	{
+// 		[CONSTANTS.ROUTES.DISCOVER]: {
+// 			screen: (props) => <Discover {...props} LOCAL_STACK_ROUTES={LOCAL_STACK_ROUTES} />,
+// 			navigationOptions: () => ({
+// 				headerShown: false,
+// 				headerBackTitle: null,
+// 				headerTransparent: true,
+// 			}),
+// 		},
 
-		[CONSTANTS.ROUTES.PODCAST_DETAIL]: {
-			screen: PodcastDetailContainer,
-			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('', navigation, screenProps),
-		},
+// 		[CONSTANTS.ROUTES.PODCAST_DETAIL]: {
+// 			screen: PodcastDetailContainer,
+// 			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('', navigation, screenProps),
+// 		},
 
-		[LOCAL_STACK_ROUTES.PROGRAM_CATEGORIES_SEE_ALL]: {
-			screen: Program,
-			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('', navigation, screenProps),
-		},
+// 		[LOCAL_STACK_ROUTES.PROGRAM_CATEGORIES_SEE_ALL]: {
+// 			screen: Program,
+// 			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('', navigation, screenProps),
+// 		},
 
-		[LOCAL_STACK_ROUTES.SEARCH_AUTHORS_RESULT]: {
-			screen: SearchAuthorListContainer,
-			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('Search Podcasts', navigation, screenProps),
-		},
+// 		[LOCAL_STACK_ROUTES.SEARCH_AUTHORS_RESULT]: {
+// 			screen: SearchAuthorListContainer,
+// 			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('Search Podcasts', navigation, screenProps),
+// 		},
 
-		[CONSTANTS.ROUTES.AUTHOR_DETAIL]: {
-			screen: AuthorDetailContainer,
-			navigationOptions: ({ screenProps }) => getHiddenHeaderLayout(screenProps),
-		},
+// 		[CONSTANTS.ROUTES.AUTHOR_DETAIL]: {
+// 			screen: AuthorDetailContainer,
+// 			navigationOptions: ({ screenProps }) => getHiddenHeaderLayout(screenProps),
+// 		},
 
-		[CONSTANTS.ROUTES.PLAYER]: {
-			screen: Player,
-			navigationOptions: ({ navigation }) => getPlayerNavigationOption(navigation),
-		},
-	},
-	{
-		initialRouteName: CONSTANTS.ROUTES.DISCOVER,
-		mode: Platform.OS === 'ios' ? 'card' : 'modal',
-		headerMode: 'screen',
-		defaultNavigationOptions: {
-			headerTitleAlign: 'center',
-		},
-	},
-)
+// 		[CONSTANTS.ROUTES.PLAYER]: {
+// 			screen: Player,
+// 			navigationOptions: ({ navigation }) => getPlayerNavigationOption(navigation),
+// 		},
+// 	},
+// 	{
+// 		initialRouteName: CONSTANTS.ROUTES.DISCOVER,
+// 		mode: Platform.OS === 'ios' ? 'card' : 'modal',
+// 		headerMode: 'screen',
+// 		defaultNavigationOptions: {
+// 			headerTitleAlign: 'center',
+// 		},
+// 	},
+// )
 
-export default RootStack
+const Stack = createStackNavigator()
+
+const DiscoverStack = () => {
+	return (
+		<Stack.Navigator initialRouteName={CONSTANTS.ROUTES.DISCOVER}>
+			{/* <Stack.Screen name={CONSTANTS.ROUTES.DISCOVER} component={StarterScreen} />
+			<Stack.Screen name={CONSTANTS.ROUTES.LOGIN} component={Login} />
+			<Stack.Screen name={CONSTANTS.ROUTES.MAIN_STACK} component={MainStack} /> */}
+		</Stack.Navigator>
+	)
+}
+
+export default DiscoverStack

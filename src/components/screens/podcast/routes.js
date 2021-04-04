@@ -1,5 +1,5 @@
 import React from 'react'
-import { createStackNavigator } from 'react-navigation-stack'
+import { createStackNavigator } from '@react-navigation/stack'
 import { Platform } from 'react-native'
 
 import AuthorDetailContainer from '~/components/common/author-detail/AuthorDetailContainer'

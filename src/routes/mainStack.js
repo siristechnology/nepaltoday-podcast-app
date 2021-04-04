@@ -1,6 +1,6 @@
 import React from 'react'
-import { createAppContainer } from 'react-navigation'
-import { createMaterialTopTabNavigator } from 'react-navigation-tabs'
+import { createAppContainer } from '@react-navigation/native'
+import { createMaterialTopTabNavigator } from '@react-navigation/material-bottom-tabs'
 
 import Navigation from '~/components/common/navigation/Navigation'
 import PodcastRoutes from '~/components/screens/podcast/routes'

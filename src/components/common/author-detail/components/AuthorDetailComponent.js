@@ -4,7 +4,7 @@ import React, { PureComponent, Fragment } from 'react'
 import { Animated, View } from 'react-native'
 import styled from 'styled-components'
 import LinearGradient from 'react-native-linear-gradient'
-import { StackActions } from 'react-navigation'
+import { StackActions } from '@react-navigation/native'
 
 import ProgressiveImage from '~/components/common/ProgressiveImage'
 import ErrorMessage from '~/components/common/ErrorMessage'
