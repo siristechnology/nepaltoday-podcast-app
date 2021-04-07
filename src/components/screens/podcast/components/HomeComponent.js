@@ -27,9 +27,8 @@ type Props = {
 	data: Data,
 }
 
-const HomeComponent = ({ navigation, loading, error, data, getHome }: Props): Object => (
+const HomeComponent = ({ navigation, loading, error, data, onRefresh }: Props): Object => (
 	<Wrapper>
-		{loading && !error && <Loading />}
 		{!loading && error && (
 			<ErrorMessage
 				message="Seems like you're having some troubles when trying to connect with the server."
@@ -37,7 +36,7 @@ const HomeComponent = ({ navigation, loading, error, data, getHome }: Props): Ob
 				title="Oops..."
 			/>
 		)}
-		{!loading && !error && data && data.length > 0 && (
+		{data && data.length > 0 && (
 			<PodcastList
 				data={data}
 				navigation={navigation}
@@ -48,11 +47,12 @@ const HomeComponent = ({ navigation, loading, error, data, getHome }: Props): Ob
 						tintColor={appStyles.colors.primaryColor}
 						colors={[appStyles.colors.white]}
 						refreshing={loading && !error}
-						onRefresh={getHome}
+						onRefresh={onRefresh}
 					/>
 				}
 			/>
 		)}
+		{loading && !error && <Loading />}
 	</Wrapper>
 )
 

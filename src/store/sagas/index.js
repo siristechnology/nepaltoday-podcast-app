@@ -4,7 +4,6 @@ import { Types as LocalPodcastsManagerCreators } from '../ducks/localPodcastsMan
 import { Types as PlaylistTypes } from '../ducks/playlist'
 import { Types as SubjectTypes } from '../ducks/subject'
 import { Types as PlayerTypes } from '../ducks/player'
-import { Types as PodcastTypes } from '../ducks/podcast'
 import { Types as DiscoverTypes } from '../ducks/discover'
 
 import {
@@ -27,12 +26,10 @@ import {
 	removePlaylist,
 	editPlaylist,
 } from './playlist'
-import { getHome } from './podcast'
 import { getDiscover, searchPodcasts } from './discover'
 
 export default function* rootSaga() {
 	return yield all([
-		takeLatest(PodcastTypes.GET_HOME_REQUEST, getHome),
 		takeLatest(DiscoverTypes.GET_DISCOVER_REQUEST, getDiscover),
 		takeLatest(DiscoverTypes.SEARCH_PODCASTS_REQUEST, searchPodcasts),
 		takeLatest(LocalPodcastsManagerCreators.SET_PODCASTS_DOWNLOADED_LIST_REQUEST, setPodcastsDownloadedList),
@@ -48,7 +45,7 @@ export default function* rootSaga() {
 		takeLatest(PlayerTypes.SETUP_SHUFFLE_PLAYER_REQUEST, setupShufflePlayer),
 		takeLatest(PlayerTypes.PLAY_NEXT_REQUEST, playNext),
 		takeLatest(PlayerTypes.PLAY_PREVIOUS_REQUEST, playPrevious),
-		takeLatest(PlayerTypes.SHUFFLE_PLAYLIST_REQUEST, shufflePlaylist),		
+		takeLatest(PlayerTypes.SHUFFLE_PLAYLIST_REQUEST, shufflePlaylist),
 		takeLatest(SubjectTypes.GET_SUBJECT_DETAIL_REQUEST, getSubjectDetail),
 		takeLatest(PlaylistTypes.CREATE_PLAYLIST_REQUEST, createPlaylist),
 		takeLatest(PlaylistTypes.LOAD_PLAYLISTS_REQUEST, loadPlaylists),

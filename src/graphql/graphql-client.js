@@ -20,7 +20,7 @@ const client = new ApolloClient({
 	link: concat(errorLink, httpLink),
 	cache: new InvalidationPolicyCache({
 		invalidationPolicies: {
-			timeToLive: 14400000,
+			timeToLive: 60000,
 		},
 	}),
 })

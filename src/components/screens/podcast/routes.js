@@ -17,16 +17,11 @@ import {
 import CONSTANTS from '~/utils/CONSTANTS'
 import appStyles from '~/styles'
 
-const LOCAL_STACK_ROUTES = {
-	TRENDING_AUTHORS_SEE_ALL: 'TRENDING_AUTHORS_SEE_ALL',
-	HOTTEST_PODCASTS_SEE_ALL: 'HOTTEST_PODCASTS_SEE_ALL',
-	NEW_RELEASES_SEE_ALL: 'NEW_RELEASES_SEE_ALL',
-}
 
 const RootStack = createStackNavigator(
 	{
 		[CONSTANTS.ROUTES.PODCAST]: {
-			screen: (props) => <Podacast {...props} LOCAL_STACK_ROUTES={LOCAL_STACK_ROUTES} />,
+			screen: (props) => <Podacast {...props} />,
 			navigationOptions: () => ({
 				headerShown: false,
 				headerBackTitle: null,
