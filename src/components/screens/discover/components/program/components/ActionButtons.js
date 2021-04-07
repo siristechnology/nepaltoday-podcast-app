@@ -22,7 +22,7 @@ type Props = {
 
 const ActionButtons = ({ onPlayAll }: Props): Object => (
 	<Wrapper>
-		<DefaultButton onPress={onPlayAll} size="large" text="Play All" />
+		<DefaultButton onPress={onPlayAll} size="large" text="PLAY ALL" />
 	</Wrapper>
 )
 

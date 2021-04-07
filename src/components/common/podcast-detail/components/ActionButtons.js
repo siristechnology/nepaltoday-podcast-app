@@ -16,12 +16,12 @@ const Wrapper = styled(View)`
 `
 
 const DownloadButton = styled(TouchableOpacity)`
-	width: ${({ theme }) => theme.metrics.getWidthFromDP('16%')}px;
-	height: ${({ theme }) => theme.metrics.getWidthFromDP('16%')}px;
+	width: ${({ theme }) => theme.metrics.getWidthFromDP('13%')}px;
+	height: ${({ theme }) => theme.metrics.getWidthFromDP('13%')}px;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-	border-radius: ${({ theme }) => theme.metrics.getWidthFromDP('8%')}px;
+	border-radius: ${({ theme }) => theme.metrics.getWidthFromDP('7%')}px;
 	background-color: ${({ theme }) => theme.colors.white};
 `
 
