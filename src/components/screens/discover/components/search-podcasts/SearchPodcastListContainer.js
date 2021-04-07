@@ -50,6 +50,7 @@ class SearchPodcastListContainer extends Component<Props, {}> {
 
 const mapStateToProps = (state) => ({
 	podcasts: state.discover.podcasts,
+	loadingSearchPodcasts: state.discover.loadingSearchPodcasts,
 })
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(DiscoverCreators, dispatch)

@@ -9,14 +9,8 @@ import PodcastDetailContainer from '~/components/common/podcast-detail/PodcastDe
 import Player from '~/components/common/player/PlayerContainer'
 import Discover from './Discover'
 
-import {
-	getDefaultHeaderWithButton,
-	getDefaultHeaderWithTitle,
-	getPlayerNavigationOption,
-	getHiddenHeaderLayout,
-} from '~/routes/utils/navigationOptions'
+import { getDefaultHeaderWithTitle, getPlayerNavigationOption, getHiddenHeaderLayout } from '~/routes/utils/navigationOptions'
 import CONSTANTS from '~/utils/CONSTANTS'
-import appStyles from '~/styles'
 import Program from './components/program/Program'
 
 const LOCAL_STACK_ROUTES = {
