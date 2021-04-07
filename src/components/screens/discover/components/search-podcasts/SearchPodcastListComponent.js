@@ -74,16 +74,12 @@ class SearchPodcastListComponent extends PureComponent<Props, {}> {
 					<SearchAuthorListItem
 						onPress={() =>
 							navigation.navigate(CONSTANTS.ROUTES.PODCAST_DETAIL, {
-								[CONSTANTS.PARAMS.AUTHOR_DETAIL]: {
-									program: item.program.id,
-								},
 								[CONSTANTS.PARAMS.PODCAST_DETAIL]: item,
 							})
 						}
 						numberPodcasts={0}
 						profileImage={item.imageUrl}
-						program={item.program.id}
-						// subjects={item.categories}
+						program={item.program.title}
 						name={item.title}
 						id={item._id}
 					/>
