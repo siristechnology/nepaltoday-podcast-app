@@ -7,7 +7,7 @@ import styled from 'styled-components'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Creators as AuthorCreators } from '~/store/ducks/author'
+import { Creators as DiscoverCreators } from '~/store/ducks/discover'
 
 const Wrapper = styled(TouchableOpacity)`
 	width: ${({ theme }) => theme.metrics.getWidthFromDP('35%')}px;
@@ -45,6 +45,6 @@ const RelatedAuthorsListItem = ({ getAuthorById, profileImage, name, id }: Props
 	</Wrapper>
 )
 
-const mapDispatchToProps = (dispatch) => bindActionCreators(AuthorCreators, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators(DiscoverCreators, dispatch)
 
 export default connect(null, mapDispatchToProps)(RelatedAuthorsListItem)

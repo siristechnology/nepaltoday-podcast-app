@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Creators as AuthorCreators } from '~/store/ducks/author'
+import { Creators as DiscoverCreators } from '~/store/ducks/discover'
 
 import SearchAuthorListComponent from './SearchAuthorListComponent'
 import CONSTANTS from '~/utils/CONSTANTS'
@@ -16,18 +16,18 @@ type AuthorProps = {
 }
 
 type Props = {
-	searchProgramByName: Function,
+	searchPodcasts: Function,
 	author: AuthorProps,
 	navigation: Object,
 }
 
 class SearchAuthorListContainer extends Component<Props, {}> {
 	componentDidMount() {
-		const { searchProgramByName } = this.props
+		const { searchPodcasts } = this.props
 
 		const programName = this.getAuthorNameParam()
 
-		searchProgramByName(programName)
+		searchPodcasts(programName)
 	}
 
 	getAuthorNameParam = (): string => {
@@ -40,20 +40,18 @@ class SearchAuthorListContainer extends Component<Props, {}> {
 	}
 
 	render() {
-		const { navigation, author } = this.props
-		const { loadingSearchProgramByName, programs } = author
+		const { navigation, loadingSearchPodcasts, podcasts = [] } = this.props
+
 		const programName = this.getAuthorNameParam()
 
-		return (
-			<SearchAuthorListComponent loading={loadingSearchProgramByName} programName={programName} navigation={navigation} programs={programs} />
-		)
+		return <SearchAuthorListComponent loading={loadingSearchPodcasts} programName={programName} navigation={navigation} podcasts={podcasts} />
 	}
 }
 
 const mapStateToProps = (state) => ({
-	author: state.author,
+	podcasts: state.discover.podcasts,
 })
 
-const mapDispatchToProps = (dispatch) => bindActionCreators(AuthorCreators, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators(DiscoverCreators, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchAuthorListContainer)

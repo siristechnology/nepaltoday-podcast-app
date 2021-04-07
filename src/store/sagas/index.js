@@ -4,7 +4,6 @@ import { Types as LocalPodcastsManagerCreators } from '../ducks/localPodcastsMan
 import { Types as PlaylistTypes } from '../ducks/playlist'
 import { Types as SubjectTypes } from '../ducks/subject'
 import { Types as PlayerTypes } from '../ducks/player'
-import { Types as AuthorTypes } from '../ducks/author'
 import { Types as PodcastTypes } from '../ducks/podcast'
 import { Types as DiscoverTypes } from '../ducks/discover'
 
@@ -17,7 +16,6 @@ import {
 	addPodcastToRecentlyPlayedList,
 } from './localPodcastsManager'
 import { shufflePlaylist, setPodcast, playNext, playPrevious, setupPlayer, setupShufflePlayer, repeatCurrentPodcast, play } from './player'
-import { searchProgramByName, getAuthorByProgram } from './author'
 import { getSubjectDetail } from './subject'
 import {
 	createPlaylist,
@@ -30,12 +28,13 @@ import {
 	editPlaylist,
 } from './playlist'
 import { getHome } from './podcast'
-import { getDiscover } from './discover'
+import { getDiscover, searchPodcasts } from './discover'
 
 export default function* rootSaga() {
 	return yield all([
 		takeLatest(PodcastTypes.GET_HOME_REQUEST, getHome),
 		takeLatest(DiscoverTypes.GET_DISCOVER_REQUEST, getDiscover),
+		takeLatest(DiscoverTypes.SEARCH_PODCASTS_REQUEST, searchPodcasts),
 		takeLatest(LocalPodcastsManagerCreators.SET_PODCASTS_DOWNLOADED_LIST_REQUEST, setPodcastsDownloadedList),
 		takeLatest(LocalPodcastsManagerCreators.DOWNLOAD_PODCAST, downloadPodcastToLocalStorage),
 		takeLatest(LocalPodcastsManagerCreators.CLEAR_LOCAL_PODCASTS_REFERENCES_REQUEST, clearAllLocalPodcastsReferences),
@@ -49,10 +48,8 @@ export default function* rootSaga() {
 		takeLatest(PlayerTypes.SETUP_SHUFFLE_PLAYER_REQUEST, setupShufflePlayer),
 		takeLatest(PlayerTypes.PLAY_NEXT_REQUEST, playNext),
 		takeLatest(PlayerTypes.PLAY_PREVIOUS_REQUEST, playPrevious),
-		takeLatest(PlayerTypes.SHUFFLE_PLAYLIST_REQUEST, shufflePlaylist),
-		takeLatest(AuthorTypes.SEARCH_PROGRAM_BY_NAME_REQUEST, searchProgramByName),
+		takeLatest(PlayerTypes.SHUFFLE_PLAYLIST_REQUEST, shufflePlaylist),		
 		takeLatest(SubjectTypes.GET_SUBJECT_DETAIL_REQUEST, getSubjectDetail),
-		takeLatest(AuthorTypes.GET_AUTHOR_BY_PROGRAM_REQUEST, getAuthorByProgram),
 		takeLatest(PlaylistTypes.CREATE_PLAYLIST_REQUEST, createPlaylist),
 		takeLatest(PlaylistTypes.LOAD_PLAYLISTS_REQUEST, loadPlaylists),
 		takeLatest(PlaylistTypes.ADD_PODCAST_REQUEST, addPodcast),

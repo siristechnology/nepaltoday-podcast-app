@@ -1,10 +1,8 @@
-// @flow
-
 import React, { Component } from 'react'
 import { View } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Creators as AuthorCreators } from '~/store/ducks/author'
+import { Creators as DiscoverCreators } from '~/store/ducks/discover'
 
 import AuthorDetailComponent from './components/AuthorDetailComponent'
 import CONSTANTS from '~/utils/CONSTANTS'
@@ -39,6 +37,6 @@ const mapStateToProps = ({ author }) => ({
 	error: author.error,
 })
 
-const mapDispatchToProps = (dispatch) => bindActionCreators(AuthorCreators, dispatch)
+const mapDispatchToProps = (dispatch) => bindActionCreators(DiscoverCreators, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthorDetailContainer)

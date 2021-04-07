@@ -41,9 +41,9 @@ class SearchAuthorListComponent extends PureComponent<Props, {}> {
 	})
 
 	UNSAFE_componentWillReceiveProps(nextProps: Props) {
-		const { loading, programs } = nextProps
+		const { loading, podcasts } = nextProps
 
-		const shouldShowList = !loading && programs.length > 0
+		const shouldShowList = !loading && podcasts.length > 0
 
 		if (shouldShowList) {
 			Animated.spring(this._authorSearchListPosition.y, {
@@ -56,11 +56,11 @@ class SearchAuthorListComponent extends PureComponent<Props, {}> {
 	}
 
 	renderSearchProgramsList = (): Object => {
-		const { programName, navigation, programs } = this.props
+		const { programName, navigation, podcasts } = this.props
 
 		return (
 			<Animated.FlatList
-				ListHeaderComponent={programs.length > 0 && <SearchResultText>{`Results for: '${programName}'`}</SearchResultText>}
+				ListHeaderComponent={podcasts.length > 0 && <SearchResultText>{`Results for: '${programName}'`}</SearchResultText>}
 				style={[
 					{
 						transform: [
@@ -73,34 +73,35 @@ class SearchAuthorListComponent extends PureComponent<Props, {}> {
 				renderItem={({ item }) => (
 					<SearchAuthorListItem
 						onPress={() =>
-							navigation.navigate(CONSTANTS.ROUTES.AUTHOR_DETAIL, {
+							navigation.navigate(CONSTANTS.ROUTES.PODCAST_DETAIL, {
 								[CONSTANTS.PARAMS.AUTHOR_DETAIL]: {
-									program: item.program,
+									program: item.program.id,
 								},
+								[CONSTANTS.PARAMS.PODCAST_DETAIL]: item,
 							})
 						}
-						numberPodcasts={item.podcastNumber}
-						profileImage={item.profileImageURL}
-						program={item.program}
+						numberPodcasts={0}
+						profileImage={item.imageUrl}
+						program={item.program.id}
 						// subjects={item.categories}
-						name={item.name}
-						id={item.program}
+						name={item.title}
+						id={item._id}
 					/>
 				)}
 				showsVerticalScrollIndicator={false}
-				keyExtractor={(item) => `${item.program}`}
-				data={programs}
+				keyExtractor={(item) => `${item._id}`}
+				data={podcasts}
 			/>
 		)
 	}
 
 	render() {
-		const { programName, loading, programs } = this.props
+		const { programName, loading, podcasts } = this.props
 
 		return (
 			<Container>
 				{loading ? <Loading /> : this.renderSearchProgramsList()}
-				{!loading && programs.length === 0 && <ErrorMessage title={`No results for "${programName}"`} icon="magnify-close" message="" />}
+				{!loading && podcasts.length === 0 && <ErrorMessage title={`No results for "${programName}"`} icon="magnify-close" message="" />}
 			</Container>
 		)
 	}
