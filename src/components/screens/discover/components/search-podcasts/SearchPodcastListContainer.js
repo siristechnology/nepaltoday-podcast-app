@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Creators as DiscoverCreators } from '~/store/ducks/discover'
 
-import SearchAuthorListComponent from './SearchAuthorListComponent'
+import SearchPodcastListComponent from './SearchPodcastListComponent'
 import CONSTANTS from '~/utils/CONSTANTS'
 import appStyles from '~/styles'
 
@@ -21,7 +21,7 @@ type Props = {
 	navigation: Object,
 }
 
-class SearchAuthorListContainer extends Component<Props, {}> {
+class SearchPodcastListContainer extends Component<Props, {}> {
 	componentDidMount() {
 		const { searchPodcasts } = this.props
 
@@ -44,7 +44,7 @@ class SearchAuthorListContainer extends Component<Props, {}> {
 
 		const programName = this.getAuthorNameParam()
 
-		return <SearchAuthorListComponent loading={loadingSearchPodcasts} programName={programName} navigation={navigation} podcasts={podcasts} />
+		return <SearchPodcastListComponent loading={loadingSearchPodcasts} programName={programName} navigation={navigation} podcasts={podcasts} />
 	}
 }
 
@@ -54,4 +54,4 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(DiscoverCreators, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchAuthorListContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(SearchPodcastListContainer)

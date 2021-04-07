@@ -34,7 +34,7 @@ type Props = {
 	loading: boolean,
 }
 
-class SearchAuthorListComponent extends PureComponent<Props, {}> {
+class SearchPodcastListComponent extends PureComponent<Props, {}> {
 	_authorSearchListPosition = new Animated.ValueXY({
 		x: 0,
 		y: appStyles.metrics.getHeightFromDP('40%'),
@@ -107,4 +107,4 @@ class SearchAuthorListComponent extends PureComponent<Props, {}> {
 	}
 }
 
-export default SearchAuthorListComponent
+export default SearchPodcastListComponent

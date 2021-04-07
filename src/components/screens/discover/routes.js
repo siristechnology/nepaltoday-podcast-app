@@ -3,7 +3,7 @@ import { createStackNavigator } from 'react-navigation-stack'
 import { Platform } from 'react-native'
 
 import AuthorDetailContainer from '~/components/common/author-detail/AuthorDetailContainer'
-import SearchAuthorListContainer from './components/search-author/SearchAuthorListContainer'
+import SearchPodcastListContainer from './components/search-podcasts/SearchPodcastListContainer'
 
 import PodcastDetailContainer from '~/components/common/podcast-detail/PodcastDetailContainer'
 import Player from '~/components/common/player/PlayerContainer'
@@ -49,7 +49,7 @@ const RootStack = createStackNavigator(
 		},
 
 		[LOCAL_STACK_ROUTES.SEARCH_AUTHORS_RESULT]: {
-			screen: SearchAuthorListContainer,
+			screen: SearchPodcastListContainer,
 			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('Search Podcasts', navigation, screenProps),
 		},
 
