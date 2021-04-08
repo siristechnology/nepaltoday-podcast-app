@@ -1,10 +1,8 @@
-// @flow
-
 import React, { PureComponent } from 'react'
 import { Animated, Text, View } from 'react-native'
 import styled from 'styled-components'
 
-import SearchAuthorListItem from '~/components/common/AuthorListItemWithSubjects'
+import SearchPodcastListItem from '~/components/common/SearchPodcastListItem'
 import ErrorMessage from '~/components/common/ErrorMessage'
 import Loading from '~/components/common/Loading'
 import CONSTANTS from '~/utils/CONSTANTS'
@@ -71,17 +69,13 @@ class SearchPodcastListComponent extends PureComponent<Props, {}> {
 					},
 				]}
 				renderItem={({ item }) => (
-					<SearchAuthorListItem
+					<SearchPodcastListItem
 						onPress={() =>
 							navigation.navigate(CONSTANTS.ROUTES.PODCAST_DETAIL, {
 								[CONSTANTS.PARAMS.PODCAST_DETAIL]: item,
 							})
 						}
-						numberPodcasts={0}
-						profileImage={item.imageUrl}
-						program={item.program.title}
-						name={item.title}
-						id={item._id}
+						podcast={item}
 					/>
 				)}
 				showsVerticalScrollIndicator={false}

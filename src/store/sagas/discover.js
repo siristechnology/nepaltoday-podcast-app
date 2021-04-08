@@ -42,6 +42,7 @@ export function* searchPodcasts({ payload: { searchTerm } }) {
 						description
 						imageUrl
 						category
+						createdDate
 						program {
 							id
 							title

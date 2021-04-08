@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import { FlatList, View } from 'react-native'
 import styled from 'styled-components'
 
-import AuthorsListItem from '~/components/common/AuthorListItemWithSubjects'
+import AuthorsListItem from '~/components/common/SearchPodcastListItem'
 import CONSTANTS from '~/utils/CONSTANTS'
 
 const Wrapper = styled(View)`

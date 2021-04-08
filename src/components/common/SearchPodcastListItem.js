@@ -1,13 +1,11 @@
-// @flow
-
 import React from 'react'
 import { TouchableOpacity, Platform, View, Text } from 'react-native'
 import FastImage from 'react-native-fast-image'
 import styled from 'styled-components'
 
-import DefaultButton from '~/components/common/DefaultButton'
 import Icon from '~/components/common/Icon'
 import appStyles from '~/styles'
+import { getRelativeTime } from '~/utils/time'
 
 const Wrapper = styled(View)`
 	width: 100%;
@@ -23,6 +21,10 @@ const CardWrapper = styled(View)`
 	padding-left: ${({ theme }) => theme.metrics.mediumSize + theme.metrics.getWidthFromDP('12%')}px;
 	background-color: ${({ theme }) => theme.colors.white};
 	border-radius: 5px;
+	shadow-color: #000;
+	shadow-opacity: 0.25;
+	shadow-radius: 3.84;
+	elevation: 5;
 `
 
 const ProfileImage = styled(FastImage).attrs(({ uri }) => ({
@@ -32,6 +34,10 @@ const ProfileImage = styled(FastImage).attrs(({ uri }) => ({
 	height: ${({ theme }) => theme.metrics.getWidthFromDP('24%')}px;
 	border-radius: ${({ theme }) => theme.metrics.getWidthFromDP('14%')}px;
 	position: absolute;
+	shadow-color: #000;
+	shadow-opacity: 0.25;
+	shadow-radius: 3.84;
+	elevation: 6;
 `
 
 const AuthorName = styled(Text)`
@@ -40,34 +46,17 @@ const AuthorName = styled(Text)`
 	color: ${({ theme }) => theme.colors.darkText};
 `
 
-const NumberPodcasts = styled(Text)`
-	margin-bottom: ${({ theme }) => theme.metrics.extraSmallSize}px;
+const Description = styled(Text).attrs({
+	numberOfLines: 2,
+})`
 	font-size: ${({ theme }) => theme.metrics.largeSize}px;
-	font-family: CircularStd-Medium;
+	font-family: CircularStd-Black;
 	color: ${({ theme }) => theme.colors.subText};
 `
 
-const SubjectItemWrapper = styled(View)`
-	justify-content: center;
-	align-items: center;
-	margin-right: ${({ theme }) => theme.metrics.smallSize}px;
-	margin-bottom: ${({ theme }) => theme.metrics.smallSize}px;
-	padding-vertical: ${({ theme }) => theme.metrics.smallSize * 1.1}px;
-	padding-horizontal: ${({ theme }) => theme.metrics.mediumSize}px;
-	border-radius: 3px;
-	background-color: ${({ theme }) => theme.colors.dark};
-`
-
-const SubjectItemText = styled(Text)`
-	font-size: ${({ theme }) => theme.metrics.mediumSize * 1.3}px;
-	font-family: CircularStd-Bold;
-	color: ${({ theme }) => theme.colors.white};
-`
-
-const SubjectsWrapper = styled(View)`
-	flex-wrap: wrap;
-	flex-direction: row;
-	margin-top: ${({ theme }) => theme.metrics.smallSize}px;
+const SourceTimeText = styled(Text)`
+	font-size: ${({ theme }) => theme.metrics.mediumSize}px;
+	color: ${({ theme }) => theme.colors.subText};
 `
 
 const DetailButton = styled(TouchableOpacity)`
@@ -84,63 +73,24 @@ const DetailButton = styled(TouchableOpacity)`
 
 type Props = {
 	subjects: Array<string>,
-	numberPodcasts: number,
 	profileImage: string,
 	onPress: Function,
 	name: string,
 }
 
-const SearchAuthorListItem = ({
-	numberPodcasts,
-	profileImage,
-	// subjects,
-	program,
-	onPress,
-	name,
-}: Props): Object => (
+const SearchPodcastListItem = ({ podcast, onPress }: Props): Object => (
 	<Wrapper>
-		<CardWrapper
-			style={{
-				shadowColor: '#000',
-				shadowOffset: {
-					width: 0,
-					height: 2,
-				},
-				shadowOpacity: 0.25,
-				shadowRadius: 3.84,
-				elevation: 5,
-			}}
-		>
-			<AuthorName>{program}</AuthorName>
-			<AuthorName>{name}</AuthorName>
-			<NumberPodcasts>{`${numberPodcasts} ${numberPodcasts === 1 ? 'Podcast' : 'Podcasts'}`}</NumberPodcasts>
-			{/* <SubjectsWrapper>
-        {subjects.map(subject => (
-          <SubjectItemWrapper
-            key={subject}
-          >
-            <SubjectItemText>{`#${subject}`}</SubjectItemText>
-          </SubjectItemWrapper>
-        ))}
-      </SubjectsWrapper> */}
+		<CardWrapper>
+			<AuthorName>{podcast.program.title}</AuthorName>
+			<AuthorName>{podcast.title}</AuthorName>
+			<Description>{podcast.description}</Description>
+			<SourceTimeText>{getRelativeTime(podcast.createdDate)}</SourceTimeText>
 			<DetailButton onPress={onPress}>
 				<Icon color={appStyles.colors.white} name="magnify" size={24} />
 			</DetailButton>
 		</CardWrapper>
-		<ProfileImage
-			style={{
-				shadowColor: '#000',
-				shadowOffset: {
-					width: 0,
-					height: 2,
-				},
-				shadowOpacity: 0.25,
-				shadowRadius: 3.84,
-				elevation: 6,
-			}}
-			uri={profileImage}
-		/>
+		<ProfileImage uri={podcast.imageUrl} />
 	</Wrapper>
 )
 
-export default SearchAuthorListItem
+export default SearchPodcastListItem
