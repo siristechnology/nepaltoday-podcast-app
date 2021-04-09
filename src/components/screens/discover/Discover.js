@@ -1,9 +1,5 @@
-import React, { Component } from 'react'
-
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import { Creators } from '~/store/ducks/discover'
-
+import React, { useState, useEffect } from 'react'
+import { gql, useQuery } from '@apollo/client'
 import HomeComponent from './components/HomeComponent'
 import CONSTANTS from '~/utils/CONSTANTS'
 
@@ -20,63 +16,58 @@ type Props = {
 	getDiscover: Function,
 }
 
-class DiscoverContainer extends Component<Props, {}> {
-	componentDidMount() {
-		const { LOCAL_STACK_ROUTES, getDiscover, navigation } = this.props
+const DiscoverContainer = ({ navigation, LOCAL_STACK_ROUTES }) => {
+	const { loading, data, refetch, error } = useQuery(GET_ALL_PROGRAMS_QUERY)
+	const [authorName, setAuthorName] = useState('')
 
-		getDiscover()
-
-		navigation.setParams({
-			LOCAL_STACK_ROUTES,
-		})
-	}
-
-	render() {
-		const { navigation, getDiscover, home } = this.props
-		const { loading, error, data } = home
-
-		const onTypeAuthorName = (authorName: string): void => {
-			this.setState({
-				authorName,
+	useEffect(() => {
+		const { params } = navigation.state
+		if (!params || !params.LOCAL_STACK_ROUTES) {
+			navigation.setParams({
+				LOCAL_STACK_ROUTES,
 			})
 		}
+	})
 
-		const onSearchForAuthor = (): void => {
-			const { navigation, LOCAL_STACK_ROUTES } = this.props
-			const { authorName } = this.state
+	const onTypeAuthorName = (authorName: string): void => {
+		setAuthorName(authorName)
+	}
 
-			if (authorName.length) {
-				navigation.navigate(LOCAL_STACK_ROUTES.SEARCH_AUTHORS_RESULT, {
-					[CONSTANTS.PARAMS.SEARCH_AUTHOR_BY_NAME]: authorName,
-				})
-			}
-		}
-
-		const onToggleDarkLayer = (isTextInputFocused: boolean) => {
-			this.setState({
-				isTextInputFocused,
+	const onSearchForAuthor = (): void => {
+		if (authorName.length) {
+			navigation.navigate(LOCAL_STACK_ROUTES.SEARCH_AUTHORS_RESULT, {
+				[CONSTANTS.PARAMS.SEARCH_AUTHOR_BY_NAME]: authorName,
 			})
 		}
-
-		return (
-			<HomeComponent
-				onTypeAuthorName={onTypeAuthorName}
-				onSearchForAuthor={onSearchForAuthor}
-				onToggleDarkLayer={onToggleDarkLayer}
-				navigation={navigation}
-				getHome={getDiscover}
-				loading={loading}
-				error={error}
-				data={data}
-			/>
-		)
 	}
+
+	return (
+		<HomeComponent
+			onTypeAuthorName={onTypeAuthorName}
+			onSearchForAuthor={onSearchForAuthor}
+			navigation={navigation}
+			onRefresh={refetch}
+			loading={loading}
+			error={error}
+			data={data?.getAllPrograms}
+		/>
+	)
 }
 
-const mapDispatchToProps = (dispatch) => bindActionCreators(Creators, dispatch)
-
-const mapStateToProps = (state) => ({
-	home: state.discover,
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(DiscoverContainer)
+const GET_ALL_PROGRAMS_QUERY = gql`
+	query getAllPrograms {
+		getAllPrograms {
+			id
+			title
+			imageUrl
+			category
+			weight
+			publisher {
+				id
+				title
+				imageUrl
+			}
+		}
+	}
+`
+export default DiscoverContainer

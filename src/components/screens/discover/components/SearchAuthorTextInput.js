@@ -39,11 +39,10 @@ const IconWrapper = styled(View)`
 
 type Props = {
 	onSearchForAuthor: Function,
-	onToggleDarkLayer: Function,
 	onTypeAuthorName: Function,
 }
 
-const SearchAuthorTextInput = ({ onSearchForAuthor, onToggleDarkLayer, onTypeAuthorName }: Props): Object => (
+const SearchAuthorTextInput = ({ onSearchForAuthor, onTypeAuthorName }: Props): Object => (
 	<Wrapper
 		style={{
 			shadowColor: '#000',
@@ -59,12 +58,7 @@ const SearchAuthorTextInput = ({ onSearchForAuthor, onToggleDarkLayer, onTypeAut
 		<IconWrapper>
 			<Icon name="magnify" color={appStyles.colors.darkText} size={20} />
 		</IconWrapper>
-		<Input
-			onChangeText={(text) => onTypeAuthorName(text)}
-			onFocus={() => onToggleDarkLayer(true)}
-			onBlur={() => onToggleDarkLayer(false)}
-			onSubmitEditing={onSearchForAuthor}
-		/>
+		<Input onChangeText={(text) => onTypeAuthorName(text)} onSubmitEditing={onSearchForAuthor} />
 	</Wrapper>
 )
 

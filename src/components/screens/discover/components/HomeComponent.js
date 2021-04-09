@@ -37,7 +37,7 @@ const SearchAuthorTextInputWrapper = styled(View)`
 `
 const categories = ['Headline', 'Politics', 'News', 'Entertainment', 'Sports', 'Business', 'Social', 'Health', 'Technology', 'Agriculture', 'Share']
 
-const HomeComponent = ({ navigation, loading, error, data, getHome, onTypeAuthorName, onSearchForAuthor, onToggleDarkLayer }) => (
+const HomeComponent = ({ navigation, loading, error, data, onRefresh, onTypeAuthorName, onSearchForAuthor }) => (
 	<Wrapper>
 		{loading && !error && <Loading />}
 		{!loading && error && (
@@ -56,17 +56,13 @@ const HomeComponent = ({ navigation, loading, error, data, getHome, onTypeAuthor
 						tintColor={appStyles.colors.primaryColor}
 						colors={[appStyles.colors.white]}
 						refreshing={loading && !error}
-						onRefresh={getHome}
+						onRefresh={onRefresh}
 					/>
 				}
 			>
 				<ScreenTitle title="Discover" />
 				<SearchAuthorTextInputWrapper>
-					<SearchAuthorTextInput
-						onSearchForAuthor={onSearchForAuthor}
-						onToggleDarkLayer={onToggleDarkLayer}
-						onTypeAuthorName={onTypeAuthorName}
-					/>
+					<SearchAuthorTextInput onSearchForAuthor={onSearchForAuthor} onTypeAuthorName={onTypeAuthorName} />
 				</SearchAuthorTextInputWrapper>
 				{data &&
 					data.length &&
