@@ -65,7 +65,7 @@ const HomeComponent = ({ navigation, loading, error, data, onRefresh, onTypeAuth
 					<SearchAuthorTextInput onSearchForAuthor={onSearchForAuthor} onTypeAuthorName={onTypeAuthorName} />
 				</SearchAuthorTextInputWrapper>
 				{data &&
-					data.length &&
+					data.length > 0 &&
 					categories
 						.filter((cat) => data.some((d) => d.category === cat))
 						.map((category) => (

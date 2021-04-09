@@ -9,6 +9,7 @@
 	"plugins": ["prettier"],
 	"rules": {
 		"prettier/prettier": ["error"],
-		"no-console": "warn"
+		"no-console": "warn",
+		"eqeqeq": "off"
 	}
 }
