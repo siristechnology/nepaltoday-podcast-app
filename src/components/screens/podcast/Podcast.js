@@ -3,9 +3,7 @@ import { gql, useLazyQuery } from '@apollo/client'
 import HomeComponent from './components/HomeComponent'
 
 const PodcastContainer = (props) => {
-	const [fetchPodcasts, { loading, data, refetch, error, called }] = useLazyQuery(GET_TOP_PODCASTS_QUERY, {
-		variables: {},
-	})
+	const [fetchPodcasts, { loading, data, refetch, error, called }] = useLazyQuery(GET_TOP_PODCASTS_QUERY)
 
 	useEffect(() => {
 		if (!called) fetchPodcasts()
