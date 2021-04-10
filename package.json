@@ -41,7 +41,6 @@
     "@react-native-firebase/app": "11.2.0",
     "@react-native-firebase/auth": "11.2.0",
     "@react-native-firebase/crashlytics": "11.2.0",
-    "apollo-invalidation-policies": "^1.0.0-beta16",
     "axios": "^0.21.0",
     "graphql": "^15.5.0",
     "graphql-tag": "^2.11.0",
