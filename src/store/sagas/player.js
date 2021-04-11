@@ -200,6 +200,9 @@ export function* setPodcast() {
 				artist: currentPodcast.program.title,
 				artwork: currentPodcast.imageUrl,
 			})
+
+			if (currentPodcast.currentPosition > 3) TrackPlayer.seekTo(currentPodcast.currentPosition)
+
 			TrackPlayer.play()
 		}
 
