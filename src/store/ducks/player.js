@@ -23,6 +23,7 @@ export const Types = {
 	REPEAT_CURRENT_PODCAST_REQUEST: 'REPEAT_CURRENT_PODCAST_REQUEST',
 	REPEAT_CURRENT_PODCAST_SUCCESS: 'REPEAT_CURRENT_PODCAST_SUCCESS',
 	PLAY: 'player/PLAY',
+	PAUSE: 'player/PAUSE',
 	STOP: 'player/STOP',
 }
 
@@ -152,6 +153,10 @@ export const Creators = {
 	}),
 
 	pause: () => ({
+		type: Types.PAUSE,
+	}),
+
+	stop: () => ({
 		type: Types.STOP,
 	}),
 }
@@ -301,6 +306,7 @@ const player = (state = INITIAL_STATE, { type, payload }) => {
 			}
 
 		case Types.SET_CURRENT_TIME:
+			// console.log('printing payload', payload);
 			return {
 				...state,
 				currentTime: parseCurrentPodcastTime(payload.currentTime),
@@ -369,9 +375,17 @@ const player = (state = INITIAL_STATE, { type, payload }) => {
 				paused: false,
 			}
 
+		case Types.PAUSE:
+			return {
+				...state,
+				stopPlayer: false,
+				paused: true,
+			}
+
 		case Types.STOP:
 			return {
 				...state,
+				stopPlayer: true,
 				paused: true,
 			}
 

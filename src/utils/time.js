@@ -51,9 +51,17 @@ export const getCurrentTime = () => {
 	return currentTimeInNepali.join('')
 }
 
-export const getFormattedDurationFromSeconds = (durationInSeconds) => {
-	const hours = Math.floor(durationInSeconds / (60 * 60))
-	const mins = Math.floor(durationInSeconds / 60 - hours * 60)
+export const getFormattedDurationText = (durationInSeconds, currentPosition) => {
+	let duration = durationInSeconds
+	let useDurationLeft = false
+	if (currentPosition > 60) {
+		useDurationLeft = true
+		duration = durationInSeconds - currentPosition
+	}
 
-	return hours > 0 ? hours + 'h ' + (mins > 20 ? mins + 'm' : '') : mins + 'm'
+	const hours = Math.floor(duration / (60 * 60))
+	const mins = Math.floor(duration / 60 - hours * 60)
+
+	const durationText = hours > 0 ? hours + 'h ' + (mins > 20 ? mins + 'm' : '') : mins + 'm'
+	return useDurationLeft ? durationText + ' left' : durationText
 }

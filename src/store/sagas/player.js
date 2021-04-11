@@ -145,7 +145,18 @@ const trackPlayerInit = async () => {
 }
 
 export function* play() {
-	console.log('I m called here')
+	console.log('play button pressed')
+}
+
+export function* pause() {
+	const { currentPodcast } = yield select((state) => state.player)
+	currentPodcast.currentPosition = yield TrackPlayer.getPosition()
+
+	yield put(LocalPodcastsManagerCreators.addPodcastToRecentlyPlayedList(currentPodcast))
+}
+
+export function* stop() {
+	console.log('stop button pressed')
 }
 
 export function* setupPlayer() {

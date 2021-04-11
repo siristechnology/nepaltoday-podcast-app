@@ -30,7 +30,7 @@ export function* addPodcastToRecentlyPlayedList({ payload }) {
 			(podcastRecentlyPlayed) => podcastRecentlyPlayed._id !== podcast._id,
 		)
 
-		const podcastsRecentlyPlayedUpdated = [podcast, ...podcastsRecentlyPlayedWithourCurrentPodcast].slice(0, 20)
+		const podcastsRecentlyPlayedUpdated = [podcast, ...podcastsRecentlyPlayedWithourCurrentPodcast].slice(0, 50)
 
 		yield all([
 			call(persistItemInStorage, CONSTANTS.KEYS.PODCASTS_PLAYED_RECENTLY, podcastsRecentlyPlayedUpdated),

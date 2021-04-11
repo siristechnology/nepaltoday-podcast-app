@@ -1,7 +1,7 @@
 import React from 'react'
 import { withTheme } from 'styled-components'
 import Icon from '~/components/common/Icon'
-import { getFormattedDurationFromSeconds, getRelativeTime } from '~/utils/time'
+import { getFormattedDurationText, getRelativeTime } from '~/utils/time'
 import {
 	Container,
 	TitleWrapper,
@@ -36,7 +36,7 @@ const PodcastListItem = ({ podcastDetail, isLastIndex, onPress, onPodcastPlay, n
 			</LeftWrapper>
 			<RightButtonWrapper onPress={() => onPodcastPlay(podcastDetail)}>
 				<Icon name="play-circle-outline" size={40} />
-				<DurationText>{getFormattedDurationFromSeconds(podcastDetail.durationInSeconds)}</DurationText>
+				<DurationText>{getFormattedDurationText(podcastDetail.durationInSeconds, podcastDetail.currentPosition)}</DurationText>
 			</RightButtonWrapper>
 		</Container>
 	)
