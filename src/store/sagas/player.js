@@ -145,10 +145,12 @@ const trackPlayerInit = async () => {
 }
 
 export function* play() {
+	TrackPlayer.play()
 	console.log('play button pressed')
 }
 
 export function* pause() {
+	TrackPlayer.pause()
 	const { currentPodcast } = yield select((state) => state.player)
 	currentPodcast.currentPosition = yield TrackPlayer.getPosition()
 

@@ -181,12 +181,10 @@ class Player extends Component<Props, State> {
 	}
 
 	playClick = (play) => {
-		TrackPlayer.play()
 		play()
 	}
 
 	pauseClick = (pause) => {
-		TrackPlayer.pause()
 		pause()
 	}
 
