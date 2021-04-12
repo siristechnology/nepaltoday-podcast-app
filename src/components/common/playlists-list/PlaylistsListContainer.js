@@ -51,12 +51,6 @@ class PlaylistListContainer extends Component<Props, {}> {
 			return
 		}
 
-		if (isPodcastAlreadyInPlaylist) {
-			CustomAlert(TYPES.ADD_REPEATED_PODCAS_PLAYLIST, () => this.onAddPodcast(playlist))
-
-			return
-		}
-
 		this.onAddPodcast(playlist)
 	}
 

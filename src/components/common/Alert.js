@@ -6,7 +6,6 @@ export const TYPES = {
 	REMOVE_DOWNLOADED_PODCAST_BY_PLAYLIST: 'REMOVE_DOWNLOADED_PODCAST_BY_PLAYLIST',
 	ADD_UNDOWNLOADED_PODCAST_PLAYLIST_AVAILABLE_OFFLINE: 'ADD_UNDOWNLOADED_PODCAST_PLAYLIST_AVAILABLE_OFFLINE',
 	REMOVE_PODCAST_FROM_PLAYLIST: 'REMOVE_PODCAST_FROM_PLAYLIST',
-	ADD_REPEATED_PODCAS_PLAYLIST: 'ADD_REPEATED_PODCAS_PLAYLIST',
 	REMOVE_DOWNLOADED_PODCAST: 'REMOVE_DOWNLOADED_PODCAST',
 	DOWNLOAD_PODCAST: 'DOWNLOAD_PODCAST',
 	REMOVE_PLAYLIST: 'REMOVE_PLAYLIST',
@@ -35,12 +34,6 @@ const configs = {
 	[TYPES.REMOVE_PODCAST_FROM_PLAYLIST]: {
 		title: 'Remove Podcast',
 		description: 'Are you sure you want to remove this Podcast from this Playlist?',
-		positiveText: 'Yes',
-	},
-
-	[TYPES.ADD_REPEATED_PODCAS_PLAYLIST]: {
-		title: 'Duplicated Podcast',
-		description: 'This Podcast has already been added to this Playlist. Do you want add it again?',
 		positiveText: 'Yes',
 	},
 

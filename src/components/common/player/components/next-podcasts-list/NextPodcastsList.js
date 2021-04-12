@@ -37,7 +37,6 @@ const Playlist = styled(FlatList)`
 `
 
 type Props = {
-	shouldRepeatPlaylist: boolean,
 	removeFromPlaylist: Function,
 	playlist: Array<Object>,
 	onBackPress: Function,
@@ -81,9 +80,9 @@ const renderNextPodcastsList = (nextPodcasts: Array<Object>, removeFromPlaylist:
 	/>
 )
 
-const NextPodcastsList = ({ shouldRepeatPlaylist, removeFromPlaylist, playlistIndex, onBackPress, playlist }: Props): Object => {
+const NextPodcastsList = ({ removeFromPlaylist, playlistIndex, onBackPress, playlist }: Props): Object => {
 	const iconName = Platform.OS === 'android' ? 'arrow-left' : 'chevron-left'
-	const nextPodcasts = shouldRepeatPlaylist ? getCircularPlaylist(playlist, playlistIndex) : playlist.slice(playlistIndex + 1, playlist.length)
+	const nextPodcasts = playlist.slice(playlistIndex + 1, playlist.length)
 
 	return (
 		<Container>

@@ -14,7 +14,7 @@ import {
 	loadPodcastsRecentlyPlayed,
 	addPodcastToRecentlyPlayedList,
 } from './localPodcastsManager'
-import { setPodcast, playNext, playPrevious, setupPlayer, repeatCurrentPodcast, play, pause, stop } from './player'
+import { setPodcast, playNext, playPrevious, setupPlayer, play, pause, stop } from './player'
 import { getSubjectDetail } from './subject'
 import {
 	createPlaylist,
@@ -39,7 +39,6 @@ export default function* rootSaga() {
 		takeLatest(LocalPodcastsManagerCreators.LOAD_PODCASTS_RECENTLY_PLAYED_REQUEST, loadPodcastsRecentlyPlayed),
 		takeLatest(LocalPodcastsManagerCreators.ADD_PODCAST_RECENTLY_PLAYED_REQUEST, addPodcastToRecentlyPlayedList),
 		takeLatest(PlayerTypes.SET_PODCAST_REQUEST, setPodcast),
-		takeLatest(PlayerTypes.REPEAT_CURRENT_PODCAST_REQUEST, repeatCurrentPodcast),
 		takeLatest(PlayerTypes.PLAY, play),
 		takeLatest(PlayerTypes.PAUSE, pause),
 		takeLatest(PlayerTypes.STOP, stop),

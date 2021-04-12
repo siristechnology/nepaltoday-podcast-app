@@ -28,13 +28,9 @@ type Props = {
 	onToggleAddPlaylistModal: Function,
 	isAddPlaylistModalOpen: boolean,
 	isAddPlaylistModalOpen: boolean,
-	shouldRepeatPlaylist: boolean,
-	shouldRepeatCurrent: boolean,
 	removeFromPlaylist: Function,
 	seekProgressTimer: Function,
 	disableRepetition: Function,
-	setRepeatPlaylist: Function,
-	setRepeatCurrent: Function,
 	playlist: Array<Object>,
 	currentPodcast: Object,
 	playPrevious: Function,
@@ -203,7 +199,6 @@ class Player extends Component<Props, State> {
 	render() {
 		const {
 			isCurrentPodcastDownloaded,
-			shouldRepeatPlaylist,
 			removeFromPlaylist,
 			seekProgressTimer,
 			currentPodcast,
@@ -232,7 +227,6 @@ class Player extends Component<Props, State> {
 						menu={
 							isQueueSideMenuOpen ? (
 								<NextPodcastsList
-									shouldRepeatPlaylist={shouldRepeatPlaylist}
 									onBackPress={this.onToggleQueueSideMenu}
 									removeFromPlaylist={removeFromPlaylist}
 									playlistIndex={playlistIndex}
@@ -281,8 +275,6 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(PlayerCreators, disp
 
 const mapStateToProps = (state) => ({
 	isCurrentPodcastDownloaded: state.player.isCurrentPodcastDownloaded,
-	shouldRepeatPlaylist: state.player.shouldRepeatPlaylist,
-	shouldRepeatCurrent: state.player.shouldRepeatCurrent,
 	currentPodcast: state.player.currentPodcast,
 	playlistIndex: state.player.playlistIndex,
 	playlist: state.player.playlist,

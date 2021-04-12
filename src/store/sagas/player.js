@@ -56,7 +56,6 @@ function* _rewindToPreviousPodcast(newPlaylistIndex) {
 			PlayerCreators.playPreviousSuccess({
 				originalPlaylistIndex: newOriginalPlaylistIndex,
 				playlistIndex: newPlaylistIndex,
-				shouldRepeatCurrent: false,
 			}),
 		)
 	} catch (err) {
@@ -156,10 +155,6 @@ function* _defineNextPodcast(nextPodcast, playlistIndex) {
 
 	let originalPlaylistCurrentIndex = originalPlaylistIndex
 
-	// if (shouldShufflePlaylist) {
-	// 	originalPlaylistCurrentIndex = _findIndexInsideOriginalPlaylist(originalPlaylist, nextPodcast)
-	// }
-
 	yield put(
 		PlayerCreators.playNextSuccess({
 			originalPlaylistIndex: originalPlaylistCurrentIndex,
@@ -187,42 +182,16 @@ function* _handleRestartPlayer(firstPodcast) {
 	yield put(PlayerCreators.restartPlayer(originalPlaylistIndex, firstPodcastPlaylist))
 }
 
-export function* repeatCurrentPodcast() {
-	try {
-		const { currentPodcast } = yield select((state) => state.player)
-
-		const podcastWithURI = yield _definePodcastURI(currentPodcast)
-
-		yield delay(300)
-
-		yield put(PlayerCreators.repeatCurrentPodcastSuccess(podcastWithURI))
-	} catch (err) {
-		console.log('err')
-	}
-}
-
 export function* playNext() {
 	try {
-		const { shouldRepeatPlaylist, shouldRepeatCurrent, currentPodcast, backupPlaylist, playlistIndex, playlist } = yield select(
-			(state) => state.player,
-		)
-
-		if (shouldRepeatCurrent) {
-			return yield _defineNextPodcast(currentPodcast, playlistIndex)
-		}
+		const { currentPodcast, backupPlaylist, playlistIndex, playlist } = yield select((state) => state.player)
 
 		const isLastPodcastOfPlaylist = playlistIndex === playlist.length - 1
-		const isLastPodcastShouldRepeatPlaylist = isLastPodcastOfPlaylist && shouldRepeatPlaylist
-		const isLastPodcastNotRepeatPlaylist = isLastPodcastOfPlaylist && !shouldRepeatPlaylist
 		const isPlaylistEmpty = playlist.length === 0
 
-		if (isLastPodcastNotRepeatPlaylist || isPlaylistEmpty) {
+		if (isPlaylistEmpty) {
 			TrackPlayer.pause()
 			// return yield _handleRestartPlayer(backupPlaylist[0]);
-		}
-
-		if (isLastPodcastShouldRepeatPlaylist) {
-			return yield _defineNextPodcast(playlist[0], 0)
 		}
 
 		if (!isLastPodcastOfPlaylist) {
@@ -238,19 +207,7 @@ export function* playPrevious() {
 		const secondsPassedSincePodcastStarted = yield _getSecondsPassedSincePodcastStarted()
 
 		if (secondsPassedSincePodcastStarted <= 3) {
-			const { shouldRepeatPlaylist, playlistIndex, playlist } = yield select((state) => state.player)
-
-			if (playlistIndex === 0 && shouldRepeatPlaylist) {
-				yield _rewindToPreviousPodcast(playlist.length - 1)
-			}
-
-			if (playlistIndex === 0 && !shouldRepeatPlaylist) {
-				yield put(
-					PlayerCreators.playPreviousSuccess({
-						shouldRepeatCurrent: false,
-					}),
-				)
-			}
+			const { playlistIndex } = yield select((state) => state.player)
 
 			if (playlistIndex !== 0) {
 				yield _rewindToPreviousPodcast(playlistIndex - 1)

@@ -8,16 +8,12 @@ export const Types = {
 	SET_PODCAST_SUCCESS: 'player/SET_PODCAST_SUCCESS',
 	PLAY_NEXT_REQUEST: 'player/PLAY_NEXT_REQUEST',
 	PLAY_NEXT_SUCCESS: 'player/PLAY_NEXT_SUCCESS',
-	SET_REPEAT_PLAYLIST: 'player/SET_REPEAT_PLAYLIST',
-	SET_REPEAT_CURRENT: 'player/SET_REPEAT_CURRENT',
 	REMOVE_FROM_PLAYLIST: 'player/REMOVE_FROM_PLAYLIST',
 	SET_CURRENT_TIME: 'player/SET_CURRENT_TIME',
 	RESTART_PLAYER: 'player/RESTART_PLAYER',
 	DISABLE_REPETIION: 'player/DISABLE_REPETIION',
 	SETUP_PLAYER: 'player/SETUP_PLAYER',
 	SET_PODCASTS_RECENTLY_PLAYED: 'player/SET_PODCASTS_RECENTLY_PLAYED',
-	REPEAT_CURRENT_PODCAST_REQUEST: 'REPEAT_CURRENT_PODCAST_REQUEST',
-	REPEAT_CURRENT_PODCAST_SUCCESS: 'REPEAT_CURRENT_PODCAST_SUCCESS',
 	PLAY: 'player/PLAY',
 	PAUSE: 'player/PAUSE',
 	STOP: 'player/STOP',
@@ -26,8 +22,6 @@ export const Types = {
 const INITIAL_STATE = {
 	isCurrentPodcastDownloaded: false,
 	shouldSeekProgressSlider: false,
-	shouldRepeatPlaylist: false,
-	shouldRepeatCurrent: false,
 	originalPlaylistIndex: 0,
 	currentPodcast: null,
 	originalPlaylist: [],
@@ -83,14 +77,6 @@ export const Creators = {
 		payload,
 	}),
 
-	setRepeatPlaylist: () => ({
-		type: Types.SET_REPEAT_PLAYLIST,
-	}),
-
-	setRepeatCurrent: () => ({
-		type: Types.SET_REPEAT_CURRENT,
-	}),
-
 	removeFromPlaylist: (_id) => ({
 		type: Types.REMOVE_FROM_PLAYLIST,
 		payload: { _id },
@@ -113,15 +99,6 @@ export const Creators = {
 	setupPlayer: (playlist) => ({
 		type: Types.SETUP_PLAYER,
 		payload: { playlist },
-	}),
-
-	repeatCurrentPodcast: () => ({
-		type: Types.REPEAT_CURRENT_PODCAST_REQUEST,
-	}),
-
-	repeatCurrentPodcastSuccess: (currentPodcast) => ({
-		type: Types.REPEAT_CURRENT_PODCAST_SUCCESS,
-		payload: { currentPodcast },
 	}),
 
 	play: () => ({
@@ -239,22 +216,6 @@ const player = (state = INITIAL_STATE, { type, payload }) => {
 			return {
 				...state,
 				...payload,
-				shouldRepeatCurrent: false,
-			}
-
-		case Types.SET_REPEAT_PLAYLIST:
-			return {
-				...state,
-				shouldRepeatPlaylist: true,
-				shouldRepeatCurrent: false,
-			}
-
-		case Types.SET_REPEAT_CURRENT:
-			return {
-				...state,
-				playlist: state.backupPlaylist,
-				shouldRepeatPlaylist: false,
-				shouldRepeatCurrent: true,
 			}
 
 		case Types.REMOVE_FROM_PLAYLIST:
@@ -284,38 +245,12 @@ const player = (state = INITIAL_STATE, { type, payload }) => {
 				stopPlayer: true,
 			}
 
-		case Types.DISABLE_REPETIION:
-			return {
-				...state,
-				shouldRepeatPlaylist: false,
-				shouldRepeatCurrent: false,
-			}
-
 		case Types.SETUP_PLAYER:
 			return {
 				...INITIAL_STATE,
 				originalPlaylist: payload.playlist,
 				backupPlaylist: payload.playlist,
 				playlist: payload.playlist,
-			}
-
-		case Types.REPEAT_CURRENT_PODCAST_REQUEST:
-			return {
-				...state,
-				currentTime: '00:00',
-				currentPodcast: {
-					...state.currentPodcast,
-					uri: null,
-				},
-				paused: true,
-				seekValue: 0,
-			}
-
-		case Types.REPEAT_CURRENT_PODCAST_SUCCESS:
-			return {
-				...state,
-				currentPodcast: payload.currentPodcast,
-				paused: false,
 			}
 
 		case Types.PLAY:
