@@ -46,15 +46,11 @@ function* _getSecondsPassedSincePodcastStarted() {
 
 function* _rewindToPreviousPodcast(newPlaylistIndex) {
 	try {
-		const { shouldShufflePlaylist, originalPlaylistIndex, originalPlaylist, playlist } = yield select((state) => state.player)
+		const { originalPlaylistIndex, originalPlaylist, playlist } = yield select((state) => state.player)
 
 		let newOriginalPlaylistIndex = originalPlaylistIndex
 
 		const previousPodcast = playlist[newPlaylistIndex]
-
-		if (shouldShufflePlaylist) {
-			newOriginalPlaylistIndex = _findIndexInsideOriginalPlaylist(originalPlaylist, previousPodcast)
-		}
 
 		yield put(
 			PlayerCreators.playPreviousSuccess({
@@ -65,56 +61,6 @@ function* _rewindToPreviousPodcast(newPlaylistIndex) {
 		)
 	} catch (err) {
 		console.log('_rewindToPreviousPodcast')
-	}
-}
-
-const _shufflePlaylistItems = (playlist) => {
-	const shuffledPlaylist = Object.create(playlist)
-
-	let currentIndex = shuffledPlaylist.length
-	let temporaryValue
-	let randomIndex
-
-	while (currentIndex > 0) {
-		randomIndex = Math.floor(Math.random() * currentIndex)
-		currentIndex -= 1
-
-		temporaryValue = shuffledPlaylist[currentIndex]
-		shuffledPlaylist[currentIndex] = shuffledPlaylist[randomIndex]
-		shuffledPlaylist[randomIndex] = temporaryValue
-	}
-
-	return shuffledPlaylist
-}
-
-export function* shufflePlaylist() {
-	try {
-		const { shouldShufflePlaylist, originalPlaylistIndex, originalPlaylist, currentPodcast } = yield select((state) => state.player)
-
-		if (shouldShufflePlaylist) {
-			return yield put(
-				PlayerCreators.shufflePlaylistSuccess({
-					playlistIndex: originalPlaylistIndex,
-					playlist: originalPlaylist,
-				}),
-			)
-		}
-
-		const playlistWithoutCurrentPodcast = originalPlaylist.filter((podcast) => podcast._id !== currentPodcast._id)
-
-		const shuffledPlaylist = _shufflePlaylistItems(playlistWithoutCurrentPodcast)
-
-		const currentPodcastIndexOnOriginalPlaylist = _findIndexInsideOriginalPlaylist(originalPlaylist, currentPodcast)
-
-		yield put(
-			PlayerCreators.shufflePlaylistSuccess({
-				originalPlaylistIndex: currentPodcastIndexOnOriginalPlaylist,
-				playlist: [currentPodcast, ...shuffledPlaylist],
-				playlistIndex: 0,
-			}),
-		)
-	} catch (err) {
-		console.log('shufflePlaylist')
 	}
 }
 
@@ -170,20 +116,6 @@ export function* setupPlayer() {
 	}
 }
 
-export function* setupShufflePlayer({ payload }) {
-	try {
-		const { playlist } = payload
-
-		const shuffledPlaylist = _shufflePlaylistItems(playlist)
-
-		yield put(PlayerCreators.shufflePlaylistSuccess({ playlist: shuffledPlaylist }))
-
-		yield call(setPodcast)
-	} catch (err) {
-		console.log('setupPlayer')
-	}
-}
-
 export function* setPodcast() {
 	try {
 		const { playlistIndex, playlist } = yield select((state) => state.player)
@@ -220,13 +152,13 @@ export function* setPodcast() {
 }
 
 function* _defineNextPodcast(nextPodcast, playlistIndex) {
-	const { shouldShufflePlaylist, originalPlaylistIndex, originalPlaylist } = yield select((state) => state.player)
+	const { originalPlaylistIndex, originalPlaylist } = yield select((state) => state.player)
 
 	let originalPlaylistCurrentIndex = originalPlaylistIndex
 
-	if (shouldShufflePlaylist) {
-		originalPlaylistCurrentIndex = _findIndexInsideOriginalPlaylist(originalPlaylist, nextPodcast)
-	}
+	// if (shouldShufflePlaylist) {
+	// 	originalPlaylistCurrentIndex = _findIndexInsideOriginalPlaylist(originalPlaylist, nextPodcast)
+	// }
 
 	yield put(
 		PlayerCreators.playNextSuccess({

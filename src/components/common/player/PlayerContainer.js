@@ -28,16 +28,13 @@ type Props = {
 	onToggleAddPlaylistModal: Function,
 	isAddPlaylistModalOpen: boolean,
 	isAddPlaylistModalOpen: boolean,
-	shouldShufflePlaylist: boolean,
 	shouldRepeatPlaylist: boolean,
 	shouldRepeatCurrent: boolean,
-	setupShufflePlayer: Function,
 	removeFromPlaylist: Function,
 	seekProgressTimer: Function,
 	disableRepetition: Function,
 	setRepeatPlaylist: Function,
 	setRepeatCurrent: Function,
-	shufflePlaylist: Function,
 	playlist: Array<Object>,
 	currentPodcast: Object,
 	playPrevious: Function,
@@ -148,19 +145,15 @@ class Player extends Component<Props, State> {
 	handlePlayerConfiguration = (playerParams: Object): void => {
 		const { playlist: pastPlaylist, currentPodcast, playlistIndex, paused } = this.props
 
-		const shouldShufflePlaylist = playerParams[CONSTANTS.KEYS.SHOULD_SHUFFLE_PLAYLIST]
 		const playlist = playerParams[CONSTANTS.KEYS.PLAYLIST]
 
 		const isCurrentPodcastDefined = !!currentPodcast
 		const isPodcastChanged = isCurrentPodcastDefined && currentPodcast._id !== playlist[0]._id
 		const isPlayingSamePlaylist = this.checkIsPlayingSamePlaylist(playlist, pastPlaylist)
 
-		if (!isCurrentPodcastDefined || isPodcastChanged || !isPlayingSamePlaylist || shouldShufflePlaylist) {
-			const { setupShufflePlayer, setupPlayer } = this.props
-
-			const properAction = shouldShufflePlaylist ? setupShufflePlayer : setupPlayer
-
-			properAction(playlist)
+		if (!isCurrentPodcastDefined || isPodcastChanged || !isPlayingSamePlaylist) {
+			const { setupPlayer } = this.props
+			setupPlayer(playlist)
 		}
 
 		this.setHeaderTitle(playlist[0].category)
@@ -288,7 +281,6 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(PlayerCreators, disp
 
 const mapStateToProps = (state) => ({
 	isCurrentPodcastDownloaded: state.player.isCurrentPodcastDownloaded,
-	shouldShufflePlaylist: state.player.shouldShufflePlaylist,
 	shouldRepeatPlaylist: state.player.shouldRepeatPlaylist,
 	shouldRepeatCurrent: state.player.shouldRepeatCurrent,
 	currentPodcast: state.player.currentPodcast,

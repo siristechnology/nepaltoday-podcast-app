@@ -2,8 +2,6 @@ export const Types = {
 	UPDATE_PODCAST_URI: 'player/UPDATE_PODCAST_URI',
 	SEEK_PROGRESS_TIMER_REQUEST: 'player/SEEK_PROGRESS_TIMER_REQUEST',
 	SEEK_PROGRESS_TIMER_SUCCESS: 'player/SEEK_PROGRESS_TIMER_SUCCESS',
-	SHUFFLE_PLAYLIST_REQUEST: 'player/SHUFFLE_PLAYLIST_REQUEST',
-	SHUFFLE_PLAYLIST_SUCCESS: 'player/SHUFFLE_PLAYLIST_SUCCESS',
 	PLAY_PREVIOUS_REQUEST: 'player/PLAY_PREVIOUS_REQUEST',
 	PLAY_PREVIOUS_SUCCESS: 'player/PLAY_PREVIOUS_SUCCESS',
 	SET_PODCAST_REQUEST: 'player/SET_PODCAST_REQUEST',
@@ -17,8 +15,6 @@ export const Types = {
 	RESTART_PLAYER: 'player/RESTART_PLAYER',
 	DISABLE_REPETIION: 'player/DISABLE_REPETIION',
 	SETUP_PLAYER: 'player/SETUP_PLAYER',
-	SETUP_SHUFFLE_PLAYER_REQUEST: 'player/SETUP_SHUFFLE_PLAYER_REQUEST',
-	SETUP_SHUFFLE_PLAYER_SUCCESS: 'player/SETUP_SHUFFLE_PLAYER_SUCCESS',
 	SET_PODCASTS_RECENTLY_PLAYED: 'player/SET_PODCASTS_RECENTLY_PLAYED',
 	REPEAT_CURRENT_PODCAST_REQUEST: 'REPEAT_CURRENT_PODCAST_REQUEST',
 	REPEAT_CURRENT_PODCAST_SUCCESS: 'REPEAT_CURRENT_PODCAST_SUCCESS',
@@ -30,7 +26,6 @@ export const Types = {
 const INITIAL_STATE = {
 	isCurrentPodcastDownloaded: false,
 	shouldSeekProgressSlider: false,
-	shouldShufflePlaylist: false,
 	shouldRepeatPlaylist: false,
 	shouldRepeatCurrent: false,
 	originalPlaylistIndex: 0,
@@ -59,15 +54,6 @@ export const Creators = {
 	seekProgressTimerSuccess: (seekValue) => ({
 		type: Types.SEEK_PROGRESS_TIMER_SUCCESS,
 		payload: { seekValue },
-	}),
-
-	shufflePlaylist: () => ({
-		type: Types.SHUFFLE_PLAYLIST_REQUEST,
-	}),
-
-	shufflePlaylistSuccess: (payload) => ({
-		type: Types.SHUFFLE_PLAYLIST_SUCCESS,
-		payload,
 	}),
 
 	playPrevious: () => ({
@@ -126,16 +112,6 @@ export const Creators = {
 
 	setupPlayer: (playlist) => ({
 		type: Types.SETUP_PLAYER,
-		payload: { playlist },
-	}),
-
-	setupShufflePlayer: (playlist) => ({
-		type: Types.SETUP_SHUFFLE_PLAYER_REQUEST,
-		payload: { playlist },
-	}),
-
-	setupShufflePlayerSuccess: (playlist) => ({
-		type: Types.SETUP_SHUFFLE_PLAYER_SUCCESS,
 		payload: { playlist },
 	}),
 
@@ -224,19 +200,6 @@ const player = (state = INITIAL_STATE, { type, payload }) => {
 				...state,
 				currentTime: parseCurrentPodcastTime(payload.seekValue),
 				shouldSeekProgressSlider: false,
-			}
-
-		case Types.SHUFFLE_PLAYLIST_REQUEST:
-			return {
-				...state,
-			}
-
-		case Types.SHUFFLE_PLAYLIST_SUCCESS:
-			return {
-				...state,
-				...payload,
-				shouldShufflePlaylist: !state.shouldShufflePlaylist,
-				backupPlaylist: payload.playlist,
 			}
 
 		case Types.PLAY_PREVIOUS_REQUEST:
@@ -331,19 +294,6 @@ const player = (state = INITIAL_STATE, { type, payload }) => {
 		case Types.SETUP_PLAYER:
 			return {
 				...INITIAL_STATE,
-				originalPlaylist: payload.playlist,
-				backupPlaylist: payload.playlist,
-				playlist: payload.playlist,
-			}
-
-		case Types.SETUP_SHUFFLE_PLAYER_REQUEST:
-			return {
-				...INITIAL_STATE,
-			}
-
-		case Types.SETUP_SHUFFLE_PLAYER_SUCCESS:
-			return {
-				...state,
 				originalPlaylist: payload.playlist,
 				backupPlaylist: payload.playlist,
 				playlist: payload.playlist,
