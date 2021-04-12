@@ -5,7 +5,6 @@ import GraphqlClient from './graphql/graphql-client'
 import { ThemeContextProvider } from './ThemeContextProvider'
 import ApplicationNavigator from './routes'
 import store from './store'
-
 import './config/ReactotronConfig'
 
 const App = () => (

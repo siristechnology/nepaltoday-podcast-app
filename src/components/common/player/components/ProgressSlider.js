@@ -81,7 +81,7 @@ class ProgressSlider extends ProgressComponent<Props, State> {
 		TrackPlayer.seekTo(slideValue)
 		this.setState({
 			isSliding: true,
-			// slideValue,
+			slideValue,
 		})
 	}
 

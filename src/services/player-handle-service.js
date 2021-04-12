@@ -1,13 +1,18 @@
 import TrackPlayer from 'react-native-track-player'
+import { select, delay, call, all, put } from 'redux-saga/effects'
+import { Creators as PlayerCreators } from '../store/ducks/player'
 
 TrackPlayer.registerPlaybackService(
 	() =>
 		async function () {
-			TrackPlayer.addEventListener('remote-play', () => {
-				TrackPlayer.play()
+			TrackPlayer.addEventListener('remote-play', function* () {
+				// TrackPlayer.play()
+				console.log('play from remote notification')
+				yield put(PlayerCreators.play())
 			})
-			TrackPlayer.addEventListener('remote-pause', () => {
-				TrackPlayer.pause()
+			TrackPlayer.addEventListener('remote-pause', function* () {
+				// TrackPlayer.pause()
+				yield put(PlayerCreators.pause())
 			})
 			TrackPlayer.addEventListener('remote-stop', () => {
 				TrackPlayer.stop()

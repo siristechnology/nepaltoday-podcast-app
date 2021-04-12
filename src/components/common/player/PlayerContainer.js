@@ -80,13 +80,12 @@ class Player extends Component<Props, State> {
 
 		this.handlePlayerConfiguration(playerParams)
 
-		TrackPlayer.addEventListener('remote-play', () => this.props.play())
-		TrackPlayer.addEventListener('remote-pause', () => this.props.pause())
-		TrackPlayer.addEventListener('remote-stop', () => this.props.pause())
-		TrackPlayer.addEventListener('remote-next', () => this.props.playNext())
-		TrackPlayer.addEventListener('remote-previous', () => this.props.playPrevious())
-
-		TrackPlayer.addEventListener('playback-queue-ended', () => this.props.playNext())
+		// TrackPlayer.addEventListener('remote-play', () => this.props.play())
+		// TrackPlayer.addEventListener('remote-pause', () => this.props.pause())
+		// TrackPlayer.addEventListener('remote-stop', () => this.props.pause())
+		// TrackPlayer.addEventListener('remote-next', () => this.props.playNext())
+		// TrackPlayer.addEventListener('remote-previous', () => this.props.playPrevious())
+		// TrackPlayer.addEventListener('playback-queue-ended', () => this.props.playNext())
 	}
 
 	componentWillUpdate(nextProps: Props) {
@@ -181,12 +180,12 @@ class Player extends Component<Props, State> {
 	}
 
 	playClick = (play) => {
-		TrackPlayer.play()
+		// TrackPlayer.play()
 		play()
 	}
 
 	pauseClick = (pause) => {
-		TrackPlayer.pause()
+		// TrackPlayer.pause()
 		pause()
 	}
 

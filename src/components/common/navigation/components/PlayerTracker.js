@@ -95,12 +95,12 @@ const PlayerTracker = ({ currentPodcast, navigation, paused, pause, play }: Prop
 	}
 
 	const playClick = (play) => {
-		TrackPlayer.play()
+		// TrackPlayer.play()
 		play()
 	}
 
 	const pauseClick = (pause) => {
-		TrackPlayer.pause()
+		// TrackPlayer.pause()
 		pause()
 	}
 
