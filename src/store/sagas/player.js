@@ -89,6 +89,38 @@ const trackPlayerInit = async () => {
 	return true
 }
 
+function registerPlaybackService() {
+	TrackPlayer.registerPlaybackService(
+		() =>
+			async function () {
+				TrackPlayer.addEventListener('remote-play', () => {
+					play().next()
+				})
+				TrackPlayer.addEventListener('remote-pause', () => {
+					pause().next()
+				})
+				TrackPlayer.addEventListener('remote-stop', () => {
+					stop().next()
+				})
+				TrackPlayer.addEventListener('remote-next', () => {
+					playNext().next()
+				})
+				TrackPlayer.addEventListener('remote-previous', () => {
+					playPrevious().next()
+				})
+				TrackPlayer.addEventListener('remote-duck', () => {
+					pause().next()
+				})
+				TrackPlayer.addEventListener('remote-jump-forward', async () => {
+					// jumpyForward()
+				})
+				TrackPlayer.addEventListener('remote-jump-backward', async () => {
+					// jumpyBackward()
+				})
+			},
+	)
+}
+
 export function* play() {
 	TrackPlayer.play()
 	console.log('play button pressed')
@@ -103,13 +135,13 @@ export function* pause() {
 }
 
 export function* stop() {
-	console.log('stop button pressed')
+	TrackPlayer.stop()
 }
 
 export function* setupPlayer() {
 	try {
 		trackPlayerInit()
-		yield call(setPodcast)
+		registerPlaybackService()
 	} catch (err) {
 		console.log('setupPlayer', err)
 	}
@@ -118,26 +150,25 @@ export function* setupPlayer() {
 export function* setPodcast() {
 	try {
 		const { playlistIndex, playlist } = yield select((state) => state.player)
+		const currentPodcast = playlist && playlist[playlistIndex]
 
-		const currentPodcast = playlist[playlistIndex]
+		if (!currentPodcast) return
 
 		const podcastWithURI = yield _definePodcastURI(currentPodcast)
 
-		if (currentPodcast) {
-			TrackPlayer.reset()
-			TrackPlayer.add({
-				id: currentPodcast._id,
-				url: currentPodcast.audioUrl,
-				title: currentPodcast.title,
-				album: currentPodcast.publisher.title,
-				artist: currentPodcast.program.title,
-				artwork: currentPodcast.imageUrl,
-			})
+		TrackPlayer.reset()
+		TrackPlayer.add({
+			id: currentPodcast._id,
+			url: currentPodcast.audioUrl,
+			title: currentPodcast.title,
+			album: currentPodcast.publisher.title,
+			artist: currentPodcast.program.title,
+			artwork: currentPodcast.imageUrl,
+		})
 
-			if (currentPodcast.currentPosition > 3) TrackPlayer.seekTo(currentPodcast.currentPosition)
+		if (currentPodcast.currentPosition > 3) TrackPlayer.seekTo(currentPodcast.currentPosition)
 
-			TrackPlayer.play()
-		}
+		yield play()
 
 		yield delay(300) // Just for visual effects!
 
@@ -185,6 +216,8 @@ function* _handleRestartPlayer(firstPodcast) {
 export function* playNext() {
 	try {
 		const { currentPodcast, backupPlaylist, playlistIndex, playlist } = yield select((state) => state.player)
+
+		console.log('printing playlistIndex', playlistIndex)
 
 		const isLastPodcastOfPlaylist = playlistIndex === playlist.length - 1
 		const isPlaylistEmpty = playlist.length === 0

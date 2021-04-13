@@ -17,6 +17,8 @@ export const Types = {
 	PLAY: 'player/PLAY',
 	PAUSE: 'player/PAUSE',
 	STOP: 'player/STOP',
+	JUMP_FORWARD: 'player/JUMP_FORWARD',
+	JUMP_BACKWARD: 'player/JUMP_BACKWARD',
 }
 
 const INITIAL_STATE = {
@@ -59,8 +61,9 @@ export const Creators = {
 		payload,
 	}),
 
-	setPodcast: () => ({
+	setPodcast: (playlist) => ({
 		type: Types.SET_PODCAST_REQUEST,
+		payload: { playlist },
 	}),
 
 	setPodcastSuccess: (currentPodcast) => ({
@@ -92,10 +95,6 @@ export const Creators = {
 		payload: { originalPlaylistIndex, currentPodcast },
 	}),
 
-	disableRepetition: () => ({
-		type: Types.DISABLE_REPETIION,
-	}),
-
 	setupPlayer: (playlist) => ({
 		type: Types.SETUP_PLAYER,
 		payload: { playlist },
@@ -111,6 +110,14 @@ export const Creators = {
 
 	stop: () => ({
 		type: Types.STOP,
+	}),
+
+	jumpyForward: () => ({
+		type: Types.JUMP_FORWARD,
+	}),
+
+	jumpyBackward: () => ({
+		type: Types.JUMP_BACKWARD,
 	}),
 }
 
@@ -246,6 +253,14 @@ const player = (state = INITIAL_STATE, { type, payload }) => {
 			}
 
 		case Types.SETUP_PLAYER:
+			return {
+				...INITIAL_STATE,
+				originalPlaylist: payload.playlist,
+				backupPlaylist: payload.playlist,
+				playlist: payload.playlist,
+			}
+
+		case Types.SET_PODCAST_REQUEST:
 			return {
 				...INITIAL_STATE,
 				originalPlaylist: payload.playlist,

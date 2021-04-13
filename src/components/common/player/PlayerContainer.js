@@ -72,14 +72,6 @@ class Player extends Component<Props, State> {
 		}
 
 		this.handlePlayerConfiguration(playerParams)
-
-		TrackPlayer.addEventListener('remote-play', () => this.props.play())
-		TrackPlayer.addEventListener('remote-pause', () => this.props.pause())
-		TrackPlayer.addEventListener('remote-stop', () => this.props.pause())
-		TrackPlayer.addEventListener('remote-next', () => this.props.playNext())
-		TrackPlayer.addEventListener('remote-previous', () => this.props.playPrevious())
-
-		TrackPlayer.addEventListener('playback-queue-ended', () => this.props.playNext())
 	}
 
 	componentWillUpdate(nextProps: Props) {
@@ -148,15 +140,15 @@ class Player extends Component<Props, State> {
 		const isPlayingSamePlaylist = this.checkIsPlayingSamePlaylist(playlist, pastPlaylist)
 
 		if (!isCurrentPodcastDefined || isPodcastChanged || !isPlayingSamePlaylist) {
-			const { setupPlayer } = this.props
-			setupPlayer(playlist)
+			const { setPodcast } = this.props
+			setPodcast(playlist)
 		}
 
 		this.setHeaderTitle(playlist[0].category)
 	}
 
 	checkIsPlayingSamePlaylist = (currentPlaylist: Array<Object>, pastPlaylist: Array<Object>): boolean => {
-		if (currentPlaylist.length !== pastPlaylist.length) {
+		if (!pastPlaylist || currentPlaylist.length !== pastPlaylist.length) {
 			return false
 		}
 
