@@ -159,22 +159,6 @@ class Player extends Component<Props, State> {
 		return true
 	}
 
-	playClick = (play) => {
-		play()
-	}
-
-	pauseClick = (pause) => {
-		pause()
-	}
-
-	playPreviousClick = (playPrevious) => {
-		playPrevious()
-	}
-
-	playNextClick = (playNext) => {
-		playNext()
-	}
-
 	render() {
 		const {
 			isCurrentPodcastDownloaded,

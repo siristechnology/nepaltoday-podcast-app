@@ -63,10 +63,20 @@ function* _rewindToPreviousPodcast(newPlaylistIndex) {
 	}
 }
 
+export function* setupPlayer() {
+	try {
+		registerPlaybackService()
+		trackPlayerInit()
+	} catch (err) {
+		console.log('setupPlayer', err)
+	}
+}
+
 const trackPlayerInit = async () => {
 	await TrackPlayer.setupPlayer()
-	TrackPlayer.updateOptions({
+	await TrackPlayer.updateOptions({
 		jumpInterval: 30,
+		stopWithApp: true,
 		capabilities: [
 			TrackPlayer.CAPABILITY_PLAY,
 			TrackPlayer.CAPABILITY_PAUSE,
@@ -86,7 +96,6 @@ const trackPlayerInit = async () => {
 			TrackPlayer.CAPABILITY_JUMP_BACKWARD,
 		],
 	})
-	return true
 }
 
 function registerPlaybackService() {
@@ -105,16 +114,13 @@ function registerPlaybackService() {
 				TrackPlayer.addEventListener('remote-next', () => {
 					playNext().next()
 				})
-				TrackPlayer.addEventListener('remote-previous', () => {
-					playPrevious().next()
-				})
 				TrackPlayer.addEventListener('remote-duck', () => {
 					pause().next()
 				})
-				TrackPlayer.addEventListener('remote-jump-forward', async () => {
+				TrackPlayer.addEventListener('remote-jump-forward', () => {
 					jumpForward().next()
 				})
-				TrackPlayer.addEventListener('remote-jump-backward', async () => {
+				TrackPlayer.addEventListener('remote-jump-backward', () => {
 					jumpBackward().next()
 				})
 			},
@@ -149,15 +155,6 @@ export function* jumpBackward() {
 
 export function* stop() {
 	TrackPlayer.stop()
-}
-
-export function* setupPlayer() {
-	try {
-		trackPlayerInit()
-		registerPlaybackService()
-	} catch (err) {
-		console.log('setupPlayer', err)
-	}
 }
 
 export function* setPodcast() {
@@ -227,7 +224,6 @@ function* _handleRestartPlayer(firstPodcast) {
 }
 
 export function* playNext() {
-	console.log('printing playlistIndex')
 	try {
 		const { currentPodcast, backupPlaylist, playlistIndex, playlist } = yield select((state) => state.player)
 		const isLastPodcastOfPlaylist = playlistIndex === playlist.length - 1
