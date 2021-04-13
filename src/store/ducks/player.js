@@ -112,11 +112,11 @@ export const Creators = {
 		type: Types.STOP,
 	}),
 
-	jumpyForward: () => ({
+	jumpForward: () => ({
 		type: Types.JUMP_FORWARD,
 	}),
 
-	jumpyBackward: () => ({
+	jumpBackward: () => ({
 		type: Types.JUMP_BACKWARD,
 	}),
 }
@@ -287,6 +287,20 @@ const player = (state = INITIAL_STATE, { type, payload }) => {
 				...state,
 				stopPlayer: true,
 				paused: true,
+			}
+
+		case Types.JUMP_FORWARD:
+			return {
+				...state,
+				stopPlayer: false,
+				paused: false,
+			}
+
+		case Types.JUMP_BACKWARD:
+			return {
+				...state,
+				stopPlayer: false,
+				paused: false,
 			}
 
 		default:

@@ -112,10 +112,10 @@ function registerPlaybackService() {
 					pause().next()
 				})
 				TrackPlayer.addEventListener('remote-jump-forward', async () => {
-					// jumpyForward()
+					jumpForward().next()
 				})
 				TrackPlayer.addEventListener('remote-jump-backward', async () => {
-					// jumpyBackward()
+					jumpBackward().next()
 				})
 			},
 	)
@@ -132,6 +132,19 @@ export function* pause() {
 	currentPodcast.currentPosition = yield TrackPlayer.getPosition()
 
 	yield put(LocalPodcastsManagerCreators.addPodcastToRecentlyPlayedList(currentPodcast))
+}
+
+export function* jumpForward() {
+	TrackPlayer.getPosition().then((currentPosition) => {
+		TrackPlayer.seekTo(currentPosition + 30)
+	})
+}
+
+export function* jumpBackward() {
+	TrackPlayer.getPosition().then((currentPosition) => {
+		const nextPostion = currentPosition > 30 ? currentPosition - 30 : 0
+		TrackPlayer.seekTo(nextPostion)
+	})
 }
 
 export function* stop() {
@@ -214,11 +227,9 @@ function* _handleRestartPlayer(firstPodcast) {
 }
 
 export function* playNext() {
+	console.log('printing playlistIndex')
 	try {
 		const { currentPodcast, backupPlaylist, playlistIndex, playlist } = yield select((state) => state.player)
-
-		console.log('printing playlistIndex', playlistIndex)
-
 		const isLastPodcastOfPlaylist = playlistIndex === playlist.length - 1
 		const isPlaylistEmpty = playlist.length === 0
 

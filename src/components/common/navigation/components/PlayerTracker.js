@@ -11,8 +11,6 @@ import ProgressTimeLine from './ProgressTimeLine'
 import Icon from '~/components/common/Icon'
 import CONSTANTS from '~/utils/CONSTANTS'
 
-import TrackPlayer from 'react-native-track-player'
-
 const Wrapper = styled(View)`
 	width: 100%;
 	height: ${({ theme }) => theme.metrics.getWidthFromDP('16%')}px;
@@ -89,22 +87,9 @@ type Props = {
 	play: Function,
 }
 
-const PlayerTracker = ({ currentPodcast, navigation, paused, pause, play }: Props): Object => {
+const PlayerTracker = ({ currentPodcast, navigation, paused, pause, play, jumpForward }: Props): Object => {
 	if (!currentPodcast) {
 		return null
-	}
-
-	const playClick = (play) => {
-		play()
-	}
-
-	const pauseClick = (pause) => {
-		pause()
-	}
-
-	const jumpForward = async () => {
-		const currentPosition = await TrackPlayer.getPosition()
-		TrackPlayer.seekTo(currentPosition + 30)
 	}
 
 	return (
@@ -128,7 +113,7 @@ const PlayerTracker = ({ currentPodcast, navigation, paused, pause, play }: Prop
 				</ContentWrapper>
 				<PlayerButtonsWrapper>
 					<TouchableOpacity
-						onPress={() => (paused ? playClick(play) : pauseClick(pause))}
+						onPress={() => (paused ? play() : pause())}
 						style={{
 							paddingHorizontal: 10,
 						}}

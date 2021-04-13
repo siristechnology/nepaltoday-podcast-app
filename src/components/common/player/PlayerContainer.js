@@ -14,8 +14,6 @@ import PlayerComponent from './components/PlayerComponent'
 import CONSTANTS from '~/utils/CONSTANTS'
 import appStyles from '~/styles'
 
-import TrackPlayer from 'react-native-track-player'
-
 const DarkLayer = styled(Animated.View)`
 	width: ${({ theme }) => theme.metrics.getWidthFromDP('15%')};
 	height: 100%;
@@ -177,17 +175,6 @@ class Player extends Component<Props, State> {
 		playNext()
 	}
 
-	jumpForwardClick = async () => {
-		const currentPosition = await TrackPlayer.getPosition()
-		TrackPlayer.seekTo(currentPosition + 30)
-	}
-
-	jumpBackwardClick = async () => {
-		const currentPosition = await TrackPlayer.getPosition()
-		const nextPostion = currentPosition > 30 ? currentPosition - 30 : 0
-		TrackPlayer.seekTo(nextPostion)
-	}
-
 	render() {
 		const {
 			isCurrentPodcastDownloaded,
@@ -201,6 +188,8 @@ class Player extends Component<Props, State> {
 			paused,
 			pause,
 			play,
+			jumpForward,
+			jumpBackward,
 		} = this.props
 
 		const { isAddPlaylistModalOpen, isQueueSideMenuOpen } = this.state
@@ -239,14 +228,14 @@ class Player extends Component<Props, State> {
 							seekProgressTimer={seekProgressTimer}
 							currentPodcast={currentPodcast}
 							playlistIndex={playlistIndex}
-							playPrevious={() => this.playPreviousClick(playPrevious)}
-							playNext={() => this.playNextClick(playNext)}
-							jumpForward={() => this.jumpForwardClick()}
-							jumpBackward={() => this.jumpBackwardClick()}
+							playPrevious={playPrevious}
+							playNext={playNext}
+							jumpForward={jumpForward}
+							jumpBackward={jumpBackward}
 							playlist={playlist}
 							paused={paused}
-							pause={() => this.pauseClick(pause)}
-							play={() => this.playClick(play)}
+							pause={pause}
+							play={play}
 						/>
 					</SideMenu>
 				)}
