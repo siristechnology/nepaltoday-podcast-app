@@ -1,4 +1,4 @@
-import React from 'react'
+import 'react'
 import { createStackNavigator } from 'react-navigation-stack'
 import { Platform } from 'react-native'
 
@@ -8,20 +8,13 @@ import PodcastDetailContainer from '~/components/common/podcast-detail/PodcastDe
 import Player from '~/components/common/player/PlayerContainer'
 import Podacast from './Podcast'
 
-import {
-	getDefaultHeaderWithButton,
-	getDefaultHeaderWithTitle,
-	getPlayerNavigationOption,
-	getHiddenHeaderLayout,
-} from '~/routes/utils/navigationOptions'
+import { getDefaultHeaderWithTitle, getPlayerNavigationOption } from '~/routes/utils/navigationOptions'
 import CONSTANTS from '~/utils/CONSTANTS'
-import appStyles from '~/styles'
-
 
 const RootStack = createStackNavigator(
 	{
 		[CONSTANTS.ROUTES.PODCAST]: {
-			screen: (props) => <Podacast {...props} />,
+			screen: Podacast,
 			navigationOptions: () => ({
 				headerShown: false,
 				headerBackTitle: null,

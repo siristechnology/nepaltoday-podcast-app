@@ -18,7 +18,7 @@ const AllPodcastList = styled(FlatList)`
 	flex: 1;
 `
 
-const PodcastList = ({ navigation, data, headerComponent, refreshControl, currentPodcast, setPodcast, pause }) => {
+const PodcastList = ({ navigation, data, currentPodcast, setPodcast, pause, paused, headerComponent, refreshControl }) => {
 	const onItemPress = (item) => {
 		navigation.navigate(CONSTANTS.ROUTES.PODCAST_DETAIL, {
 			[CONSTANTS.KEYS.PODCAST_DETAIL_SHOULD_SHOW_AUTHOR_SECTION]: true,
@@ -44,8 +44,8 @@ const PodcastList = ({ navigation, data, headerComponent, refreshControl, curren
 						onPress={() => onItemPress(item)}
 						onPodcastPlay={() => onPodcastPlay(item, data)}
 						onPodcastPause={pause}
-						isLastIndex={index === data.length - 1}
-						isCurrentlyPlaying={item._id === currentPodcast?._id}
+						isCurrentPodcast={item._id === currentPodcast?._id}
+						paused={paused}
 						navigation={navigation}
 					/>
 				)}
@@ -56,9 +56,9 @@ const PodcastList = ({ navigation, data, headerComponent, refreshControl, curren
 	)
 }
 
-const mapStateToProps = ({ state }) => ({
-	currentPodcast: state?.player?.currentPodcast,
-	setPodcast: state?.setPodcast,
+const mapStateToProps = (state) => ({
+	currentPodcast: state.player.currentPodcast,
+	paused: state.player.paused,
 })
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(PlayerCreators, dispatch)

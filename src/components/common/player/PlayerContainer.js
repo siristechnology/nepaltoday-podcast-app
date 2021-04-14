@@ -64,7 +64,7 @@ class Player extends Component<Props, State> {
 		this.setHeaderRightMenuPress()
 
 		if (isLookingUpPlayer) {
-			this.setHeaderTitle(playlist[playlistIndex].category)
+			this.setHeaderTitle(playlist[playlistIndex].publisher.tittle)
 
 			return
 		}
@@ -142,7 +142,7 @@ class Player extends Component<Props, State> {
 			setPodcast(playlist)
 		}
 
-		this.setHeaderTitle(playlist[0].category)
+		this.setHeaderTitle(playlist[0].publisher.title)
 	}
 
 	checkIsPlayingSamePlaylist = (currentPlaylist: Array<Object>, pastPlaylist: Array<Object>): boolean => {
