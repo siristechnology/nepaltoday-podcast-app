@@ -1,12 +1,11 @@
-// @flow
-
 import React from 'react'
 import { View } from 'react-native'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { ProgressComponent } from 'react-native-track-player'
 import styled from 'styled-components'
 
-import { connect } from 'react-redux'
 import { Creators as PlayerCreators } from '~/store/ducks/player'
-
 import appStyles from '~/styles'
 
 const TotalDurationLine = styled(View)`
@@ -22,25 +21,7 @@ const CurrentTimeLine = styled(View)`
 	background-color: ${({ theme }) => theme.colors.subTextWhite};
 `
 
-type Props = {
-	durationInSeconds: number,
-	currentTime: string,
-}
-
-const getTotalSecondsFromCurrentTime = (currentTime: string): number => {
-	const rawMinutes = currentTime.split(':')[0]
-	const rawSeconds = currentTime.split(':')[1]
-
-	const minutes = parseInt(rawMinutes, 10)
-	const seconds = parseInt(rawSeconds, 10)
-
-	const currentTimeInSeconds = minutes * 60 + seconds
-
-	return currentTimeInSeconds
-}
-
-const getCurrentTimeLineWidth = (durationInSeconds: number, currentTime: string): number => {
-	const currentTimeInSeconds = getTotalSecondsFromCurrentTime(currentTime)
+const getCurrentTimeLineWidth = (durationInSeconds: number, currentTimeInSeconds: number): number => {
 	const screenWidth = appStyles.metrics.width
 
 	const currentTimeLineWidth = (currentTimeInSeconds * screenWidth) / durationInSeconds
@@ -48,20 +29,26 @@ const getCurrentTimeLineWidth = (durationInSeconds: number, currentTime: string)
 	return currentTimeLineWidth
 }
 
-const ProgressTimeLine = ({ durationInSeconds, currentTime }: Props): Object => {
-	const currentTimeLineWidth = getCurrentTimeLineWidth(durationInSeconds, currentTime)
+class ProgressTimeLine extends ProgressComponent {
+	render() {
+		const { durationInSeconds, seekProgressTimer } = this.props
+		const currentTime = this.getProgress() * durationInSeconds
+		seekProgressTimer(currentTime)
 
-	return (
-		<View>
-			<TotalDurationLine />
-			<CurrentTimeLine width={currentTimeLineWidth} />
-		</View>
-	)
+		const currentTimeLineWidth = getCurrentTimeLineWidth(durationInSeconds, currentTime)
+
+		return (
+			<View>
+				<TotalDurationLine />
+				<CurrentTimeLine width={currentTimeLineWidth} />
+			</View>
+		)
+	}
 }
+const mapDispatchToProps = (dispatch) => bindActionCreators(PlayerCreators, dispatch)
 
 const mapStateToProps = (state) => ({
 	durationInSeconds: state.player.currentPodcast.durationInSeconds,
-	currentTime: state.player.currentTime,
 })
 
-export default connect(mapStateToProps)(ProgressTimeLine)
+export default connect(mapStateToProps, mapDispatchToProps)(ProgressTimeLine)
