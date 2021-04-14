@@ -21,7 +21,7 @@ type Props = {
 	onPress: Function,
 }
 
-const PodcastListItem = ({ podcastDetail, isLastIndex, onPress, onPodcastPlay, navigation, theme }: Props) => {
+const PodcastListItem = ({ podcastDetail, isLastIndex, onPress, onPodcastPlay, isCurrentlyPlaying }: Props) => {
 	return (
 		<Container isLastIndex={isLastIndex}>
 			<LeftWrapper onPress={onPress}>
@@ -35,7 +35,7 @@ const PodcastListItem = ({ podcastDetail, isLastIndex, onPress, onPodcastPlay, n
 				</TitleWrapper>
 			</LeftWrapper>
 			<RightButtonWrapper onPress={() => onPodcastPlay(podcastDetail)}>
-				<Icon name="play-circle-outline" size={40} />
+				<Icon name={!isCurrentlyPlaying ? 'play-circle-outline' : 'pause-circle-outline'} size={40} />
 				<DurationText>{getFormattedDurationText(podcastDetail.durationInSeconds, podcastDetail.currentPosition)}</DurationText>
 			</RightButtonWrapper>
 		</Container>

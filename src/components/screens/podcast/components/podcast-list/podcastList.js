@@ -1,6 +1,9 @@
 import React from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import { FlatList, View } from 'react-native'
 import styled from 'styled-components'
+import { Creators as PlayerCreators } from '~/store/ducks/player'
 
 import CONSTANTS from '~/utils/CONSTANTS'
 import PodcastListItem from './podcastListItem'
@@ -15,7 +18,7 @@ const AllPodcastList = styled(FlatList)`
 	flex: 1;
 `
 
-const PodcastList = ({ navigation, data, headerComponent, refreshControl }) => {
+const PodcastList = ({ navigation, data, headerComponent, refreshControl, currentPodcast, setPodcast, pause }) => {
 	const onItemPress = (item) => {
 		navigation.navigate(CONSTANTS.ROUTES.PODCAST_DETAIL, {
 			[CONSTANTS.KEYS.PODCAST_DETAIL_SHOULD_SHOW_AUTHOR_SECTION]: true,
@@ -27,11 +30,7 @@ const PodcastList = ({ navigation, data, headerComponent, refreshControl }) => {
 		playlist = playlist.filter((p) => p._id != podcast._id)
 		playlist.unshift(podcast)
 
-		navigation.navigate(CONSTANTS.ROUTES.PLAYER, {
-			[CONSTANTS.PARAMS.PLAYER]: {
-				[CONSTANTS.KEYS.PLAYLIST]: playlist,
-			},
-		})
+		setPodcast(playlist)
 	}
 
 	return (
@@ -41,11 +40,13 @@ const PodcastList = ({ navigation, data, headerComponent, refreshControl }) => {
 				data={data}
 				renderItem={({ item, index }) => (
 					<PodcastListItem
+						podcastDetail={item}
 						onPress={() => onItemPress(item)}
 						onPodcastPlay={() => onPodcastPlay(item, data)}
+						onPodcastPause={pause}
 						isLastIndex={index === data.length - 1}
+						isCurrentlyPlaying={item._id === currentPodcast?._id}
 						navigation={navigation}
-						podcastDetail={item}
 					/>
 				)}
 				ListHeaderComponent={headerComponent}
@@ -55,4 +56,11 @@ const PodcastList = ({ navigation, data, headerComponent, refreshControl }) => {
 	)
 }
 
-export default PodcastList
+const mapStateToProps = ({ state }) => ({
+	currentPodcast: state?.player?.currentPodcast,
+	setPodcast: state?.setPodcast,
+})
+
+const mapDispatchToProps = (dispatch) => bindActionCreators(PlayerCreators, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(PodcastList)

@@ -1,4 +1,4 @@
-import { select, delay, call, all, put } from 'redux-saga/effects'
+import { select, call, all, put } from 'redux-saga/effects'
 
 import { Creators as LocalPodcastsManagerCreators } from '../ducks/localPodcastsManager'
 import { Creators as PlayerCreators } from '../ducks/player'
@@ -176,11 +176,9 @@ export function* setPodcast() {
 			artwork: currentPodcast.imageUrl,
 		})
 
-		if (currentPodcast.currentPosition > 3) TrackPlayer.seekTo(currentPodcast.currentPosition)
+		if (currentPodcast.currentPosition > 3) TrackPlayer.seekTo(currentPodcast.currentPosition - 3)
 
 		yield play()
-
-		yield delay(300) // Just for visual effects!
 
 		yield all([
 			put(PlayerCreators.setPodcastSuccess(podcastWithURI)),
