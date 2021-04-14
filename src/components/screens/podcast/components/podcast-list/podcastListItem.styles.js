@@ -30,10 +30,9 @@ export const TitleWrapper = styled(View)`
 `
 
 export const Title = styled(Text).attrs({
-	numberOfLines: 2,
+	numberOfLines: 3,
 })`
 	font-size: 18px;
-	font-weight: bold;
 	color: ${({ theme }) => theme.colors.textColor};
 `
 
@@ -61,6 +60,7 @@ export const RelativeTimeWrapper = styled(View)`
 `
 
 export const RightButtonWrapper = styled(TouchableOpacity)`
+	width: 60;
 	opacity: 0.9;
 	flex-direction: column;
 	justify-content: center;
