@@ -287,20 +287,6 @@ const player = (state = INITIAL_STATE, { type, payload }) => {
 				paused: true,
 			}
 
-		case Types.JUMP_FORWARD:
-			return {
-				...state,
-				stopPlayer: false,
-				paused: false,
-			}
-
-		case Types.JUMP_BACKWARD:
-			return {
-				...state,
-				stopPlayer: false,
-				paused: false,
-			}
-
 		default:
 			return state
 	}
