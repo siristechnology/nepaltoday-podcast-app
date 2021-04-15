@@ -25,8 +25,6 @@ export function* addPodcastToRecentlyPlayedList({ payload }) {
 		const { podcast } = payload
 		if (!podcast) return
 
-		console.log('printing podcast to recent list', podcast.title, podcast.currentPosition)
-
 		const { podcastsRecentlyPlayed } = yield select((state) => state.localPodcastsManager)
 
 		const podcastsRecentlyPlayedWithoutCurrentPodcast = podcastsRecentlyPlayed.filter(

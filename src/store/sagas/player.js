@@ -179,9 +179,9 @@ export function* setPodcast() {
 
 		yield play()
 
+		yield put(LocalPodcastsManagerCreators.addPodcastToRecentlyPlayedList(oldPodcast))
 		yield all([
 			put(PlayerCreators.setPodcastSuccess(podcastWithURI)),
-			put(LocalPodcastsManagerCreators.addPodcastToRecentlyPlayedList(oldPodcast)),
 			put(LocalPodcastsManagerCreators.addPodcastToRecentlyPlayedList(newPodcast)),
 		])
 	} catch (err) {
