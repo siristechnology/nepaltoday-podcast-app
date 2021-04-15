@@ -158,30 +158,31 @@ export function* stop() {
 
 export function* setPodcast() {
 	try {
-		const { playlistIndex, playlist } = yield select((state) => state.player)
-		const currentPodcast = playlist && playlist[playlistIndex]
+		const { oldPodcast, playlistIndex, playlist } = yield select((state) => state.player)
+		const newPodcast = playlist && playlist[playlistIndex]
 
-		if (!currentPodcast) return
+		if (!newPodcast) return
 
-		const podcastWithURI = yield _definePodcastURI(currentPodcast)
+		const podcastWithURI = yield _definePodcastURI(newPodcast)
 
 		TrackPlayer.reset()
 		TrackPlayer.add({
-			id: currentPodcast._id,
-			url: currentPodcast.audioUrl,
-			title: currentPodcast.title,
-			album: currentPodcast.publisher.title,
-			artist: currentPodcast.program.title,
-			artwork: currentPodcast.imageUrl,
+			id: newPodcast._id,
+			url: newPodcast.audioUrl,
+			title: newPodcast.title,
+			album: newPodcast.publisher.title,
+			artist: newPodcast.program.title,
+			artwork: newPodcast.imageUrl,
 		})
 
-		if (currentPodcast.currentPosition > 3) TrackPlayer.seekTo(currentPodcast.currentPosition - 3)
+		if (newPodcast.currentPosition > 3) TrackPlayer.seekTo(newPodcast.currentPosition - 3)
 
 		yield play()
 
 		yield all([
 			put(PlayerCreators.setPodcastSuccess(podcastWithURI)),
-			put(LocalPodcastsManagerCreators.addPodcastToRecentlyPlayedList(currentPodcast)),
+			put(LocalPodcastsManagerCreators.addPodcastToRecentlyPlayedList(oldPodcast)),
+			put(LocalPodcastsManagerCreators.addPodcastToRecentlyPlayedList(newPodcast)),
 		])
 	} catch (err) {
 		console.log('err', err)

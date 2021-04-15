@@ -26,6 +26,7 @@ const INITIAL_STATE = {
 	shouldSeekProgressSlider: false,
 	originalPlaylistIndex: 0,
 	currentPodcast: null,
+	oldPodcast: null,
 	originalPlaylist: [],
 	currentTime: '00:00',
 	backupPlaylist: [],
@@ -239,7 +240,6 @@ const player = (state = INITIAL_STATE, { type, payload }) => {
 			}
 
 		case Types.SET_CURRENT_TIME:
-			// console.log('printing payload', payload);
 			return {
 				...state,
 				currentTime: parseCurrentPodcastTime(payload.currentTime),
@@ -265,6 +265,7 @@ const player = (state = INITIAL_STATE, { type, payload }) => {
 		case Types.SET_PODCAST_REQUEST:
 			return {
 				...INITIAL_STATE,
+				oldPodcast: state.currentPodcast,
 				originalPlaylist: payload.playlist,
 				backupPlaylist: payload.playlist,
 				playlist: payload.playlist,

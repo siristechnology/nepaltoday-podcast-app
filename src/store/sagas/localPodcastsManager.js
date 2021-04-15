@@ -23,14 +23,17 @@ export function* loadPodcastsRecentlyPlayed() {
 export function* addPodcastToRecentlyPlayedList({ payload }) {
 	try {
 		const { podcast } = payload
+		if (!podcast) return
+
+		console.log('printing podcast to recent list', podcast.title, podcast.currentPosition)
 
 		const { podcastsRecentlyPlayed } = yield select((state) => state.localPodcastsManager)
 
-		const podcastsRecentlyPlayedWithourCurrentPodcast = podcastsRecentlyPlayed.filter(
+		const podcastsRecentlyPlayedWithoutCurrentPodcast = podcastsRecentlyPlayed.filter(
 			(podcastRecentlyPlayed) => podcastRecentlyPlayed._id !== podcast._id,
 		)
 
-		const podcastsRecentlyPlayedUpdated = [podcast, ...podcastsRecentlyPlayedWithourCurrentPodcast].slice(0, 50)
+		const podcastsRecentlyPlayedUpdated = [podcast, ...podcastsRecentlyPlayedWithoutCurrentPodcast].slice(0, 50)
 
 		yield all([
 			call(persistItemInStorage, CONSTANTS.KEYS.PODCASTS_PLAYED_RECENTLY, podcastsRecentlyPlayedUpdated),
