@@ -16,27 +16,30 @@ import {
 } from './podcastListItem.styles'
 
 type Props = {
-	podcastDetail: Object,
+	podcast: Object,
 	isLastIndex: boolean,
 	onPress: Function,
 }
 
-const PodcastListItem = ({ podcastDetail, onPress, onPodcastPlay, onPodcastPause, isCurrentPodcast, paused }: Props) => {
+const PodcastListItem = ({ podcast, onPress, onPodcastPlay, onPodcastPause, currentPodcast, paused }: Props) => {
+	const isCurrentPodcast = podcast._id === currentPodcast?._id
+	const currentPosition = !isCurrentPodcast ? podcast.currentPosition : currentPodcast.currentPosition
+
 	return (
 		<Container>
 			<LeftWrapper onPress={onPress}>
-				<PodcastImage uri={podcastDetail.imageUrl} />
+				<PodcastImage uri={podcast.imageUrl} />
 				<TitleWrapper>
 					<RelativeTimeWrapper>
-						<SourceTimeText>{getRelativeTime(podcastDetail.createdDate)}</SourceTimeText>
+						<SourceTimeText>{getRelativeTime(podcast.createdDate)}</SourceTimeText>
 					</RelativeTimeWrapper>
-					<Title>{podcastDetail.title}</Title>
-					<Description>{podcastDetail.description}</Description>
+					<Title>{podcast.title}</Title>
+					<Description>{podcast.description}</Description>
 				</TitleWrapper>
 			</LeftWrapper>
-			<RightButtonWrapper onPress={() => (isCurrentPodcast && !paused ? onPodcastPause() : onPodcastPlay(podcastDetail))}>
+			<RightButtonWrapper onPress={() => (isCurrentPodcast && !paused ? onPodcastPause() : onPodcastPlay(podcast))}>
 				<Icon name={isCurrentPodcast && !paused ? 'pause-circle-outline' : 'play-circle-outline'} size={40} />
-				<DurationText>{getFormattedDurationText(podcastDetail.durationInSeconds, podcastDetail.currentPosition)}</DurationText>
+				<DurationText>{getFormattedDurationText(podcast.durationInSeconds, currentPosition)}</DurationText>
 			</RightButtonWrapper>
 		</Container>
 	)

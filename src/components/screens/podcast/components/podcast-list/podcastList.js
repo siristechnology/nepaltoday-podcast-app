@@ -38,13 +38,13 @@ const PodcastList = ({ navigation, data, currentPodcast, setPodcast, pause, paus
 			<AllPodcastList
 				keyExtractor={(podcast) => `${podcast._id}`}
 				data={data}
-				renderItem={({ item, index }) => (
+				renderItem={({ item }) => (
 					<PodcastListItem
-						podcastDetail={item}
+						podcast={item}
 						onPress={() => onItemPress(item)}
 						onPodcastPlay={() => onPodcastPlay(item, data)}
 						onPodcastPause={pause}
-						isCurrentPodcast={item._id === currentPodcast?._id}
+						currentPodcast={currentPodcast}
 						paused={paused}
 						navigation={navigation}
 					/>
