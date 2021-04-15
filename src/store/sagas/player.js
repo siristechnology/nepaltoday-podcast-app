@@ -75,8 +75,9 @@ export function* setupPlayer() {
 const trackPlayerInit = async () => {
 	await TrackPlayer.setupPlayer()
 	await TrackPlayer.updateOptions({
-		jumpInterval: 30,
 		stopWithApp: true,
+		alwaysPauseOnInterruption: true,
+		jumpInterval: 30,
 		capabilities: [
 			TrackPlayer.CAPABILITY_PLAY,
 			TrackPlayer.CAPABILITY_PAUSE,
