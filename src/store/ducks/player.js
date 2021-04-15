@@ -177,6 +177,10 @@ const player = (state = INITIAL_STATE, { type, payload }) => {
 				...state,
 				shouldSeekProgressSlider: true,
 				seekValue: payload.seekValue,
+				currentPodcast: {
+					...state.currentPodcast,
+					currentPosition: payload.seekValue,
+				},
 			}
 
 		case Types.SEEK_PROGRESS_TIMER_SUCCESS:

@@ -87,14 +87,14 @@ type Props = {
 	play: Function,
 }
 
-const PlayerTracker = ({ currentPodcast, navigation, paused, pause, play, jumpForward }: Props): Object => {
+const PlayerTracker = ({ currentPodcast, navigation, paused, pause, play, jumpForward, seekProgressTimer }: Props): Object => {
 	if (!currentPodcast) {
 		return null
 	}
 
 	return (
 		<Fragment>
-			<ProgressTimeLine />
+			<ProgressTimeLine seekProgressTimer={seekProgressTimer} />
 			<Wrapper>
 				<ContentWrapper
 					onPress={() =>
