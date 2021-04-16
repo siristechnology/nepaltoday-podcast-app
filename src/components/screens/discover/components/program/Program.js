@@ -53,11 +53,7 @@ class Program extends Component {
 		const { navigation, setPodcast, pause, currentPodcast, paused } = this.props
 
 		const onPlayAll = () => {
-			navigation.navigate(CONSTANTS.ROUTES.PLAYER, {
-				[CONSTANTS.PARAMS.PLAYER]: {
-					[CONSTANTS.KEYS.PLAYLIST]: this.state.podcasts,
-				},
-			})
+			setPodcast(this.state.podcasts)
 		}
 
 		return (
