@@ -2,7 +2,7 @@ import React from 'react'
 import { createStackNavigator } from 'react-navigation-stack'
 import { Platform } from 'react-native'
 
-import { getDefaultHeaderWithTitle } from '~/routes/utils/navigationOptions'
+import { getDefaultHeaderWithTitle, getDefaultHeaderWithButton } from '~/routes/utils/navigationOptions'
 import PodcastsDownloaded from './downloads/PodcastsDownloaded'
 import RecentlyPlayed from './history/RecentlyPlayed'
 
@@ -29,7 +29,8 @@ const RootStack = createStackNavigator(
 
 		[LOCAL_STACK_ROUTES.PODCASTS_DOWNLOADED]: {
 			screen: PodcastsDownloaded,
-			navigationOptions: ({ navigation, screenProps }) => getDefaultHeaderWithTitle('Downloads', navigation, screenProps),
+			navigationOptions: ({ navigation, screenProps }) =>
+				getDefaultHeaderWithButton(navigation, screenProps, 'Downloads', 'play-circle-outline'),
 		},
 
 		[LOCAL_STACK_ROUTES.RECENTLY_PLAYED]: {

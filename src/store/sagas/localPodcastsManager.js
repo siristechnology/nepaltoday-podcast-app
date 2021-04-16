@@ -114,6 +114,7 @@ function* _handleDownloadPodcastResult(statusCode, path, podcast) {
 	if (statusCode === 200) {
 		const podcastWithLocalURI = {
 			...podcast,
+			isDownloaded: true,
 			path,
 		}
 

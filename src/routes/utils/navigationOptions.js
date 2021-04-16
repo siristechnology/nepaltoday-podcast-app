@@ -31,6 +31,7 @@ export const getPlayerNavigationOption = (navigation: Object): Object => {
 
 	const onPressHeaderRightButton = params[CONSTANTS.PARAMS.HEADER_BUTTON_RIGHT_PLAYER_ACTION]
 	const isRightMenuOpen = params[CONSTANTS.KEYS.IS_PLAYER_RIGHT_MENU_OPEN]
+	const title = params[CONSTANTS.PARAMS.PLAYER_TITLE]
 
 	return {
 		...DEFAULT_HEADER_STYLE,
@@ -39,7 +40,7 @@ export const getPlayerNavigationOption = (navigation: Object): Object => {
 			borderBottomWidth: 0,
 		},
 		headerShown: isRightMenuOpen ? null : undefined,
-		title: '',
+		title: title ? `#${title}` : '',
 		headerRight: () => <HeaderButton onPress={onPressHeaderRightButton} iconName="format-list-bulleted" position={POSITIONS.RIGHT} />,
 	}
 }
