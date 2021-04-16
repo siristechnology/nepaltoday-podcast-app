@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import { RefreshControl } from 'react-native'
-import { FlatList, View } from 'react-native'
+import { FlatList, View, RefreshControl } from 'react-native'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
 
+import { Creators as PlayerCreators } from '~/store/ducks/player'
 import PodcastListItem from '~/components/common/PodcastListItem'
 import CONSTANTS from '~/utils/CONSTANTS'
 import appStyles from '~/styles'
@@ -48,7 +50,7 @@ class Program extends Component {
 	}
 
 	render() {
-		const { navigation } = this.props
+		const { navigation, setPodcast } = this.props
 
 		const onPlayAll = () => {
 			navigation.navigate(CONSTANTS.ROUTES.PLAYER, {
@@ -72,6 +74,7 @@ class Program extends Component {
 									[CONSTANTS.PARAMS.PODCAST_DETAIL]: item,
 								})
 							}
+							setPodcast={setPodcast}
 							shouldShowDownloadStatus={false}
 							roundedImage={false}
 							podcast={item}
@@ -94,4 +97,13 @@ class Program extends Component {
 	}
 }
 
-export default Program
+const mapDispatchToProps = (dispatch) => bindActionCreators(PlayerCreators, dispatch)
+
+const mapStateToProps = (state) => ({
+	currentPodcast: state.player.currentPodcast,
+	paused: state.player.paused,
+	podcastsRecentlyPlayed: state.localPodcastsManager.podcastsRecentlyPlayed,
+	podcastsDownloaded: state.localPodcastsManager.podcastsDownloaded,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Program)

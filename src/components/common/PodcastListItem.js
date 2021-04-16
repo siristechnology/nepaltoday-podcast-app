@@ -115,6 +115,7 @@ type Props = {
 }
 
 const PodcastListItem = ({
+	setPodcast,
 	shouldShowDownloadStatus,
 	isDownloading,
 	roundedImage,
@@ -122,7 +123,6 @@ const PodcastListItem = ({
 	podcast,
 	index,
 	theme,
-	navigation,
 }: Props): Object => (
 	<Wrapper onPress={() => onPressItem(podcast)}>
 		<Index isFirstIndex={index === 1}>{index}</Index>
@@ -135,15 +135,7 @@ const PodcastListItem = ({
 				<AuthorName shouldShowDownloadStatus={shouldShowDownloadStatus}>{podcast.title}</AuthorName>
 			</BottomContent>
 		</ContentContainer>
-		<RightButtonWrapper
-			onPress={() =>
-				navigation.navigate(CONSTANTS.ROUTES.PLAYER, {
-					[CONSTANTS.PARAMS.PLAYER]: {
-						[CONSTANTS.KEYS.PLAYLIST]: [podcast],
-					},
-				})
-			}
-		>
+		<RightButtonWrapper onPress={() => setPodcast([podcast])}>
 			<Icon name="play-circle-outline" size={40} />
 		</RightButtonWrapper>
 		<PodcastDuration>{podcast.duration}</PodcastDuration>
