@@ -265,6 +265,7 @@ const player = (state = INITIAL_STATE, { type, payload }) => {
 		case Types.SET_PODCAST_REQUEST:
 			return {
 				...INITIAL_STATE,
+				currentPodcast: state.currentPodcast,
 				oldPodcast: state.currentPodcast,
 				originalPlaylist: payload.playlist,
 				backupPlaylist: payload.playlist,

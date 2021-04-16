@@ -161,13 +161,12 @@ export function* setPodcast() {
 	try {
 		const { oldPodcast, playlistIndex, playlist } = yield select((state) => state.player)
 		const newPodcast = playlist && playlist[playlistIndex]
-
 		if (!newPodcast) return
 
 		const podcastWithURI = yield _definePodcastURI(newPodcast)
 
-		TrackPlayer.reset()
-		TrackPlayer.add({
+		yield TrackPlayer.reset()
+		yield TrackPlayer.add({
 			id: newPodcast._id,
 			url: newPodcast.audioUrl,
 			title: newPodcast.title,
@@ -179,12 +178,9 @@ export function* setPodcast() {
 		if (newPodcast.currentPosition > 3) TrackPlayer.seekTo(newPodcast.currentPosition - 3)
 
 		yield play()
-
+		yield put(PlayerCreators.setPodcastSuccess(podcastWithURI))
 		yield put(LocalPodcastsManagerCreators.addPodcastToRecentlyPlayedList(oldPodcast))
-		yield all([
-			put(PlayerCreators.setPodcastSuccess(podcastWithURI)),
-			put(LocalPodcastsManagerCreators.addPodcastToRecentlyPlayedList(newPodcast)),
-		])
+		yield put(LocalPodcastsManagerCreators.addPodcastToRecentlyPlayedList(newPodcast))
 	} catch (err) {
 		console.log('err', err)
 	}
