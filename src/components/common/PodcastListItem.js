@@ -116,6 +116,9 @@ type Props = {
 
 const PodcastListItem = ({
 	setPodcast,
+	pause,
+	currentPodcast,
+	paused,
 	shouldShowDownloadStatus,
 	isDownloading,
 	roundedImage,
@@ -123,23 +126,29 @@ const PodcastListItem = ({
 	podcast,
 	index,
 	theme,
-}: Props): Object => (
-	<Wrapper onPress={() => onPressItem(podcast)}>
-		<Index isFirstIndex={index === 1}>{index}</Index>
-		<PodcastImage roundedImage={roundedImage} uri={podcast.imageUrl} />
-		<ContentContainer shouldShowDownloadStatus={shouldShowDownloadStatus}>
-			<SourceTimeText>{getRelativeTime(podcast.createdDate)}</SourceTimeText>
-			<PodcastTitle>{podcast.title}</PodcastTitle>
-			<BottomContent>
-				{shouldShowDownloadStatus && <IconWrapper>{getDownloadStatusIconConfig(podcast.isDownloaded, !!isDownloading, theme)}</IconWrapper>}
-				<AuthorName shouldShowDownloadStatus={shouldShowDownloadStatus}>{podcast.title}</AuthorName>
-			</BottomContent>
-		</ContentContainer>
-		<RightButtonWrapper onPress={() => setPodcast([podcast])}>
-			<Icon name="play-circle-outline" size={40} />
-		</RightButtonWrapper>
-		<PodcastDuration>{podcast.duration}</PodcastDuration>
-	</Wrapper>
-)
+}: Props): Object => {
+	const isCurrentPodcast = podcast._id === currentPodcast?._id
+
+	return (
+		<Wrapper onPress={() => onPressItem(podcast)}>
+			<Index isFirstIndex={index === 1}>{index}</Index>
+			<PodcastImage roundedImage={roundedImage} uri={podcast.imageUrl} />
+			<ContentContainer shouldShowDownloadStatus={shouldShowDownloadStatus}>
+				<SourceTimeText>{getRelativeTime(podcast.createdDate)}</SourceTimeText>
+				<PodcastTitle>{podcast.title}</PodcastTitle>
+				<BottomContent>
+					{shouldShowDownloadStatus && (
+						<IconWrapper>{getDownloadStatusIconConfig(podcast.isDownloaded, !!isDownloading, theme)}</IconWrapper>
+					)}
+					<AuthorName shouldShowDownloadStatus={shouldShowDownloadStatus}>{podcast.title}</AuthorName>
+				</BottomContent>
+			</ContentContainer>
+			<RightButtonWrapper onPress={() => (isCurrentPodcast && !paused ? pause() : setPodcast([podcast]))}>
+				<Icon name={isCurrentPodcast && !paused ? 'pause-circle-outline' : 'play-circle-outline'} size={40} />
+			</RightButtonWrapper>
+			<PodcastDuration>{podcast.duration}</PodcastDuration>
+		</Wrapper>
+	)
+}
 
 export default withTheme(PodcastListItem)

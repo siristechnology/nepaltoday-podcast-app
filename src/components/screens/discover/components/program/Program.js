@@ -50,7 +50,7 @@ class Program extends Component {
 	}
 
 	render() {
-		const { navigation, setPodcast } = this.props
+		const { navigation, setPodcast, pause, currentPodcast, paused } = this.props
 
 		const onPlayAll = () => {
 			navigation.navigate(CONSTANTS.ROUTES.PLAYER, {
@@ -75,6 +75,9 @@ class Program extends Component {
 								})
 							}
 							setPodcast={setPodcast}
+							pause={pause}
+							currentPodcast={currentPodcast}
+							paused={paused}
 							shouldShowDownloadStatus={false}
 							roundedImage={false}
 							podcast={item}
