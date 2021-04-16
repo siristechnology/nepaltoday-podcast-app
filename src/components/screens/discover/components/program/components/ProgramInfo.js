@@ -71,7 +71,7 @@ const ProgramInfo = ({ program, onPlayAll }: Props) => {
 					<PodcastTitleText>{program.title || ''}</PodcastTitleText>
 					<SubjectWrapper>
 						<PodcastSubjectText>{`#${program.category || ''}`}</PodcastSubjectText>
-						<PodcastSubjectText>{`#${program.publisher?.id || ''}`}</PodcastSubjectText>
+						<PodcastSubjectText>{`#${program.publisher?.title || ''}`}</PodcastSubjectText>
 					</SubjectWrapper>
 				</TextContentWrapper>
 			</InfoWrapper>
