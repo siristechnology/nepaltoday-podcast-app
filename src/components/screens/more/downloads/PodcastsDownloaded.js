@@ -1,12 +1,10 @@
-// @flow
-
 import React, { PureComponent } from 'react'
-import { FlatList, View, Text } from 'react-native'
+import { FlatList, View } from 'react-native'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
 
-import { connect } from 'react-redux'
-import { Creators as PlaylistsCreators } from '~/store/ducks/playlist'
-
+import { Creators as PlayerCreators } from '~/store/ducks/player'
 import { setHeaderPlayButtonPress } from '~/routes/utils/navigationOptions'
 import PodcastsDownloadedListItem from '~/components/common/PodcastListItem'
 import CONSTANTS from '~/utils/CONSTANTS'
@@ -38,7 +36,7 @@ class PodcastsDownloaded extends PureComponent<Props, {}> {
 	}
 
 	render() {
-		const { podcastsDownloaded, navigation } = this.props
+		const { setPodcast, pause, currentPodcast, paused, podcastsDownloaded, navigation } = this.props
 
 		return (
 			<Wrapper>
@@ -51,6 +49,10 @@ class PodcastsDownloaded extends PureComponent<Props, {}> {
 									[CONSTANTS.PARAMS.PODCAST_DETAIL]: item,
 								})
 							}
+							setPodcast={setPodcast}
+							pause={pause}
+							currentPodcast={currentPodcast}
+							paused={paused}
 							navigation={navigation}
 							shouldShowDownloadStatus
 							isDownloading={false}
@@ -70,6 +72,10 @@ class PodcastsDownloaded extends PureComponent<Props, {}> {
 
 const mapStateToProps = (state) => ({
 	podcastsDownloaded: state.localPodcastsManager.podcastsDownloaded,
+	currentPodcast: state.player.currentPodcast,
+	paused: state.player.paused,
 })
 
-export default connect(mapStateToProps)(PodcastsDownloaded)
+const mapDispatchToProps = (dispatch) => bindActionCreators(PlayerCreators, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(PodcastsDownloaded)

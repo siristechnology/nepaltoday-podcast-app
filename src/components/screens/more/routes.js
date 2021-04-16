@@ -2,8 +2,7 @@ import React from 'react'
 import { createStackNavigator } from 'react-navigation-stack'
 import { Platform } from 'react-native'
 
-import { getPlayerNavigationOption, getDefaultHeaderWithTitle } from '~/routes/utils/navigationOptions'
-import Player from '~/components/common/player/PlayerContainer'
+import { getDefaultHeaderWithTitle } from '~/routes/utils/navigationOptions'
 import PodcastsDownloaded from './downloads/PodcastsDownloaded'
 import RecentlyPlayed from './history/RecentlyPlayed'
 
@@ -52,13 +51,5 @@ const RootStack = createStackNavigator(
 		},
 	},
 )
-
-RootStack.navigationOptions = ({ navigation }) => {
-	const tabBarVisible = navigation.state.index <= 0
-
-	return {
-		tabBarVisible,
-	}
-}
 
 export default RootStack

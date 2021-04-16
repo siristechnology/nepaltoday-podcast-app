@@ -92,7 +92,7 @@ class RecentlyPlayed extends PureComponent<Props, State> {
 
 	render() {
 		const { podcastsRecentlyPlayed } = this.state
-		const { navigation } = this.props
+		const { setPodcast, pause, currentPodcast, paused, navigation } = this.props
 
 		return (
 			<Wrapper>
@@ -105,6 +105,10 @@ class RecentlyPlayed extends PureComponent<Props, State> {
 									[CONSTANTS.PARAMS.PODCAST_DETAIL]: item,
 								})
 							}
+							setPodcast={setPodcast}
+							pause={pause}
+							currentPodcast={currentPodcast}
+							paused={paused}
 							navigation={navigation}
 							shouldShowDownloadStatus
 							isDownloading={false}
@@ -127,6 +131,8 @@ const mapDispatchToProps = (dispatch) => bindActionCreators(PlayerCreators, disp
 const mapStateToProps = (state) => ({
 	podcastsRecentlyPlayed: state.localPodcastsManager.podcastsRecentlyPlayed,
 	podcastsDownloaded: state.localPodcastsManager.podcastsDownloaded,
+	currentPodcast: state.player.currentPodcast,
+	paused: state.player.paused,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecentlyPlayed)
