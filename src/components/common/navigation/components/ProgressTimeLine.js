@@ -4,33 +4,38 @@ import { useTrackPlayerProgress } from 'react-native-track-player'
 import styled from 'styled-components'
 import appStyles from '~/styles'
 
-const TotalDurationLine = styled(View)`
-	width: 100%;
+const Wrapper = styled(View)`
+	background-color: ${({ theme }) => theme.colors.darkText};
+`
+
+const BufferredTimeLine = styled(View)`
+	width: ${({ width }) => width};
 	height: 2px;
-	background-color: ${({ theme }) => theme.colors.subText};
+	background-color: ${({ theme }) => theme.colors.primaryColorAlpha};
 	position: absolute;
 `
 
 const CurrentTimeLine = styled(View)`
 	width: ${({ width }) => width};
 	height: 2px;
-	background-color: ${({ theme }) => theme.colors.subTextWhite};
+	background-color: ${({ theme }) => theme.colors.primaryColor};
 `
 
 const ProgressTimeLine = ({ seekProgressTimer }) => {
-	const { position, duration } = useTrackPlayerProgress(1000, null)
+	const { position, bufferedPosition, duration } = useTrackPlayerProgress(1000, null)
 
 	useEffect(() => {
 		seekProgressTimer(position)
 	}, [seekProgressTimer, position])
 
 	const currentTimeLineWidth = getCurrentTimeLineWidth(duration, position)
+	const bufferedTimeLineWidth = getCurrentTimeLineWidth(duration, bufferedPosition)
 
 	return (
-		<View>
-			<TotalDurationLine />
+		<Wrapper>
+			<BufferredTimeLine width={bufferedTimeLineWidth} />
 			<CurrentTimeLine width={currentTimeLineWidth} />
-		</View>
+		</Wrapper>
 	)
 }
 
