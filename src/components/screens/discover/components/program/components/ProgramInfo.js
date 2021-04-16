@@ -59,7 +59,7 @@ type Props = {
 }
 
 const ProgramInfo = ({ program, onPlayAll }: Props) => {
-	if (!program.title) {
+	if (!program?.title) {
 		return <></>
 	}
 
@@ -71,7 +71,7 @@ const ProgramInfo = ({ program, onPlayAll }: Props) => {
 					<PodcastTitleText>{program.title || ''}</PodcastTitleText>
 					<SubjectWrapper>
 						<PodcastSubjectText>{`#${program.category || ''}`}</PodcastSubjectText>
-						<PodcastSubjectText>{`#${program.publisher || ''}`}</PodcastSubjectText>
+						<PodcastSubjectText>{`#${program.publisher?.id || ''}`}</PodcastSubjectText>
 					</SubjectWrapper>
 				</TextContentWrapper>
 			</InfoWrapper>
