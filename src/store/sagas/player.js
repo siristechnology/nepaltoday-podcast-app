@@ -1,4 +1,4 @@
-import { select, call, all, put } from 'redux-saga/effects'
+import { select, call, put } from 'redux-saga/effects'
 
 import { Creators as LocalPodcastsManagerCreators } from '../ducks/localPodcastsManager'
 import { Creators as PlayerCreators } from '../ducks/player'
@@ -65,7 +65,6 @@ function* _rewindToPreviousPodcast(newPlaylistIndex) {
 
 export function* setupPlayer() {
 	try {
-		registerPlaybackService()
 		trackPlayerInit()
 	} catch (err) {
 		console.log('setupPlayer', err)
@@ -97,35 +96,6 @@ const trackPlayerInit = async () => {
 			TrackPlayer.CAPABILITY_JUMP_BACKWARD,
 		],
 	})
-}
-
-function registerPlaybackService() {
-	TrackPlayer.registerPlaybackService(
-		() =>
-			async function () {
-				TrackPlayer.addEventListener('remote-play', () => {
-					play().next()
-				})
-				TrackPlayer.addEventListener('remote-pause', () => {
-					pause().next()
-				})
-				TrackPlayer.addEventListener('remote-stop', () => {
-					stop().next()
-				})
-				TrackPlayer.addEventListener('remote-next', () => {
-					playNext().next()
-				})
-				TrackPlayer.addEventListener('remote-duck', () => {
-					pause().next()
-				})
-				TrackPlayer.addEventListener('remote-jump-forward', () => {
-					jumpForward().next()
-				})
-				TrackPlayer.addEventListener('remote-jump-backward', () => {
-					jumpBackward().next()
-				})
-			},
-	)
 }
 
 export function* play() {
