@@ -105,9 +105,6 @@ export function* play() {
 
 export function* pause() {
 	TrackPlayer.pause()
-	const { currentPodcast } = yield select((state) => state.player)
-
-	yield put(LocalPodcastsManagerCreators.addPodcastToRecentlyPlayedList(currentPodcast))
 }
 
 export function* jumpForward() {
