@@ -1,8 +1,8 @@
 import { select, call, put } from 'redux-saga/effects'
-
-import { Creators as LocalPodcastsManagerCreators } from '../ducks/localPodcastsManager'
-import { Creators as PlayerCreators } from '../ducks/player'
 import TrackPlayer from 'react-native-track-player'
+
+import { Creators as PlayerCreators } from '../ducks/player'
+import { Creators as LocalPodcastsManagerCreators } from '../ducks/localPodcastsManager'
 
 const _findIndexInsideOriginalPlaylist = (originalPlaylist, podcastSearched) => {
 	const index = originalPlaylist.findIndex((podcast) => podcast._id === podcastSearched._id)
@@ -81,6 +81,7 @@ const trackPlayerInit = async () => {
 			TrackPlayer.CAPABILITY_PLAY,
 			TrackPlayer.CAPABILITY_PAUSE,
 			TrackPlayer.CAPABILITY_STOP,
+			TrackPlayer.CAPABILITY_SEEK_TO,
 			TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
 			TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
 			TrackPlayer.CAPABILITY_JUMP_FORWARD,
@@ -91,6 +92,8 @@ const trackPlayerInit = async () => {
 			TrackPlayer.CAPABILITY_PLAY,
 			TrackPlayer.CAPABILITY_PAUSE,
 			TrackPlayer.CAPABILITY_STOP,
+			TrackPlayer.CAPABILITY_SEEK_TO,
+			TrackPlayer.CAPABILITY_SKIP_TO_PREVIOUS,
 			TrackPlayer.CAPABILITY_SKIP_TO_NEXT,
 			TrackPlayer.CAPABILITY_JUMP_FORWARD,
 			TrackPlayer.CAPABILITY_JUMP_BACKWARD,
@@ -99,8 +102,16 @@ const trackPlayerInit = async () => {
 }
 
 export function* play() {
-	TrackPlayer.play()
-	console.log('play button pressed')
+	const trackId = yield TrackPlayer.getCurrentTrack()
+
+	if (trackId) {
+		TrackPlayer.play()
+	} else {
+		const { playlist } = yield select((state) => state.player)
+		if (playlist) {
+			yield call(setPodcast)
+		}
+	}
 }
 
 export function* pause() {
@@ -144,7 +155,7 @@ export function* setPodcast() {
 
 		if (newPodcast.currentPosition > 3) TrackPlayer.seekTo(newPodcast.currentPosition - 3)
 
-		yield play()
+		yield TrackPlayer.play()
 		yield put(PlayerCreators.setPodcastSuccess(podcastWithURI))
 		yield put(LocalPodcastsManagerCreators.addPodcastToRecentlyPlayedList(oldPodcast))
 		yield put(LocalPodcastsManagerCreators.addPodcastToRecentlyPlayedList(newPodcast))
@@ -167,22 +178,6 @@ function* _defineNextPodcast(nextPodcast, playlistIndex) {
 	)
 
 	yield call(setPodcast)
-}
-
-function* _handleRestartPlayer(firstPodcast) {
-	const { originalPlaylist } = yield select((state) => state.player)
-
-	let firstPodcastPlaylist = firstPodcast
-
-	const hasURIDefined = !!firstPodcastPlaylist.uri && typeof firstPodcastPlaylist.uri === 'string'
-
-	if (!hasURIDefined) {
-		firstPodcastPlaylist = yield _definePodcastURI(firstPodcastPlaylist)
-	}
-
-	const originalPlaylistIndex = _findIndexInsideOriginalPlaylist(originalPlaylist, firstPodcastPlaylist)
-
-	yield put(PlayerCreators.restartPlayer(originalPlaylistIndex, firstPodcastPlaylist))
 }
 
 export function* playNext() {
