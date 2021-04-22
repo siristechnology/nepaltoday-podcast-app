@@ -27,6 +27,11 @@ const registerPlaybackService = () => {
 				TrackPlayer.addEventListener('remote-jump-backward', () => {
 					store.dispatch(PlayerCreators.jumpBackward())
 				})
+				TrackPlayer.addEventListener('playback-queue-ended', (event) => {
+					if (event.position > 1) {
+						store.dispatch(PlayerCreators.playNext())
+					}
+				})
 			},
 	)
 
