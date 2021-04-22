@@ -1,10 +1,9 @@
-// @flow
-
 import React from 'react'
 import { View, Text } from 'react-native'
 import styled from 'styled-components'
 
 import Icon from '~/components/common/Icon'
+import DefaultButton from '~/components/common/DefaultButton'
 
 const Wrapper = styled(View)`
 	width: 100%;
@@ -32,7 +31,7 @@ const Title = styled(Text).attrs({
 const Message = styled(Text).attrs({
 	numberOfLines: 3,
 })`
-	margin-top: ${({ theme }) => theme.metrics.mediumSize}px;
+	margin: ${({ theme }) => theme.metrics.mediumSize}px;
 	font-size: ${({ theme }) => theme.metrics.extraLargeSize * 1.1}px;
 	color: ${({ theme }) => theme.colors.subTextColor};
 	font-family: CircularStd-Medium;
@@ -45,12 +44,13 @@ type Props = {
 	icon: string,
 }
 
-const ErrorMessage = ({ message, title, icon }: Props): Object => (
+const ErrorMessage = ({ message, title, icon, showDownloadButton, navigation }: Props): Object => (
 	<Wrapper>
 		<ContentWrapper>
 			<Icon name={icon} size={150} />
 			<Title>{title}</Title>
 			<Message>{message}</Message>
+			{showDownloadButton && <DefaultButton text="Go to Downloads" onPress={() => navigation.navigate('PODCASTS_DOWNLOADED')} size="large" />}
 		</ContentWrapper>
 	</Wrapper>
 )

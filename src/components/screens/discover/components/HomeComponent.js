@@ -45,6 +45,8 @@ const HomeComponent = ({ navigation, loading, error, data, onRefresh, onTypeAuth
 				message="Seems like you're having some troubles when trying to connect with the server."
 				icon="server-network-off"
 				title="Oops..."
+				showDownloadButton={true}
+				navigation={navigation}
 			/>
 		)}
 		{!loading && !error && (
