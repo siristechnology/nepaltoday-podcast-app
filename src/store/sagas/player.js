@@ -147,7 +147,7 @@ export function* setPodcast() {
 		yield TrackPlayer.reset()
 		yield TrackPlayer.add({
 			id: newPodcast._id,
-			url: newPodcast.audioUrl,
+			url: newPodcast.path || newPodcast.audioUrl,
 			title: newPodcast.title,
 			album: newPodcast.publisher.title,
 			artist: newPodcast.program.title,
