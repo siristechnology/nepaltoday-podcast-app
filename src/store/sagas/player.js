@@ -4,12 +4,6 @@ import TrackPlayer from 'react-native-track-player'
 import { Creators as PlayerCreators } from '../ducks/player'
 import { Creators as LocalPodcastsManagerCreators } from '../ducks/localPodcastsManager'
 
-const _findIndexInsideOriginalPlaylist = (originalPlaylist, podcastSearched) => {
-	const index = originalPlaylist.findIndex((podcast) => podcast._id === podcastSearched._id)
-
-	return index
-}
-
 function* _getPodcastFromStorage(id) {
 	const { podcastsDownloaded } = yield select((state) => state.localPodcastsManager)
 
@@ -108,6 +102,15 @@ export function* play() {
 		if (playlist) {
 			yield call(setPodcast)
 		}
+	}
+}
+
+export function* remotePlay() {
+	const trackId = yield TrackPlayer.getCurrentTrack()
+
+	if (trackId) {
+		const { paused } = yield select((state) => state.player)
+		if (!paused) TrackPlayer.play()
 	}
 }
 

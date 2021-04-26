@@ -15,7 +15,9 @@ export const Types = {
 	SETUP_PLAYER: 'player/SETUP_PLAYER',
 	SET_PODCASTS_RECENTLY_PLAYED: 'player/SET_PODCASTS_RECENTLY_PLAYED',
 	PLAY: 'player/PLAY',
+	REMOTE_PLAY: 'player/REMOTE_PLAY',
 	PAUSE: 'player/PAUSE',
+	TEMP_PAUSE: 'player/TEMP_PAUSE',
 	STOP: 'player/STOP',
 	JUMP_FORWARD: 'player/JUMP_FORWARD',
 	JUMP_BACKWARD: 'player/JUMP_BACKWARD',
@@ -105,8 +107,16 @@ export const Creators = {
 		type: Types.PLAY,
 	}),
 
+	remotePlay: () => ({
+		type: Types.REMOTE_PLAY,
+	}),
+
 	pause: () => ({
 		type: Types.PAUSE,
+	}),
+
+	tempPause: () => ({
+		type: Types.TEMP_PAUSE,
 	}),
 
 	stop: () => ({

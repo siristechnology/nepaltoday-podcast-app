@@ -19,9 +19,9 @@ const registerPlaybackService = () => {
 					store.dispatch(PlayerCreators.playNext())
 				})
 				TrackPlayer.addEventListener('remote-duck', ({ paused, permanent }) => {
-					if (paused && !permanent) store.dispatch(PlayerCreators.pause())
+					if (paused && !permanent) store.dispatch(PlayerCreators.tempPause())
 					if (paused && permanent) store.dispatch(PlayerCreators.stop())
-					if (!paused) store.dispatch(PlayerCreators.play())
+					if (!paused) store.dispatch(PlayerCreators.remotePlay())
 				})
 				TrackPlayer.addEventListener('remote-jump-forward', () => {
 					store.dispatch(PlayerCreators.jumpForward())
