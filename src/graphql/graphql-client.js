@@ -1,4 +1,5 @@
-import { ApolloClient, HttpLink, InMemoryCache, from } from '@apollo/client'
+import { ApolloClient, HttpLink, from } from '@apollo/client'
+import { InvalidationPolicyCache } from 'apollo-invalidation-policies'
 import { onError } from '@apollo/client/link/error'
 import crashlytics from '@react-native-firebase/crashlytics'
 import { SERVER_URL } from 'react-native-dotenv'
@@ -13,11 +14,17 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 	}
 })
 
+const cache = new InvalidationPolicyCache({
+	invalidationPolicies: {
+		timeToLive: 86400000,
+	},
+})
+
 const httpLink = new HttpLink({ uri: SERVER_URL })
 
 const client = new ApolloClient({
 	link: from([errorLink, httpLink]),
-	cache: new InMemoryCache(),
+	cache,
 })
 
 export default client
