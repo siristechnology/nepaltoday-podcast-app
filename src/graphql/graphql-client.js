@@ -4,8 +4,6 @@ import { onError } from '@apollo/client/link/error'
 import crashlytics from '@react-native-firebase/crashlytics'
 import { SERVER_URL } from 'react-native-dotenv'
 
-console.log('printing SERVER_URL', SERVER_URL)
-
 const errorLink = onError(({ graphQLErrors, networkError }) => {
 	if (graphQLErrors) {
 		graphQLErrors.forEach((error) => crashlytics().recordError(new Error(error.message)))
