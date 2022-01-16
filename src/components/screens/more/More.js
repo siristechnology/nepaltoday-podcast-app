@@ -222,23 +222,6 @@ class Profile extends Component<Props, State> {
 										/>
 									</Row>
 								</TouchableOpacity>
-								<TouchableOpacity
-									onPress={this.onSignoutPress}
-									hitSlop={{
-										bottom: appStyles.metrics.smallSize,
-										right: appStyles.metrics.smallSize,
-										left: appStyles.metrics.smallSize,
-										top: appStyles.metrics.smallSize,
-									}}
-								>
-									<Row>
-										<TextWrapper>
-											<OptiontTitle>Sign out</OptiontTitle>
-											<OptionDescription>Log out from your current account</OptionDescription>
-										</TextWrapper>
-										<Icon color={appStyles.colors.subTextWhite} name="logout" size={Platform.OS === 'android' ? 32 : 34} />
-									</Row>
-								</TouchableOpacity>
 							</OptionsWrapper>
 						)
 					}}

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:gravity="center"
+  android:background="@color/ic_launcher_background"
+  android:orientation="vertical"
+  android:scaleType="centerInside">
+
+  <LinearLayout
+    android:id="@+id/groupNumbers"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="40dp"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:scaleType="fitXY"
+      android:src="@drawable/ic_launcher_foreground" />
+
+    <TextView
+      android:id="@+id/textView1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:gravity="center"
+      android:text="NepalToday Podcast"
+      android:textStyle="bold"
+      android:textSize="30sp" />
+
+    <TextView
+      android:id="@+id/textView2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:layout_marginTop="10dp"
+      android:gravity="center"
+      android:text="Download your favorite podcasts on Nepali news, politics, interviews, stories to listen offline."
+      android:textSize="20sp" />
+
+  </LinearLayout>
+
+</RelativeLayout>
