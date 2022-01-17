@@ -35,7 +35,7 @@ const SearchAuthorTextInputWrapper = styled(View)`
 	padding-right: ${({ theme }) => theme.metrics.largeSize}px;
 	padding-left: ${({ theme }) => theme.metrics.largeSize}px;
 `
-const categories = ['Headline', 'Politics', 'News', 'Entertainment', 'Sports', 'Business', 'Social', 'Health', 'Technology', 'Agriculture', 'Share']
+const categories = ['Headline', 'News', 'Politics', 'Entertainment', 'Sports', 'Business', 'Social', 'Health', 'Technology', 'Agriculture', 'Share']
 
 const HomeComponent = ({ navigation, loading, error, data, onRefresh, onTypeAuthorName, onSearchForAuthor }) => (
 	<Wrapper>
