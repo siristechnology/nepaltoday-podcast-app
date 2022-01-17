@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
 import { TouchableOpacity, ScrollView, Platform, Text, View } from 'react-native'
 import styled from 'styled-components'
-import { GoogleSignin } from '@react-native-community/google-signin'
 
 import { getItemFromStorage, persistItemInStorage } from '~/utils/AsyncStorageManager'
 import ThemeContextConsumer from '~/ThemeContextProvider'
 import ScreenTitle from '~/components/common/ScreenTitle'
 import Switch from '~/components/common/Switch'
 import Icon from '~/components/common/Icon'
-import CONSTANTS from '~/utils/CONSTANTS'
 import appStyles from '~/styles'
-import { clearUserInfo } from '~/services/asyncStorage.services'
 
 const Wrapper = styled(ScrollView).attrs({
 	alwaysBounceVertical: false,
@@ -105,13 +102,6 @@ class Profile extends Component<Props, State> {
 		})
 
 		await persistItemInStorage(storageKey, !currentOptionValue)
-	}
-
-	onSignoutPress = async () => {
-		await GoogleSignin.revokeAccess()
-		await GoogleSignin.signOut()
-		clearUserInfo()
-		this.props.navigation.dangerouslyGetParent().navigate('LOGIN')
 	}
 
 	render() {
